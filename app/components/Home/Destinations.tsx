@@ -1,31 +1,22 @@
 'use client';
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const destinations = [
-  { 
-    city: "Paris, France", 
-    tagline: "The City of Light", 
-    image: "/Homepage/Section 5/Images/hero-image.png" 
-  },
-  { 
-    city: "Barcelona, Spain", 
-    tagline: "Modernism & beaches", 
-    image: "/Homepage/Section 5/Images/hero-image-1.png" 
-  },
-  { 
-    city: "Dubai, UAE", 
-    tagline: "Luxury & desert dunes", 
-    image: "/Homepage/Section 5/Images/hero-image-2.png" 
-  },
-  { 
-    city: "Bali, Indonesia", 
-    tagline: "Island paradise & temples", 
-    image: "/Homepage/Section 5/Images/hero-image-3.png" 
-  },
-];
-
 export default function Destinations() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [iframeHeight, setIframeHeight] = useState(900);
+
+  useEffect(() => {
+    function onMessage(event: MessageEvent) {
+      if (event.data?.type === 'destinations-widget-height' && event.data.height > 0) {
+        setIframeHeight(event.data.height);
+      }
+    }
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   return (
     <section className="w-full bg-[#ffffff] py-[80px] text-[#111827]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px] max-[430px]:px-4">
@@ -57,75 +48,14 @@ export default function Destinations() {
         </div>
 
         {/* Cards Grid - 4 Columns */}
-        <div className="grid w-full grid-cols-1 gap-[24px] md:grid-cols-2 lg:grid-cols-4">
-          {destinations.map((dest, i) => (
-            <div 
-              key={i} 
-              // Explicit 474px height matching Figma auto-layout spec
-              className="group flex h-[474px] flex-col overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-[#ffffff] shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
-            >
-              {/* Image Header - Fixed height leaving exact room for content */}
-              <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-[#F3F4F6]">
-                <Image 
-                  src={dest.image} 
-                  alt={dest.city} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-                {/* Badge - Title XS: 12px, Medium, 133% */}
-                <div className="absolute left-[16px] top-[16px] rounded-full bg-[#ffffff] px-[14px] py-[6px] font-sans text-[12px] font-medium leading-[1.33] text-[#111827] shadow-sm">
-                  Popular
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="flex flex-1 flex-col p-[24px]">
-                
-                {/* Title - Title L: 24px, Medium, 100% */}
-                <h3 className="font-sans text-[24px] font-medium leading-none text-[#111827]">
-                  {dest.city}
-                </h3>
-                {/* Tagline - Body M: 14px, Regular, 143% */}
-                <p className="mt-[6px] font-sans text-[14px] font-normal leading-[1.43] text-[#6B7280]">
-                  {dest.tagline}
-                </p>
-
-                {/* Pills List */}
-                <div className="mt-[24px] flex flex-col gap-[10px]">
-                  <div className="flex w-fit items-center gap-[8px] rounded-full border border-[#E5E7EB] bg-[#ffffff] px-[14px] py-[8px]">
-                    <Image src="/Homepage/Section 5/Icons/Vector.png" alt="Flight" width={14} height={14} className="object-contain" />
-                    {/* Title XS: 12px, Medium, 133% */}
-                    <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#111827]">
-                      Flights from €38
-                    </span>
-                  </div>
-                  <div className="flex w-fit items-center gap-[8px] rounded-full border border-[#E5E7EB] bg-[#ffffff] px-[14px] py-[8px]">
-                    <Image src="/Homepage/Section 5/Icons/Vector-1.png" alt="Hotel" width={14} height={14} className="object-contain" />
-                    {/* Title XS: 12px, Medium, 133% */}
-                    <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#111827]">
-                      Hotels from €94/night
-                    </span>
-                  </div>
-                </div>
-
-                {/* Explore Button - Pinned to bottom */}
-                <div className="mt-auto">
-                  {/* Title S: 14px, Medium, 143% */}
-                  <button className="flex h-[44px] w-full items-center justify-center gap-2 rounded-[14px] bg-[#FDDB32] font-sans text-[14px] font-medium leading-[1.43] text-[#111827] transition-colors duration-200 hover:bg-[#e5c52c]">
-                    Explore
-                    <Image 
-                      src="/Homepage/Section 5/Icons/KQY0VNx64.png" 
-                      alt="Arrow Right" 
-                      width={14} 
-                      height={14} 
-                      className="object-contain" 
-                    />
-                  </button>
-                </div>
-                
-              </div>
-            </div>
-          ))}
+        <div className="w-full overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+          <iframe
+            ref={iframeRef}
+            title="TravelMommy destinations widget"
+            src="/destinations-widget.html"
+            style={{ height: iframeHeight }}
+            className="w-full border-0 bg-transparent transition-[height] duration-300"
+          />
         </div>
 
       </div>
