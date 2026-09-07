@@ -44,24 +44,6 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
             {item.label}
           </Link>
           ))}
-          <Link
-            href="/hotels"
-            className="flex h-[40px] items-center rounded-[14px] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-colors hover:bg-white"
-          >
-            Hotels
-          </Link>
-          <Link
-            href="/destinations"
-            className="flex h-[40px] items-center rounded-[14px] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-colors hover:bg-white"
-          >
-            Destinations
-          </Link>
-          <Link
-            href="/travel"
-            className="flex h-[40px] items-center rounded-[14px] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-colors hover:bg-white"
-          >
-            Travel
-          </Link>
 
           <div className="w-[6px]" />
 
@@ -109,27 +91,6 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
                 {item.label}
               </Link>
               ))}
-              <Link
-                href="/hotels"
-                onClick={closeMobileMenu}
-                className="flex h-[48px] items-center rounded-[14px] px-[16px] font-sans text-[16px] font-medium text-black transition-colors hover:bg-white"
-              >
-                Hotels
-              </Link>
-              <Link
-                href="/destinations"
-                onClick={closeMobileMenu}
-                className="flex h-[48px] items-center rounded-[14px] px-[16px] font-sans text-[16px] font-medium text-black transition-colors hover:bg-white"
-              >
-                Destinations
-              </Link>
-              <Link
-                href="/travel"
-                onClick={closeMobileMenu}
-                className="flex h-[48px] items-center rounded-[14px] px-[16px] font-sans text-[16px] font-medium text-black transition-colors hover:bg-white"
-              >
-                Travel
-              </Link>
 
               <div className="my-[4px] h-[1px] w-full bg-black/5" />
 
