@@ -20,8 +20,11 @@ import {
 // ============================================================================
 // IMPORTANT: Adjust these import paths to match your project's folder structure
 // ============================================================================
-import Header from "../components/Home/header";
-import Footer from "../components/Home/footer";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import { searchData, type SearchPageData } from "../../../lib/data/searchData";
+import { headerData } from "../../../lib/data/headerData";
+import { footerData } from "../../../lib/data/footerData";
 
 /* ----------------------------------------------------------------
    STATIC DATA
@@ -148,14 +151,14 @@ const filterSections = [
    MAIN PAGE COMPONENT
 ---------------------------------------------------------------- */
 
-export default function SearchPage() {
+export default function SearchPage({ data = searchData }: { data?: SearchPageData }) {
   return (
     <main className="bg-[#F9F8F5]">
-      <Header />
-      <SearchBarSection />
-      <MapPreviewSection />
-      <ResultsSection />
-      <Footer />
+      <Header data={headerData} />
+      <SearchBarSection data={data} />
+      <MapPreviewSection data={data} />
+      <ResultsSection data={data} />
+      <Footer data={footerData} />
     </main>
   );
 }
@@ -164,7 +167,7 @@ export default function SearchPage() {
    SEARCH BAR
 ---------------------------------------------------------------- */
 
-function SearchBarSection() {
+function SearchBarSection({ data }: { data: SearchPageData }) {
   return (
     <section className="border-b border-black/5 bg-white pt-[100px]">
       <div className="mx-auto w-full max-w-[1280px] px-6 py-[20px] lg:px-8">
@@ -246,7 +249,7 @@ function SearchBarSection() {
    MAP PREVIEW
 ---------------------------------------------------------------- */
 
-function MapPreviewSection() {
+function MapPreviewSection({ data }: { data: SearchPageData }) {
   return (
     <section className="bg-white pb-[48px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center px-6 lg:px-8">
@@ -393,11 +396,11 @@ function PriceRangeFilter() {
   );
 }
 
-function FiltersSidebar() {
+function FiltersSidebar({ data }: { data: SearchPageData }) {
   return (
     <aside className="hidden w-[260px] shrink-0 lg:block">
       <PriceRangeFilter />
-      {filterSections.map((section) => (
+      {data.filterSections.map((section) => (
         <FilterSection
           key={section.title}
           title={section.title}
@@ -413,7 +416,7 @@ function FiltersSidebar() {
    HOTEL RESULT CARD
 ---------------------------------------------------------------- */
 
-function HotelCard({ hotel }: { hotel: (typeof hotelResults)[number] }) {
+function HotelCard({ hotel }: { hotel: SearchPageData["hotelResults"][number] }) {
   return (
     <div className="flex flex-col gap-4 border-b border-black/10 py-6 sm:flex-row sm:items-center">
       {/* Image */}
@@ -491,7 +494,7 @@ function HotelCard({ hotel }: { hotel: (typeof hotelResults)[number] }) {
    RESULTS SECTION
 ---------------------------------------------------------------- */
 
-function ResultsSection() {
+function ResultsSection({ data }: { data: SearchPageData }) {
   const [activeSort, setActiveSort] = useState("Recommended");
   const [activePage, setActivePage] = useState("1");
 
@@ -499,13 +502,13 @@ function ResultsSection() {
     <section className="bg-[#F9F8F5] py-16 lg:py-20">
       <div className="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
         <div className="flex flex-col gap-10 lg:flex-row">
-          <FiltersSidebar />
+              <FiltersSidebar data={data} />
 
           <div className="flex-1">
             {/* Sort bar */}
             <div className="flex flex-col gap-4 border-b border-black/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-wrap items-center gap-[18px]">
-                {sortOptions.map((option) => (
+                {data.sortOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => setActiveSort(option)}
@@ -526,14 +529,14 @@ function ResultsSection() {
 
             {/* Hotel list */}
             <div className="flex flex-col">
-              {hotelResults.map((hotel, i) => (
+              {data.hotelResults.map((hotel, i) => (
                 <HotelCard key={`${hotel.name}-${i}`} hotel={hotel} />
               ))}
             </div>
 
             {/* Pagination */}
             <div className="mt-10 flex items-center justify-center gap-3">
-              {paginationPages.map((page) => (
+              {data.paginationPages.map((page) => (
                 <button
                   key={page}
                   onClick={() => page !== "..." && setActivePage(page)}

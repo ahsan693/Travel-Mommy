@@ -2,26 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { footerData, type FooterData } from "../../../lib/data/footerData";
 
-const columns = [
-  { title: "Search", links: ["Cheap Flights to Dubai", "Hotels in Paris", "Flights from Dublin", "Flights from London"] },
-  { title: "Discover", links: ["Deals", "Destinations", "Airlines", "Airports"] },
-  { title: "Discover", links: ["Trips", "Travel Guide", "Travel Tips", "FAQs"] },
-  { title: "Company", links: ["About", "Contact", "Partners", "Help Centre"] },
-];
-
-const mobileOrder = ["order-1", "order-3", "order-2", "order-4"];
-
-const legalLinks = [
-  "Privacy Policy",
-  "Terms & Conditions",
-  "Cookie Policy",
-  "Affiliate Disclosure",
-  "Accessibility",
-];
-
-const socialIcons = [
-  {
+const socialIcons = {
+  instagram: {
     alt: "Instagram",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -31,7 +15,7 @@ const socialIcons = [
       </svg>
     )
   },
-  {
+  facebook: {
     alt: "Facebook",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -39,7 +23,7 @@ const socialIcons = [
       </svg>
     )
   },
-  {
+  tiktok: {
     alt: "TikTok",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -47,9 +31,9 @@ const socialIcons = [
       </svg>
     )
   }
-];
+};
 
-export default function Footer() {
+export default function Footer({ data = footerData }: { data?: FooterData }) {
   return (
     <footer className="bg-black text-white">
       {/* Applied ~158px top padding on desktop per Figma specs */}
@@ -62,10 +46,10 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center">
               <Image
-                src="/Homepage/Section 7/Vector-1.png"
-                alt="TravelMommy Logo"
-                width={203}
-                height={128}
+                src={data.logo.src}
+                alt={data.logo.alt}
+                width={data.logo.width}
+                height={data.logo.height}
                 className="h-32 w-auto object-contain lg:h-[117px]"
               />
             </Link>
@@ -73,15 +57,15 @@ export default function Footer() {
             {/* Locale Pill */}
             <button className="flex w-fit items-center gap-[8px] rounded-[10px] border border-white/15 bg-white/5 px-[12px] py-[8px] font-sans text-[12px] font-medium leading-[1.33] text-white transition-colors hover:bg-white/10">
               <Image
-                src="/Homepage/Section 7/Vector.png"
+                src={data.locale.iconSrc}
                 alt="Region Settings"
                 width={14}
                 height={14}
                 className="object-contain"
               />
-              IE Ireland · English (UK) · EUR €
+              {data.locale.label}
               <Image
-                src="/Homepage/Section 7/KQY0VNx64.png"
+                src={data.locale.arrowSrc}
                 alt="Dropdown Arrow"
                 width={12}
                 height={12}
@@ -92,20 +76,19 @@ export default function Footer() {
             {/* Description text + social icons under logo */}
             <div className="flex flex-col gap-[10px]">
               <p className="w-full max-w-[350px] font-sans text-[16px] font-normal leading-[24px] text-white">
-                Compare flights, hotels and travel deals from trusted travel
-                providers - all in one place.
+                {data.description}
               </p>
 
               {/* Social Icons - Using !text to force color override */}
               <div className="flex items-center gap-5 pt-2">
-                {socialIcons.map((social) => (
+                {data.socialLinks.map((social) => (
                   <Link 
                     key={social.alt} 
                     href="#" 
                     aria-label={social.alt}
                     className="!text-[#7D7D7D] transition-colors hover:!text-white"
                   >
-                    {social.icon}
+                    {socialIcons[social.icon].icon}
                   </Link>
                 ))}
               </div>
@@ -114,10 +97,10 @@ export default function Footer() {
 
           {/* Nav columns group */}
           <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-4 lg:flex lg:gap-16">
-            {columns.map((col, i) => (
+            {data.columns.map((col, i) => (
               <div
                 key={i}
-                className={`flex flex-col gap-4 ${mobileOrder[i]} sm:order-none`}
+                className={`flex flex-col gap-4 ${data.mobileOrder[i]} sm:order-none`}
               >
                 {/* Column Title (Kept White) */}
                 <span className="font-sans text-[16px] font-medium leading-[1.5] text-white">
@@ -154,18 +137,18 @@ export default function Footer() {
               
               {/* Line 1: 3 Links */}
               <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="transition-colors hover:text-white/70">Privacy Policy</Link>
+                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[0]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">Terms & Conditions</Link>
+                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[1]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">Cookie Policy</Link>
+                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[2]}</Link>
               </div>
 
               {/* Line 2: 2 Links */}
               <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="transition-colors hover:text-white/70">Affiliate Disclosure</Link>
+                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[3]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">Accessibility</Link>
+                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[4]}</Link>
               </div>
 
             </div>
@@ -177,13 +160,13 @@ export default function Footer() {
           {/* Copyright + disclaimer */}
           <div className="flex flex-col items-center pt-[33px] text-center">
             <p className="font-sans text-[16px] font-normal leading-[24px] text-white">
-              © 2025 TravelMommy
+              {data.copyright}
             </p>
 
             <div className="h-[24px]" />
 
             <p className="max-w-[889px] font-sans text-[16px] font-normal leading-[24px] text-white">
-              TravelMommy is a travel metasearch platform. We compare prices from airlines, hotels and travel providers. Bookings are completed directly with our travel partners.
+              {data.disclaimer}
             </p>
           </div>
 

@@ -4,8 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { headerData, type HeaderData } from "../../../lib/data/headerData";
 
-export default function Header() {
+export default function Header({ data = headerData }: { data?: HeaderData }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -23,10 +24,10 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center">
           <Image 
-            src="/Homepage/Section 1/Header Images/navbarlogo.png" 
-            alt="TravelMommy" 
-            width={72} 
-            height={30} 
+            src={data.logo.src} 
+            alt={data.logo.alt} 
+            width={data.logo.width} 
+            height={data.logo.height} 
             className="h-[30px] w-auto object-contain" 
           />
         </Link>
@@ -34,12 +35,15 @@ export default function Header() {
         {/* Desktop Nav (Hidden on Mobile) */}
         <nav className="hidden lg:flex flex-1 items-center justify-end gap-[4px]">
           {/* Nav Links - Mapped to Title S: 14px, Medium, 143% */}
+          {data.navigation.map((item) => (
           <Link
-            href="/flight"
+            key={item.href}
+            href={item.href}
             className="flex h-[40px] items-center rounded-[14px] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-colors hover:bg-white"
           >
-            Flights
+            {item.label}
           </Link>
+          ))}
           <Link
             href="/hotels"
             className="flex h-[40px] items-center rounded-[14px] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-colors hover:bg-white"
@@ -63,15 +67,15 @@ export default function Header() {
 
           {/* Search Button - Mapped to Title S: 14px, Medium, 143% */}
           <Link
-            href="/searchwidgetpage"
+            href={data.search.href}
             className="relative flex h-[40px] min-w-[100px] items-center justify-center gap-[10px] rounded-[14px] bg-[#fddb32] px-[18px] font-sans text-[14px] font-medium leading-[1.43] text-black shadow-[0px_16px_8px_0px_rgba(31,31,31,0.01),0px_12px_6px_0px_rgba(31,31,31,0.04),0px_4px_4px_0px_rgba(31,31,31,0.07),0px_1.5px_3px_0px_rgba(31,31,31,0.08),0px_0px_0px_1px_#c29700] transition-all hover:brightness-105"
           >
-            Search Deals
+            {data.search.label}
             <Image 
-              src="/Homepage/Section 1/Header Icons/Icons/Component 1.png" 
+              src={data.search.iconSrc} 
               alt="Arrow Right" 
-              width={14} 
-              height={14} 
+              width={data.search.desktopIconSize} 
+              height={data.search.desktopIconSize} 
               className="object-contain" 
             />
             <span className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0px_1px_2px_0px_rgba(255,255,255,0.12)]" />
@@ -95,13 +99,16 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 flex flex-col rounded-[20px] bg-[#f5f5f5] p-[12px] shadow-lg lg:hidden">
             <nav className="flex flex-col gap-[4px]">
+              {data.navigation.map((item) => (
               <Link
-                href="/flight"
+                key={item.href}
+                href={item.href}
                 onClick={closeMobileMenu}
                 className="flex h-[48px] items-center rounded-[14px] px-[16px] font-sans text-[16px] font-medium text-black transition-colors hover:bg-white"
               >
-                Flights
+                {item.label}
               </Link>
+              ))}
               <Link
                 href="/hotels"
                 onClick={closeMobileMenu}
@@ -127,13 +134,13 @@ export default function Header() {
               <div className="my-[4px] h-[1px] w-full bg-black/5" />
 
               <Link
-                href="/searchwidgetpage"
+                href={data.search.href}
                 onClick={closeMobileMenu}
                 className="relative mt-1 flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[14px] bg-[#fddb32] px-[18px] font-sans text-[16px] font-medium text-black transition-all hover:brightness-105"
               >
-                Search Deals
+                {data.search.label}
                 <Image 
-                  src="/Homepage/Section 1/Header Icons/Icons/Component 1.png" 
+                  src={data.search.iconSrc} 
                   alt="Arrow Right" 
                   width={18} 
                   height={18} 

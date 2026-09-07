@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-export default function SearchWidget() {
+export default function HomeSearchWidget() {
   const router = useRouter();
 
   return (
