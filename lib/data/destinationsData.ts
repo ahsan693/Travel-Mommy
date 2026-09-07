@@ -2,13 +2,95 @@ export interface DestinationChip { name: string; region: string; img: string; sw
 export interface FeaturedCountry { name: string; desc: string; image: string; tags: string[]; flightsFrom: string; hotelsFrom: string; perk: string; rating: string; price: string; icon: string }
 export interface DestinationFeature { icon: string; iconSrc: string; title: string; description: string }
 export interface DestinationFaq { q: string; a: string }
-export interface DestinationsPageData { hero: { title: string; description: string; image: string; imageAlt: string; prompt: string; emptyMessage: string }; regions: string[]; countryChips: DestinationChip[]; featuredCountries: FeaturedCountry[]; whyCompare: DestinationFeature[]; faqs: DestinationFaq[]; copy: { featuredTitle: string; featuredCta: string } }
+export interface DestinationsPageData {
+  hero: {
+    title: string;
+    mobileTitle: string[];
+    description: string;
+    mobileDescription: string;
+    image: string;
+    imageAlt: string;
+    prompt: string;
+    popularLabel: string;
+    initialRegion: string;
+    emptyMessage: string;
+  };
+  regions: string[];
+  countryChips: DestinationChip[];
+  featuredCountries: FeaturedCountry[];
+  whyCompare: DestinationFeature[];
+  faqs: DestinationFaq[];
+  copy: {
+    featuredTitle: string;
+    featuredBadge: string;
+    featuredCta: string;
+    featuredPriceLabel: string;
+    featuredPriceSuffix: string;
+    flightsLabel: string;
+    hotelsLabel: string;
+    ratingSuffix: string;
+    whyTitle: string;
+    whyDescription: string;
+    whyCta: string;
+    faqTitle: string;
+  };
+}
 export const destinationsData: DestinationsPageData = {
-  hero: { title: "Discover Your Next Adventure", description: "Explore the world's most inspiring destinations and plan your next trip with confidence.", image: "/Featured Countries/Section 1/Images/Hero.png", imageAlt: "Desert canyon arch at sunset", prompt: "Explore destinations by region", emptyMessage: "No destinations currently listed for this region." },
+  hero: {
+    title: "Discover Your Next Destination",
+    mobileTitle: ["Discover", "Your Next", "Destination"],
+    description: "Explore countries across Europe, Asia, the Americas, Africa and Oceania. Compare flights and hotels, explore travel guides, and plan your next adventure with TravelMommy.",
+    mobileDescription: "Explore countries across Europe, Asia, the Americas, Africa and Oceania. Compare flights and hotels, and plan your next adventure.",
+    image: "/Featured Countries/Section 1/Images/neom-wTmGtmGQCjQ-unsplash.jpg",
+    imageAlt: "Desert canyon arch at sunset",
+    prompt: "Browse by Region",
+    popularLabel: "Popular Destinations",
+    initialRegion: "Europe",
+    emptyMessage: "No destinations currently listed for this region.",
+  },
   regions: ["Europe", "Asia", "North America", "Middle East", "Africa", "Oceania"],
-  countryChips: [{ name: "Greece", region: "Europe", img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=100&q=80", swatch: "#FBBDEA" }, { name: "Italy", region: "Europe", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=100&q=80", swatch: "#FFC796" }, { name: "Spain", region: "Europe", img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=100&q=80", swatch: "#FFED91" }, { name: "Japan", region: "Asia", img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&w=100&q=80", swatch: "#D8E9FF" }],
+  countryChips: [
+    { name: "Greece", region: "Europe", img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=100&q=80", swatch: "#FBBDEA" },
+    { name: "Italy", region: "Europe", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=100&q=80", swatch: "#FFC796" },
+    { name: "Spain", region: "Europe", img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=100&q=80", swatch: "#FFED91" },
+    { name: "France", region: "Europe", img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&w=100&q=80" , swatch: "#D8E9FF" },
+    { name: "Portugal", region: "Europe", img: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&w=100&q=80", swatch: "#D8E9FF" },
+    { name: "Croatia", region: "Europe", img: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&w=100&q=80", swatch: "#D8E9FF" },
+    { name: "Japan", region: "Asia", img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&w=100&q=80", swatch: "#D8E9FF" },
+    { name: "Thailand", region: "Asia", img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&w=100&q=80", swatch: "#FFED91" },
+    { name: "Indonesia", region: "Asia", img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&w=100&q=80", swatch: "#FFC796" },
+    { name: "Vietnam", region: "Asia", img: "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&w=100&q=80", swatch: "#FBBDEA" },
+    { name: "USA", region: "North America", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&w=100&q=80", swatch: "#D8E9FF" },
+    { name: "Canada", region: "North America", img: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&w=100&q=80", swatch: "#FBBDEA" },
+    { name: "Mexico", region: "North America", img: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&w=100&q=80", swatch: "#FFED91" },
+    { name: "UAE", region: "Middle East", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&w=100&q=80", swatch: "#FFC796" },
+    { name: "Turkey", region: "Middle East", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&w=100&q=80", swatch: "#FBBDEA" },
+    { name: "Morocco", region: "Africa", img: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&w=100&q=80", swatch: "#FFC796" },
+    { name: "South Africa", region: "Africa", img: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&w=100&q=80", swatch: "#FFED91" },
+    { name: "Australia", region: "Oceania", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&w=100&q=80", swatch: "#D8E9FF" },
+    { name: "New Zealand", region: "Oceania", img: "https://images.unsplash.com/photo-1556878516-61356c874f03?auto=format&w=100&q=80", swatch: "#FBBDEA" },
+  ],
   featuredCountries: [{ name: "Greece", desc: "Beautiful islands, ancient history", image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=800&q=80", tags: ["Islands", "History", "Beach"], flightsFrom: "€120", hotelsFrom: "€180", perk: "Mediterranean beaches", rating: "4.9", price: "€120", icon: "/Featured Countries/Section 1/Icon/Vector.png" }, { name: "Spain", desc: "Sun-soaked beaches, vibrant culture", image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=800&q=80", tags: ["Culture", "Beaches", "Tapas"], flightsFrom: "€120", hotelsFrom: "€180", perk: "Incredible tapas & nightlife", rating: "4.8", price: "€110", icon: "/Featured Countries/Section 1/Icon/Vector.png" }, { name: "Italy", desc: "Ancient ruins, rolling vineyards", image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=800&q=80", tags: ["Art", "History", "Wine"], flightsFrom: "€120", hotelsFrom: "€180", perk: "World-class cuisine & art", rating: "4.9", price: "€130", icon: "/Featured Countries/Section 1/Icon/Vector.png" }],
   whyCompare: [{ icon: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." }, { icon: "/Featured Countries/Section 3/Icons/follow user - 01.png", iconSrc: "/Featured Countries/Section 3/Icons/follow user - 01.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, { icon: "/Featured Countries/Section 3/Icons/time refresh - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/time refresh - 02.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }],
-  faqs: [{ q: "Is TravelMommy free to use?", a: "Yes. You can compare flights and hotels for free and book directly with trusted travel partners." }, { q: "Can I compare flights and hotels?", a: "Yes. Compare prices from hundreds of airlines, hotels and booking websites in one place." }],
-  copy: { featuredTitle: "Featured Countries", featuredCta: "Explore" },
+  faqs: [
+    { q: "Is TravelMommy free to use?", a: "Yes. You can compare flights and hotels for free and book directly with trusted travel partners." },
+    { q: "Can I compare flights and hotels?", a: "Yes. Compare prices from hundreds of airlines, hotels and booking websites in one place." },
+    { q: "Which countries are most popular?", a: "Some of our most searched destinations include Greece, Spain, Italy, France, Thailand and Japan." },
+    { q: "How do I find cheap flights?", a: "Use our flight search to compare prices across multiple travel providers and book when you find the best deal." },
+    { q: "When is the best time to travel?", a: "It depends on your destination. Each country guide includes seasonal travel tips and the best times to visit." },
+  ],
+  copy: {
+    featuredTitle: "Featured Countries",
+    featuredBadge: "Popular",
+    featuredCta: "Explore →",
+    featuredPriceLabel: "Explore",
+    featuredPriceSuffix: "/ flight",
+    flightsLabel: "Flights from",
+    hotelsLabel: "Hotels from",
+    ratingSuffix: "/5",
+    whyTitle: "Why Plan Your Trip with TravelMommy?",
+    whyDescription: "Search and compare cheap flights from multiple airlines and trusted booking partners to find the best fare for your trip.",
+    whyCta: "Explore tours",
+    faqTitle: "Frequently Asked Questions",
+  },
 };
