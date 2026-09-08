@@ -70,7 +70,34 @@ export const destinationsData: DestinationsPageData = {
     { name: "Australia", region: "Oceania", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&w=100&q=80", swatch: "#D8E9FF" },
     { name: "New Zealand", region: "Oceania", img: "https://images.unsplash.com/photo-1556878516-61356c874f03?auto=format&w=100&q=80", swatch: "#FBBDEA" },
   ],
-  featuredCountries: [{ name: "Greece", desc: "Beautiful islands, ancient history", image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=800&q=80", tags: ["Islands", "History", "Beach"], flightsFrom: "€120", hotelsFrom: "€180", perk: "Mediterranean beaches", rating: "4.9", price: "€120", icon: "/Featured Countries/Section 1/Icon/Vector.png" }, { name: "Spain", desc: "Sun-soaked beaches, vibrant culture", image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=800&q=80", tags: ["Culture", "Beaches", "Tapas"], flightsFrom: "€120", hotelsFrom: "€180", perk: "Incredible tapas & nightlife", rating: "4.8", price: "€110", icon: "/Featured Countries/Section 1/Icon/Vector.png" }, { name: "Italy", desc: "Ancient ruins, rolling vineyards", image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=800&q=80", tags: ["Art", "History", "Wine"], flightsFrom: "€120", hotelsFrom: "€180", perk: "World-class cuisine & art", rating: "4.9", price: "€130", icon: "/Featured Countries/Section 1/Icon/Vector.png" }],
+
+ featuredCountries: [
+  { 
+    id: "greece",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=800&q=80", 
+    tags: ["History", "Beach"], 
+    perk: "Mediterranean beaches", 
+    rating: "4.8", 
+    price: "€49"
+  }, 
+  { 
+    id: "spain",
+    image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=800&q=80", 
+    tags: ["Beaches", "Tapas"], 
+    perk: "Incredible tapas & nightlife", 
+    rating: "4.7", 
+    price: "€39"
+  }, 
+  { 
+    id: "italy",
+    image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=800&q=80", 
+    tags: ["History", "Wine"], 
+    perk: "World-class cuisine & art", 
+    rating: "4.9", 
+    price: "€55"
+  }
+],
+ 
   whyCompare: [{ icon: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." }, { icon: "/Featured Countries/Section 3/Icons/follow user - 01.png", iconSrc: "/Featured Countries/Section 3/Icons/follow user - 01.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, { icon: "/Featured Countries/Section 3/Icons/time refresh - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/time refresh - 02.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }],
   faqs: [
     { q: "Is TravelMommy free to use?", a: "Yes. You can compare flights and hotels for free and book directly with trusted travel partners." },

@@ -10,6 +10,7 @@ import {
   Plane,
   Building2,
   Umbrella,
+  Clock,
   Minus,
   Plus,
 } from "lucide-react";
@@ -145,80 +146,68 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
    FEATURED COUNTRIES SECTION
 ===================================================================== */
 
-function FeaturedCountriesSection({ data }: { data: DestinationsPageData }) {
+export function FeaturedCountriesSection({ data }: { data: DestinationsPageData }) {
   return (
-    <section className="flex w-full flex-col items-center bg-[#FFFFFF] py-[40px] px-[16px] md:py-[80px] md:px-[80px]">
+    <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[16px] py-[48px] md:px-[80px] md:py-[96px]">
       <div className="flex w-full max-w-[1440px] flex-col md:px-[0px]">
         
-        <div className="mb-[24px] md:mb-[32px] flex flex-col items-center text-center">
+        <div className="mb-[28px] flex flex-col items-center text-center md:mb-[40px]">
           {/* Section Title */}
-          <h2 className="font-sans text-[32px] leading-[38px] tracking-[0px] md:text-[48px] font-medium md:leading-none md:tracking-[0px] text-[#000000]">
-            {data.copy.featuredTitle}
+          <h2 className="font-sans text-[32px] font-medium leading-[38px] tracking-[0px] text-[#000000] md:text-[48px] md:leading-[48px]">
+            {data.featuredTitle || "Featured Countries"}
           </h2>
         </div>
 
         {/* Card Grid */}
-        <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[16px] md:grid-cols-3 md:gap-[24px]">
-          {data.featuredCountries.map((country, idx) => (
+        <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[20px] md:grid-cols-3 md:gap-[24px]">
+          {data.featuredCountries.map((country) => (
             <div
-              key={idx}
-              className="group flex h-[490px] md:h-[527px] w-full flex-col overflow-hidden rounded-[20px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] pb-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
+              key={country.id}
+              className="group flex min-h-[440px] w-full flex-col overflow-hidden rounded-[16px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] p-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 md:rounded-[20px] md:p-[14px]"
             >
               {/* Image Container */}
-              <div className="relative h-[180px] md:h-[200px] w-full shrink-0 overflow-hidden bg-[#F3F4F6] p-[12px] md:p-[14px]">
+              <div className="relative h-[180px] w-full shrink-0 overflow-hidden rounded-[10px] bg-[#F3F4F6] md:h-[220px] md:rounded-[12px]">
                 <Image
                   src={country.image}
-                  alt={country.name || ""}
+                  alt="Destination"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
                 {/* Popular Badge */}
-                <div className="absolute left-[12px] top-[12px] rounded-full bg-white/30 backdrop-blur-[4px] border border-[#FFFFFF] md:bg-[#FFFFFF] md:border-none px-[10px] py-[4px] md:px-[12px] shadow-sm">
-                  <span className="font-sans text-[13px] leading-[18px] md:text-[14px] font-medium md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#000000]">
-                    {data.copy.featuredBadge}
+                <div className="absolute left-[10px] top-[10px] rounded-full border border-[#FFFFFF] bg-white px-[12px] py-[4px] shadow-sm md:left-[12px] md:top-[12px]">
+                  <span className="font-sans text-[13px] font-medium leading-[18px] tracking-[0px] text-[#000000] md:text-[14px] md:leading-[20px]">
+                    Popular
                   </span>
                 </div>
                 
-                <div className="absolute right-[12px] top-[12px] flex h-[32px] w-[32px] md:h-[36px] md:w-[36px] items-center justify-center rounded-full bg-white/30 backdrop-blur-[3px] border border-[#FFFFFF] md:bg-[#FDDB32] md:border-none shadow-md transition-transform group-hover:scale-110">
-                  <ArrowUpRight size={16} strokeWidth={2.5} className="text-[#000000]" />
+                {/* Top Right Arrow Icon */}
+                <div className="absolute right-[10px] top-[10px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#FDDB32] shadow-md transition-transform group-hover:scale-110 md:right-[12px] md:top-[12px] md:h-[36px] md:w-[36px]">
+                  <ArrowUpRight size={18} strokeWidth={2} className="text-[#000000]" />
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="flex flex-1 flex-col gap-[12px] p-[14px]">
+              <div className="flex flex-1 flex-col gap-[14px] px-[4px] pb-[4px] pt-[16px] md:gap-[16px] md:px-[2px] md:pt-[18px]">
                 
                 {/* Rating */}
-                <div className="flex h-[18px] md:h-[20px] items-center gap-[6px]">
+                <div className="flex items-center gap-[8px]">
                   <div className="flex gap-[2px]">
                     {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} size={12} className="fill-[#000000] text-[#000000]" strokeWidth={0} />
+                      <Star key={j} size={14} className="fill-[#000000] text-[#000000]" strokeWidth={0} />
                     ))}
                   </div>
-                  <span className="font-sans text-[13px] leading-[18px] md:text-[14px] font-medium md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#F59E0B]">
-                    {country.rating}{data.copy.ratingSuffix}
+                  <span className="font-sans text-[13px] font-medium text-[#F59E0B] md:text-[14px]">
+                    {country.rating}/5
                   </span>
                 </div>
 
-                {/* Country Name & Desc */}
-                <div className="flex flex-col gap-[2px]">
-                  <h3 className="font-sans text-[15px] leading-[22px] md:text-[16px] font-medium md:leading-[24px] tracking-[0px] md:tracking-[0px] text-[#000000]">
-                    {country.name}
-                  </h3>
-                  <div className="flex items-center gap-[4px] md:gap-[6px]">
-                    <MapPin size={12} className="text-[#7D7D7D] md:w-[14px] md:h-[14px]" />
-                    <span className="font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                      {country.desc}
-                    </span>
-                  </div>
-                </div>
-
                 {/* Tags */}
-                <div className="flex flex-wrap gap-[6px]">
-                  {country.tags?.map((tag) => (
+                <div className="flex flex-wrap gap-[8px]">
+                  {country.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-[#FBBDEA] bg-[#FFF0F8] px-[8px] py-[3px] md:px-[10px] md:py-[2px] font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#C050A0]"
+                      className="rounded-full border border-[#FBBDEA] bg-[#FFF0F8] px-[12px] py-[2px] font-sans text-[12px] font-normal leading-[20px] tracking-[0px] text-[#C050A0] md:text-[13px]"
                     >
                       {tag}
                     </span>
@@ -227,41 +216,31 @@ function FeaturedCountriesSection({ data }: { data: DestinationsPageData }) {
 
                 <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
 
-                {/* Details List */}
-                <div className="flex flex-col gap-[8px]">
-                  <div className="flex items-center gap-[8px] font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                    <Plane size={14} className="text-[#7D7D7D]" />
-                      <span>{data.copy.flightsLabel} {country.flightsFrom}</span>
-                  </div>
-                  <div className="flex items-center gap-[8px] font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                    <Building2 size={14} className="text-[#7D7D7D]" />
-                      <span>{data.copy.hotelsLabel} {country.hotelsFrom}</span>
-                  </div>
-                  <div className="flex items-center gap-[8px] font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                    <Umbrella size={14} className="text-[#7D7D7D]" />
-                    <span>{country.perk}</span>
-                  </div>
+                {/* Perk with Clock Icon */}
+                <div className="flex items-center gap-[8px] font-sans text-[13px] font-normal text-[#7D7D7D] md:text-[14px]">
+                  <Clock size={16} strokeWidth={1.5} className="text-[#7D7D7D]" />
+                  <span>{country.perk}</span>
                 </div>
 
                 <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
 
                 {/* Footer / Price & CTA */}
-                <div className="mt-auto flex items-center justify-between">
+                <div className="mt-auto flex items-end justify-between pt-[4px]">
                   <div className="flex flex-col gap-[2px]">
-                    <span className="font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                      {data.copy.featuredPriceLabel}
+                    <span className="font-sans text-[13px] font-normal leading-[16px] text-[#7D7D7D] md:text-[14px]">
+                      Explore
                     </span>
-                    <div className="flex items-baseline gap-[2px]">
-                      <span className="font-sans text-[20px] leading-[24px] tracking-[0px] md:text-[22px] font-medium md:leading-none md:tracking-[0px] text-[#000000]">
+                    <div className="flex items-baseline gap-[4px]">
+                      <span className="font-sans text-[22px] font-medium leading-[26px] text-[#000000] md:text-[24px] md:leading-[28px]">
                         {country.price}
                       </span>
-                      <span className="font-sans text-[13px] leading-[18px] md:text-[14px] font-normal md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#7D7D7D]">
-                        {data.copy.featuredPriceSuffix}
+                      <span className="font-sans text-[13px] font-normal text-[#7D7D7D] md:text-[14px]">
+                        / flight
                       </span>
                     </div>
                   </div>
-                  <button className="flex h-[38px] md:h-[40px] items-center justify-center gap-[4px] md:gap-[6px] rounded-full bg-[#FDDB32] px-[18px] py-[10px] md:px-[16px] font-sans text-[13px] leading-[18px] md:text-[14px] font-medium md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c]">
-                    {data.copy.featuredCta}
+                  <button className="flex h-[40px] items-center justify-center rounded-full bg-[#FDDB32] px-[20px] font-sans text-[14px] font-medium text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c]">
+                    Explore &rarr;
                   </button>
                 </div>
                 
@@ -273,7 +252,6 @@ function FeaturedCountriesSection({ data }: { data: DestinationsPageData }) {
     </section>
   );
 }
-
 /* =====================================================================
    WHY PLAN YOUR TRIP SECTION
 ===================================================================== */
