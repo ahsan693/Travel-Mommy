@@ -108,8 +108,8 @@ whyCompare: [{ icon: "/Featured Countries/Section 3/Icons/credit card declined -
 
 
 faqs: [
-    { q: "Is TravelMommy free to use?", a: "Yes. You can compare flights and hotels for free and book directly with trusted travel partners." },
-    { q: "Can I compare flights ?", a: "Yes. Compare prices from hundreds of airlines, hotels and booking websites in one place." },
+    { q: "Is TravelMommy free to use?", a: "Yes. You can compare flights for free and book directly with trusted travel partners." },
+    { q: "Can I compare flights ?", a: "Yes. Compare prices from hundreds of airlines and booking websites in one place." },
     { q: "Which countries are most popular?", a: "Some of our most searched destinations include Greece, Spain, Italy, France, Thailand and Japan." },
     { q: "How do I find cheap flights?", a: "Use our flight search to compare prices across multiple travel providers and book when you find the best deal." },
     { q: "When is the best time to travel?", a: "It depends on your destination. Each country guide includes seasonal travel tips and the best times to visit." },
