@@ -98,10 +98,18 @@ export const destinationsData: DestinationsPageData = {
   }
 ],
  
-  whyCompare: [{ icon: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." }, { icon: "/Featured Countries/Section 3/Icons/follow user - 01.png", iconSrc: "/Featured Countries/Section 3/Icons/follow user - 01.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, { icon: "/Featured Countries/Section 3/Icons/time refresh - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/time refresh - 02.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }],
-  faqs: [
+ 
+
+whyCompare: [{ icon: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", 
+  iconSrc: "/Featured Countries/Section 3/Icons/credit card declined - 02.png",
+   title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." },
+    { icon: "/Featured Countries/Section 3/Icons/follow user - 01.png", iconSrc: "/Featured Countries/Section 3/Icons/follow user - 01.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, { icon: "/Featured Countries/Section 3/Icons/time refresh - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/time refresh - 02.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }],
+
+
+
+faqs: [
     { q: "Is TravelMommy free to use?", a: "Yes. You can compare flights and hotels for free and book directly with trusted travel partners." },
-    { q: "Can I compare flights and hotels?", a: "Yes. Compare prices from hundreds of airlines, hotels and booking websites in one place." },
+    { q: "Can I compare flights ?", a: "Yes. Compare prices from hundreds of airlines, hotels and booking websites in one place." },
     { q: "Which countries are most popular?", a: "Some of our most searched destinations include Greece, Spain, Italy, France, Thailand and Japan." },
     { q: "How do I find cheap flights?", a: "Use our flight search to compare prices across multiple travel providers and book when you find the best deal." },
     { q: "When is the best time to travel?", a: "It depends on your destination. Each country guide includes seasonal travel tips and the best times to visit." },
