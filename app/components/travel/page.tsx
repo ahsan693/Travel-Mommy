@@ -236,15 +236,16 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
   );
 }
 
-function DestinationsSection({ destinations }: { destinations: TravelPageData["destinationsSection"] }) {
-  return (
-    <section className="w-full bg-[#FFFFFF] py-[96px] max-[1024px]:py-[80px]">
+
+  function DestinationsSection({ destinations }: { destinations: TravelPageData["destinationsSection"] }) {
+     return (
+    <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
         <div className="mb-[56px] flex flex-col gap-[12px]">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[32px]">
+          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#ffffff] max-[768px]:text-[32px]">
             {destinations.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#4B5563]">
+          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#ffffff]">
             {destinations.description}
           </p>
         </div>

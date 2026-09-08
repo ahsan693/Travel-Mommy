@@ -148,7 +148,8 @@ export const travelData: TravelPageData = {
     image: "/Country Details/Section 2/Images/Rectangle.png",
     imageAlt: "Greece Coastline"
   },
-  destinationsSection: {
+
+    destinationsSection: {
     title: "Explore Greece's Most Popular Destinations",
     description: "Discover top-rated cities and islands for your Mediterranean adventure.",
     flightsPrefix: "Flights from",
