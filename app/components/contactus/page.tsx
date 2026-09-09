@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import {
   Mail,
   Handshake,
@@ -11,9 +11,6 @@ import {
   Minus,
 } from "lucide-react";
 
-// ============================================================================
-// IMPORTANT: Adjust these import paths to match your project's folder structure
-// ============================================================================
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { contactUsData, type ContactCard, type ContactFaq, type ContactUsPageData, type SocialLink } from "../../../lib/data/contactUsData";
@@ -21,11 +18,11 @@ import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 
 /* ----------------------------------------------------------------
-   INLINE SOCIAL ICONS (Replaces removed Lucide brand icons)
+   INLINE SOCIAL ICONS (Exact Match to Image 1)
 ---------------------------------------------------------------- */
 
 const InstagramIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
@@ -33,27 +30,24 @@ const InstagramIcon = ({ className }: { className?: string }) => (
 );
 
 const FacebookIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+    <path d="M14 11h-3v8h-3v-8H6v-3h2V6a4 4 0 0 1 4-4h3v3h-2c-1 0-1 .5-1 1v2h3l-1 3z"/>
   </svg>
 );
 
-const TikTokIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.5z"/>
+const MusicIcon = ({ className }: { className?: string }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="18" cy="16" r="3"/>
   </svg>
 );
 
 const YouTubeIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/>
-    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 5.5v13l11-6.5z" />
   </svg>
 );
-
-/* ----------------------------------------------------------------
-   STATIC DATA
----------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------
    MAIN PAGE COMPONENT
@@ -82,13 +76,9 @@ function HeroSection({ data }: { data: ContactUsPageData["hero"] }) {
     <section className="relative flex w-full flex-col items-center bg-[#FDDB32] pt-[120px] pb-[40px] lg:pb-[141px] lg:pt-[193px]">
       <div className="relative z-10 w-full max-w-[1440px] px-[20px] lg:px-[140px]">
         <div className="flex w-full flex-col items-center">
-          
-          {/* Heading */}
           <h1 className="text-page-h1 font-sans text-center text-[#000000]">
             {data.title}
           </h1>
-          
-          {/* Paragraph */}
           <p className="mt-[12px] max-w-[800px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000] text-center md:mt-[32px] md:text-[16px] md:leading-[24px] md:tracking-[0px]">
             {data.description}
           </p>
@@ -320,20 +310,21 @@ function FaqSection({ faqs: faqItems, data }: { faqs: ContactFaq[]; data: Contac
 function FollowUsSection({ socialLinks: links, title }: { socialLinks: SocialLink[]; title: string }) {
   return (
     <section className="flex w-full flex-col items-center bg-[#FFFFFF] py-[32px] px-[32px] md:py-[80px] lg:px-[140px]">
-      <h3 className="mb-[18px] font-sans text-[18px] font-medium leading-[22px] tracking-[-0.2px] text-[#000000] md:mb-[28px] md:text-[20px] md:leading-[24px] md:tracking-[0px]">
+      <h3 className="mb-[18px] font-sans text-[18px] font-medium leading-[22px] tracking-[-0.2px] text-[#000000] md:mb-[28px] md:text-[24px] md:leading-[24px] md:tracking-[0px]">
         {title}
       </h3>
-      <div className="flex items-center gap-[16px]">
+      <div className="flex items-center gap-[20px] md:gap-[24px]">
           {links.map(({ icon, href, label, bgColor }) => {
-            const Icon = icon === "instagram" ? InstagramIcon : icon === "facebook" ? FacebookIcon : icon === "tiktok" ? TikTokIcon : YouTubeIcon;
+            const Icon = icon === "instagram" ? InstagramIcon : icon === "facebook" ? FacebookIcon : icon === "tiktok" ? MusicIcon : YouTubeIcon;
             return (
           <a
             key={label}
             href={href}
             aria-label={label}
-            className={`flex h-[40px] w-[40px] items-center justify-center rounded-[20px] border border-[#E6E6E6] text-[#FFFFFF] transition-transform hover:scale-110 md:h-[48px] md:w-[48px] md:border-none ${bgColor}`}
+            // Removed border and border color, increased dimensions
+            className={`flex h-[48px] w-[48px] md:h-[60px] md:w-[60px] items-center justify-center rounded-full text-[#FFFFFF] shadow-sm transition-transform hover:scale-110 ${bgColor}`}
           >
-            <Icon className="h-[18px] w-[18px] md:h-[20px] md:w-[20px]" />
+            <Icon className="h-[22px] w-[22px] md:h-[28px] md:w-[28px]" />
           </a>
           )})}
       </div>

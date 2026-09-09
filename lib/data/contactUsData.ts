@@ -2,10 +2,31 @@ export interface ContactCard { title: string; description: string; email: string
 export interface ContactFaq { question: string; answer: string }
 export interface SocialLink { href: string; label: string; bgColor: string; icon: "instagram" | "facebook" | "tiktok" | "youtube" }
 export interface ContactUsPageData { hero: { title: string; description: string }; form: { title: string; description: string; successTitle: string; successDescription: string; nameLabel: string; namePlaceholder: string; emailLabel: string; emailPlaceholder: string; subjectLabel: string; subjectPlaceholder: string; messageLabel: string; messagePlaceholder: string; submitLabel: string }; faq: { title: string; description: string }; followTitle: string; contactCards: ContactCard[]; faqs: ContactFaq[]; socialLinks: SocialLink[] }
+
 export const contactUsData: ContactUsPageData = {
-  hero: { title: "Contact TravelMommy", description: "Have a question about TravelMommy? We're here to help. Whether you need assistance using our platform, have feedback, or want to discuss a partnership, we'd love to hear from you." },
-  form: { title: "Before You Get in Touch", description: "TravelMommy helps you compare flights and hotels from trusted travel partners. We don't process bookings or payments directly. If you've already made a booking, please contact the booking provider shown in your confirmation email for assistance with cancellations, refunds or booking changes.", successTitle: "Message sent!", successDescription: "Thanks for reaching out. Our team will get back to you shortly.", nameLabel: "Full Name", namePlaceholder: "Jane Smith", emailLabel: "Email Address", emailPlaceholder: "jane@travel.com", subjectLabel: "Subject", subjectPlaceholder: "General Enquiry", messageLabel: "Message", messagePlaceholder: "How can we help you today?", submitLabel: "Send Message" },
-  faq: { title: "Frequently Asked Questions", description: "Got questions? We've got answers." },
+  hero: { 
+    title: "Contact TravelMommy", 
+    description: "Have a question about TravelMommy? We're here to help. Whether you need assistance using our platform, have feedback, or want to discuss a partnership, we'd love to hear from you." 
+  },
+  form: { 
+    title: "Before You Get in Touch", 
+    description: "TravelMommy helps you compare flights and hotels from trusted travel partners. We don't process bookings or payments directly. If you've already made a booking, please contact the booking provider shown in your confirmation email for assistance with cancellations, refunds or booking changes.", 
+    successTitle: "Message sent!", 
+    successDescription: "Thanks for reaching out. Our team will get back to you shortly.", 
+    nameLabel: "Full Name", 
+    namePlaceholder: "Jane Smith", 
+    emailLabel: "Email Address", 
+    emailPlaceholder: "jane@travel.com", 
+    subjectLabel: "Subject", 
+    subjectPlaceholder: "General Enquiry", 
+    messageLabel: "Message", 
+    messagePlaceholder: "How can we help you today?", 
+    submitLabel: "Send Message" 
+  },
+  faq: { 
+    title: "Frequently Asked Questions", 
+    description: "Got questions? We've got answers." 
+  },
   followTitle: "Follow Us",
   contactCards: [
     { icon: "mail", title: "General Enquiries", description: "Questions about using TravelMommy or general support.", email: "support@travelmommy.com" },
@@ -19,7 +40,7 @@ export const contactUsData: ContactUsPageData = {
     { question: "Can I advertise on TravelMommy?", answer: "Yes. Please contact our partnerships team for collaboration opportunities." },
   ],
   socialLinks: [
-    { icon: "instagram", href: "#", label: "Instagram", bgColor: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500" },
+    { icon: "instagram", href: "#", label: "Instagram", bgColor: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" },
     { icon: "facebook", href: "#", label: "Facebook", bgColor: "bg-[#1877F2]" },
     { icon: "tiktok", href: "#", label: "TikTok", bgColor: "bg-[#000000]" },
     { icon: "youtube", href: "#", label: "YouTube", bgColor: "bg-[#FF0000]" },
