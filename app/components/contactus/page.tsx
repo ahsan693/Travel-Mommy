@@ -84,7 +84,7 @@ function HeroSection({ data }: { data: ContactUsPageData["hero"] }) {
         <div className="flex w-full flex-col items-center">
           
           {/* Heading */}
-          <h1 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#000000] text-center md:text-[72px] md:tracking-[-0.03em] md:leading-none">
+          <h1 className="text-page-h1 font-sans text-center text-[#000000]">
             {data.title}
           </h1>
           

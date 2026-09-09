@@ -54,7 +54,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
           
           <div className="flex flex-col gap-[12px]">
             {/* Title */}
-            <h1 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#FFFFFF] md:text-[72px] md:leading-none md:tracking-[0px]">
+            <h1 className="text-page-h1 font-sans text-[#FFFFFF]">
               {/* Mobile View: 3 lines */}
               <span className="block md:hidden">
                 {data.hero.mobileTitle.map((line) => (

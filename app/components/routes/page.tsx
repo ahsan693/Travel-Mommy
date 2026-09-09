@@ -270,7 +270,7 @@ function Hero() {
 
       <div className="relative z-10 flex w-full max-w-[900px] flex-col items-center px-6 text-center lg:px-8">
         {/* Display XL */}
-        <h1 className="font-sans text-[44px] font-medium leading-[1.05] text-white sm:text-[64px] sm:leading-[1.02]">
+        <h1 className="text-page-h1 font-sans text-white">
           Compare Flight Routes Worldwide
         </h1>
 

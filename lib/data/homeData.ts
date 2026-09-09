@@ -2,6 +2,7 @@ export interface HomeFlight {
   city: string;
   route: string;
   price: string;
+  airline: string;
   duration: string;
   image: string;
 }
@@ -31,6 +32,9 @@ export interface HomePageData {
     widgetSrc: string;
     rating: string;
     trustText: string;
+    reviewerImages: string[];
+    reviewText: string;
+    rightHeading: string[];
   };
   whyCompare: { title: string; highlightedTitle: string; description: string };
   flights: HomeFlight[];
@@ -44,7 +48,7 @@ export interface HomePageData {
 
 export const homeData: HomePageData = {
   hero: {
-    title: "Compare Cheap Flights & Deals",
+    title: "Compare Cheap\nFlights & Deals",
     description: "Search cheap flights from 500+ top airlines and travel sites. Find the lowest fares before you book.",
     image: "/Homepage/Section 1/Header Images/homeimg1.png",
     imageAlt: "Travel destination",
@@ -53,6 +57,14 @@ export const homeData: HomePageData = {
     widgetSrc: "/flights-widget.html",
     rating: "★★★★★ 4.9 / 5",
     trustText: "Trusted by 300+ travelers",
+    reviewerImages: [
+      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Michael Foster.png",
+      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Lindsay Walton.png",
+      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Tom Cook.png",
+      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Tom Walton.png",
+    ],
+    reviewText: "Compare live prices from trusted airlines and travel websites.",
+    rightHeading: ["from 500+", "Travel Sites"],
   },
 whyCompare: {
   title: "Why Compare Cheap Flights on",
@@ -61,19 +73,19 @@ whyCompare: {
 } ,
 
   flights: [
-    { city: "London", route: "Dub -> LHR", price: "€24", duration: "1h 20m", image: "/Homepage/Section 3/Images/Image Container.png" },
-    { city: "London", route: "Dub -> LGW", price: "€24", duration: "1h 25m", image: "/Homepage/Section 3/Images/Image Container-1.png" },
-    { city: "Barcelona", route: "Dub -> BCN", price: "€24", duration: "2h 35m", image: "/Homepage/Section 3/Images/Image Container-2.png" },
-    { city: "Lisbon", route: "Dub -> LIS", price: "€24", duration: "2h 50m", image: "/Homepage/Section 3/Images/Image Container-3.png" },
-    { city: "New York", route: "Dub -> JFK", price: "€189", duration: "7h 15m", image: "/Homepage/Section 3/Images/Image Container-4.png" },
-    { city: "Rome", route: "Dub -> FCO", price: "€34", duration: "3h 10m", image: "/Homepage/Section 3/Images/Image Container-5.png" },
-    { city: "Dubai", route: "Dub -> DXB", price: "€245", duration: "7h 45m", image: "/Homepage/Section 3/Images/Image Container-6.png" },
-    { city: "Amsterdam", route: "Dub -> AMS", price: "€28", duration: "1h 40m", image: "/Homepage/Section 3/Images/Image Container-7.png" },
+    { city: "London", route: "Dub -> LHR", price: "€24", airline: "Ryanair", duration: "1h 20m", image: "/Homepage/Section 3/Images/Image Container.png" },
+    { city: "London", route: "Dub -> LGW", price: "€24", airline: "Ryanair", duration: "1h 25m", image: "/Homepage/Section 3/Images/Image Container-1.png" },
+    { city: "Barcelona", route: "Dub -> BCN", price: "€24", airline: "Ryanair", duration: "2h 35m", image: "/Homepage/Section 3/Images/Image Container-2.png" },
+    { city: "Lisbon", route: "Dub -> LIS", price: "€24", airline: "Ryanair", duration: "2h 50m", image: "/Homepage/Section 3/Images/Image Container-3.png" },
+    { city: "New York", route: "Dub -> JFK", price: "€189", airline: "Aer Lingus", duration: "7h 15m", image: "/Homepage/Section 3/Images/Image Container-4.png" },
+    { city: "Rome", route: "Dub -> FCO", price: "€34", airline: "Ryanair", duration: "3h 10m", image: "/Homepage/Section 3/Images/Image Container-5.png" },
+    { city: "Dubai", route: "Dub -> DXB", price: "€245", airline: "Emirates", duration: "7h 45m", image: "/Homepage/Section 3/Images/Image Container-6.png" },
+    { city: "Amsterdam", route: "Dub -> AMS", price: "€28", airline: "Ryanair", duration: "1h 40m", image: "/Homepage/Section 3/Images/Image Container-7.png" },
   ],
   flightsSection: {
     title: "Cheap Flights from",
     highlightedTitle: "Dublin(DUB)",
-    description: "Compare today's lowest fares from Dublin Airport to popular destinations across Europe, North America and beyond.",
+    description: "Find unbeatable flight deals from Dublin to top global destinations. We compare hundreds of trusted airlines to secure your absolute lowest airfare.",
     cta: "Browse All Flight Routes",
     cardCta: "View Flights",
   },

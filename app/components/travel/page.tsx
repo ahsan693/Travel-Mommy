@@ -81,7 +81,7 @@ function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
             {hero.badge}
           </span>
         </div>
-        <h1 className="mb-[12px] font-sans text-[72px] font-medium leading-[72px] tracking-[-0.03em] text-[#FFFFFF] max-[768px]:text-[48px]">
+        <h1 className="text-page-h1 mb-[12px] font-sans text-[#FFFFFF]">
           {hero.title}
         </h1>
         <p className="max-w-[700px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#FFFFFF] max-[768px]:text-[14px]">

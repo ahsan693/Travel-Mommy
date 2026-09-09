@@ -11,9 +11,6 @@ import {
   Mail,
 } from "lucide-react";
 
-// ============================================================================
-// IMPORTANT: Adjust these import paths to match your project's folder structure
-// ============================================================================
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import HomeSearchWidget from "./HomeSearchWidget";
@@ -21,7 +18,6 @@ import { flightData, type FlightPageData } from "../../../lib/data/flightData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 
-const CHECK_ICON = "/Homepage/Section 1/Header Icons/Icons/Check.png";
 
 /* ----------------------------------------------------------------
    MAIN PAGE COMPONENT
@@ -37,7 +33,7 @@ export default function FlightPage({ data = flightData }: { data?: FlightPageDat
       <PopularAirlinesSection data={data} />
       <PopularAirportsSection data={data} />
       <FaqSection data={data} />
-      <NewsletterSection />
+      <NewsletterSection data={data} />
       <Footer data={footerData} />
     </main>
   );
@@ -47,40 +43,38 @@ export default function FlightPage({ data = flightData }: { data?: FlightPageDat
    HERO SECTIONS
 ---------------------------------------------------------------- */
 
-function HeroDesktop() {
+function HeroDesktop({ data }: { data: FlightPageData }) {
   return (
     <section className="relative hidden min-h-[820px] flex-col items-center overflow-hidden pt-[100px] lg:flex">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Flights Page/Section 1/Header Images/nils-nedel-ONpGBpns3cs-unsplash.jpg"
-          alt="Hero background"
+          src={data.hero.image}
+          alt={data.hero.imageAlt}
           fill
           className="object-cover"
           priority
         />
-        {/* Exact 27% Black overlay from color spec */}
         <div className="absolute inset-0 bg-[#000000]/[0.27]" />
       </div>
 
       <div className="relative z-10 flex w-full max-w-[1280px] flex-col px-8 pb-[48px] pt-[28px]">
         
-        {/* Headline - Exact specs applied (110px size, 98px leading, -5px tracking) */}
-        <h1 className="w-full max-w-[1400px] font-sans text-[110px] font-medium leading-[98px] tracking-[-5px] text-white">
-          <span className="block">Compare Flights from</span>
-          <span className="block">500+ Airlines &amp; Travel Sites</span>
+        <h1 className="text-page-h1 w-full max-w-[1400px] font-sans text-white">
+          {data.hero.desktopTitleLines.map((line, idx) => (
+            <span key={idx} className="block">{line}</span>
+          ))}
         </h1>
 
         <div className="mt-[28px] flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
           <div className="flex max-w-[500px] flex-col items-start gap-[18px]">
-            {/* Subheading / Description - Exact specs applied */}
             <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-white">
-              Compare live flight prices from airlines and trusted travel partners to find the best fare before you book.
+              {data.hero.description}
             </p>
           </div>
         </div>
 
         <div className="mt-[64px] w-full">
-          <SearchWidget />
+          <SearchWidget data={data} />
         </div>
         
       </div>
@@ -88,37 +82,33 @@ function HeroDesktop() {
   );
 }
 
-function HeroMobile() {
+function HeroMobile({ data }: { data: FlightPageData }) {
   return (
-    // Added more top padding here: changed pt-[88px] to pt-[120px]
     <section className="relative flex flex-col overflow-hidden pb-[32px] pt-[120px] lg:hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Flights Page/Section 1/Header Images/nils-nedel-ONpGBpns3cs-unsplash.jpg"
-          alt="Hero background"
+          src={data.hero.image}
+          alt={data.hero.imageAlt}
           fill
           className="object-cover"
           priority
         />
-        {/* Exact 27% Black overlay from color spec */}
         <div className="absolute inset-0 bg-[#000000]/[0.27]" />
       </div>
 
       <div className="relative z-10 flex flex-col px-[20px]">
-        {/* Display L */}
-        <h1 className="w-full max-w-full font-sans text-[48px] font-medium leading-none text-white">
-          <span className="block">Compare Cheap</span>
-          <span className="block">Flights from Hundreds</span>
-          <span className="block">of Airlines</span>
+        <h1 className="text-page-h1 w-full max-w-full font-sans text-white">
+          {(data.hero.mobileTitleLines ?? data.hero.desktopTitleLines).map((line, idx) => (
+            <span key={idx} className="block">{line}</span>
+          ))}
         </h1>
 
-        {/* Body M */}
         <p className="mt-[16px] max-w-[300px] font-sans text-[14px] font-normal leading-[1.43] text-white/90">
-          Compare live flight prices from airlines and trusted travel partners to find the best fare before you book.
+          {data.hero.description}
         </p>
 
         <div className="mt-[32px]">
-          <SearchWidget />
+          <SearchWidget data={data} />
         </div>
       </div>
     </section>
@@ -128,8 +118,8 @@ function HeroMobile() {
 function Hero({ data }: { data: FlightPageData }) {
   return (
     <>
-      <HeroMobile />
-      <HeroDesktop />
+      <HeroMobile data={data} />
+      <HeroDesktop data={data} />
     </>
   );
 }
@@ -138,7 +128,7 @@ function Hero({ data }: { data: FlightPageData }) {
    SEARCH WIDGET SECTIONS
 ---------------------------------------------------------------- */
 
-function DesktopCheckbox({ checked, onChange, label }: any) {
+function DesktopCheckbox({ checked, onChange, label, data }: any) {
   return (
     <label className="flex cursor-pointer items-center gap-[8px]">
       <span
@@ -148,7 +138,7 @@ function DesktopCheckbox({ checked, onChange, label }: any) {
       >
         {checked && (
           <Image
-            src={CHECK_ICON}
+            src={data.icons.check}
             alt="Check"
             width={11}
             height={11}
@@ -194,7 +184,7 @@ function SearchWidgetMobile() {
   );
 }
 
-function SearchWidget() {
+function SearchWidget({ data }: { data: FlightPageData }) {
   return (
     <>
       <div className="lg:hidden">
@@ -216,23 +206,20 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
     <section className="w-full bg-[#ffffff] py-[80px] text-[#000000]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px] max-[430px]:px-4">
 
-        {/* Header Section */}
         <div className="mb-[48px] flex flex-col items-start justify-between gap-8 lg:flex-row">
           <div className="flex max-w-[700px] flex-col gap-[10px]">
             <h2 className="font-sans text-[48px] font-medium leading-[100%] tracking-[0px] text-[#000000]">
-              Cheap Flights from <span className="text-[#FDDB32]">Dublin</span>
+              {data.copy.cheapFlightsTitleStart} <span className="text-[#FDDB32]">{data.copy.cheapFlightsTitleHighlight}</span>
             </h2>
             <p className="font-sans text-[14px] font-normal leading-[143%] text-[#555555]">
-              Looking for cheap flights from Dublin? Compare today&apos;s lowest fares from Dublin Airport to
-              popular destinations across Europe, North America and beyond. Prices update regularly so you
-              can find the best available deals before you book.
+              {data.copy.cheapFlightsDescription}
             </p>
           </div>
 
           <Link href="/flights/routes" className="inline-flex h-[48px] shrink-0 items-center gap-2 rounded-full bg-[#FDDB32] px-[28px] font-sans text-[14px] font-medium leading-[143%] text-[#000000] transition-colors hover:bg-[#e5c52c]">
-            Browse All Flight Routes
+            {data.copy.cheapFlightsCta}
             <Image 
-              src="/Homepage/Section 3/Icon/KQY0VNx64.png" 
+              src={data.icons.arrowRight} 
               alt="Arrow Right" 
               width={16} 
               height={16} 
@@ -241,14 +228,12 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
           </Link>
         </div>
 
-        {/* Flight Cards Grid (Unified for Desktop and Mobile) */}
         <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
             {data.cheapFlights.map((flight, i) => (
             <div
               key={i}
               className="group flex h-[364px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              {/* 1. Image Container (140px fixed height) */}
               <div className="relative h-[140px] w-full shrink-0 overflow-hidden bg-neutral-100">
                 <Image
                   src={flight.image}
@@ -258,10 +243,8 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
                 />
               </div>
 
-              {/* 2. Content Section (156px height) */}
               <div className="flex w-full flex-col gap-[12px] p-[20px]">
                 
-                {/* Route Info */}
                 <div className="flex w-full flex-col gap-[4px]">
                   <h3 className="font-sans text-[24px] font-medium leading-[24px] text-[#000000]">
                     {flight.city}
@@ -271,14 +254,13 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
                   </p>
                 </div>
 
-                {/* Price Row */}
                 <div className="flex h-[24px] w-full items-center justify-between">
                   <p className="font-sans text-[24px] font-medium leading-[24px] text-[#212121]">
                     {flight.price}
                   </p>
                   <div className="flex items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[8px] py-[4px]">
                     <Image 
-                      src="/Homepage/Section 3/Icon/Airline Logo.png" 
+                      src={data.icons.airlineLogoPlaceholder} 
                       alt={`${flight.airline} logo`} 
                       width={16} 
                       height={16} 
@@ -290,23 +272,21 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
                   </div>
                 </div>
 
-                {/* Meta Row */}
                 <div className="flex h-[20px] items-center gap-[6px]">
                   <Clock size={14} className="text-[#7D7D7D]" />
                   <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">
-                    Direct &bull; {flight.duration}
+                    {flight.isDirect ? "Direct" : ""} &bull; {flight.duration}
                   </span>
                 </div>
               </div>
 
-              {/* 3. Footer Section (68px height) */}
               <div className="mt-auto px-[20px] pb-[20px] pt-0">
                 <Link href="/flights/search" className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] transition-colors hover:bg-[#FDDB32] hover:border-[#FDDB32]">
                   <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
-                    View Flights
+                    {data.copy.viewFlightsCta}
                   </span>
                   <Image 
-                    src="/Homepage/Section 3/Icon/KQY0VNx64.png" 
+                    src={data.icons.arrowRight} 
                     alt="Arrow Right" 
                     width={14} 
                     height={14} 
@@ -335,14 +315,14 @@ function WhyCompareFlightsSection({ data }: { data: FlightPageData }) {
         <div className="flex w-full flex-col gap-[48px]">
           <div className="flex flex-col items-center gap-[24px]">
             <span className="flex h-[28px] items-center justify-center rounded-full border border-[#E6E6E6] bg-[#F9FBF5] px-[12px] py-[4px] font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
-              Easy process
+              {data.copy.whyComparePill}
             </span>
             <div className="flex w-full max-w-[876px] flex-col items-center gap-[15px] text-center">
               <h2 className="w-full font-sans font-medium text-[#000000] tracking-[0px] text-[32px] leading-[40px] lg:whitespace-nowrap lg:text-[48px] lg:leading-[48px]">
-                Why Compare Flights with TravelMommy?
+                {data.copy.whyCompareTitle}
               </h2>
               <p className="w-full font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
-                Search and compare cheap flights from multiple airlines and trusted booking partners to find the best fare for your trip.
+                {data.copy.whyCompareDescription}
               </p>
             </div>
           </div>
@@ -387,15 +367,15 @@ function PopularAirlinesSection({ data }: { data: FlightPageData }) {
           <div className="flex flex-col gap-[16px]">
             <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
               <h2 className="font-sans text-[36px] font-semibold leading-[1.1] tracking-[-0.01em] text-white lg:text-[48px] lg:leading-[52px]">
-                Compare Flights from Popular Airlines.
+                {data.copy.popularAirlinesTitle}
               </h2>
               <Link
                 href="/flights/airlines"
                 className="flex shrink-0 items-center gap-2 rounded-full bg-[#FDDB32] px-[24px] py-[12px] font-sans text-[14px] font-medium leading-[20px] text-black transition-colors hover:bg-[#e5c52c]"
               >
-                View All Airlines
+                {data.copy.popularAirlinesCta}
                 <Image 
-                  src="/Homepage/Section 3/Icon/KQY0VNx64.png" 
+                  src={data.icons.arrowRight} 
                   alt="Arrow Right" 
                   width={16} 
                   height={16} 
@@ -405,9 +385,7 @@ function PopularAirlinesSection({ data }: { data: FlightPageData }) {
             </div>
 
             <p className="max-w-[800px] font-sans text-[16px] font-normal leading-[24px] text-white/80">
-              Search and compare fares from leading airlines around the world.
-              Discover competitive prices, flexible travel options and routes
-              from trusted carriers.
+              {data.copy.popularAirlinesDescription}
             </p>
           </div>
 
@@ -444,19 +422,15 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
     <section className="w-full bg-[#FFFFFF] px-[20px] py-[56px] lg:px-[80px] lg:py-[120px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[32px] lg:gap-[48px]">
         
-        {/* Section Header */}
         <div className="flex flex-col items-center gap-[12px] text-center lg:gap-3">
           <h2 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#000000] lg:text-[48px] lg:font-semibold lg:leading-[1.1] lg:tracking-[-0.01em]">
-            Popular Airports
+            {data.copy.popularAirportsTitle}
           </h2>
           <p className="max-w-[640px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000] lg:text-black/60">
-            Search and compare flights from major airports around the world.
-            Discover convenient departure points, route options and travel
-            times before you book.
+            {data.copy.popularAirportsDescription}
           </p>
         </div>
 
-        {/* Airport Cards */}
         <div className="grid w-full grid-cols-1 gap-[12px] sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
           {data.popularAirports.map((airport) => (
             <div
@@ -465,10 +439,9 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
             >
               <div className="flex items-center gap-[12px] lg:gap-4">
                 
-                {/* Icon Container */}
                 <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#FEED91] p-[10px] lg:h-11 lg:w-11 lg:rounded-xl lg:bg-[#FDDB32] lg:p-0">
                   <Image 
-                    src="/Flights Page/Section 5/Icons/Vector.png" 
+                    src={data.icons.airportIcon} 
                     alt="Airport" 
                     width={20} 
                     height={20} 
@@ -476,7 +449,6 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
                   />
                 </div>
                 
-                {/* Text Stack */}
                 <div className="flex flex-col gap-[4px] lg:gap-0">
                   <span className="font-sans text-[16px] font-medium leading-[22px] tracking-[-0.32px] text-[#000000] lg:font-semibold lg:leading-[24px]">
                     {airport.name}
@@ -487,7 +459,6 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
                 </div>
               </div>
               
-              {/* Airport Code */}
               <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000] lg:font-medium lg:text-black/60">
                 {airport.code}
               </span>
@@ -495,14 +466,13 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
           ))}
         </div>
 
-        {/* CTA Button */}
         <Link
           href="/flights/airports"
           className="flex w-full shrink-0 items-center justify-center gap-[10px] rounded-[12px] bg-[#FDDB32] px-[24px] py-[12px] font-sans text-[16px] font-medium leading-[20px] text-[#000000] transition-colors hover:bg-[#e5c52c] lg:w-auto lg:gap-2 lg:rounded-full lg:text-[14px]"
         >
-          Explore All Airports
+          {data.copy.popularAirportsCta}
           <Image 
-            src="/Homepage/Section 3/Icon/KQY0VNx64.png" 
+            src={data.icons.arrowRight} 
             alt="Arrow Right" 
             width={16} 
             height={16} 
@@ -525,7 +495,7 @@ function FaqSection({ data }: { data: FlightPageData }) {
      <section className="bg-white">
       <div className="mx-auto w-full max-w-[820px] px-6 py-20 lg:px-10 lg:py-24">
         <h2 className="text-center font-sans text-[36px] font-medium leading-none text-[#000000] lg:text-[48px]">
-          Frequently Asked Questions
+          {data.copy.faqTitle}
         </h2>
 
         <div className="mt-12 flex flex-col gap-8">
@@ -563,28 +533,28 @@ function FaqSection({ data }: { data: FlightPageData }) {
    NEWSLETTER SECTION
 ---------------------------------------------------------------- */
 
-function NewsletterSection() {
+function NewsletterSection({ data }: { data: FlightPageData }) {
   return (
     <section className="bg-white">
       <div className="mx-auto w-full max-w-[1216px] px-6 pb-24 lg:px-10">
         <div className="flex flex-col items-center rounded-[32px] bg-[#FDDB32] px-6 py-16 text-center lg:py-20">
           <span className="w-fit rounded-full bg-white px-[16px] py-[8px] font-sans text-[14px] font-medium leading-[1.43] text-black">
-            Let's go on a trip!
+            {data.copy.newsletterPill}
           </span>
           
           <h2 className="mt-[20px] max-w-2xl font-sans text-[36px] font-medium leading-none text-black lg:text-[48px]">
-            Never Miss a Great Travel Deal
+            {data.copy.newsletterTitle}
           </h2>
           
           <p className="mt-[16px] max-w-xl font-sans text-[16px] font-normal leading-[1.5] text-black/70">
-            Get cheap flight alerts, hotel deals and travel inspiration delivered to your inbox.
+            {data.copy.newsletterDescription}
           </p>
 
           <form className="mt-[32px] flex w-full max-w-md flex-col gap-3 sm:flex-row">
             <div className="flex flex-1 items-center gap-2 rounded-full bg-white px-[20px] py-[14px]">
               <input
                 type="email"
-                placeholder="Your Email Address"
+                placeholder={data.copy.newsletterPlaceholder}
                 className="w-full bg-transparent font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-black/40 focus:outline-none"
               />
               <Mail className="h-[16px] w-[16px] shrink-0 text-black/30" />
@@ -594,9 +564,9 @@ function NewsletterSection() {
               type="submit"
               className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-black px-[24px] py-[14px] font-sans text-[14px] font-medium leading-[1.43] text-white transition-colors hover:bg-black/80"
             >
-              Get Deals
+              {data.copy.newsletterCta}
               <Image 
-                src="/Homepage/Section 3/Icon/KQY0VNx64.png" 
+                src={data.icons.arrowRight} 
                 alt="Arrow Right" 
                 width={16} 
                 height={16} 
@@ -606,7 +576,7 @@ function NewsletterSection() {
           </form>
           
           <p className="mt-[12px] font-sans text-[12px] font-normal leading-[1.33] text-black/50">
-            No Spam, Unsubscribe Anytime
+            {data.copy.newsletterFooter}
           </p>
         </div>
       </div>
