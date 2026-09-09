@@ -116,17 +116,13 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
                   key={chip.name}
                   className="flex h-[40px] items-center gap-[8px] rounded-full bg-[#F9FBF5] py-[6px] pl-[6px] pr-[14px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] text-[#000000] transition-colors hover:bg-[#e8ece3] md:border md:border-white/20 md:bg-white/10 md:py-[4px] md:pl-[4px] md:pr-[16px] md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] md:text-[#FFFFFF] md:backdrop-blur-sm md:hover:bg-white/20"
                 >
-                  {chip.swatch ? (
-                    <span className="h-[28px] w-[28px] rounded-full md:h-[32px] md:w-[32px]" style={{ backgroundColor: chip.swatch }} />
-                  ) : (
-                    <Image
-                      src={chip.img}
-                      alt={chip.name}
-                      width={32}
-                      height={32}
-                      className="h-[28px] w-[28px] rounded-full object-cover md:h-[32px] md:w-[32px]"
-                    />
-                  )}
+                  <Image
+                    src={chip.img}
+                    alt={chip.name}
+                    width={32}
+                    height={32}
+                    className="h-[28px] w-[28px] rounded-full object-cover md:h-[32px] md:w-[32px]"
+                  />
                   {chip.name}
                 </button>
               ))}

@@ -209,7 +209,7 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
         <div className="mb-[48px] flex flex-col items-start justify-between gap-8 lg:flex-row">
           <div className="flex max-w-[700px] flex-col gap-[10px]">
             <h2 className="font-sans text-[48px] font-medium leading-[100%] tracking-[0px] text-[#000000]">
-              {data.copy.cheapFlightsTitleStart} <span className="text-[#FDDB32]">{data.copy.cheapFlightsTitleHighlight}</span>
+              {data.copy.cheapFlightsTitleStart} <span className="text-[#000000]">{data.copy.cheapFlightsTitleHighlight}</span>
             </h2>
             <p className="font-sans text-[14px] font-normal leading-[143%] text-[#555555]">
               {data.copy.cheapFlightsDescription}
