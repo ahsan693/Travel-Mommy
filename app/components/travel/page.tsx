@@ -243,6 +243,7 @@ function DestinationsSection({ destinations }: { destinations: TravelPageData["d
     </section>
   );
 }
+
 /* =====================================================================
    POPULAR FLIGHTS SECTION
 ===================================================================== */
@@ -344,49 +345,61 @@ function TopThingsToDoSection({ thingsToDo }: { thingsToDo: TravelPageData["thin
   );
 }
 
+
 /* =====================================================================
-   WHERE TO STAY SECTION
+   TRAVEL HELP (FAQ) SECTION
 ===================================================================== */
 
-function WhereToStaySection({ hotels }: { hotels: TravelPageData["whereToStaySection"] }) {
-  const RatingIcon = LucideIconMap[hotels.ratingIcon] || Star;
+function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full bg-[#F9FBFA] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <h2 className="mb-[48px] font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[32px]">
-          {hotels.title}
-        </h2>
-        <div className="grid w-full grid-cols-1 gap-[24px] md:grid-cols-3">
-          {hotels.items.map((hotel, i) => (
-            <div key={i} className="flex flex-col rounded-[32px] bg-[#FFFFFF] p-[6px] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:-translate-y-1">
-              <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-[26px]">
-                <Image src={hotel.image} alt={hotel.name} fill className="object-cover" />
-              </div>
-              <div className="flex flex-col gap-[16px] p-[20px]">
-                <div className="flex items-center gap-[4px]">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <RatingIcon key={j} size={14} className="fill-[#F59E0B] text-[#F59E0B]" strokeWidth={0} />
-                  ))}
-                  <span className="ml-[4px] font-sans text-[14px] font-medium text-[#F59E0B]">{hotel.rating}</span>
-                </div>
-                <h3 className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">{hotel.name}</h3>
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">
-                    {hotel.price} <span className="text-[14px] font-normal tracking-[0px] text-[#7D7D7D]">{hotels.perNightText}</span>
-                  </span>
-                  <button className="rounded-full bg-[#000000] px-[16px] py-[8px] font-sans text-[12px] font-medium leading-[16px] tracking-[-0.12px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
-                    {hotels.viewDetailsText}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+    <section className="w-full bg-[#F9F8F5] py-[120px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[64px] lg:flex-row lg:items-start px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        
+        {/* Left Col */}
+        <div className="flex w-full max-w-[400px] flex-col gap-[12px] shrink-0">
+          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[36px]">
+            {faqs.title}
+          </h2>
+          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
+            {faqs.description}
+          </p>
         </div>
+
+        {/* Right Col */}
+        <div className="flex w-full flex-col gap-[24px]">
+          {faqs.faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div key={i} className="flex flex-col gap-[12px] border-b border-[#E5E7EB] pb-[24px]">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between text-left"
+                >
+                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">
+                    {faq.q}
+                  </span>
+                  <span className="flex shrink-0 text-[#000000]">
+                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                  </span>
+                </button>
+                {isOpen && (
+                  <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#7D7D7D]">
+                    {faq.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );
 }
+
 
 /* =====================================================================
    NEARBY COUNTRIES SECTION
@@ -457,59 +470,6 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
   );
 }
 
-/* =====================================================================
-   TRAVEL HELP (FAQ) SECTION
-===================================================================== */
-
-function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  return (
-    <section className="w-full bg-[#F9F8F5] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[64px] lg:flex-row lg:items-start px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        
-        {/* Left Col */}
-        <div className="flex w-full max-w-[400px] flex-col gap-[12px] shrink-0">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[36px]">
-            {faqs.title}
-          </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
-            {faqs.description}
-          </p>
-        </div>
-
-        {/* Right Col */}
-        <div className="flex w-full flex-col gap-[24px]">
-          {faqs.faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div key={i} className="flex flex-col gap-[12px] border-b border-[#E5E7EB] pb-[24px]">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between text-left"
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">
-                    {faq.q}
-                  </span>
-                  <span className="flex shrink-0 text-[#000000]">
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-                  </span>
-                </button>
-                {isOpen && (
-                  <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#7D7D7D]">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-      </div>
-    </section>
-  );
-}
 
 /* =====================================================================
    NEWSLETTER SECTION
@@ -558,9 +518,8 @@ export default function DiscoverGreecePage({ data = travelData }: { data?: Trave
       <DestinationsSection destinations={data.destinationsSection} />
       <PopularFlightsSection popularFlights={data.popularFlightsSection} />
       <TopThingsToDoSection thingsToDo={data.thingsToDoSection} />
-      <WhereToStaySection hotels={data.whereToStaySection} />
-      <NearbyCountriesSection nearbyCountries={data.nearbyCountriesSection} />
       <TravelHelpSection faqs={data.travelHelpSection} />
+      <NearbyCountriesSection nearbyCountries={data.nearbyCountriesSection} />
       <NewsletterSection newsletter={data.newsletterSection} />
       <Footer data={footerData} />
     </main>

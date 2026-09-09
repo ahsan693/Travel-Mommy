@@ -32,14 +32,6 @@ export interface TravelActivity {
   image: string; 
 }
 
-export interface TravelHotel { 
-  name: string; 
-  location: string; 
-  rating: string; 
-  price: string; 
-  image: string; 
-}
-
 export interface NearbyCountry { 
   city: string; 
   desc: string; 
@@ -94,13 +86,6 @@ export interface TravelPageData {
   thingsToDoSection: {
     title: string;
     items: TravelActivity[];
-  };
-  whereToStaySection: {
-    title: string;
-    perNightText: string;
-    viewDetailsText: string;
-    ratingIcon: string;
-    items: TravelHotel[];
   };
   nearbyCountriesSection: {
     title: string;
@@ -274,35 +259,6 @@ destinationsSection: {
         duration: "Flexible",
         price: "From €18",
         image: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80"
-      }
-    ]
-  },
-  whereToStaySection: {
-    title: "Where To Stay",
-    perNightText: "/ night",
-    viewDetailsText: "View Details",
-    ratingIcon: "star",
-    items: [
-      {
-        name: "Grace Santorini",
-        location: "Imerovigli",
-        rating: "4.9/5",
-        price: "€450",
-        image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
-      },
-      {
-        name: "Cavo Tagoo",
-        location: "Mykonos Town",
-        rating: "4.8/5",
-        price: "€520",
-        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
-      },
-      {
-        name: "Katikies Hotel",
-        location: "Oia",
-        rating: "4.9/5",
-        price: "€480",
-        image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1200&q=80"
       }
     ]
   },
