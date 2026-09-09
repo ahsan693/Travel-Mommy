@@ -18,7 +18,6 @@ import { flightData, type FlightPageData } from "../../../lib/data/flightData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 
-
 /* ----------------------------------------------------------------
    MAIN PAGE COMPONENT
 ---------------------------------------------------------------- */

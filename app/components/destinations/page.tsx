@@ -248,6 +248,7 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
     </section>
   );
 }
+
 /* =====================================================================
    WHY PLAN YOUR TRIP SECTION
 ===================================================================== */

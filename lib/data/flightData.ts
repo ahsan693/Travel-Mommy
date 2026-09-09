@@ -147,11 +147,38 @@ export const popularAirportsData: Airport[] = [
 
 // 5. FAQs
 export const faqsData: FlightFaq[] = [
-  { question: "How do I find the cheapest flights?", answer: "Use flexible dates, compare multiple airlines and travel sites, and sign up for our newsletter to get price alerts. Search different nearby airports to find lower fares." },
-  { question: "Can I book directly on TravelMommy?", answer: "TravelMommy compares prices across airlines and online travel agencies. When you select a fare, you'll be redirected to the provider's site to complete the booking." },
-  { question: "Are the prices guaranteed?", answer: "Prices are provided by third-party providers and can change rapidly. We display the latest available price, but final price is confirmed on the provider's booking page." },
-  { question: "What about baggage and seat selection?", answer: "Baggage allowances, seat selection and other extras are set by the airline or booking partner. Check the provider's booking page for full details before paying." },
-  { question: "How do I change or cancel a booking?", answer: "Changes and cancellations must be handled directly with the airline or agency where you made the booking. Contact them for options and any applicable fees." },
+  { 
+    question: "How does TravelMommy compare flight prices?", 
+    answer: "TravelMommy displays prices provided by airlines and trusted travel partners. Because fares can change quickly, the final price is confirmed when you complete your booking on the provider's website." 
+  },
+  { 
+    question: "Does TravelMommy charge booking fees?", 
+    answer: "No. TravelMommy is a travel metasearch platform. We compare flight prices but do not sell tickets directly or charge booking fees. You always book with the airline or travel provider you choose." 
+  },
+  { 
+    question: "Can I compare flights from different airlines?", 
+    answer: "Yes. TravelMommy lets you compare flights from multiple airlines and travel providers, making it easier to find the best combination of price, travel time and convenience." 
+  },
+  { 
+    question: "When is the best time to book cheap flights?", 
+    answer: "Flight prices can change based on demand, season and availability. Comparing fares early and checking different travel dates can help you find cheaper flights." 
+  },
+  { 
+    question: "Are the flight prices shown on TravelMommy live?", 
+    answer: "TravelMommy displays prices provided by airlines and trusted travel partners. Because fares can change quickly, the final price is confirmed when you complete your booking on the provider's website." 
+  },
+  { 
+    question: "Can I book flights directly on TravelMommy?", 
+    answer: "No. TravelMommy helps you compare flight prices from multiple providers. When you choose a flight, you'll be redirected to the airline or booking partner to complete your booking securely." 
+  },
+  { 
+    question: "Which airlines can I compare on TravelMommy?", 
+    answer: "You can compare flights from a wide range of domestic and international airlines, as well as trusted online travel agencies, helping you find the best available deal for your journey." 
+  },
+  { 
+    question: "Why should I compare flights before booking?", 
+    answer: "Comparing flights helps you find the best available fare, discover alternative airlines or travel dates, and make informed booking decisions without searching multiple websites individually." 
+  }
 ];
 
 // 6. Assets & Copy
