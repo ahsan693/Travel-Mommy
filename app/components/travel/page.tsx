@@ -179,19 +179,18 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
 
 function DestinationCard({ item, sectionData }: { item: TravelDestination; sectionData: TravelPageData["destinationsSection"] }) {
   const FlightIcon = LucideIconMap[sectionData.flightsIcon] || Plane;
-  const HotelIcon = LucideIconMap[sectionData.hotelsIcon] || Building2;
   const BookIcon = LucideIconMap[sectionData.bookNowIcon] || ArrowRight;
 
   return (
     <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#F3F4F6] bg-[#FFFFFF] shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:-translate-y-1">
       <div className="relative h-[240px] w-full shrink-0 overflow-hidden bg-neutral-100">
-        <Image src={item.image} alt={item.city || item.name} fill className="object-cover transition-transform duration-700 hover:scale-105" />
+        <Image src={item.image} alt={item.city} fill className="object-cover transition-transform duration-700 hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-[24px]">
         <div className="mb-[16px] flex items-center justify-between">
           <div className="flex items-center gap-[8px]">
             <h3 className="font-sans text-[20px] font-medium leading-[28px] tracking-[-0.4px] text-[#000000]">
-              {item.city || item.name}
+              {item.city}
             </h3>
             {item.icon && (
               <div className="relative flex h-[16px] w-[24px] shrink-0 items-center justify-center">
@@ -199,35 +198,22 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
               </div>
             )}
           </div>
-          {item.badge && (
-            <div className={`rounded-full px-[12px] py-[4px] font-sans text-[12px] font-medium leading-[16px] ${item.badgeStyles}`}>
-              {item.badge}
-            </div>
-          )}
         </div>
         <p className="mb-[24px] min-h-[60px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#4B5563]">
           {item.desc}
         </p>
         <div className="mb-[24px] flex flex-col items-start gap-[12px]">
           {item.flightsFrom && (
-            <div className="flex items-center gap-[8px] rounded-[8px] bg-[#FEF6D8] px-[12px] py-[8px]">
-              <FlightIcon size={16} className="text-[#000000]" />
-              <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
+            <div className="flex items-center gap-[6px] rounded-full border border-[#FDE047] bg-[#FEF6D8] px-[12px] py-[6px]">
+              <FlightIcon size={14} className="text-[#000000]" />
+              <span className="font-sans text-[13px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
                 {sectionData.flightsPrefix} {item.flightsFrom}
-              </span>
-            </div>
-          )}
-          {item.hotelsFrom && (
-            <div className="flex items-center gap-[8px] rounded-[8px] bg-[#FEF6D8] px-[12px] py-[8px]">
-              <HotelIcon size={16} className="text-[#000000]" />
-              <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
-                {sectionData.hotelsPrefix} {item.hotelsFrom}
               </span>
             </div>
           )}
         </div>
         <div className="mt-auto pt-[8px]">
-          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
+          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
             {sectionData.bookNowText} <BookIcon size={18} className="text-[#FFFFFF]" />
           </button>
         </div>
@@ -236,16 +222,15 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
   );
 }
 
-
-  function DestinationsSection({ destinations }: { destinations: TravelPageData["destinationsSection"] }) {
-     return (
+function DestinationsSection({ destinations }: { destinations: TravelPageData["destinationsSection"] }) {
+  return (
     <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
         <div className="mb-[56px] flex flex-col gap-[12px]">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#ffffff] max-[768px]:text-[32px]">
+          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
             {destinations.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#ffffff]">
+          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#D1D5DB]">
             {destinations.description}
           </p>
         </div>
@@ -258,7 +243,6 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
     </section>
   );
 }
-
 /* =====================================================================
    POPULAR FLIGHTS SECTION
 ===================================================================== */

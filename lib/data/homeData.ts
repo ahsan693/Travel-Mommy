@@ -44,8 +44,8 @@ export interface HomePageData {
 
 export const homeData: HomePageData = {
   hero: {
-    title: "Compare Flights, Hotels & Travel Deals",
-    description: "Compare flight prices, hotels, and holiday deals from trusted travel providers. Search hundreds of booking sites in seconds.",
+    title: "Compare Cheap Flights & Deals",
+    description: "Search cheap flights from 500+ top airlines and travel sites. Find the lowest fares before you book.",
     image: "/Homepage/Section 1/Header Images/homeimg1.png",
     imageAlt: "Travel destination",
     cta: "Compare Flights",
@@ -72,7 +72,7 @@ whyCompare: {
   ],
   flightsSection: {
     title: "Cheap Flights from",
-    highlightedTitle: "Dublin",
+    highlightedTitle: "Dublin(DUB)",
     description: "Compare today's lowest fares from Dublin Airport to popular destinations across Europe, North America and beyond.",
     cta: "Browse All Flight Routes",
     cardCta: "View Flights",

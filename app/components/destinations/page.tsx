@@ -154,7 +154,7 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
         <div className="mb-[28px] flex flex-col items-center text-center md:mb-[40px]">
           {/* Section Title */}
           <h2 className="font-sans text-[32px] font-medium leading-[38px] tracking-[0px] text-[#000000] md:text-[48px] md:leading-[48px]">
-            {data.featuredTitle || "Featured Countries"}
+            {data.copy.featuredTitle || "Featured Countries"}
           </h2>
         </div>
 
@@ -162,7 +162,7 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
         <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[20px] md:grid-cols-3 md:gap-[24px]">
           {data.featuredCountries.map((country) => (
             <div
-              key={country.id}
+              key={country.name}
               className="group flex min-h-[440px] w-full flex-col overflow-hidden rounded-[16px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] p-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 md:rounded-[20px] md:p-[14px]"
             >
               {/* Image Container */}

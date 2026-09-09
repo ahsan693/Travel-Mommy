@@ -1,5 +1,5 @@
 export interface DestinationChip { name: string; region: string; img: string; swatch: string }
-export interface FeaturedCountry { name: string; desc: string; image: string; tags: string[]; flightsFrom: string; hotelsFrom: string; perk: string; rating: string; price: string; icon: string }
+export interface FeaturedCountry { id?: string; name: string; desc: string; image: string; tags: string[]; flightsFrom: string; hotelsFrom: string; perk: string; rating: string; price: string; icon: string }
 export interface DestinationFeature { icon: string; iconSrc: string; title: string; description: string }
 export interface DestinationFaq { q: string; a: string }
 export interface DestinationsPageData {
@@ -74,27 +74,42 @@ export const destinationsData: DestinationsPageData = {
  featuredCountries: [
   { 
     id: "greece",
+    name: "Greece",
+    desc: "Beautiful islands, ancient history",
     image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&w=800&q=80", 
     tags: ["History", "Beach"], 
+    flightsFrom: "€120",
+    hotelsFrom: "€180",
     perk: "Mediterranean beaches", 
     rating: "4.8", 
-    price: "€49"
+    price: "€49",
+    icon: "/Featured Countries/Section 1/Icon/Vector.png"
   }, 
   { 
     id: "spain",
+    name: "Spain",
+    desc: "Sun-soaked beaches, vibrant culture",
     image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&w=800&q=80", 
     tags: ["Beaches", "Tapas"], 
+    flightsFrom: "€120",
+    hotelsFrom: "€180",
     perk: "Incredible tapas & nightlife", 
     rating: "4.7", 
-    price: "€39"
+    price: "€39",
+    icon: "/Featured Countries/Section 1/Icon/Vector.png"
   }, 
   { 
     id: "italy",
+    name: "Italy",
+    desc: "Ancient ruins, rolling vineyards",
     image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&w=800&q=80", 
     tags: ["History", "Wine"], 
+    flightsFrom: "€120",
+    hotelsFrom: "€180",
     perk: "World-class cuisine & art", 
     rating: "4.9", 
-    price: "€55"
+    price: "€55",
+    icon: "/Featured Countries/Section 1/Icon/Vector.png"
   }
 ],
  
