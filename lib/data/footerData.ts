@@ -46,7 +46,7 @@ export const footerData: FooterData = {
   },
   description: "Compare flights, hotels and travel deals from trusted travel providers - all in one place.",
   columns: [
-    { title: "Search", links: ["Cheap Flights to Dubai", "Hotels in Paris", "Flights from Dublin", "Flights from London"] },
+    { title: "Search", links: ["Cheap Flights to Dubai" , "Flights from Dublin", "Flights from London"] },
     { title: "Discover", links: ["Deals", "Destinations", "Airlines", "Airports"] },
     { title: "Discover", links: ["Trips", "Travel Guide", "Travel Tips", "FAQs"] },
     { title: "Company", links: ["About", "Contact", "Partners", "Help Centre"] },
