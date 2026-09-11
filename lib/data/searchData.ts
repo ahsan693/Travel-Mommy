@@ -1,9 +1,178 @@
-export interface SearchHotel { name: string; location: string; image: string; stars: number; ratingLabel: string; rating: string; price: string; amenities: string[]; popular: boolean }
-export interface SearchFilter { title: string; options: string[]; defaultChecked: string[] }
-export interface SearchPageData { hotelResults: SearchHotel[]; sortOptions: string[]; paginationPages: string[]; filterSections: SearchFilter[]; search: { location: string; checkInLabel: string; checkIn: string; checkOutLabel: string; checkOut: string; guestsLabel: string; guests: string; mapLabel: string; mapLocation: string; mapDescription: string; priceLabel: string } }
+export interface SearchFlight {
+  id: string;
+  airline: string;
+  logoUrl: string;
+  departureTime: string;
+  departureAirport: string;
+  duration: string;
+  stops: string;
+  arrivalTime: string;
+  arrivalAirport: string;
+  sitesCount: number;
+  price: number;
+}
+
+export interface SearchPageData {
+  search: {
+    departure: string;
+    arrival: string;
+    dates: string;
+    travellers: string;
+    departureLabel: string;
+    arrivalLabel: string;
+    datesLabel: string;
+    travellersLabel: string;
+    departureIcon: string;
+    arrivalIcon: string;
+    swapLabel: string;
+    submitLabel: string;
+  };
+  filters: {
+    title: string;
+    resetLabel: string;
+    stopsLabel: string;
+    airlinesLabel: string;
+    priceRangeLabel: string;
+    departureTimeLabel: string;
+    stops: { label: string; price: number; checked: boolean }[];
+    airlines: { label: string; checked: boolean }[];
+    priceRange: { min: number; max: number };
+    departureTimes: string[];
+  };
+  resultsHeader: {
+    count: number;
+    countLabel: string;
+    tabs: string[];
+    sitesLabel: string;
+    dealLabel: string;
+    loadMoreLabel: string;
+  };
+  flights: SearchFlight[];
+}
+
 export const searchData: SearchPageData = {
-  hotelResults: [{ name: "Hilton Jeddah", location: "Corniche Road, Jeddah", image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&w=600&q=80", stars: 5, ratingLabel: "Excellent", rating: "4.8", price: "245", amenities: ["Free WiFi", "Breakfast"], popular: true }, { name: "Park Hyatt Jeddah", location: "Al Hamra District, Jeddah", image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&w=600&q=80", stars: 5, ratingLabel: "Superb", rating: "4.9", price: "389", amenities: ["Free WiFi", "Breakfast"], popular: false }],
-  sortOptions: ["Recommended", "Price (lowest)", "Guest Rating", "Stars"], paginationPages: ["1", "2", "3", "...", "25"],
-  filterSections: [{ title: "Star Rating", options: ["5-Star", "4-Star", "3-Star", "Budget"], defaultChecked: ["5-Star"] }, { title: "Guest Rating", options: ["Excellent 4.5+", "Very Good 4+", "Good 3.5+", "Fair 3+"], defaultChecked: [] }, { title: "Amenities", options: ["Free WiFi", "Swimming Pool", "Gym", "Parking", "Restaurant", "Pet Friendly"], defaultChecked: [] }, { title: "Property Type", options: ["Hotel", "Apartment", "Resort", "Villa"], defaultChecked: [] }],
-  search: { location: "Jeddah, Saudi Arabia", checkInLabel: "Check-in", checkIn: "08 Nov 2025", checkOutLabel: "Check-out", checkOut: "08 Jan 2026", guestsLabel: "Guests", guests: "2 guests, 1 room", mapLabel: "Show map", mapLocation: "Jeddah, Saudi Arabia", mapDescription: "Explore hotels in this area", priceLabel: "Price range" },
+  search: {
+    departure: "New York (JFK)",
+    arrival: "London (LHR)",
+    dates: "08 Nov - 15 Nov 2025",
+    travellers: "01 Adult, Economy",
+    departureLabel: "From",
+    arrivalLabel: "To",
+    datesLabel: "Dates",
+    travellersLabel: "Travellers",
+    departureIcon: "/assets/airplane.svg",
+    arrivalIcon: "/assets/airplane.svg",
+    swapLabel: "Swap departure and arrival",
+    submitLabel: "Search flights",
+  },
+  filters: {
+    title: "Filters",
+    resetLabel: "Reset all",
+    stopsLabel: "Stops",
+    airlinesLabel: "Airlines",
+    priceRangeLabel: "Price range",
+    departureTimeLabel: "Departure time",
+    stops: [
+      { label: "Nonstop", price: 420, checked: true },
+      { label: "1 stop", price: 385, checked: false },
+      { label: "2+ stops", price: 350, checked: false },
+    ],
+    airlines: [
+      { label: "Delta Air Lines", checked: true },
+      { label: "British Airways", checked: true },
+      { label: "Virgin Atlantic", checked: false },
+      { label: "United Airlines", checked: false },
+      { label: "American Airlines", checked: false },
+    ],
+    priceRange: { min: 350, max: 1200 },
+    departureTimes: ["Morning", "Afternoon", "Evening", "Night"],
+  },
+  resultsHeader: {
+    count: 245,
+    countLabel: "results found",
+    tabs: ["Cheapest", "Best", "Fastest"],
+    sitesLabel: "from {count} sites",
+    dealLabel: "View deal",
+    loadMoreLabel: "Load more results",
+  },
+  flights: [
+    {
+      id: "1",
+      airline: "Delta Air Lines",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png", 
+      departureTime: "06:00 PM",
+      departureAirport: "JFK",
+      duration: "7h 15m",
+      stops: "Nonstop",
+      arrivalTime: "06:15 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 12,
+      price: 420,
+    },
+    {
+      id: "2",
+      airline: "British Airways",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      departureTime: "09:30 PM",
+      departureAirport: "JFK",
+      duration: "7h 15m",
+      stops: "Nonstop",
+      arrivalTime: "09:45 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 8,
+      price: 580,
+    },
+    {
+      id: "3",
+      airline: "United Airlines",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      departureTime: "07:15 PM",
+      departureAirport: "JFK",
+      duration: "10h 05m",
+      stops: "1 stop (FRA)",
+      arrivalTime: "10:20 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 15,
+      price: 390,
+    },
+    {
+      id: "4",
+      airline: "Virgin Atlantic",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      departureTime: "10:50 PM",
+      departureAirport: "JFK",
+      duration: "7h 10m",
+      stops: "Nonstop",
+      arrivalTime: "11:00 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 10,
+      price: 645,
+    },
+    {
+      id: "5",
+      airline: "American Airlines",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      departureTime: "05:30 PM",
+      departureAirport: "JFK",
+      duration: "7h 15m",
+      stops: "Nonstop",
+      arrivalTime: "05:45 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 9,
+      price: 415,
+    },
+    {
+      id: "6",
+      airline: "Lufthansa",
+      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      departureTime: "03:20 PM",
+      departureAirport: "JFK",
+      duration: "12h 50m",
+      stops: "1 stop (MUC)",
+      arrivalTime: "09:10 AM",
+      arrivalAirport: "LHR",
+      sitesCount: 21,
+      price: 365,
+    },
+  ],
 };
