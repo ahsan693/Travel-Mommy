@@ -108,6 +108,7 @@ whyCompare: {
     widgetTitle: "TravelMommy destinations widget",
   },
   guidesSection: { title: "Featured Travel Guides", cta: "View All Guides" },
+  
   guides: [
     { date: "June 12, 2026", title: "Best Time to Visit Bali", image: "/Homepage/Section 6/Images/bali.png" },
     { date: "May 28, 2026", title: "How to Find Cheap Flights", image: "/Homepage/Section 6/Images/plane travel.png" },

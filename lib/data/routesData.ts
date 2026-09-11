@@ -1,5 +1,49 @@
-export interface RouteResult { originCode: string; originFlag: string; originCity: string; destCode: string; destFlag: string; destCity: string; airlineCode: string; airlineName: string; airlineColor: string; duration: string; price: string }
-export interface RoutesPageData { routeResults: RouteResult[]; paginationPages: string[] }
+export interface RouteResult {
+  originCode: string;
+  originFlag: string;
+  originCity: string;
+  destCode: string;
+  destFlag: string;
+  destCity: string;
+  airlineCode: string;
+  airlineName: string;
+  airlineColor: string;
+  duration: string;
+  price: string;
+}
+
+export interface RoutesPageData {
+  hero: {
+    image: string;
+    imageAlt: string;
+    title: string;
+    description: string;
+    filter: {
+      fields: {
+        id: string;
+        label: string;
+        defaultValue?: string;
+        placeholder: string;
+      }[];
+      buttonLabel: string;
+      buttonIcon: string;
+    };
+  };
+  results: {
+    title: string;
+    description: string;
+    sortLabel: string;
+    sortValue: string;
+    airlineLabel: string;
+    durationLabel: string;
+    priceLabel: string;
+    bookButtonLabel: string;
+    routeIcon: string;
+  };
+  routeResults: RouteResult[];
+  paginationPages: string[];
+}
+
 export const routesData: RoutesPageData = {
   routeResults: [
     { originCode: "LHR", originFlag: "🇬🇧", originCity: "London", destCode: "JFK", destFlag: "🇺🇸", destCity: "New York", airlineCode: "BA", airlineName: "British Airways", airlineColor: "#1F3B73", duration: "7h 55m", price: "540" },
@@ -16,4 +60,30 @@ export const routesData: RoutesPageData = {
     { originCode: "MAD", originFlag: "🇪🇸", originCity: "Madrid", destCode: "MEX", destFlag: "🇲🇽", destCity: "Mexico City", airlineCode: "IB", airlineName: "Iberia", airlineColor: "#D8112D", duration: "11h 45m", price: "780" },
   ],
   paginationPages: ["1", "2", "3", "10", "..."],
+  hero: {
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&w=1920&q=80",
+    imageAlt: "Clouds at sunset seen from above",
+    title: "Compare Flight Routes Worldwide",
+    description: "Search routes by departure airport, destination or airline. Compare prices from hundreds of airlines and book with trusted travel partners.",
+    filter: {
+      fields: [
+        { id: "routes-origin", label: "Origin", defaultValue: "London LHR", placeholder: "Where from?" },
+        { id: "routes-destination", label: "Destination", placeholder: "Where to?" },
+        { id: "routes-airline", label: "Airline", placeholder: "All Carriers" },
+      ],
+      buttonLabel: "Filter Routes",
+      buttonIcon: "search",
+    },
+  },
+  results: {
+    title: "124 Routes Found",
+    description: "Showing top results for international connections",
+    sortLabel: "Sort by:",
+    sortValue: "Lowest Price",
+    airlineLabel: "Airline",
+    durationLabel: "Duration",
+    priceLabel: "From",
+    bookButtonLabel: "Book Now",
+    routeIcon: "plane",
+  },
 };
