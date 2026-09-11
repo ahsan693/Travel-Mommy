@@ -60,8 +60,8 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
 
 function WhyCompare({ data }: { data: HomePageData["whyCompare"] }) {
   return (
-    <section className="flex flex-col gap-[10px] bg-black px-5 py-16 text-white lg:px-[80px] lg:py-[160px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[10px]">
+    <section className="flex flex-col bg-black px-5 py-16 text-white lg:px-[80px] lg:py-[160px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[24px] lg:px-[32px]">
         <h2 className="text-3xl font-[570] lg:text-[48px] lg:leading-[48px] lg:tracking-[-1px]">
           {data.title} <span>{data.highlightedTitle}</span>
         </h2>

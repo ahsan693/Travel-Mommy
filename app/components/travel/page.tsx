@@ -63,7 +63,7 @@ const DEFAULT_ABOUT_SECTION: TravelPageData["aboutSection"] = {
 
 function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
   return (
-    <section className="relative mx-auto flex h-[681px] max-h-screen w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden bg-[#000000]">
+    <section className="relative mx-auto flex h-[681px] max-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#000000]">
       <Header data={headerData} />
       <div className="absolute inset-0 z-0">
         <Image
@@ -490,7 +490,8 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
             <input
               type="email"
               placeholder={newsletter.inputPlaceholder}
-              className="bg-[#FFFFFF] h-[56px] flex-1 rounded-[16px] px-[24px] font-sans text-[16px] font-normal text-[#000000] placeholder:text-[#6B7280] focus:outline-none focus:ring-2 focus:ring-black/5"
+              aria-label="Email address"
+              className="bg-[#FFFFFF] h-[56px] flex-1 rounded-[16px] px-[24px] font-sans text-[16px] font-normal text-[#000000] placeholder:text-[#767676]"
             />
             <button
               type="submit"

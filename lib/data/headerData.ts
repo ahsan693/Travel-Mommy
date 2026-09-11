@@ -28,7 +28,7 @@ export const headerData: HeaderData = {
   navigation: [
     { label: "Flights", href: "/flight" },
     { label: "Destinations", href: "/destinations" },
-    { label: "About", href: "/contactus" },
+    { label: "Contact Us", href: "/contactus" },
   ],
   search: {
     label: "Search Deals",

@@ -208,46 +208,49 @@ function FilterWidget() {
         {/* Origin */}
         <div className="flex flex-1 flex-col gap-[8px]">
           {/* Title S */}
-          <label className="font-sans text-[14px] font-medium leading-[1.43] text-black">
+          <label htmlFor="routes-origin" className="font-sans text-[14px] font-medium leading-[1.43] text-black">
             Origin
           </label>
           <input
+            id="routes-origin"
             type="text"
             defaultValue="London LHR"
             placeholder="Where from?"
-            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#7d7d7d] focus:outline-none"
+            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#767676]"
           />
         </div>
 
         {/* Destination */}
         <div className="flex flex-1 flex-col gap-[8px]">
           {/* Title S */}
-          <label className="font-sans text-[14px] font-medium leading-[1.43] text-black">
+          <label htmlFor="routes-destination" className="font-sans text-[14px] font-medium leading-[1.43] text-black">
             Destination
           </label>
           <input
+            id="routes-destination"
             type="text"
             placeholder="Where to?"
-            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#7d7d7d] focus:outline-none"
+            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#767676]"
           />
         </div>
 
         {/* Airline */}
         <div className="flex flex-1 flex-col gap-[8px]">
           {/* Title S */}
-          <label className="font-sans text-[14px] font-medium leading-[1.43] text-black">
+          <label htmlFor="routes-airline" className="font-sans text-[14px] font-medium leading-[1.43] text-black">
             Airline
           </label>
           <input
+            id="routes-airline"
             type="text"
             placeholder="All Carriers"
-            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#7d7d7d] focus:outline-none"
+            className="h-[52px] w-full rounded-[14px] border border-[#e6e6e6] bg-white px-[16px] font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#767676]"
           />
         </div>
 
         {/* Filter Button */}
         {/* Title S */}
-        <button className="flex h-[52px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#fddb32] px-[24px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-transform hover:scale-[1.02]">
+        <button type="button" aria-label="Filter routes" className="flex h-[52px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#fddb32] px-[24px] font-sans text-[14px] font-medium leading-[1.43] text-black transition-transform hover:scale-[1.02]">
           <Search size={16} className="text-black" />
           Filter Routes
         </button>
@@ -409,7 +412,7 @@ function RoutesResultsSection({ routes = routeResults, pages = paginationPages }
             <span className="font-sans text-[14px] font-normal leading-[1.43] text-white/60">
               Sort by:
             </span>
-            <button className="flex items-center gap-2 rounded-full bg-[#1a1a1a] px-4 py-2 font-sans text-[14px] font-medium leading-[1.43] text-white">
+            <button type="button" aria-label="Sort routes by lowest price" className="flex items-center gap-2 rounded-full bg-[#1a1a1a] px-4 py-2 font-sans text-[14px] font-medium leading-[1.43] text-white">
               Lowest Price
               <ChevronDown size={14} />
             </button>
@@ -427,6 +430,8 @@ function RoutesResultsSection({ routes = routeResults, pages = paginationPages }
           {pages.map((page) => (
             <button
               key={page}
+              type="button"
+              aria-label={`Go to page ${page}`}
               onClick={() => page !== "..." && setActivePage(page)}
               disabled={page === "..."}
               // Title S

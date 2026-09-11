@@ -182,7 +182,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#7D7D7D] outline-none transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
                 />
               </div>
 
@@ -198,7 +198,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.email}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#7D7D7D] outline-none transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
                 />
               </div>
 
@@ -214,7 +214,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.subject}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#7D7D7D] outline-none transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
                 />
               </div>
 
@@ -230,7 +230,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.message}
                   onChange={handleChange}
                   required
-                  className="min-h-[120px] w-full resize-none rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#7D7D7D] outline-none transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="min-h-[120px] w-full resize-none rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
                 />
               </div>
 
@@ -279,6 +279,8 @@ function FaqSection({ faqs: faqItems, data }: { faqs: ContactFaq[]; data: Contac
                 <button
                   type="button"
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
                   className="flex w-full items-center justify-between text-left"
                 >
                   <span className="font-sans text-[15px] font-medium leading-[20px] tracking-[-0.32px] text-[#000000] md:text-[16px] md:leading-[24px] md:tracking-[0px]">
@@ -289,7 +291,7 @@ function FaqSection({ faqs: faqItems, data }: { faqs: ContactFaq[]; data: Contac
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="mt-[12px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#666666] md:mt-[16px] md:text-[15px] md:leading-[1.55] md:tracking-[0px] md:text-[#7D7D7D]">
+                  <p id={`faq-answer-${idx}`} className="mt-[12px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#666666] md:mt-[16px] md:text-[15px] md:leading-[1.55] md:tracking-[0px] md:text-[#7D7D7D]">
                     {faq.answer}
                   </p>
                 )}

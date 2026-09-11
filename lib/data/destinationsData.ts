@@ -114,9 +114,9 @@ export const destinationsData: DestinationsPageData = {
   ],
 
   whyCompare: [
-    { icon: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/credit card declined - 02.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." },
-    { icon: "/Featured Countries/Section 3/Icons/follow user - 01.png", iconSrc: "/Featured Countries/Section 3/Icons/follow user - 01.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, 
-    { icon: "/Featured Countries/Section 3/Icons/time refresh - 02.png", iconSrc: "/Featured Countries/Section 3/Icons/time refresh - 02.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }
+    { icon: "/Featured Countries/Section 3/Icons/Vector.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." },
+    { icon: "/Featured Countries/Section 3/Icons/Vector-1.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector-1.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, 
+    { icon: "/Featured Countries/Section 3/Icons/Vector-2.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector-2.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }
   ],
 
   faqs: [

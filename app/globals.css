@@ -106,6 +106,11 @@ body {
   letter-spacing: 0;
 }
 
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #0055FF;
+  outline-offset: 2px;
+}
+
 .font-saans {
   font-family: var(--font-sans);
 }

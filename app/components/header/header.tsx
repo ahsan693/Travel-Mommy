@@ -33,7 +33,7 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
         </Link>
 
         {/* Desktop Nav (Hidden on Mobile) */}
-        <nav className="hidden lg:flex flex-1 items-center justify-end gap-[4px]">
+        <nav aria-label="Primary navigation" className="hidden lg:flex flex-1 items-center justify-end gap-[4px]">
           {/* Nav Links - Mapped to Title S: 14px, Medium, 143% */}
           {data.navigation.map((item) => (
           <Link
@@ -55,7 +55,8 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
             {data.search.label}
             <Image 
               src={data.search.iconSrc} 
-              alt="Arrow Right" 
+              alt="" 
+              aria-hidden="true"
               width={data.search.desktopIconSize} 
               height={data.search.desktopIconSize} 
               className="object-contain" 
@@ -69,6 +70,9 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
           onClick={toggleMobileMenu}
           className="flex lg:hidden h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#fddb32] text-black transition-transform hover:brightness-105 active:scale-95"
           aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          type="button"
         >
           {isMobileMenuOpen ? (
             <X size={22} strokeWidth={2.5} />
@@ -79,8 +83,8 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 flex flex-col rounded-[20px] bg-[#f5f5f5] p-[12px] shadow-lg lg:hidden">
-            <nav className="flex flex-col gap-[4px]">
+          <div id="mobile-navigation" className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 flex flex-col rounded-[20px] bg-[#f5f5f5] p-[12px] shadow-lg lg:hidden">
+            <nav aria-label="Mobile navigation" className="flex flex-col gap-[4px]">
               {data.navigation.map((item) => (
               <Link
                 key={item.href}
@@ -102,7 +106,8 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
                 {data.search.label}
                 <Image 
                   src={data.search.iconSrc} 
-                  alt="Arrow Right" 
+                  alt="" 
+                  aria-hidden="true"
                   width={18} 
                   height={18} 
                   className="object-contain" 

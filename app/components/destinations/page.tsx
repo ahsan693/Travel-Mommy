@@ -89,6 +89,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
               {data.regions.map((region) => (
                 <button
                   key={region}
+                  type="button"
                   onClick={() => setActiveRegion(region)}
                   className={`flex h-[32px] items-center gap-[6px] rounded-full px-[14px] py-[8px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] transition-colors md:h-[40px] md:px-[20px] md:py-0 md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] ${
                     activeRegion === region
@@ -114,6 +115,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
               {activeChips.map((chip) => (
                 <button
                   key={chip.name}
+                  type="button"
                   className="flex h-[40px] items-center gap-[8px] rounded-full bg-[#F9FBF5] py-[6px] pl-[6px] pr-[14px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] text-[#000000] transition-colors hover:bg-[#e8ece3] md:border md:border-white/20 md:bg-white/10 md:py-[4px] md:pl-[4px] md:pr-[16px] md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] md:text-[#FFFFFF] md:backdrop-blur-sm md:hover:bg-white/20"
                 >
                   <Image

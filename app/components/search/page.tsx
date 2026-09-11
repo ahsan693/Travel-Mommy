@@ -183,7 +183,8 @@ function SearchBarSection({ data }: { data: SearchPageData }) {
               <input
                 type="text"
                 defaultValue="Jeddah, Saudi Arabia"
-                className="font-sans text-[14px] font-medium leading-[1.43] text-black focus:outline-none"
+                aria-label="Destination"
+                className="font-sans text-[14px] font-medium leading-[1.43] text-black"
               />
             </div>
           </div>
@@ -198,7 +199,8 @@ function SearchBarSection({ data }: { data: SearchPageData }) {
               <input
                 type="text"
                 defaultValue="08 Nov 2025"
-                className="font-sans text-[14px] font-medium leading-[1.43] text-black focus:outline-none"
+                aria-label="Check in date"
+                className="font-sans text-[14px] font-medium leading-[1.43] text-black"
               />
             </div>
           </div>
@@ -213,7 +215,8 @@ function SearchBarSection({ data }: { data: SearchPageData }) {
               <input
                 type="text"
                 defaultValue="08 Jan 2026"
-                className="font-sans text-[14px] font-medium leading-[1.43] text-black focus:outline-none"
+                aria-label="Check out date"
+                className="font-sans text-[14px] font-medium leading-[1.43] text-black"
               />
             </div>
           </div>
@@ -228,14 +231,15 @@ function SearchBarSection({ data }: { data: SearchPageData }) {
               <input
                 type="text"
                 defaultValue="01 Adult 01 Child"
-                className="font-sans text-[14px] font-medium leading-[1.43] text-black focus:outline-none"
+                aria-label="Guests and rooms"
+                className="font-sans text-[14px] font-medium leading-[1.43] text-black"
               />
             </div>
           </div>
 
           {/* Search button */}
           <div className="flex items-center justify-center px-[8px] py-[6px] lg:pl-[16px]">
-            <button className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-[#fddb32] transition-transform hover:scale-[1.05]">
+            <button type="button" aria-label="Search hotels" className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-[#fddb32] transition-transform hover:scale-[1.05]">
               <Search size={18} className="text-black" />
             </button>
           </div>
@@ -274,22 +278,22 @@ function MapPreviewSection({ data }: { data: SearchPageData }) {
             </svg>
 
             {/* Layers control */}
-            <button className="absolute right-[14px] top-[14px] flex h-[34px] w-[34px] items-center justify-center rounded-[10px] bg-white shadow-md">
+            <button type="button" aria-label="Show map layers" className="absolute right-[14px] top-[14px] flex h-[34px] w-[34px] items-center justify-center rounded-[10px] bg-white shadow-md">
               <Layers size={16} className="text-black" />
             </button>
 
             {/* Zoom controls */}
             <div className="absolute bottom-[14px] right-[14px] flex flex-col overflow-hidden rounded-[10px] bg-white shadow-md">
-              <button className="flex h-[32px] w-[32px] items-center justify-center border-b border-black/10">
+              <button type="button" aria-label="Zoom in" className="flex h-[32px] w-[32px] items-center justify-center border-b border-black/10">
                 <Plus size={14} className="text-black" />
               </button>
-              <button className="flex h-[32px] w-[32px] items-center justify-center">
+              <button type="button" aria-label="Zoom out" className="flex h-[32px] w-[32px] items-center justify-center">
                 <Minus size={14} className="text-black" />
               </button>
             </div>
 
             {/* Show on Map pill */}
-            <button className="absolute bottom-[14px] left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-[#1F3B73] px-[16px] py-[8px] font-sans text-[13px] font-medium text-white shadow-md">
+            <button type="button" aria-label="Show selected hotel on map" className="absolute bottom-[14px] left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-[#1F3B73] px-[16px] py-[8px] font-sans text-[13px] font-medium text-white shadow-md">
               <MapPin size={14} />
               Show on Map
             </button>
@@ -333,7 +337,10 @@ function FilterSection({
   return (
     <div className="border-b border-black/10 py-[18px]">
       <button
+        type="button"
         onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-label={`${title} filters`}
         className="flex w-full items-center justify-between"
       >
         {/* Title S */}
@@ -381,6 +388,7 @@ function PriceRangeFilter() {
       <div className="mt-[16px]">
         <input
           type="range"
+          aria-label="Price per night"
           min={0}
           max={1000}
           value={value}
@@ -511,6 +519,7 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                 {data.sortOptions.map((option) => (
                   <button
                     key={option}
+                    type="button"
                     onClick={() => setActiveSort(option)}
                     className={`font-sans text-[14px] leading-[1.43] ${
                       activeSort === option
@@ -539,6 +548,8 @@ function ResultsSection({ data }: { data: SearchPageData }) {
               {data.paginationPages.map((page) => (
                 <button
                   key={page}
+                  type="button"
+                  aria-label={`Go to page ${page}`}
                   onClick={() => page !== "..." && setActivePage(page)}
                   disabled={page === "..."}
                   className={`flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[10px] font-sans text-[14px] font-medium leading-[1.43] transition-colors ${

@@ -505,6 +505,8 @@ function FaqSection({ data }: { data: FlightPageData }) {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`flight-faq-answer-${i}`}
                   className="flex w-full items-center justify-between gap-6 text-left"
                 >
                   <span className="font-sans text-[16px] font-medium leading-[1.5] text-black">
@@ -515,7 +517,7 @@ function FaqSection({ data }: { data: FlightPageData }) {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="mt-4 max-w-[680px] font-sans text-[14px] font-normal leading-[1.55] text-[#555555]">
+                  <p id={`flight-faq-answer-${i}`} className="mt-4 max-w-[680px] font-sans text-[14px] font-normal leading-[1.55] text-[#555555]">
                     {faq.answer}
                   </p>
                 )}
@@ -553,8 +555,9 @@ function NewsletterSection({ data }: { data: FlightPageData }) {
             <div className="flex flex-1 items-center gap-2 rounded-full bg-white px-[20px] py-[14px]">
               <input
                 type="email"
+                aria-label="Email address"
                 placeholder={data.copy.newsletterPlaceholder}
-                className="w-full bg-transparent font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-black/40 focus:outline-none"
+                className="w-full bg-transparent font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#767676]"
               />
               <Mail className="h-[16px] w-[16px] shrink-0 text-black/30" />
             </div>
@@ -566,7 +569,8 @@ function NewsletterSection({ data }: { data: FlightPageData }) {
               {data.copy.newsletterCta}
               <Image 
                 src={data.icons.arrowRight} 
-                alt="Arrow Right" 
+                  alt="" 
+                  aria-hidden="true"
                 width={16} 
                 height={16} 
                 className="object-contain invert" // inverted so it is white on black bg

@@ -35,7 +35,7 @@ const socialIcons = {
 
 export default function Footer({ data = footerData }: { data?: FooterData }) {
   return (
-    <footer className="bg-black text-white">
+    <footer aria-label="Site footer" className="bg-black text-white">
       {/* Applied ~158px top padding on desktop per Figma specs */}
       <div className="mx-auto w-full max-w-[1216px] px-6 pb-10 pt-[80px] lg:px-10 lg:pb-12 lg:pt-[158px]">
 
@@ -55,7 +55,7 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
             </Link>
 
             {/* Locale Pill */}
-            <button className="flex w-fit items-center gap-[8px] rounded-[10px] border border-white/15 bg-white/5 px-[12px] py-[8px] font-sans text-[12px] font-medium leading-[1.33] text-white transition-colors hover:bg-white/10">
+            <button type="button" aria-label="Change region and language" className="flex w-fit items-center gap-[8px] rounded-[10px] border border-white/15 bg-white/5 px-[12px] py-[8px] font-sans text-[12px] font-medium leading-[1.33] text-white transition-colors hover:bg-white/10">
               <Image
                 src={data.locale.iconSrc}
                 alt="Region Settings"
@@ -67,6 +67,7 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
               <Image
                 src={data.locale.arrowSrc}
                 alt="Dropdown Arrow"
+                aria-hidden="true"
                 width={12}
                 height={12}
                 className="object-contain"
@@ -80,18 +81,18 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
               </p>
 
               {/* Social Icons - Using !text to force color override */}
-              <div className="flex items-center gap-5 pt-2">
+              <nav aria-label="Social media" className="flex items-center gap-5 pt-2">
                 {data.socialLinks.map((social) => (
                   <Link 
                     key={social.alt} 
                     href="#" 
                     aria-label={social.alt}
-                    className="!text-[#7D7D7D] transition-colors hover:!text-white"
+                    className="flex h-11 w-11 items-center justify-center !text-[#7D7D7D] transition-colors hover:!text-white"
                   >
                     {socialIcons[social.icon].icon}
                   </Link>
                 ))}
-              </div>
+              </nav>
             </div>
           </div>
 
@@ -137,18 +138,18 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
               
               {/* Line 1: 3 Links */}
               <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[0]}</Link>
+                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[0]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[1]}</Link>
+                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[1]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[2]}</Link>
+                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[2]}</Link>
               </div>
 
               {/* Line 2: 2 Links */}
               <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[3]}</Link>
+                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[3]}</Link>
                 <span>|</span>
-                <Link href="#" className="transition-colors hover:text-white/70">{data.legalLinks[4]}</Link>
+                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[4]}</Link>
               </div>
 
             </div>
@@ -165,7 +166,7 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
 
             <div className="h-[24px]" />
 
-            <p className="max-w-[889px] font-sans text-[16px] font-normal leading-[24px] text-white">
+            <p className="max-w-[889px] font-sans text-[16px] font-normal leading-[24px] text-[#E0E0E0]">
               {data.disclaimer}
             </p>
           </div>
