@@ -63,8 +63,8 @@ export const routesData: RoutesPageData = {
   hero: {
     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&w=1920&q=80",
     imageAlt: "Clouds at sunset seen from above",
-    title: "Compare Flight Routes Worldwide",
-    description: "Search routes by departure airport, destination or airline. Compare prices from hundreds of airlines and book with trusted travel partners.",
+    title: "Compare Cheap Flight Routes Worldwide",
+    description: "Search cheap flight routes by departure airport, destination, or airline. Compare prices from hundreds of trusted airlines and book with certified travel partners.",
     filter: {
       fields: [
         { id: "routes-origin", label: "Origin", defaultValue: "London LHR", placeholder: "Where from?" },

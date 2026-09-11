@@ -78,14 +78,14 @@ function Hero({ data }: { data: RoutesPageData["hero"] }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[#0A0A0A]" />
       </div>
 
-      <div className="relative z-10 flex w-full max-w-[900px] flex-col items-center px-6 text-center lg:px-8">
+      <div className="relative z-10 flex w-full max-w-[1280px] flex-col items-center px-6 text-center lg:px-8">
         {/* Display XL */}
-        <h1 className="text-page-h1 font-sans text-white">
+        <h1 className="text-page-h1 font-sans text-white lg:whitespace-nowrap lg:text-[48px] lg:leading-[48px]">
           {data.title}
         </h1>
 
         {/* Body M */}
-        <p className="mt-[20px] max-w-[620px] font-sans text-[14px] font-normal leading-[1.6] text-white/85 sm:text-[16px]">
+        <p className="mt-[20px] max-w-[920px] font-sans text-[14px] font-normal leading-[1.6] text-white/85 sm:text-[16px]">
           {data.description}
         </p>
 
