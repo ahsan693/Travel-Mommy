@@ -34,6 +34,7 @@ export interface RoutesPageData {
     description: string;
     sortLabel: string;
     sortValue: string;
+    sortOptions: { label: string; value: "recommended" | "lowest-price" }[];
     airlineLabel: string;
     durationLabel: string;
     priceLabel: string;
@@ -80,6 +81,10 @@ export const routesData: RoutesPageData = {
     description: "Showing top results for international connections",
     sortLabel: "Sort by:",
     sortValue: "Lowest Price",
+    sortOptions: [
+      { label: "Recommended", value: "recommended" },
+      { label: "Lowest Price", value: "lowest-price" },
+    ],
     airlineLabel: "Airline",
     durationLabel: "Duration",
     priceLabel: "From",

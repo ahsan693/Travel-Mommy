@@ -198,6 +198,13 @@ function RouteCard({ route, content }: { route: RoutesPageData["routeResults"][n
 
 function RoutesResultsSection({ routes, pages, results }: { routes: RoutesPageData["routeResults"]; pages: string[]; results: RoutesPageData["results"] }) {
   const [activePage, setActivePage] = useState("1");
+  const [sortOption, setSortOption] = useState<"recommended" | "lowest-price">("recommended");
+  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+  const displayedRoutes = sortOption === "lowest-price"
+    ? [...routes].sort((firstRoute, secondRoute) => (
+        Number(firstRoute.price.replace(/,/g, "")) - Number(secondRoute.price.replace(/,/g, ""))
+      ))
+    : routes;
 
   return (
     <section className="bg-[#0A0A0A] py-16 lg:py-20">
@@ -219,15 +226,43 @@ function RoutesResultsSection({ routes, pages, results }: { routes: RoutesPageDa
             <span className="font-sans text-[14px] font-normal leading-[1.43] text-white/60">
               {results.sortLabel}
             </span>
-            <button type="button" aria-label="Sort routes by lowest price" className="flex items-center gap-2 rounded-full bg-[#1a1a1a] px-4 py-2 font-sans text-[14px] font-medium leading-[1.43] text-white">
-              {results.sortValue}
-              <ChevronDown size={14} />
-            </button>
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Sort routes"
+                aria-haspopup="listbox"
+                aria-expanded={isSortMenuOpen}
+                onClick={() => setIsSortMenuOpen((isOpen) => !isOpen)}
+                className="flex items-center gap-2 rounded-full bg-[#1a1a1a] px-4 py-2 font-sans text-[14px] font-medium leading-[1.43] text-white"
+              >
+                {sortOption === "lowest-price" ? results.sortValue : results.sortOptions[0].label}
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
+              {isSortMenuOpen && (
+                <div role="listbox" aria-label="Sort routes by" className="absolute right-0 top-[calc(100%+8px)] z-20 min-w-[160px] rounded-[12px] bg-[#1a1a1a] p-1 shadow-lg">
+                  {results.sortOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="option"
+                      aria-selected={sortOption === option.value}
+                      onClick={() => {
+                        setSortOption(option.value);
+                        setIsSortMenuOpen(false);
+                      }}
+                      className="block w-full rounded-[8px] px-3 py-2 text-left font-sans text-[14px] text-white hover:bg-white/10"
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {routes.map((route, i) => (
+          {displayedRoutes.map((route, i) => (
             <RouteCard key={`${route.originCode}-${route.destCode}-${i}`} route={route} content={results} />
           ))}
         </div>
