@@ -112,8 +112,11 @@ function RouteCard({ route, content }: { route: RoutesPageData["routeResults"][n
             {route.originCode}
           </span>
           {/* Body M */}
-          <span className="mt-[6px] font-sans text-[13px] font-normal leading-[1.43] text-[#777777]">
-            {route.originFlag} {route.originCity}
+          <span className="mt-[6px] flex items-center gap-[4px] font-sans text-[13px] font-normal leading-[1.43] text-[#777777]">
+            <span aria-hidden="true" className="inline-flex h-[16px] w-[20px] items-center justify-center text-[14px] leading-none font-['Segoe_UI_Emoji','Apple_Color_Emoji',sans-serif]">
+              {route.originFlag}
+            </span>
+            <span>{route.originCity}</span>
           </span>
         </div>
 
@@ -129,8 +132,11 @@ function RouteCard({ route, content }: { route: RoutesPageData["routeResults"][n
             {route.destCode}
           </span>
           {/* Body M */}
-          <span className="mt-[6px] font-sans text-[13px] font-normal leading-[1.43] text-[#777777]">
-            {route.destFlag} {route.destCity}
+          <span className="mt-[6px] flex items-center justify-end gap-[4px] font-sans text-[13px] font-normal leading-[1.43] text-[#777777]">
+            <span>{route.destCity}</span>
+            <span aria-hidden="true" className="inline-flex h-[16px] w-[20px] items-center justify-center text-[14px] leading-none font-['Segoe_UI_Emoji','Apple_Color_Emoji',sans-serif]">
+              {route.destFlag}
+            </span>
           </span>
         </div>
       </div>
