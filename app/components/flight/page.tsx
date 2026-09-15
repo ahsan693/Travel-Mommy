@@ -13,7 +13,6 @@ import {
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import HomeSearchWidget from "./HomeSearchWidget";
 import { flightData, type FlightPageData } from "../../../lib/data/flightData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
@@ -71,11 +70,6 @@ function HeroDesktop({ data }: { data: FlightPageData }) {
             </p>
           </div>
         </div>
-
-        <div className="mt-[64px] w-full">
-          <SearchWidget data={data} />
-        </div>
-        
       </div>
     </section>
   );
@@ -105,10 +99,6 @@ function HeroMobile({ data }: { data: FlightPageData }) {
         <p className="mt-[16px] max-w-[300px] font-sans text-[14px] font-normal leading-[1.43] text-white/90">
           {data.hero.description}
         </p>
-
-        <div className="mt-[32px]">
-          <SearchWidget data={data} />
-        </div>
       </div>
     </section>
   );
@@ -119,79 +109,6 @@ function Hero({ data }: { data: FlightPageData }) {
     <>
       <HeroMobile data={data} />
       <HeroDesktop data={data} />
-    </>
-  );
-}
-
-/* ----------------------------------------------------------------
-   SEARCH WIDGET SECTIONS
----------------------------------------------------------------- */
-
-function DesktopCheckbox({ checked, onChange, label, data }: any) {
-  return (
-    <label className="flex cursor-pointer items-center gap-[8px]">
-      <span
-        className={`flex size-[16px] shrink-0 items-center justify-center rounded-[5px] border transition-colors ${
-          checked ? "border-[#fddb32] bg-[#fddb32]" : "border-[#e6e6e6] bg-[#f9fbf5]"
-        }`}
-      >
-        {checked && (
-          <Image
-            src={data.icons.check}
-            alt="Check"
-            width={11}
-            height={11}
-            className="object-contain"
-          />
-        )}
-      </span>
-      <input type="checkbox" checked={checked} onChange={onChange} className="hidden" />
-      <span className="whitespace-nowrap font-sans text-[14px] font-medium leading-[1.43] text-black">
-        {label}
-      </span>
-    </label>
-  );
-}
-
-function SearchWidgetDesktop() {
-  return (
-    <div className="w-full max-w-[1300px]">
-      <HomeSearchWidget />
-    </div>
-  );
-}
-
-function MobileFieldBox({ iconSrc, label, value, className = "" }: any) {
-  return (
-    <div className={`flex h-[64px] w-full items-center gap-[12px] rounded-[18px] border border-[#e6e6e6] bg-[#f9fbf5] pl-[14px] pr-[14px] ${className}`}>
-      <div className="flex size-[28px] shrink-0 items-center justify-center rounded-[8px] bg-[#ffed91]">
-        <Image src={iconSrc} alt={label} width={14} height={14} className="object-contain" />
-      </div>
-      <div className="flex min-w-0 flex-col font-sans">
-        <span className="truncate text-[12px] font-medium leading-[1.33] text-[#7d7d7d]">{label}</span>
-        <span className="truncate text-[14px] font-medium leading-[1.43] text-black">{value}</span>
-      </div>
-    </div>
-  );
-}
-
-function SearchWidgetMobile() {
-  return (
-    <div className="w-full">
-      <HomeSearchWidget />
-    </div>
-  );
-}
-
-function SearchWidget({ data }: { data: FlightPageData }) {
-  return (
-    <>
-      <div className="lg:hidden">
-        <SearchWidgetMobile />
-      </div>
-      <div className="hidden lg:block">
-        <SearchWidgetDesktop />
-      </div>
     </>
   );
 }

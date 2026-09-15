@@ -28,7 +28,7 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
             alt={data.logo.alt} 
             width={data.logo.width} 
             height={data.logo.height} 
-            className="h-[30px] w-auto object-contain" 
+            className="object-contain" 
           />
         </Link>
 

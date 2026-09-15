@@ -28,8 +28,6 @@ export interface HomePageData {
     image: string;
     imageAlt: string;
     cta: string;
-    widgetTitle: string;
-    widgetSrc: string;
     rating: string;
     trustText: string;
     reviewerImages: string[];
@@ -41,7 +39,6 @@ export interface HomePageData {
   flightsSection: { title: string; highlightedTitle: string; description: string; cta: string; cardCta: string };
   hotels: HomeHotel[];
   hotelsSection: { title: string; description: string; filters: string[]; cardUnit: string; cardCta: string };
-  destinationsSection: { title: string; description: string; cta: string; widgetTitle: string };
   guidesSection: { title: string; cta: string };
   guides: TravelGuide[];
 }
@@ -53,8 +50,6 @@ export const homeData: HomePageData = {
     image: "/Homepage/Section 1/Header Images/homeimg1.png",
     imageAlt: "Travel destination",
     cta: "Compare Flights",
-    widgetTitle: "TravelMommy flight search",
-    widgetSrc: "/flights-widget.html",
     rating: "★★★★★ 4.9 / 5",
     trustText: "Trusted by 300+ travelers",
     reviewerImages: [
@@ -100,12 +95,6 @@ whyCompare: {
     filters: ["All", "Luxury", "Budget", "Family", "Beach", "Business"],
     cardUnit: "/ night",
     cardCta: "Book Now",
-  },
-  destinationsSection: {
-    title: "Discover Your Next Destination",
-    description: "Discover popular cities and compare flights and hotels before you book.",
-    cta: "More Destinations",
-    widgetTitle: "TravelMommy destinations widget",
   },
   guidesSection: { title: "Featured Travel Guides", cta: "View All Guides" },
   guides: [
