@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Clock, Star } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { homeData, type HomePageData } from "../../../lib/data/homeData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
+import { FlightList, useFlightViewModel } from "../../../lib/features/flights";
+import type { FlightAvailability } from "../../../lib/features/flights/types/flight";
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
   return (
@@ -68,8 +70,22 @@ function WhyCompare({ data }: { data: HomePageData["whyCompare"] }) {
   );
 }
 
-function CheapFlights({ flights, content }: { flights: HomePageData["flights"]; content: HomePageData["flightsSection"] }) {
-  return <section className="bg-white px-4 py-20 text-black lg:px-8"><div className="mx-auto max-w-[1280px]"><div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row"><div><h2 className="text-4xl font-medium lg:text-5xl">{content.title} <span className="text-[#000000]">{content.highlightedTitle}</span></h2><p className="mt-3 max-w-[700px] text-sm text-[#555]">{content.description}</p></div><button className="h-12 rounded-full bg-[#FDDB32] px-7 text-sm">{content.cta} <ArrowUpRight className="ml-2 inline" size={15} /></button></div><div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{flights.map(({ city, route, price, airline, duration, image }) => <article key={route} className="group flex h-[364px] flex-col overflow-hidden rounded-3xl border border-[#E6E6E6] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"><div className="relative h-[140px] shrink-0"><Image src={image} alt={city} fill sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" /></div><div className="flex w-full flex-1 flex-col gap-3 p-5"><div><h3 className="text-2xl">{city}</h3><p className="text-sm text-[#7D7D7D]">{route}</p></div><div className="flex h-6 w-full items-center justify-between"><p className="text-2xl">{price}</p><div className="flex items-center gap-1 rounded-md border border-[#E6E6E6] bg-[#F9FBF5] px-2 py-1"><Image src="/Homepage/Section 3/Icon/Airline Logo.png" alt={`${airline} logo`} width={16} height={16} className="object-contain" /><span className="text-xs font-medium">{airline}</span></div></div><p className="flex h-5 items-center gap-1.5 text-sm text-[#7D7D7D]"><Clock size={14} />Direct &bull; {duration}</p></div><div className="mt-auto px-5 pb-5"><button className="h-12 w-full rounded-xl border border-[#E6E6E6] text-sm hover:bg-[#FDDB32]">{content.cardCta} <ArrowUpRight className="ml-1 inline" size={14} /></button></div></article>)}</div></div></section>;
+function openFlightSearch(result: FlightAvailability) {
+  if (result.status !== "available" || !result.flight.ticketLink) {
+    return;
+  }
+
+  const ticketUrl = result.flight.ticketLink.startsWith("http")
+    ? result.flight.ticketLink
+    : `https://www.aviasales.com${result.flight.ticketLink}`;
+
+  window.open(ticketUrl, "_blank", "noopener,noreferrer");
+}
+
+function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) {
+  const { flights, loading, error } = useFlightViewModel();
+
+  return <section className="bg-white px-4 py-20 text-black lg:px-8"><div className="mx-auto max-w-[1280px]"><div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row"><div><h2 className="text-4xl font-medium lg:text-5xl">{content.title} <span className="text-[#000000]">{content.highlightedTitle}</span></h2><p className="mt-3 max-w-[700px] text-sm text-[#555]">{error ?? (loading ? "Finding cheapest flights..." : content.description)}</p></div><button className="h-12 rounded-full bg-[#FDDB32] px-7 text-sm">{content.cta} <ArrowUpRight className="ml-2 inline" size={15} /></button></div><FlightList flights={flights} cta={content.cardCta} onViewFlights={openFlightSearch} /></div></section>;
 }
 
 function TravelGuides({ guides, content }: { guides: HomePageData["guides"]; content: HomePageData["guidesSection"] }) {
@@ -83,7 +99,7 @@ export default function Home({ data = homeData }: { data?: HomePageData }) {
       <Header data={headerData} />
       <Hero data={data.hero} />
       <WhyCompare data={data.whyCompare} />
-      <CheapFlights flights={data.flights} content={data.flightsSection} />
+      <CheapFlights content={data.flightsSection} />
       <TravelGuides guides={data.guides} content={data.guidesSection} />
       <Footer data={footerData} />
     </main>

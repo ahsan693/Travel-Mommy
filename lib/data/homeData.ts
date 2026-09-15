@@ -1,12 +1,3 @@
-export interface HomeFlight {
-  city: string;
-  route: string;
-  price: string;
-  airline: string;
-  duration: string;
-  image: string;
-}
-
 export interface HomeHotel {
   name: string;
   location: string;
@@ -35,7 +26,6 @@ export interface HomePageData {
     rightHeading: string[];
   };
   whyCompare: { title: string; highlightedTitle: string; description: string };
-  flights: HomeFlight[];
   flightsSection: { title: string; highlightedTitle: string; description: string; cta: string; cardCta: string };
   hotels: HomeHotel[];
   hotelsSection: { title: string; description: string; filters: string[]; cardUnit: string; cardCta: string };
@@ -67,16 +57,6 @@ whyCompare: {
   description: "TravelMommy is a travel metasearch engine that helps you compare cheap flights from trusted airlines, booking websites, and travel providers — all in one place. Search live fares, discover the cheapest travel dates, and book directly with your preferred provider. Whether you're planning a weekend city break, a family holiday, a business trip, or a long-haul adventure, our metasearch platform makes it easy to find the absolute lowest airfare without searching multiple websites.",
 } ,
 
-  flights: [
-    { city: "London", route: "Dub -> LHR", price: "€24", airline: "Ryanair", duration: "1h 20m", image: "/Homepage/Section 3/Images/Image Container.png" },
-    { city: "London", route: "Dub -> LGW", price: "€24", airline: "Ryanair", duration: "1h 25m", image: "/Homepage/Section 3/Images/Image Container-1.png" },
-    { city: "Barcelona", route: "Dub -> BCN", price: "€24", airline: "Ryanair", duration: "2h 35m", image: "/Homepage/Section 3/Images/Image Container-2.png" },
-    { city: "Lisbon", route: "Dub -> LIS", price: "€24", airline: "Ryanair", duration: "2h 50m", image: "/Homepage/Section 3/Images/Image Container-3.png" },
-    { city: "New York", route: "Dub -> JFK", price: "€189", airline: "Aer Lingus", duration: "7h 15m", image: "/Homepage/Section 3/Images/Image Container-4.png" },
-    { city: "Rome", route: "Dub -> FCO", price: "€34", airline: "Ryanair", duration: "3h 10m", image: "/Homepage/Section 3/Images/Image Container-5.png" },
-    { city: "Dubai", route: "Dub -> DXB", price: "€245", airline: "Emirates", duration: "7h 45m", image: "/Homepage/Section 3/Images/Image Container-6.png" },
-    { city: "Amsterdam", route: "Dub -> AMS", price: "€28", airline: "Ryanair", duration: "1h 40m", image: "/Homepage/Section 3/Images/Image Container-7.png" },
-  ],
   flightsSection: {
     title: "Cheap Flights from",
     highlightedTitle: "Dublin(DUB)",
