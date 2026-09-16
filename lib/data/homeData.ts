@@ -57,6 +57,11 @@ export interface HomePageData {
   hotelsSection: { title: string; description: string; filters: string[]; cardUnit: string; cardCta: string };
   guidesSection: { title: string; cta: string };
   guides: TravelGuide[];
+  ctaSection: {
+    title: string;
+    subtitle: string;
+    buttonText: string;
+  };
 }
 
 export const homeData: HomePageData = {
@@ -162,4 +167,9 @@ export const homeData: HomePageData = {
     { date: "May 28, 2026", title: "How to Find Cheap Flights", image: "/Homepage/Section 6/Images/plane travel.png" },
     { date: "May 15, 2026", title: "Paris Travel Guide", image: "/Homepage/Section 6/Images/paris night.png" },
   ],
+  ctaSection: {
+    title: "Ready to find your next flight?",
+    subtitle: "Ready to find your next flight?",
+    buttonText: "Search Flights"
+  }
 };
