@@ -35,8 +35,8 @@ export interface HomePageData {
 
 export const homeData: HomePageData = {
   hero: {
-    title: "Compare Cheap\nFlights & Deals",
-    description: "Search cheap flights from 500+ top airlines and travel sites. Find the lowest fares before you book.",
+    title: "Compare\nCheap Flights",
+    description: "Search and compare flight prices from airlines and travel providers in one place. Choose the option that suits you and complete your booking with the provider.",
     image: "/Homepage/Section 1/Header Images/homeimg1.png",
     imageAlt: "Travel destination",
     cta: "Compare Flights",
@@ -49,14 +49,13 @@ export const homeData: HomePageData = {
       "/Homepage/Section 1/Header Icons/Icons/Profile picture of Tom Walton.png",
     ],
     reviewText: "Compare live prices from trusted airlines and travel websites.",
-    rightHeading: ["from 500+", "Travel Sites"],
+    rightHeading: ["from 500+", "Airlines & Sites"],
   },
-whyCompare: {
-  title: "Why Compare Cheap Flights on",
-  highlightedTitle: "TravelMommy?",
-  description: "TravelMommy is a travel metasearch engine that helps you compare cheap flights from trusted airlines, booking websites, and travel providers — all in one place. Search live fares, discover the cheapest travel dates, and book directly with your preferred provider. Whether you're planning a weekend city break, a family holiday, a business trip, or a long-haul adventure, our metasearch platform makes it easy to find the absolute lowest airfare without searching multiple websites.",
-} ,
-
+  whyCompare: {
+    title: "Why Compare Cheap Flights on",
+    highlightedTitle: "TravelMommy?",
+    description: "TravelMommy is a travel metasearch engine that helps you compare cheap flights from trusted airlines, booking websites, and travel providers — all in one place. Search live fares, discover the cheapest travel dates, and book directly with your preferred provider. Whether you're planning a weekend city break, a family holiday, a business trip, or a long-haul adventure, our metasearch platform makes it easy to find the absolute lowest airfare without searching multiple websites.",
+  },
   flightsSection: {
     title: "Cheap Flights from",
     highlightedTitle: "Dublin(DUB)",
@@ -77,7 +76,6 @@ whyCompare: {
     cardCta: "Book Now",
   },
   guidesSection: { title: "Featured Travel Guides", cta: "View All Guides" },
-  
   guides: [
     { date: "June 12, 2026", title: "Best Time to Visit Bali", image: "/Homepage/Section 6/Images/bali.png" },
     { date: "May 28, 2026", title: "How to Find Cheap Flights", image: "/Homepage/Section 6/Images/plane travel.png" },

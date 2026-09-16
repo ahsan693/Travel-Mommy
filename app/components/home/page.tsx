@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Star } from "lucide-react";
+import { 
+  ArrowUpRight, 
+  ChevronDown, 
+  Plane, 
+  Briefcase, 
+  ArrowRightLeft, 
+  Calendar, 
+  Users 
+} from "lucide-react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { homeData, type HomePageData } from "../../../lib/data/homeData";
@@ -13,42 +21,116 @@ import type { FlightAvailability } from "../../../lib/features/flights/types/fli
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
   return (
-    <section className="relative overflow-hidden bg-black py-24 lg:min-h-[820px] lg:py-32">
-      <Image src={data.image} alt={data.imageAlt} fill priority className="object-cover opacity-75" />
-      <div className="relative mx-auto max-w-[1280px] px-5 text-white lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:items-end">
-        <div className="flex min-w-0 flex-col gap-10">
-          <div className="max-w-[900px]">
-            <h1 className="text-page-h1">
-              {data.title.split("\n").map((line) => <span key={line} className="block whitespace-nowrap">{line}</span>)}
-            </h1>
-            <p className="mt-6 max-w-[360px] text-sm leading-5">{data.description}</p>
-            <button className="mt-5 flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm text-black">{data.cta} <ArrowUpRight size={15} /></button>
-          </div>
-        </div>
-        <div className="flex min-w-0 flex-col items-start gap-[18px] lg:items-end">
-          <div className="flex items-end gap-[14px]">
-            <div className="flex shrink-0 items-center">
-              {data.reviewerImages.map((src, index) => (
-                <div key={src} className={`flex size-[36px] items-center justify-center rounded-full bg-white p-[2px] ${index > 0 ? "-ml-4" : ""}`} style={{ zIndex: 40 - index * 10 }}>
-                  <Image src={src} alt={`Reviewer ${index + 1}`} width={32} height={32} className="size-[32px] shrink-0 rounded-full object-cover" />
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col justify-center text-left">
-              <div className="flex items-center gap-[8px]">
-                <div className="flex gap-px text-[#FDDB32]">
-                  {Array.from({ length: 5 }).map((_, index) => <Star key={index} size={11} fill="currentColor" strokeWidth={0} />)}
-                </div>
-                <div className="flex items-baseline gap-[4px]"><span className="text-[16px] font-medium leading-[1.5] text-white">4.9</span><span className="text-[14px] leading-[1.43] text-white/90">/ 5</span></div>
-              </div>
-              <p className="mt-[2px] w-[215px] text-[14px] font-medium leading-[1.43] text-white">{data.reviewText}</p>
-            </div>
-          </div>
-          <h2 className="text-page-h1 text-white lg:text-right">
-            {data.rightHeading.map((line) => <span key={line} className="block">{line}</span>)}
+    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black pb-[72px] pt-[120px] lg:min-h-[796px] lg:pt-[160px]">
+      <Image 
+        src={data.image} 
+        alt={data.imageAlt} 
+        fill 
+        priority 
+        className="object-cover opacity-80" 
+      />
+      
+      <div className="relative mx-auto flex w-full max-w-[1280px] flex-col justify-between px-[32px]">
+        
+        <div className="flex w-full max-w-[1216px] flex-col text-white">
+          <h1 className="text-left font-medium text-[56px] leading-[1.1] tracking-[-2px] lg:text-[110px] lg:leading-[98px] lg:tracking-[-5px]">
+            {data.title.split("\n").map((line, index) => (
+              <span key={index} className="block whitespace-nowrap">
+                {line}
+              </span>
+            ))}
+          </h1>
+          
+          <p className="mt-[20px] max-w-[330px] text-[14px] font-medium leading-[20px] tracking-[-0.28px]">
+            {data.description}
+          </p>
+
+          <h2 className="mt-[20px] text-right font-medium text-[56px] leading-[1.1] tracking-[-2px] lg:mt-[-40px] lg:text-[110px] lg:leading-[98px] lg:tracking-[-5px]">
+            {data.rightHeading.map((line, index) => (
+              <span key={index} className="block whitespace-nowrap">
+                {line}
+              </span>
+            ))}
           </h2>
         </div>
+
+        <div className="mt-[60px] flex w-full max-w-[1216px] flex-col gap-[10px] rounded-[24px] bg-white p-[24px] shadow-2xl">
+          
+          <div className="flex items-center gap-[10px]">
+            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
+              <Plane size={16} /> One way <ChevronDown size={16} className="text-gray-500" />
+            </button>
+            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
+              <Briefcase size={16} /> Bags <ChevronDown size={16} className="text-gray-500" />
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-[11px] lg:flex-row lg:items-center">
+            
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Plane size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">Departure</span>
+                <span className="text-[16px] font-semibold text-black">Dublin (DUB)</span>
+              </div>
+            </div>
+
+            <button className="hidden shrink-0 items-center justify-center p-2 text-gray-400 transition-colors hover:text-black lg:flex">
+              <ArrowRightLeft size={20} />
+            </button>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Plane size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">To</span>
+                <span className="text-[16px] font-medium text-gray-400">Country, City or air...</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Calendar size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">Depart</span>
+                <span className="text-[16px] font-semibold text-black">08 Nov 2025</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Calendar size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">Return</span>
+                <span className="text-[16px] font-semibold text-black">08 Jan 2026</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Users size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">Travellers and Cabin Class</span>
+                <span className="text-[16px] font-semibold text-black">01 Adult 01 Child</span>
+              </div>
+            </div>
+
+            <button className="flex h-[75px] items-center justify-center rounded-2xl bg-[#FDDB32] px-8 text-[18px] font-medium text-black transition-colors hover:bg-[#f0cf2e]">
+              Search
+            </button>
+          </div>
+
+          <div className="flex items-center gap-6 pb-2 pt-1">
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              Add Nearby Airports
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" defaultChecked className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              Add Nearby Airports
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              Direct Flights
+            </label>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -85,12 +167,64 @@ function openFlightSearch(result: FlightAvailability) {
 function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) {
   const { flights, loading, error } = useFlightViewModel();
 
-  return <section className="bg-white px-4 py-20 text-black lg:px-8"><div className="mx-auto max-w-[1280px]"><div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row"><div><h2 className="text-4xl font-medium lg:text-5xl">{content.title} <span className="text-[#000000]">{content.highlightedTitle}</span></h2><p className="mt-3 max-w-[700px] text-sm text-[#555]">{error ?? (loading ? "Finding cheapest flights..." : content.description)}</p></div><button className="h-12 rounded-full bg-[#FDDB32] px-7 text-sm">{content.cta} <ArrowUpRight className="ml-2 inline" size={15} /></button></div><FlightList flights={flights} cta={content.cardCta} onViewFlights={openFlightSearch} /></div></section>;
+  return (
+    <section className="bg-white px-4 py-20 text-black lg:px-8">
+      <div className="mx-auto max-w-[1280px]">
+        <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row">
+          <div>
+            <h2 className="text-4xl font-medium lg:text-5xl">
+              {content.title} <span className="text-[#000000]">{content.highlightedTitle}</span>
+            </h2>
+            <p className="mt-3 max-w-[700px] text-sm text-[#555]">
+              {error ?? (loading ? "Finding cheapest flights..." : content.description)}
+            </p>
+          </div>
+          <button className="flex h-12 items-center rounded-full bg-[#FDDB32] px-7 text-sm">
+            {content.cta} <ArrowUpRight className="ml-2 inline" size={15} />
+          </button>
+        </div>
+        <FlightList flights={flights} cta={content.cardCta} onViewFlights={openFlightSearch} />
+      </div>
+    </section>
+  );
 }
 
 function TravelGuides({ guides, content }: { guides: HomePageData["guides"]; content: HomePageData["guidesSection"] }) {
   const [active, setActive] = useState<number | null>(null);
-  return <section className="bg-white px-4 py-20 text-black lg:px-8"><div className="mx-auto max-w-[1280px]"><h2 className="mb-12 text-center text-4xl font-medium">{content.title}</h2><div className="flex flex-col gap-6 md:flex-row">{guides.map(({ date, title, image }, index) => <article key={title} onMouseEnter={() => setActive(index)} onMouseLeave={() => setActive(null)} className={`relative flex-1 overflow-hidden rounded-3xl transition-all duration-500 ${active === index ? "md:flex-[2]" : ""}`}><div className="relative h-[430px]"><Image src={image} alt={title} fill sizes="(max-width: 767px) 100vw, 33vw" className={`scale-[1.04] object-cover transition-transform duration-500 ${active === index ? "scale-110" : ""}`} /></div><div className="py-5"><p className="text-xs text-neutral-500">{date}</p><h3 className="mt-2 text-xl font-medium">{title}</h3></div></article>)}</div><button className="mx-auto mt-8 block rounded-full bg-[#FDDB32] px-8 py-3 text-sm">{content.cta} <ArrowUpRight className="ml-1 inline" size={14} /></button></div></section>;
+  return (
+    <section className="bg-white px-4 py-20 text-black lg:px-8">
+      <div className="mx-auto max-w-[1280px]">
+        <h2 className="mb-12 text-center text-4xl font-medium">{content.title}</h2>
+        <div className="flex flex-col gap-6 md:flex-row">
+          {guides.map(({ date, title, image }, index) => (
+            <article 
+              key={title} 
+              onMouseEnter={() => setActive(index)} 
+              onMouseLeave={() => setActive(null)} 
+              className={`relative flex-1 overflow-hidden rounded-3xl transition-all duration-500 ${active === index ? "md:flex-[2]" : ""}`}
+            >
+              <div className="relative h-[430px]">
+                <Image 
+                  src={image} 
+                  alt={title} 
+                  fill 
+                  sizes="(max-width: 767px) 100vw, 33vw" 
+                  className={`scale-[1.04] object-cover transition-transform duration-500 ${active === index ? "scale-110" : ""}`} 
+                />
+              </div>
+              <div className="py-5">
+                <p className="text-xs text-neutral-500">{date}</p>
+                <h3 className="mt-2 text-xl font-medium">{title}</h3>
+              </div>
+            </article>
+          ))}
+        </div>
+        <button className="mx-auto mt-8 flex items-center rounded-full bg-[#FDDB32] px-8 py-3 text-sm">
+          {content.cta} <ArrowUpRight className="ml-1 inline" size={14} />
+        </button>
+      </div>
+    </section>
+  );
 }
 
 export default function Home({ data = homeData }: { data?: HomePageData }) {
