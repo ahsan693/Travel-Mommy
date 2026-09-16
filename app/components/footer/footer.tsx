@@ -36,85 +36,87 @@ const socialIcons = {
 export default function Footer({ data = footerData }: { data?: FooterData }) {
   return (
     <footer aria-label="Site footer" className="bg-black text-white">
-      {/* Applied ~158px top padding on desktop per Figma specs */}
-      <div className="mx-auto w-full max-w-[1216px] px-6 pb-10 pt-[80px] lg:px-10 lg:pb-12 lg:pt-[158px]">
+      <div className="mx-auto flex w-full max-w-[1225px] flex-col gap-[33px] px-6 py-[80px] lg:px-0">
 
-        {/* ===== Top frame: logo block (left) + nav columns (right) ===== */}
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-[33px]">
+        <div className="flex flex-col justify-between gap-12 lg:flex-row lg:items-start">
 
-          {/* Logo + locale pill + blurb + socials */}
-          <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center">
-              <Image
-                src={data.logo.src}
-                alt={data.logo.alt}
-                width={data.logo.width}
-                height={data.logo.height}
-                className="h-32 w-auto object-contain lg:h-[117px]"
-              />
-            </Link>
+          <div className="flex flex-col gap-[24px]">
+            
+            {/* Logo and Pills Wrapper - Matches Figma Layout precisely (261px width, 9px gap) */}
+            <div className="flex w-full max-w-[261px] flex-col gap-[9px]">
+              
+              <Link href="/" className="flex items-center">
+                <Image
+                  src={data.logo.src}
+                  alt={data.logo.alt}
+                  width={data.logo.width}
+                  height={data.logo.height}
+                  className="h-auto w-full object-contain"
+                />
+              </Link>
 
-            {/* Locale Pill */}
-            <button type="button" aria-label="Change region and language" className="flex w-fit items-center gap-[8px] rounded-[10px] border border-white/15 bg-white/5 px-[12px] py-[8px] font-sans text-[12px] font-medium leading-[1.33] text-white transition-colors hover:bg-white/10">
-              <Image
-                src={data.locale.iconSrc}
-                alt="Region Settings"
-                width={14}
-                height={14}
-                className="object-contain"
-              />
-              {data.locale.label}
-              <Image
-                src={data.locale.arrowSrc}
-                alt="Dropdown Arrow"
-                aria-hidden="true"
-                width={12}
-                height={12}
-                className="object-contain"
-              />
-            </button>
+              {/* Locale Pills Row - Height 32px */}
+              <div className="flex flex-wrap items-center gap-[8px] min-w-max">
+                {data.locales.map((locale, index) => (
+                  <button 
+                    key={index} 
+                    type="button" 
+                    aria-label={locale.arrowAlt} 
+                    className="flex h-[32px] items-center gap-[8px] rounded-full border border-white/20 bg-transparent px-[12px] font-sans text-[12px] font-medium leading-none text-white transition-colors hover:bg-white/10"
+                  >
+                    {locale.label}
+                    <Image
+                      src={locale.arrowSrc}
+                      alt={locale.arrowAlt}
+                      aria-hidden="true"
+                      width={10}
+                      height={10}
+                      className="object-contain"
+                    />
+                  </button>
+                ))}
+              </div>
+              
+            </div>
 
-            {/* Description text + social icons under logo */}
-            <div className="flex flex-col gap-[10px]">
-              <p className="w-full max-w-[350px] font-sans text-[16px] font-normal leading-[24px] text-white">
+            {/* Description & Socials */}
+            <div className="flex flex-col gap-[16px] mt-2">
+              <p className="w-full max-w-[320px] font-sans text-[16px] font-normal leading-[24px] text-white">
                 {data.description}
               </p>
 
-              {/* Social Icons - Using !text to force color override */}
-              <nav aria-label="Social media" className="flex items-center gap-5 pt-2">
+              <nav aria-label={data.socialNavAriaLabel} className="flex items-center gap-[24px]">
                 {data.socialLinks.map((social) => (
                   <Link 
                     key={social.alt} 
-                    href="#" 
+                    href={social.href} 
                     aria-label={social.alt}
-                    className="flex h-11 w-11 items-center justify-center !text-[#7D7D7D] transition-colors hover:!text-white"
+                    className="flex items-center justify-center !text-white transition-opacity hover:opacity-70"
                   >
                     {socialIcons[social.icon].icon}
                   </Link>
                 ))}
               </nav>
             </div>
+
           </div>
 
-          {/* Nav columns group */}
-          <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-4 lg:flex lg:gap-16">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-4 lg:flex lg:gap-[80px]">
             {data.columns.map((col, i) => (
               <div
                 key={i}
                 className={`flex flex-col gap-4 ${data.mobileOrder[i]} sm:order-none`}
               >
-                {/* Column Title (Kept White) */}
                 <span className="font-sans text-[16px] font-medium leading-[1.5] text-white">
                   {col.title}
                 </span>
 
-                {/* Navigation Links - Using !text to force override global styles */}
                 <ul className="m-0 flex list-none flex-col gap-0 p-0">
                   {col.links.map((link) => (
                     <li key={link} className="m-0 p-0">
                       <Link
                         href="#"
-                        className="block py-[8px] font-sans text-[14px] font-medium leading-[20px] !text-[#7D7D7D] transition-colors hover:!text-white"
+                        className="block py-[8px] font-sans text-[14px] font-normal leading-[20px] !text-[#E0E0E0] transition-colors hover:!text-white"
                       >
                         {link}
                       </Link>
@@ -126,51 +128,18 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
           </div>
         </div>
 
-        {/* ===== Bottom frame: dividers and legal text ===== */}
-        <div className="mt-16 flex flex-col lg:mt-[33px]">
-
-          {/* Divider 1 */}
+        <div className="flex flex-col">
           <div className="h-px w-full bg-white/10" />
-
-          {/* Legal links perfectly matched to Figma dimensions/layout */}
-          <div className="flex justify-center py-[33px]">
-            <div className="flex w-[364px] flex-col items-center justify-center font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-white">
-              
-              {/* Line 1: 3 Links */}
-              <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[0]}</Link>
-                <span>|</span>
-                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[1]}</Link>
-                <span>|</span>
-                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[2]}</Link>
-              </div>
-
-              {/* Line 2: 2 Links */}
-              <div className="flex items-center gap-[6px] whitespace-nowrap">
-                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[3]}</Link>
-                <span>|</span>
-                <Link href="#" className="underline transition-colors hover:text-white/70">{data.legalLinks[4]}</Link>
-              </div>
-
+          <div className="flex flex-col items-center pt-[33px] text-center">
+            <div className="flex w-full max-w-[889px] flex-col gap-[12px]">
+              <p className="font-sans text-[16px] font-normal leading-[24px] text-white">
+                {data.copyright}
+              </p>
+              <p className="font-sans text-[16px] font-normal leading-[24px] text-white">
+                {data.disclaimer}
+              </p>
             </div>
           </div>
-
-          {/* Divider 2 */}
-          <div className="h-px w-full bg-white/10" />
-
-          {/* Copyright + disclaimer */}
-          <div className="flex flex-col items-center pt-[33px] text-center">
-            <p className="font-sans text-[16px] font-normal leading-[24px] text-white">
-              {data.copyright}
-            </p>
-
-            <div className="h-[24px]" />
-
-            <p className="max-w-[889px] font-sans text-[16px] font-normal leading-[24px] text-[#E0E0E0]">
-              {data.disclaimer}
-            </p>
-          </div>
-
         </div>
 
       </div>

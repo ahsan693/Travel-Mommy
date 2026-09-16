@@ -8,13 +8,24 @@ export interface Airline { name: string; logo: string }
 export interface Airport { name: string; code: string; location: string }
 export interface FlightFaq { question: string; answer: string }
 
+export interface SearchWidgetData {
+  dropdowns: string[];
+  departure: { label: string; value: string };
+  destination: { label: string; placeholder: string };
+  departDate: { label: string; value: string };
+  returnDate: { label: string; value: string };
+  travellers: { label: string; value: string };
+  buttonText: string;
+  checkboxes: string[];
+}
+
 export interface FlightPageData {
   hero: { 
-    desktopTitleLines: string[]; 
-    mobileTitleLines: string[]; 
+    title: string;
     description: string; 
     image: string; 
-    imageAlt: string 
+    imageAlt: string;
+    searchWidget: SearchWidgetData;
   };
   desktopFields: FlightField[];
   mobileFields: FlightField[];
@@ -65,18 +76,20 @@ const iconPath = "/Homepage/Section 1/Header Icons/Icons";
 
 // 1. Hero Section
 export const heroData = { 
-  desktopTitleLines: [
-    "Compare Flights from",
-    "500+ Airlines & Travel Sites"
-  ],
-  mobileTitleLines: [
-    "Compare Cheap",
-    "Flights from Hundreds",
-    "of Airlines"
-  ], 
-  description: "Compare live flight prices from airlines and trusted travel partners to find the best fare before you book.", 
+  title: "Compare Cheap Flights from\n500+ Airlines & Travel Sites",
+  description: "Search and compare flight prices from airlines and trusted travel providers. Choose the option that works for you and complete your booking with the provider.", 
   image: "/Flights Page/Section 1/Header Images/nils-nedel-ONpGBpns3cs-unsplash.jpg", 
-  imageAlt: "Hero background" 
+  imageAlt: "Airplane wing at sunset",
+  searchWidget: {
+    dropdowns: ["One way", "Bags"],
+    departure: { label: "Departure", value: "Dublin (DUB)" },
+    destination: { label: "To", placeholder: "Country, City or air..." },
+    departDate: { label: "Depart", value: "08 Nov 2025" },
+    returnDate: { label: "Return", value: "08 Jan 2026" },
+    travellers: { label: "Travellers and Cabin Class", value: "01 Adult 01 Child" },
+    buttonText: "Search",
+    checkboxes: ["Add Nearby Airports", "Add Nearby Airports", "Direct Flights"]
+  }
 };
 
 // 2. Search Fields
@@ -118,9 +131,21 @@ export const mobileFlightsData: FlightOffer[] = [];
 
 // 4. Features & Popular Entities
 export const whyCompareFeaturesData: FlightFeature[] = [
-  { iconSrc: "/Flights Page/Section 3/Icons/credit card declined - 02.png", title: "No Hidden Booking Fees", description: "TravelMommy doesn't sell flights or charge booking fees. Compare prices for free and choose the deal that works best for you." },
-  { iconSrc: "/Flights Page/Section 3/Icons/follow user - 01.png", title: "Book with Trusted Partners", description: "View the latest flight prices and availability so you can compare deals before booking with your preferred travel provider." },
-  { iconSrc: "/Flights Page/Section 3/Icons/time refresh - 02.png", title: "Live Prices, Updated Daily", description: "View the latest flight prices and availability so you can compare deals before booking with your preferred travel provider." },
+  { 
+    iconSrc: "/Flights Page/Section 3/Icons/credit card declined - 02.png", 
+    title: "No TravelMommy Booking Fees", 
+    description: "TravelMommy does not sell tickets or add a booking fee. Any provider charges are shown by the provider before purchase." 
+  },
+  { 
+    iconSrc: "/Flights Page/Section 3/Icons/follow user - 01.png", 
+    title: "Book with the Provider", 
+    description: "Compare options on TravelMommy, then complete your booking with the selected airline or travel provider." 
+  },
+  { 
+    iconSrc: "/Flights Page/Section 3/Icons/time refresh - 02.png", 
+    title: "Current Flight Prices", 
+    description: "Compare recently available fares from airlines and travel providers, with prices refreshed as new data becomes available." 
+  },
 ];
 
 export const popularAirlinesData: Airline[] = [
@@ -191,9 +216,9 @@ export const iconsData = {
 
 export const pageCopyData = { 
   cheapFlightsTitleStart: "Cheap Flights from",
-  cheapFlightsTitleHighlight: "Dublin",
+  cheapFlightsTitleHighlight: "Dublin (DUB)",
   cheapFlightsDescription: "Find unbeatable flight deals from Dublin to top global destinations. We compare hundreds of trusted airlines to secure your absolute lowest airfare.", 
-  cheapFlightsCta: "Browse All Flight Routes", 
+  cheapFlightsCta: "View All Flights", 
   viewFlightsCta: "View Flights",
   whyComparePill: "Easy process",
   whyCompareTitle: "Why Compare Flights with TravelMommy?",
@@ -206,8 +231,8 @@ export const pageCopyData = {
   popularAirportsCta: "Explore All Airports",
   faqTitle: "Frequently Asked Questions",
   newsletterPill: "Let's go on a trip!",
-  newsletterTitle: "Never Miss a Great Travel Deal", 
-  newsletterDescription: "Get cheap flight alerts, hotel deals and travel inspiration delivered to your inbox.", 
+  newsletterTitle: "Get Cheap Flight Deals by Email", 
+  newsletterDescription: "Get flight deals and travel inspiration delivered to your inbox.", 
   newsletterPlaceholder: "Your Email Address", 
   newsletterCta: "Get Deals",
   newsletterFooter: "No Spam, Unsubscribe Anytime"

@@ -11,6 +11,11 @@ export interface FooterSocialLink {
   href: string;
 }
 
+export interface FooterLocalePill {
+  label: string;
+  arrowSrc: string;
+}
+
 export interface FooterData {
   logo: {
     src: string;
@@ -18,16 +23,11 @@ export interface FooterData {
     width: number;
     height: number;
   };
-  locale: {
-    iconSrc: string;
-    label: string;
-    arrowSrc: string;
-  };
+  locales: FooterLocalePill[];
   description: string;
   columns: FooterColumn[];
   mobileOrder: string[];
   socialLinks: FooterSocialLink[];
-  legalLinks: string[];
   copyright: string;
   disclaimer: string;
 }
@@ -39,17 +39,17 @@ export const footerData: FooterData = {
     width: 203,
     height: 128,
   },
-  locale: {
-    iconSrc: "/Homepage/Section 7/Vector.png",
-    label: "IE Ireland · English (UK) · EUR €",
-    arrowSrc: "/Homepage/Section 7/KQY0VNx64.png",
-  },
-  description: "Compare flights, hotels and travel deals from trusted travel providers - all in one place.",
+  locales: [
+    { label: "IE Ireland", arrowSrc: "/Homepage/Section 7/KQY0VNx64.png" },
+    { label: "English (UK)", arrowSrc: "/Homepage/Section 7/KQY0VNx64.png" },
+    { label: "EUR €", arrowSrc: "/Homepage/Section 7/KQY0VNx64.png" }
+  ],
+  description: "Compare flight prices from airlines and travel providers in one place. Complete your booking with the provider you choose.",
   columns: [
-    { title: "Search", links: ["Cheap Flights to Dubai" , "Flights from Dublin", "Flights from London"] },
-    { title: "Discover", links: ["Deals", "Destinations", "Airlines", "Airports"] },
-    { title: "Discover", links: ["Trips", "Travel Guide", "Travel Tips", "FAQs"] },
-    { title: "Company", links: ["About", "Contact", "Partners", "Help Centre"] },
+    { title: "Flights", links: ["Search Flights", "Cheap Flights from Dublin"] },
+    { title: "Explore", links: ["Destinations", "Travel Guides"] },
+    { title: "TravelMommy", links: ["How It Works", "Help Centre", "Contact"] },
+    { title: "Legal", links: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Affiliate Disclosure", "Accessibility"] },
   ],
   mobileOrder: ["order-1", "order-3", "order-2", "order-4"],
   socialLinks: [
@@ -57,7 +57,6 @@ export const footerData: FooterData = {
     { alt: "Facebook", icon: "facebook", href: "#" },
     { alt: "TikTok", icon: "tiktok", href: "#" },
   ],
-  legalLinks: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Affiliate Disclosure", "Accessibility"],
-  copyright: "© 2025 TravelMommy",
-  disclaimer: "TravelMommy is a travel metasearch platform. We compare prices from airlines, hotels and travel providers. Bookings are completed directly with our travel partners.",
+  copyright: "© 2026 TravelMommy. All rights reserved.",
+  disclaimer: "TravelMommy is a flight comparison platform. Bookings are completed with the selected provider.",
 };

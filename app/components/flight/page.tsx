@@ -6,7 +6,13 @@ import Link from "next/link";
 import {
   Minus,
   Plus,
-  Mail,
+  CircleHelp,
+  ChevronDown,
+  Plane,
+  Briefcase,
+  ArrowRightLeft,
+  Calendar,
+  Users
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -38,78 +44,128 @@ export default function FlightPage({ data = flightData }: { data?: FlightPageDat
 }
 
 /* ----------------------------------------------------------------
-   HERO SECTIONS
+   HERO SECTION
 ---------------------------------------------------------------- */
 
-function HeroDesktop({ data }: { data: FlightPageData }) {
+function Hero({ data }: { data: FlightPageData }) {
+  const widget = data.hero.searchWidget;
+
   return (
-    <section className="relative hidden min-h-[820px] flex-col items-center overflow-hidden pt-[100px] lg:flex">
+    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black pb-[72px] pt-[120px] lg:min-h-[650px] lg:pt-[140px]">
+      
+      {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={data.hero.image}
-          alt={data.hero.imageAlt}
-          fill
-          className="object-cover"
-          priority
+        <Image 
+          src={data.hero.image} 
+          alt={data.hero.imageAlt} 
+          fill 
+          priority 
+          className="object-cover opacity-80" 
         />
-        <div className="absolute inset-0 bg-[#000000]/[0.27]" />
+        <div className="absolute inset-0 bg-[#000000]/[0.2]" />
       </div>
 
-      <div className="relative z-10 flex w-full max-w-[1280px] flex-col px-8 pb-[48px] pt-[28px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col justify-between px-[32px] pt-[40px]">
         
-        <h1 className="text-page-h1 w-full max-w-[1400px] font-sans text-white">
-          {data.hero.desktopTitleLines.map((line, idx) => (
-            <span key={idx} className="block">{line}</span>
-          ))}
-        </h1>
+        {/* Left Aligned Text Content */}
+        <div className="flex w-full flex-col text-white">
+          <h1 className="max-w-[976px] text-left font-sans text-[48px] font-medium leading-[1.1] tracking-[-0.03em] lg:text-[72px] lg:leading-[100%]">
+            {data.hero.title.split("\n").map((line, index) => (
+              <span key={index} className="block whitespace-nowrap">
+                {line}
+              </span>
+            ))}
+          </h1>
+          
+          <p className="mt-[20px] max-w-[504px] text-left font-sans text-[16px] font-normal leading-[24px]">
+            {data.hero.description}
+          </p>
+        </div>
 
-        <div className="mt-[28px] flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
-          <div className="flex max-w-[500px] flex-col items-start gap-[18px]">
-            <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-white">
-              {data.hero.description}
-            </p>
+        {/* Dynamic Search Widget - Identical to Homepage Layout */}
+        <div className="mt-[40px] flex w-full max-w-[1216px] flex-col gap-[10px] rounded-[24px] bg-white p-[24px] shadow-2xl lg:mt-[60px]">
+          
+          {/* Top Row: Dropdowns */}
+          <div className="flex items-center gap-[10px]">
+            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
+              <Plane size={16} /> {widget.dropdowns[0]} <ChevronDown size={16} className="text-gray-500" />
+            </button>
+            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
+              <Briefcase size={16} /> {widget.dropdowns[1]} <ChevronDown size={16} className="text-gray-500" />
+            </button>
           </div>
+
+          {/* Middle Row: Inputs */}
+          <div className="flex flex-col gap-[11px] lg:flex-row lg:items-center">
+            
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Plane size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">{widget.departure.label}</span>
+                <span className="text-[16px] font-semibold text-black">{widget.departure.value}</span>
+              </div>
+            </div>
+
+            <button className="hidden shrink-0 items-center justify-center p-2 text-gray-400 transition-colors hover:text-black lg:flex">
+              <ArrowRightLeft size={20} />
+            </button>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Plane size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">{widget.destination.label}</span>
+                <span className="text-[16px] font-medium text-gray-400">{widget.destination.placeholder}</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Calendar size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">{widget.departDate.label}</span>
+                <span className="text-[16px] font-semibold text-black">{widget.departDate.value}</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Calendar size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">{widget.returnDate.label}</span>
+                <span className="text-[16px] font-semibold text-black">{widget.returnDate.value}</span>
+              </div>
+            </div>
+
+            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
+              <Users size={24} className="text-gray-600" />
+              <div className="flex flex-col">
+                <span className="text-[13px] text-gray-500">{widget.travellers.label}</span>
+                <span className="text-[16px] font-semibold text-black">{widget.travellers.value}</span>
+              </div>
+            </div>
+
+            <button className="flex h-[75px] items-center justify-center rounded-2xl bg-[#FDDB32] px-8 text-[18px] font-medium text-black transition-colors hover:bg-[#f0cf2e]">
+              {widget.buttonText}
+            </button>
+          </div>
+
+          {/* Bottom Row: Checkboxes */}
+          <div className="flex items-center gap-6 pb-2 pt-1">
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              {widget.checkboxes[0]}
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" defaultChecked className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              {widget.checkboxes[1]}
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
+              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
+              {widget.checkboxes[2]}
+            </label>
+          </div>
+          
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroMobile({ data }: { data: FlightPageData }) {
-  return (
-    <section className="relative flex flex-col overflow-hidden pb-[32px] pt-[120px] lg:hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={data.hero.image}
-          alt={data.hero.imageAlt}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#000000]/[0.27]" />
-      </div>
-
-      <div className="relative z-10 flex flex-col px-[20px]">
-        <h1 className="text-page-h1 w-full max-w-full font-sans text-white">
-          {(data.hero.mobileTitleLines ?? data.hero.desktopTitleLines).map((line, idx) => (
-            <span key={idx} className="block">{line}</span>
-          ))}
-        </h1>
-
-        <p className="mt-[16px] max-w-[300px] font-sans text-[14px] font-normal leading-[1.43] text-white/90">
-          {data.hero.description}
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function Hero({ data }: { data: FlightPageData }) {
-  return (
-    <>
-      <HeroMobile data={data} />
-      <HeroDesktop data={data} />
-    </>
   );
 }
 
@@ -125,11 +181,15 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px] max-[430px]:px-4">
 
         <div className="mb-[48px] flex flex-col items-start justify-between gap-8 lg:flex-row">
-          <div className="flex max-w-[700px] flex-col gap-[10px]">
-            <h2 className="font-sans text-[48px] font-medium leading-[100%] tracking-[0px] text-[#000000]">
-              {data.copy.cheapFlightsTitleStart} <span className="text-[#000000]">{data.copy.cheapFlightsTitleHighlight}</span>
+          
+          <div className="flex flex-col gap-[15px]">
+            <h2 className="font-sans text-[32px] font-[570] leading-tight tracking-[-1px] text-[#000000] lg:text-[48px] lg:leading-[48px]">
+              {data.copy.cheapFlightsTitleStart}{" "}
+              <span className="underline decoration-solid decoration-1 underline-offset-auto">
+                {data.copy.cheapFlightsTitleHighlight}
+              </span>
             </h2>
-            <p className="font-sans text-[14px] font-normal leading-[143%] text-[#555555]">
+            <p className="max-w-[668px] font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#000000]">
               {error ?? (loading ? "Finding cheapest flights..." : data.copy.cheapFlightsDescription)}
             </p>
           </div>
@@ -162,38 +222,46 @@ function WhyCompareFlightsSection({ data }: { data: FlightPageData }) {
     <section className="w-full bg-[#FFFFFF] pt-[80px] pb-[160px] lg:px-[80px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-6 lg:px-[32px]">
         <div className="flex w-full flex-col gap-[48px]">
+          
+          {/* Section Header */}
           <div className="flex flex-col items-center gap-[24px]">
-            <span className="flex h-[28px] items-center justify-center rounded-full border border-[#E6E6E6] bg-[#F9FBF5] px-[12px] py-[4px] font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
+            <span className="flex h-[28px] items-center justify-center rounded-full border border-[#E6E6E6] bg-[#FFFFFF] px-[12px] py-[4px] font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
               {data.copy.whyComparePill}
             </span>
             <div className="flex w-full max-w-[876px] flex-col items-center gap-[15px] text-center">
-              <h2 className="w-full font-sans font-medium text-[#000000] tracking-[0px] text-[32px] leading-[40px] lg:whitespace-nowrap lg:text-[48px] lg:leading-[48px]">
+              <h2 className="w-full font-sans font-medium text-[#000000] tracking-[0px] text-[32px] leading-[40px] lg:text-[48px] lg:leading-[48px]">
                 {data.copy.whyCompareTitle}
               </h2>
-              <p className="w-full font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
+              <p className="w-full max-w-[660px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#555555]">
                 {data.copy.whyCompareDescription}
               </p>
             </div>
           </div>
 
-          <div className="grid w-full grid-cols-1 gap-[15px] lg:grid-cols-3">
+          {/* Feature Cards Grid */}
+          <div className="grid w-full grid-cols-1 gap-[24px] lg:grid-cols-3">
             {data.whyCompareFeatures.map((feature) => (
-              <div key={feature.title}>
-                <div className="flex h-[276px] w-full flex-col items-center rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] p-[15px]">
-                  <div className="flex h-full w-full flex-col items-center gap-[20px] p-[10px] text-center">
-                    <span className="flex h-[61px] w-[61px] shrink-0 items-center justify-center rounded-full bg-[#FFED91]">
-                      <Image src={feature.iconSrc} alt={feature.title} width={24} height={24} className="object-contain" />
-                    </span>
-                    <div className="flex flex-col items-center gap-[10px]">
-                      <h3 className="w-full font-sans text-[24px] font-medium leading-[24px] tracking-[0px] text-[#000000]">
-                        {feature.title}
-                      </h3>
-                      <p className="w-full font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div 
+                key={feature.title} 
+                className="flex h-full w-full flex-col items-center rounded-[24px] border border-[#E6E6E6] bg-[#F9FBF5] px-[24px] py-[40px]"
+              >
+                <span className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32]">
+                  <Image 
+                    src={feature.iconSrc} 
+                    alt={feature.title} 
+                    width={28} 
+                    height={28} 
+                    className="object-contain" 
+                  />
+                </span>
+                
+                <h3 className="mt-[24px] w-full text-center font-sans text-[20px] font-medium leading-[28px] text-[#000000] lg:text-[24px]">
+                  {feature.title}
+                </h3>
+                
+                <p className="mt-[12px] w-full text-center font-sans text-[14px] font-normal leading-[22px] text-[#555555] lg:text-[16px] lg:leading-[24px]">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -386,51 +454,68 @@ function FaqSection({ data }: { data: FlightPageData }) {
 
 function NewsletterSection({ data }: { data: FlightPageData }) {
   return (
-    <section className="bg-white">
-      <div className="mx-auto w-full max-w-[1216px] px-6 pb-24 lg:px-10">
-        <div className="flex flex-col items-center rounded-[32px] bg-[#FDDB32] px-6 py-16 text-center lg:py-20">
-          <span className="w-fit rounded-full bg-white px-[16px] py-[8px] font-sans text-[14px] font-medium leading-[1.43] text-black">
+    <section className="w-full bg-white px-[32px] pb-[160px] pt-[40px]">
+      <div className="mx-auto flex w-full max-w-[1280px] justify-center">
+        
+        {/* Yellow Inner Container */}
+        <div className="flex w-full max-w-[1216px] flex-col items-center justify-center rounded-[24px] bg-[#FDDB32] px-[20px] py-[50px] text-center">
+          
+          {/* Top Pill */}
+          <span className="w-fit rounded-full bg-white px-[16px] py-[8px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">
             {data.copy.newsletterPill}
           </span>
           
-          <h2 className="mt-[20px] max-w-2xl font-sans text-[36px] font-medium leading-none text-black lg:text-[48px]">
+          {/* Main Title */}
+          <h2 className="mt-[16px] max-w-2xl font-sans text-[36px] font-medium leading-none tracking-[-1px] text-[#000000] lg:text-[48px] lg:leading-[48px]">
             {data.copy.newsletterTitle}
           </h2>
           
-          <p className="mt-[16px] max-w-xl font-sans text-[16px] font-normal leading-[1.5] text-black/70">
+          {/* Subtitle / Description */}
+          <p className="mt-[16px] max-w-xl font-sans text-[16px] font-normal leading-[1.5] text-[#000000]">
             {data.copy.newsletterDescription}
           </p>
 
-          <form className="mt-[32px] flex w-full max-w-md flex-col gap-3 sm:flex-row">
-            <div className="flex flex-1 items-center gap-2 rounded-full bg-white px-[20px] py-[14px]">
-              <input
-                type="email"
-                aria-label="Email address"
-                placeholder={data.copy.newsletterPlaceholder}
-                className="w-full bg-transparent font-sans text-[14px] font-normal leading-[1.43] text-black placeholder:text-[#767676]"
-              />
-              <Mail className="h-[16px] w-[16px] shrink-0 text-black/30" />
-            </div>
+          {/* Form & Disclaimer Wrapper */}
+          <div className="mt-[20px] flex flex-col items-center gap-[10px]">
             
-            <button
-              type="submit"
-              className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-black px-[24px] py-[14px] font-sans text-[14px] font-medium leading-[1.43] text-white transition-colors hover:bg-black/80"
-            >
-              {data.copy.newsletterCta}
-              <Image 
-                src={data.icons.arrowRight} 
+            <form className="flex w-full flex-col gap-[10px] sm:flex-row sm:items-center">
+              
+              {/* Input Field */}
+              <div className="flex h-[44px] w-full max-w-[393px] flex-1 items-center justify-between rounded-[14px] bg-white px-[18px]">
+                <input
+                  type="email"
+                  aria-label="Email address"
+                  placeholder={data.copy.newsletterPlaceholder}
+                  className="w-full bg-transparent font-sans text-[14px] font-normal text-[#000000] placeholder:text-[#767676] outline-none"
+                />
+                <CircleHelp className="h-[16px] w-[16px] shrink-0 text-[#000000]" />
+              </div>
+              
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="flex h-[44px] w-[122px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-black font-sans text-[14px] font-medium text-white shadow-lg transition-colors hover:bg-black/80"
+              >
+                {data.copy.newsletterCta}
+                <Image 
+                  src={data.icons.arrowRight} 
                   alt="" 
                   aria-hidden="true"
-                width={16} 
-                height={16} 
-                className="object-contain invert" // inverted so it is white on black bg
-              />
-            </button>
-          </form>
-          
-          <p className="mt-[12px] font-sans text-[12px] font-normal leading-[1.33] text-black/50">
-            {data.copy.newsletterFooter}
-          </p>
+                  width={16} 
+                  height={16} 
+                  className="object-contain invert"
+                />
+              </button>
+
+            </form>
+            
+            {/* Footer Disclaimer Text */}
+            <p className="font-sans text-[14px] font-normal leading-[20px] text-black/50">
+              {data.copy.newsletterFooter}
+            </p>
+
+          </div>
+
         </div>
       </div>
     </section>
