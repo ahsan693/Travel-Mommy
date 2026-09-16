@@ -189,6 +189,86 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
   );
 }
 
+function Destinations({ content }: { content: HomePageData["destinationsSection"] }) {
+  return (
+    <section className="w-full bg-[#000000] py-[80px] lg:py-[160px]">
+      {/* 48px gap precisely matches the Section Destinations Layout properties in Figma */}
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[48px] px-[32px]">
+        
+        {/* Header Section */}
+        <div className="flex items-start justify-between gap-8 max-[768px]:flex-col max-[768px]:items-stretch">
+          <div className="flex flex-col gap-2">
+            <h2 className="font-sans text-[32px] font-medium leading-none tracking-[-1px] text-[#FFFFFF] lg:text-[48px] lg:leading-[48px]">
+              {content.title}
+            </h2>
+            <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#FFFFFF]">
+              {content.description}
+            </p>
+          </div>
+          
+          <button className="inline-flex h-[44px] shrink-0 items-center gap-2 rounded-full bg-[#FDDB32] px-[24px] font-sans text-[14px] font-medium leading-[1.43] text-[#111827] transition-colors hover:bg-[#e5c52c] max-[768px]:self-start">
+            {content.cta}
+            <ArrowUpRight size={16} />
+          </button>
+        </div>
+
+        {/* Cards Grid - 4 Columns */}
+        <div className="grid w-full grid-cols-1 gap-[24px] md:grid-cols-2 lg:grid-cols-4">
+          {content.cards.map((dest) => (
+            <div 
+              key={dest.title} 
+              className="group flex h-[434px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#ffffff] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              {/* Image Header - Fills remaining space above the fixed 218px bottom */}
+              <div className="relative flex-1 w-full shrink-0 overflow-hidden bg-[#F3F4F6]">
+                <Image 
+                  src={dest.image} 
+                  alt={dest.title} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute left-[16px] top-[16px] rounded-full bg-[#ffffff] px-[14px] py-[6px] font-sans text-[12px] font-medium leading-[1.33] text-[#111827] shadow-sm">
+                  {content.cardBadge}
+                </div>
+              </div>
+
+              {/* Card Body - Exactly 218px height with 24px padding */}
+              <div className="flex h-[218px] flex-col justify-between p-[24px]">
+                
+                {/* Titles */}
+                <div>
+                  <h3 className="font-sans text-[24px] font-medium leading-none text-[#111827]">
+                    {dest.title}
+                  </h3>
+                  <p className="mt-[6px] font-sans text-[14px] font-normal leading-[1.43] text-[#6B7280]">
+                    {dest.tagline}
+                  </p>
+                </div>
+
+                {/* Single Pill */}
+                <div className="flex w-fit items-center gap-[6px] rounded-full border border-[#E6E6E6] bg-[#ffffff] px-[12px] py-[6px]">
+                  <Plane size={14} className="text-[#6B7280]" />
+                  <span className="font-sans text-[13px] font-medium text-[#111827]">
+                    {dest.flightPrice}
+                  </span>
+                </div>
+
+                {/* Explore Button */}
+                <button className="flex h-[44px] w-full items-center justify-center gap-2 rounded-[14px] bg-[#FDDB32] font-sans text-[14px] font-medium text-[#111827] transition-colors duration-200 hover:bg-[#e5c52c]">
+                  {dest.buttonText}
+                  <ArrowUpRight size={16} />
+                </button>
+                
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function TravelGuides({ guides, content }: { guides: HomePageData["guides"]; content: HomePageData["guidesSection"] }) {
   const [active, setActive] = useState<number | null>(null);
   return (
@@ -234,6 +314,7 @@ export default function Home({ data = homeData }: { data?: HomePageData }) {
       <Hero data={data.hero} />
       <WhyCompare data={data.whyCompare} />
       <CheapFlights content={data.flightsSection} />
+      <Destinations content={data.destinationsSection} />
       <TravelGuides guides={data.guides} content={data.guidesSection} />
       <Footer data={footerData} />
     </main>

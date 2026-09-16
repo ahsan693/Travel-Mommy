@@ -12,6 +12,14 @@ export interface TravelGuide {
   image: string;
 }
 
+export interface DestinationCard {
+  title: string;
+  tagline: string;
+  image: string;
+  flightPrice: string;
+  buttonText: string;
+}
+
 export interface HomePageData {
   hero: {
     title: string;
@@ -27,6 +35,13 @@ export interface HomePageData {
   };
   whyCompare: { title: string; highlightedTitle: string; description: string };
   flightsSection: { title: string; highlightedTitle: string; description: string; cta: string; cardCta: string };
+  destinationsSection: {
+    title: string;
+    description: string;
+    cta: string;
+    cardBadge: string;
+    cards: DestinationCard[];
+  };
   hotels: HomeHotel[];
   hotelsSection: { title: string; description: string; filters: string[]; cardUnit: string; cardCta: string };
   guidesSection: { title: string; cta: string };
@@ -62,6 +77,42 @@ export const homeData: HomePageData = {
     description: "Find unbeatable flight deals from Dublin to top global destinations. We compare hundreds of trusted airlines to secure your absolute lowest airfare.",
     cta: "Browse All Flight Routes",
     cardCta: "View Flights",
+  },
+  destinationsSection: {
+    title: "Discover Your Next Destination",
+    description: "Discover popular cities and compare flights before you book.",
+    cta: "More Destinations",
+    cardBadge: "Popular",
+    cards: [
+      { 
+        title: "France", 
+        tagline: "The City of Light", 
+        image: "/Homepage/Section 5/Images/hero-image.png",
+        flightPrice: "Flights from €38",
+        buttonText: "Explore Paris"
+      },
+      { 
+        title: "Spain", 
+        tagline: "Modernism & beaches", 
+        image: "/Homepage/Section 5/Images/hero-image-1.png",
+        flightPrice: "Flights from €38",
+        buttonText: "Explore Spain"
+      },
+      { 
+        title: "UAE", 
+        tagline: "Luxury & desert dunes", 
+        image: "/Homepage/Section 5/Images/hero-image-2.png",
+        flightPrice: "Flights from €38",
+        buttonText: "Explore Dubai"
+      },
+      { 
+        title: "Indonesia", 
+        tagline: "Island paradise & temples", 
+        image: "/Homepage/Section 5/Images/hero-image-3.png",
+        flightPrice: "Flights from €38",
+        buttonText: "Explore Indonesia"
+      },
+    ]
   },
   hotels: [
     { name: "The Westin Paris", location: "Paris, France", rating: "4.9", price: "€29", image: "/Homepage/Section 4/Images/Image.png" },
