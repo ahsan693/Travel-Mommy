@@ -20,6 +20,13 @@ export interface DestinationCard {
   buttonText: string;
 }
 
+export interface FeatureCard {
+  iconName: string;
+  featureNumber: string;
+  title: string;
+  description: string;
+}
+
 export interface HomePageData {
   hero: {
     title: string;
@@ -32,6 +39,11 @@ export interface HomePageData {
     reviewerImages: string[];
     reviewText: string;
     rightHeading: string[];
+  };
+  whyCompareSection: {
+    title: string;
+    description: string;
+    features: FeatureCard[];
   };
   flightsSection: { title: string; highlightedTitle: string; description: string; cta: string; cardCta: string };
   destinationsSection: {
@@ -64,6 +76,30 @@ export const homeData: HomePageData = {
     ],
     reviewText: "Compare live prices from trusted airlines and travel websites.",
     rightHeading: ["from 500+", "Airlines & Sites"],
+  },
+  whyCompareSection: {
+    title: "Why Compare Cheap Flights on TravelMommy?",
+    description: "Compare airlines, travel sites, and routes in one place, then book directly with the provider you trust.",
+    features: [
+      {
+        iconName: "search",
+        featureNumber: "Feature 01",
+        title: "Compare Multiple Providers",
+        description: "Search flight prices from airlines and travel sites in one place."
+      },
+      {
+        iconName: "sliders",
+        featureNumber: "Feature 02",
+        title: "Simple Comparison",
+        description: "Compare routes, times and prices before choosing."
+      },
+      {
+        iconName: "ticket",
+        featureNumber: "Feature 03",
+        title: "Book with the Provider",
+        description: "TravelMommy helps you compare; the booking is completed with the airline or travel provider."
+      }
+    ]
   },
   flightsSection: {
     title: "Cheap Flights from",

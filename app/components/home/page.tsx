@@ -9,7 +9,10 @@ import {
   Briefcase, 
   ArrowRightLeft, 
   Calendar, 
-  Users 
+  Users,
+  Search,
+  SlidersHorizontal,
+  Ticket
 } from "lucide-react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -174,6 +177,72 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
   );
 }
 
+function WhyCompare({ content }: { content: HomePageData["whyCompareSection"] }) {
+  const iconMap: Record<string, any> = {
+    search: Search,
+    sliders: SlidersHorizontal,
+    ticket: Ticket
+  };
+
+  return (
+    <section className="bg-white py-[96px] px-[32px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center">
+        
+        {/* Headings */}
+        <h2 className="text-center font-sans text-[32px] font-medium leading-tight tracking-[-1.5px] text-black lg:text-[56px] lg:leading-[60px]">
+          {content.title}
+        </h2>
+        <p className="mt-[16px] max-w-[760px] text-center font-sans text-[16px] font-normal leading-[24px] text-[#333333]">
+          {content.description}
+        </p>
+
+        {/* Features Grid */}
+        <div className="mt-[32px] grid w-full grid-cols-1 gap-[24px] lg:grid-cols-3">
+          {content.features.map((feature, idx) => {
+            const Icon = iconMap[feature.iconName];
+            
+            return (
+              <div 
+                key={idx} 
+                className="flex h-auto min-h-[186px] flex-col gap-[20px] rounded-[24px] border border-[#E6EEF8] bg-white p-[24px] shadow-sm lg:h-[186px]"
+              >
+                {/* Card Header row with Icon and Titles */}
+                <div className="flex items-center gap-[16px]">
+                  
+                  {/* Icon Block */}
+                  <div className="flex size-[56px] shrink-0 items-center justify-center rounded-[18px] bg-[#FDDB32]">
+                    {Icon && <Icon size={24} className="text-black" />}
+                  </div>
+                  
+                  {/* Title Block */}
+                  <div className="flex flex-col gap-[2px]">
+                    <span className="font-sans text-[12px] font-medium leading-[18px] text-[#8E8E8E]">
+                      {feature.featureNumber}
+                    </span>
+                    <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-black lg:text-[24px] lg:leading-[24px]">
+                      {feature.title.split('\n').map((line, i) => (
+                        <span key={i} className="block">{line}</span>
+                      ))}
+                    </h3>
+                  </div>
+
+                </div>
+
+                {/* Card Description */}
+                <p className="font-sans text-[14px] leading-[20px] text-[#6B7280]">
+                  {feature.description}
+                </p>
+
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function Destinations({ content }: { content: HomePageData["destinationsSection"] }) {
   return (
     <section className="w-full bg-[#000000] py-[80px] lg:py-[160px]">
@@ -297,6 +366,7 @@ export default function Home({ data = homeData }: { data?: HomePageData }) {
       <Header data={headerData} />
       <Hero data={data.hero} />
       <CheapFlights content={data.flightsSection} />
+      <WhyCompare content={data.whyCompareSection} />
       <Destinations content={data.destinationsSection} />
       <TravelGuides guides={data.guides} content={data.guidesSection} />
       <Footer data={footerData} />
