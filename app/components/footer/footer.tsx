@@ -61,13 +61,13 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
                   <button 
                     key={index} 
                     type="button" 
-                    aria-label={locale.arrowAlt} 
+                    aria-label={locale.label} 
                     className="flex h-[32px] items-center gap-[8px] rounded-full border border-white/20 bg-transparent px-[12px] font-sans text-[12px] font-medium leading-none text-white transition-colors hover:bg-white/10"
                   >
                     {locale.label}
                     <Image
                       src={locale.arrowSrc}
-                      alt={locale.arrowAlt}
+                      alt=""
                       aria-hidden="true"
                       width={10}
                       height={10}
