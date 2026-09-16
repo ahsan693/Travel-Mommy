@@ -2,6 +2,22 @@ export interface DestinationChip { name: string; region: string; img: string; sw
 export interface FeaturedCountry { id?: string; name: string; desc: string; image: string; tags: string[]; flightsFrom: string; hotelsFrom: string; perk: string; rating: string; price: string; icon: string }
 export interface DestinationFeature { icon: string; iconSrc: string; title: string; description: string }
 export interface DestinationFaq { q: string; a: string }
+
+export interface RegionCard {
+  name: string;
+  description: string;
+  image: string;
+  countries: string[];
+  viewAllText: string;
+}
+
+export interface ExploreCtaCard {
+  eyebrow: string;
+  title: string;
+  description: string;
+  buttonText: string;
+}
+
 export interface DestinationsPageData {
   hero: {
     title: string;
@@ -18,6 +34,12 @@ export interface DestinationsPageData {
   regions: string[];
   countryChips: DestinationChip[];
   featuredCountries: FeaturedCountry[];
+  exploreByRegion: {
+    title: string;
+    subtitle: string;
+    regions: RegionCard[];
+    ctaCard: ExploreCtaCard;
+  };
   whyCompare: DestinationFeature[];
   faqs: DestinationFaq[];
   copy: {
@@ -35,6 +57,7 @@ export interface DestinationsPageData {
     faqTitle: string;
   };
 }
+
 export const destinationsData: DestinationsPageData = {
   hero: {
     title: "Discover Your Next Destination",
@@ -70,7 +93,6 @@ export const destinationsData: DestinationsPageData = {
     { name: "Australia", region: "Oceania", img: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&w=100&q=80", swatch: "#D8E9FF" },
     { name: "New Zealand", region: "Oceania", img: "https://images.unsplash.com/photo-1556878516-61356c874f03?auto=format&w=100&q=80", swatch: "#FBBDEA" },
   ],
-
   featuredCountries: [
     { 
       id: "greece",
@@ -112,13 +134,79 @@ export const destinationsData: DestinationsPageData = {
       icon: "/Featured Countries/Section 1/Icon/Vector.png"
     }
   ],
-
+  exploreByRegion: {
+    title: "Explore Countries by Region",
+    subtitle: "Browse destination guides by region and discover amazing places around the world.",
+    regions: [
+      {
+        name: "Europe",
+        description: "Historic cities, stunning coastlines and diverse cultures.",
+        image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&w=150&q=80",
+        countries: ["Greece", "Spain", "Italy", "France", "Portugal"],
+        viewAllText: "View all Europe"
+      },
+      {
+        name: "Asia",
+        description: "Incredible destinations, rich cultures and unforgettable experiences.",
+        image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&w=150&q=80",
+        countries: ["Japan", "Thailand", "Indonesia", "Vietnam", "Malaysia"],
+        viewAllText: "View all Asia"
+      },
+      {
+        name: "North America",
+        description: "Vibrant cities, natural wonders and endless adventures.",
+        image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&w=150&q=80",
+        countries: ["United States", "Canada", "Mexico", "Costa Rica", "Dominican Republic"],
+        viewAllText: "View all North America"
+      },
+      {
+        name: "Africa",
+        description: "Extraordinary wildlife, stunning landscapes and vibrant cultures.",
+        image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&w=150&q=80",
+        countries: ["South Africa", "Morocco", "Egypt", "Kenya", "Tanzania"],
+        viewAllText: "View all Africa"
+      },
+      {
+        name: "Middle East",
+        description: "Modern cities, rich history and unique experiences.",
+        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&w=150&q=80",
+        countries: ["UAE", "Qatar", "Saudi Arabia", "Jordan", "Oman"],
+        viewAllText: "View all Middle East"
+      },
+      {
+        name: "Caribbean",
+        description: "Beautiful beaches, turquoise waters and a laid-back atmosphere.",
+        image: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&w=150&q=80",
+        countries: ["Dominican Republic", "Jamaica", "Bahamas", "Barbados", "Cuba"],
+        viewAllText: "View all Caribbean"
+      },
+      {
+        name: "South America",
+        description: "Breathtaking landscapes, ancient history and vibrant cities.",
+        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&w=150&q=80",
+        countries: ["Brazil", "Argentina", "Peru", "Chile", "Colombia"],
+        viewAllText: "View all South America"
+      },
+      {
+        name: "Oceania",
+        description: "Stunning islands, unique wildlife and incredible natural beauty.",
+        image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&w=150&q=80",
+        countries: ["Australia", "New Zealand", "Fiji", "Cook Islands", "Samoa"],
+        viewAllText: "View all Oceania"
+      }
+    ],
+    ctaCard: {
+      eyebrow: "READY TO EXPLORE?",
+      title: "Find Your Next\nDestination",
+      description: "Discover amazing countries, compare flight options and get inspired for your next trip with TravelMommy.",
+      buttonText: "Explore Destinations"
+    }
+  },
   whyCompare: [
     { icon: "/Featured Countries/Section 3/Icons/Vector.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector.png", title: "Compare Prices", description: "Compare flights and hotels from hundreds of trusted travel providers." },
     { icon: "/Featured Countries/Section 3/Icons/Vector-1.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector-1.png", title: "Trusted Partners", description: "Book securely through leading airlines and hotel booking platforms." }, 
     { icon: "/Featured Countries/Section 3/Icons/Vector-2.png", iconSrc: "/Featured Countries/Section 3/Icons/Vector-2.png", title: "Travel Inspiration", description: "Discover destinations, travel guides and tips to help plan your next adventure." }
   ],
-
   faqs: [
     { 
       q: "Is TravelMommy free to use?", 
