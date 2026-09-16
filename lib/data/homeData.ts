@@ -33,7 +33,6 @@ export interface HomePageData {
     reviewText: string;
     rightHeading: string[];
   };
-  whyCompare: { title: string; highlightedTitle: string; description: string };
   flightsSection: { title: string; highlightedTitle: string; description: string; cta: string; cardCta: string };
   destinationsSection: {
     title: string;
@@ -65,11 +64,6 @@ export const homeData: HomePageData = {
     ],
     reviewText: "Compare live prices from trusted airlines and travel websites.",
     rightHeading: ["from 500+", "Airlines & Sites"],
-  },
-  whyCompare: {
-    title: "Why Compare Cheap Flights on",
-    highlightedTitle: "TravelMommy?",
-    description: "TravelMommy is a travel metasearch engine that helps you compare cheap flights from trusted airlines, booking websites, and travel providers — all in one place. Search live fares, discover the cheapest travel dates, and book directly with your preferred provider. Whether you're planning a weekend city break, a family holiday, a business trip, or a long-haul adventure, our metasearch platform makes it easy to find the absolute lowest airfare without searching multiple websites.",
   },
   flightsSection: {
     title: "Cheap Flights from",

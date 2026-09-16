@@ -137,21 +137,6 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
   );
 }
 
-function WhyCompare({ data }: { data: HomePageData["whyCompare"] }) {
-  return (
-    <section className="flex flex-col bg-black px-5 py-16 text-white lg:px-[80px] lg:py-[160px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[24px] lg:px-[32px]">
-        <h2 className="text-3xl font-[570] lg:text-[48px] lg:leading-[48px] lg:tracking-[-1px]">
-          {data.title} <span>{data.highlightedTitle}</span>
-        </h2>
-        <p className="max-w-[1216px] text-sm font-[380] leading-[24px] lg:text-[16px]">
-          {data.description}
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function openFlightSearch(result: FlightAvailability) {
   if (result.status !== "available" || !result.flight.ticketLink) {
     return;
@@ -192,7 +177,6 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
 function Destinations({ content }: { content: HomePageData["destinationsSection"] }) {
   return (
     <section className="w-full bg-[#000000] py-[80px] lg:py-[160px]">
-      {/* 48px gap precisely matches the Section Destinations Layout properties in Figma */}
       <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[48px] px-[32px]">
         
         {/* Header Section */}
@@ -219,7 +203,7 @@ function Destinations({ content }: { content: HomePageData["destinationsSection"
               key={dest.title} 
               className="group flex h-[434px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#ffffff] transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
-              {/* Image Header - Fills remaining space above the fixed 218px bottom */}
+              {/* Image Header */}
               <div className="relative flex-1 w-full shrink-0 overflow-hidden bg-[#F3F4F6]">
                 <Image 
                   src={dest.image} 
@@ -232,7 +216,7 @@ function Destinations({ content }: { content: HomePageData["destinationsSection"
                 </div>
               </div>
 
-              {/* Card Body - Exactly 218px height with 24px padding */}
+              {/* Card Body */}
               <div className="flex h-[218px] flex-col justify-between p-[24px]">
                 
                 {/* Titles */}
@@ -312,7 +296,6 @@ export default function Home({ data = homeData }: { data?: HomePageData }) {
     <main className="flex min-h-screen flex-col">
       <Header data={headerData} />
       <Hero data={data.hero} />
-      <WhyCompare data={data.whyCompare} />
       <CheapFlights content={data.flightsSection} />
       <Destinations content={data.destinationsSection} />
       <TravelGuides guides={data.guides} content={data.guidesSection} />
