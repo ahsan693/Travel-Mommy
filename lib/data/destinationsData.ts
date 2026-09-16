@@ -209,24 +209,24 @@ export const destinationsData: DestinationsPageData = {
   ],
   faqs: [
     { 
-      q: "Is TravelMommy free to use?", 
-      a: "Yes. You can compare flights for free and book directly with trusted travel partners." 
+      q: "How can I browse destinations on TravelMommy?", 
+      a: "You can explore countries by region and open a country guide to see useful travel information, popular places to visit, flight options, and planning tips." 
     },
     { 
-      q: "Can I compare flights?", 
-      a: "Yes. Compare prices from hundreds of airlines and booking websites in one place." 
+      q: "Does TravelMommy have a page for every country?", 
+      a: "Not yet. We are adding country guides gradually, starting with popular destinations and expanding the collection over time." 
     },
     { 
-      q: "Which countries are most popular?", 
-      a: "Some of our most searched destinations include Greece, Spain, Italy, France, Thailand and Japan." 
+      q: "Can I compare flights to each country?", 
+      a: "Yes. Where flight data is available, country pages can show flight options and links to compare fares from supported departure airports." 
     },
     { 
-      q: "How do I find cheap flights?", 
-      a: "Use our flight search to compare prices across multiple travel providers and book when you find the best deal." 
+      q: "What information is included in a country guide?", 
+      a: "Country guides can include the best time to visit, weather and seasonal information, popular destinations, airports, flight options, things to do, and practical travel information." 
     },
     { 
-      q: "When is the best time to travel?", 
-      a: "It depends on your destination. Each country guide includes seasonal travel tips and the best times to visit." 
+      q: "Are the flight prices shown on country pages guaranteed?", 
+      a: "No. Flight prices can change quickly based on availability, dates, airlines, and travel providers. The final price is confirmed by the provider when you continue to book." 
     }
   ],
   copy: {
