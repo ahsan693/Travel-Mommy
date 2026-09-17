@@ -8,8 +8,6 @@ import {
   ArrowUpRight,
   Star,
   Clock,
-  Minus,
-  Plus,
   ArrowRight,
   ChevronRight,
   MapPin,
@@ -369,7 +367,15 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
             </div>
           ))}
         </div>
-     </div>
+
+        <div className="mt-[16px] md:mt-[48px] w-full md:w-auto">
+          <button className="flex w-full md:w-auto h-[44px] items-center justify-center gap-[8px] md:gap-[6px] rounded-[14px] md:rounded-full bg-[#FDDB32] px-[20px] md:px-[24px] font-sans text-[13px] leading-[18px] md:text-[14px] font-medium md:leading-[20px] tracking-[0px] md:tracking-[0px] text-[#000000] shadow-[0_1.5px_3px_rgba(31,31,31,0.078),0_1px_0_0.5px_#C29700,inset_0_1px_2px_rgba(255,255,255,0.12)] md:shadow-none transition-colors duration-200 hover:bg-[#e5c52c]">
+            {data.copy.whyCta}
+            <ArrowUpRight size={14} className="md:w-[16px] md:h-[16px]" />
+          </button>
+        </div>
+
+      </div>
     </section>
   );
 }
@@ -379,8 +385,6 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
 ===================================================================== */
 
 function FaqSection({ data }: { data: DestinationsPageData }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   return (
     <section className="flex w-full flex-col items-center bg-[#F9F8F5] md:bg-[#FFFFFF] py-[64px] px-[24px] md:pt-[80px] md:pb-[160px] md:px-[80px]">
       <div className="flex w-full max-w-[800px] flex-col items-center">
@@ -390,31 +394,16 @@ function FaqSection({ data }: { data: DestinationsPageData }) {
         </h2>
 
         <div className="flex w-full flex-col gap-[24px]">
-          {data.faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div key={i} className="flex flex-col gap-[12px] md:border-b md:border-[#E6E6E6] md:pb-[24px]">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between text-left"
-                >
-                  <span className="font-sans text-[15px] leading-[22px] md:text-[16px] font-medium md:leading-[24px] tracking-[0px] md:tracking-[0px] text-[#000000]">
-                    {faq.q}
-                  </span>
-                  <span className="flex shrink-0 text-[#000000]">
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-                  </span>
-                </button>
-                {isOpen && (
-                  <p className="font-sans text-[15px] leading-[22px] md:text-[16px] font-normal md:leading-[24px] tracking-[0px] text-[#7D7D7D]">
-                    {faq.a}
-                  </p>
-                )}
-                <div className="block md:hidden w-full h-[1px] bg-transparent" />
-              </div>
-            );
-          })}
+          {data.faqs.map((faq, i) => (
+            <div key={i} className="flex flex-col gap-[12px] border-b border-[#E6E6E6] pb-[24px] last:border-0">
+              <h3 className="font-sans text-[15px] leading-[22px] md:text-[16px] font-medium md:leading-[24px] tracking-[0px] text-[#000000]">
+                {faq.q}
+              </h3>
+              <p className="font-sans text-[15px] leading-[22px] md:text-[16px] font-normal md:leading-[24px] tracking-[0px] text-[#7D7D7D]">
+                {faq.a}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>

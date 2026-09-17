@@ -1,4 +1,4 @@
-import DestinationsPage from "../components/destinations/page";
+import DestinationsPage from "../components/destinations/destinations";
 import { destinationsData } from "../../lib/data/destinationsData";
 
 export default function DestinationsRoute() {

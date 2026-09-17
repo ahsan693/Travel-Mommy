@@ -1,4 +1,4 @@
-import ContactUsPage from "../components/contactus/page";
+import ContactUsPage from "../components/contactus/contactus";
 import { contactUsData } from "../../lib/data/contactUsData";
 
 export default function ContactUsRoute() {

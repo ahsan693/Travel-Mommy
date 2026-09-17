@@ -27,6 +27,7 @@ export interface FooterData {
   description: string;
   columns: FooterColumn[];
   mobileOrder: string[];
+  socialNavAriaLabel: string;
   socialLinks: FooterSocialLink[];
   copyright: string;
   disclaimer: string;
@@ -52,6 +53,7 @@ export const footerData: FooterData = {
     { title: "Legal", links: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Affiliate Disclosure", "Accessibility"] },
   ],
   mobileOrder: ["order-1", "order-3", "order-2", "order-4"],
+  socialNavAriaLabel: "Social links",
   socialLinks: [
     { alt: "Instagram", icon: "instagram", href: "#" },
     { alt: "Facebook", icon: "facebook", href: "#" },

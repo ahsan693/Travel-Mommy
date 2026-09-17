@@ -1,4 +1,4 @@
-import TravelPage from "../components/travel/page";
+import TravelPage from "../components/travel/travel";
 import { travelData } from "../../lib/data/travelData";
 
 export default function TravelRoute() {
