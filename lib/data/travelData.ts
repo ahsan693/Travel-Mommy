@@ -4,6 +4,11 @@ export interface TravelInfo {
   value: string; 
 }
 
+export interface TravelFeature {
+  icon: string;
+  label: string;
+}
+
 export interface TravelDestination { 
   city: string; 
   desc: string; 
@@ -56,7 +61,7 @@ export interface TravelPageData {
   aboutSection: {
     title: string;
     paragraphs: string[];
-    features: string[];
+    features: TravelFeature[];
     featureIcon: string;
     image: string;
     imageAlt: string;
@@ -116,19 +121,23 @@ export const travelData: TravelPageData = {
     badge: "GREECE"
   },
   infoBarData: [
-    { icon: "map-pin", label: "Capital", value: "Athens" },
-    { icon: "coins", label: "Currency", value: "Euro" },
-    { icon: "message-circle", label: "Language", value: "Greek" },
-    { icon: "clock", label: "Timezone", value: "GMT+2" },
-    { icon: "calendar", label: "Best Time", value: "May - Oct" }
+    { icon: "arrow-up-right", label: "Capital", value: "Athens" },
+    { icon: "arrow-up-right", label: "Currency", value: "Euro" },
+    { icon: "circle-check", label: "Language", value: "Greek" },
+    { icon: "users-round", label: "Best Time", value: "May-October" },
+    { icon: "arrow-up-right", label: "Emergency", value: "112" },
+    { icon: "circle-help", label: "Driving side", value: "Right" }
   ],
   aboutSection: {
     title: "About Greece",
     paragraphs: [
-      "Greece is a country in southeastern Europe with thousands of islands throughout the Aegean and Ionian seas. Influential in ancient times, it's often called the cradle of Western civilization.",
-      "Athens, its capital, retains landmarks including the 5th-century B.C. Acropolis citadel with the Parthenon temple. Beaches, black sands, and party resorts like Mykonos make it a premier destination."
+      "Greece, located in southeastern Europe, is celebrated for its breathtaking Aegean and Ionian islands. As the historic cradle of Western civilization, it offers unrivaled ancient landmarks. Book cheap flights to Athens to experience the 5th-century B.C. Acropolis and explore endless Mediterranean beauty seamlessly."
     ],
-    features: ["Ancient History", "Island Hopping", "Mediterranean Cuisine"],
+    features: [
+      { icon: "landmark", label: "Ancient History" },
+      { icon: "umbrella", label: "Stunning Beaches" },
+      { icon: "utensils", label: "Delicious Cuisine" }
+    ],
     featureIcon: "check",
     image: "/Country Details/Section 2/Images/Rectangle.png",
     imageAlt: "Greece Coastline"

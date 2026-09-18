@@ -28,10 +28,10 @@ export const headerData: HeaderData = {
   navigation: [
     { label: "Flights", href: "/flight" },
     { label: "Destinations", href: "/destinations" },
-    { label: "Contact Us", href: "/contactus" },
+    { label: "TravelGuide", href: "/travel" },
   ],
   search: {
-    label: "Search Deals",
+    label: "Exlore FLight  Deals",
     href: "/searchwidgetpage",
     iconSrc: "/Homepage/Section 1/Header Icons/Icons/Component 1.png",
     desktopIconSize: 14,

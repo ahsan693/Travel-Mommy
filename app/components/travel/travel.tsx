@@ -8,6 +8,12 @@ import {
   MessageCircle,
   Clock,
   Calendar,
+  CircleCheck,
+  CircleHelp,
+  UsersRound,
+  Landmark,
+  Umbrella,
+  Utensils,
   Plane,
   Building2,
   ArrowUpRight,
@@ -40,6 +46,12 @@ const LucideIconMap: Record<string, React.ComponentType<{ size?: number; classNa
   "message-circle": MessageCircle,
   "clock": Clock,
   "calendar": Calendar,
+  "circle-check": CircleCheck,
+  "circle-help": CircleHelp,
+  "users-round": UsersRound,
+  "landmark": Landmark,
+  "umbrella": Umbrella,
+  "utensils": Utensils,
   "check": Check,
   "plane": Plane,
   "building-2": Building2,
@@ -59,6 +71,12 @@ const DEFAULT_ABOUT_SECTION: TravelPageData["aboutSection"] = {
   featureIcon: "check",
   image: "/Country Details/Section 2/Images/Rectangle.png",
   imageAlt: "Greece Coastline",
+};
+
+const aboutFeatureIconClasses: Record<string, string> = {
+  landmark: "text-[#7A6B35]",
+  umbrella: "text-[#E59500]",
+  utensils: "text-[#8BA2AA]",
 };
 
 function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
@@ -98,20 +116,20 @@ function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
 
 function InfoBarSection({ infoBarData }: { infoBarData: TravelPageData["infoBarData"] }) {
   return (
-    <section className="w-full bg-[#F9FBFA]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-[24px] py-[40px] px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+    <section className="w-full bg-[#F9FBF5]">
+      <div className="mx-auto flex min-h-[120px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-x-[32px] gap-y-[20px] px-[80px] py-[40px] max-[1024px]:px-[40px] max-[768px]:min-h-0 max-[768px]:justify-start max-[768px]:px-[20px]">
         {infoBarData.map((info, i) => {
           const IconComponent = LucideIconMap[info.icon] || MapPin;
           return (
-            <div key={i} className="flex items-center gap-[12px]">
+            <div key={i} className="flex min-w-[96px] items-center gap-[12px]">
               <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32]">
-                <IconComponent size={18} className="text-[#000000]" />
+                <IconComponent size={16} strokeWidth={1.8} className="text-[#000000]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-sans text-[12px] font-medium leading-[16px] tracking-[-0.12px] text-[#000000]">
+                <span className="font-sans text-[12px] font-semibold leading-[16px] tracking-[0px] text-[#000000]">
                   {info.label}
                 </span>
-                <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
+                <span className="font-sans text-[14px] font-semibold leading-[20px] tracking-[0px] text-[#000000]">
                   {info.value}
                 </span>
               </div>
@@ -129,41 +147,40 @@ function InfoBarSection({ infoBarData }: { infoBarData: TravelPageData["infoBarD
 
 function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
   const aboutData = about ?? DEFAULT_ABOUT_SECTION;
-  const FeatureIcon = LucideIconMap[aboutData.featureIcon] || Check;
 
   return (
-    <section className="w-full bg-[#FFFFFF] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto w-full max-w-[1440px] px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="flex flex-col items-center gap-[80px] lg:flex-row">
-          <div className="flex w-full max-w-[540px] flex-col gap-[24px]">
-            <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[36px]">
+    <section className="w-full bg-[#FFFFFF] py-[80px] max-[1024px]:py-[72px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[80px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        <div className="flex flex-col items-center justify-between gap-[72px] lg:flex-row">
+          <div className="flex w-full max-w-[540px] flex-col gap-[32px]">
+            <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[38px] max-[768px]:leading-[40px]">
               {aboutData.title}
             </h2>
-            <div className="flex flex-col gap-[16px]">
-              {aboutData.paragraphs.map((para, idx) => (
-                <p key={idx} className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
-                  {para}
-                </p>
-              ))}
+            <div className="flex min-h-[120px] flex-col justify-start">
+              <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
+                {aboutData.paragraphs.join(" ")}
+              </p>
             </div>
-            <div className="mt-[16px] flex flex-wrap gap-[16px]">
-              {aboutData.features.map(feat => (
-                <div key={feat} className="flex items-center gap-[8px]">
-                  <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-[#F9FBFA] border border-[#E5E7EB]">
-                     <FeatureIcon size={14} className="text-[#000000]" />
+            <div className="flex flex-wrap gap-[16px]">
+              {aboutData.features.map((feat) => {
+                const FeatureIcon = LucideIconMap[feat.icon] || Check;
+                return (
+                  <div key={feat.label} className="flex h-[48px] min-w-[0] items-center justify-center gap-[14px] rounded-[20px] bg-[#F9FBF5] px-[26px]">
+                    <FeatureIcon size={20} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
+                    <span className="whitespace-nowrap font-sans text-[16px] font-semibold leading-[24px] tracking-[0px] text-[#000000]">
+                      {feat.label}
+                    </span>
                   </div>
-                  <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
-                    {feat}
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
-          <div className="relative h-[400px] w-full max-w-[500px] overflow-hidden rounded-[42px]">
-            <Image 
-              src={aboutData.image} 
-              alt={aboutData.imageAlt} 
-              fill 
+          <div className="relative h-[400px] w-full max-w-[500px] overflow-hidden rounded-[42px] max-[1024px]:max-w-[540px]">
+            <Image
+              src={aboutData.image}
+              alt={aboutData.imageAlt}
+              fill
+              sizes="(max-width: 1023px) 100vw, 500px"
               className="object-cover"
             />
           </div>
