@@ -88,6 +88,7 @@ function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
           src={hero.image}
           alt={hero.imageAlt}
           fill
+          sizes="(max-width: 768px) 100vw, 1440px"
           className="object-cover"
           priority
         />
@@ -161,13 +162,13 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
                 {aboutData.paragraphs.join(" ")}
               </p>
             </div>
-            <div className="flex flex-wrap gap-[16px]">
+            <div className="flex w-full max-w-[545px] flex-nowrap items-center gap-[16px] max-[640px]:overflow-x-auto">
               {aboutData.features.map((feat) => {
                 const FeatureIcon = LucideIconMap[feat.icon] || Check;
                 return (
-                  <div key={feat.label} className="flex h-[48px] min-w-[0] items-center justify-center gap-[14px] rounded-[20px] bg-[#F9FBF5] px-[26px]">
-                    <FeatureIcon size={20} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
-                    <span className="whitespace-nowrap font-sans text-[16px] font-semibold leading-[24px] tracking-[0px] text-[#000000]">
+                  <div key={feat.label} className="flex h-[48px] shrink-0 items-center justify-center gap-[12px] rounded-[20px] bg-[#F9FBF5] px-[22px]">
+                    <FeatureIcon size={18} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
+                    <span className="whitespace-nowrap font-sans text-[15px] font-semibold leading-[22px] tracking-[0px] text-[#000000]">
                       {feat.label}
                     </span>
                   </div>
@@ -199,39 +200,60 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
   const BookIcon = LucideIconMap[sectionData.bookNowIcon] || ArrowRight;
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#F3F4F6] bg-[#FFFFFF] shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:-translate-y-1">
-      <div className="relative h-[240px] w-full shrink-0 overflow-hidden bg-neutral-100">
-        <Image src={item.image} alt={item.city} fill className="object-cover transition-transform duration-700 hover:scale-105" />
+    <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-[#FFFFFF] transition-transform duration-300 hover:-translate-y-1">
+      {/* Image Container */}
+      <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-neutral-100">
+        <Image 
+          src={item.image} 
+          alt={item.city} 
+          fill 
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 282px"
+          className="object-cover transition-transform duration-700 hover:scale-105" 
+        />
       </div>
-      <div className="flex flex-1 flex-col p-[24px]">
-        <div className="mb-[16px] flex items-center justify-between">
-          <div className="flex items-center gap-[8px]">
-            <h3 className="font-sans text-[20px] font-medium leading-[28px] tracking-[-0.4px] text-[#000000]">
+
+      {/* Content Container */}
+      <div className="flex h-[260px] w-full flex-col gap-[16px] bg-gradient-to-b from-[#FFFFFF] to-[#F9FBF5] p-[24px]">
+        
+        {/* Title Row */}
+        <div className="flex h-[24px] w-full items-center justify-between">
+          <div className="flex items-center gap-[10px]">
+            <h3 className="font-sans text-[24px] font-medium leading-[24px] tracking-[-0.48px] text-[#000000]">
               {item.city}
             </h3>
             {item.icon && (
-              <div className="relative flex h-[16px] w-[24px] shrink-0 items-center justify-center">
-                 <Image src={item.icon} alt="flag" fill className="object-contain" />
+              <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-100 bg-white">
+                <img
+                  src={item.icon}
+                  alt={`${item.city} flag`}
+                  className="h-full w-full object-cover"
+                />
               </div>
             )}
           </div>
         </div>
-        <p className="mb-[24px] min-h-[60px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#4B5563]">
+
+        {/* Description */}
+        <p className="h-[60px] w-full max-w-[234px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000] opacity-85">
           {item.desc}
         </p>
-        <div className="mb-[24px] flex flex-col items-start gap-[12px]">
+
+        {/* Flight Price Badge */}
+        <div className="flex items-start">
           {item.flightsFrom && (
-            <div className="flex items-center gap-[6px] rounded-full border border-[#FDE047] bg-[#FEF6D8] px-[12px] py-[6px]">
-              <FlightIcon size={14} className="text-[#000000]" />
-              <span className="font-sans text-[13px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
-                {sectionData.flightsPrefix} {item.flightsFrom}
+            <div className="flex h-[32px] items-center gap-[8px] rounded-full border border-[#E6BD00] bg-[#FFED91] pb-[6px] pl-[8px] pr-[10px] pt-[6px]">
+              <FlightIcon size={16} strokeWidth={1.8} className="text-[#000000]" />
+              <span className="whitespace-nowrap font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
+                {sectionData.flightsPrefix} Dublin from {item.flightsFrom}
               </span>
             </div>
           )}
         </div>
-        <div className="mt-auto pt-[8px]">
+
+        {/* CTA Button */}
+        <div className="mt-auto">
           <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
-            {sectionData.bookNowText} <BookIcon size={18} className="text-[#FFFFFF]" />
+            {sectionData.bookNowText} <BookIcon size={20} strokeWidth={2} className="text-[#FFFFFF]" />
           </button>
         </div>
       </div>
@@ -243,6 +265,8 @@ function DestinationsSection({ destinations }: { destinations: TravelPageData["d
   return (
     <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        
+        {/* Header Section */}
         <div className="mb-[56px] flex flex-col gap-[12px]">
           <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
             {destinations.title}
@@ -251,6 +275,8 @@ function DestinationsSection({ destinations }: { destinations: TravelPageData["d
             {destinations.description}
           </p>
         </div>
+        
+        {/* Grid Layout */}
         <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
           {destinations.items.map((dest, i) => (
             <DestinationCard key={i} item={dest} sectionData={destinations} />
@@ -272,7 +298,13 @@ function FlightCard({ flight, sectionData }: { flight: TravelFlight; sectionData
   return (
     <div className="group flex h-[364px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       <div className="relative h-[140px] w-full shrink-0 overflow-hidden bg-neutral-100">
-        <Image src={flight.image} alt={flight.city} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+        <Image
+          src={flight.image}
+          alt={flight.city}
+          fill
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 282px"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+        />
         <div className="absolute left-[16px] top-[16px] flex h-[32px] w-[32px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] p-[6px] shadow-sm z-10">
           <img src={flight.flag} alt={`${flight.city} flag`} className="h-full w-full object-contain" />
         </div>
@@ -345,7 +377,13 @@ function TopThingsToDoSection({ thingsToDo }: { thingsToDo: TravelPageData["thin
           {thingsToDo.items.map((item, i) => (
             <div key={i} className="flex h-[292px] flex-col rounded-[24px] bg-[#FFFFFF] p-[6px] transition-transform duration-300 hover:-translate-y-1">
               <div className="relative h-[200px] w-full shrink-0 overflow-hidden rounded-[20px]">
-                <Image src={item.image} alt={item.title} fill className="object-cover" />
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 282px"
+                  className="object-cover"
+                />
               </div>
               <div className="flex flex-1 flex-col justify-between px-[12px] pb-[12px] pt-[12px]">
                 <h3 className="truncate font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">{item.title}</h3>
@@ -432,6 +470,7 @@ function NearbyCountryCard({ item, sectionData }: { item: NearbyCountry; section
           src={item.image} 
           alt={item.city} 
           fill 
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 282px"
           className="object-cover transition-transform duration-700 group-hover:scale-105" 
         />
       </div>

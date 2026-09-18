@@ -142,7 +142,7 @@ export const travelData: TravelPageData = {
     image: "/Country Details/Section 2/Images/Rectangle.png",
     imageAlt: "Greece Coastline"
   },
-destinationsSection: {
+  destinationsSection: {
     title: "Explore Greece's Most Popular Destinations",
     description: "Discover the best places to visit in Greece, from bustling cities to idyllic islands.",
     flightsPrefix: "Flights from",
@@ -160,7 +160,7 @@ destinationsSection: {
         flightsFrom: "€120",
         hotelsFrom: "€180",
         image: "/Country Details/Section 3/Images/image.png",
-        icon: "/Country Details/Section 3/Icons/Vector-1.png"
+        icon: "/Featured%20Countries/flag.svg"
       },
       {
         city: "Athens",
@@ -170,7 +170,7 @@ destinationsSection: {
         flightsFrom: "€120",
         hotelsFrom: "€180",
         image: "/Country Details/Section 3/Images/image-1.png",
-        icon: "/Country Details/Section 3/Icons/Vector-1.png"
+        icon: "/Featured%20Countries/flag.svg"
       },
       {
         city: "Mykonos",
@@ -180,7 +180,7 @@ destinationsSection: {
         flightsFrom: "€120",
         hotelsFrom: "€180",
         image: "/Country Details/Section 3/Images/image-2.png",
-        icon: "/Country Details/Section 3/Icons/Vector-1.png"
+        icon: "/Featured%20Countries/flag.svg"
       },
       {
         city: "Crete",
@@ -190,7 +190,7 @@ destinationsSection: {
         flightsFrom: "€120",
         hotelsFrom: "€180",
         image: "/Country Details/Section 3/Images/image-3.png",
-        icon: "/Country Details/Section 3/Icons/Vector-1.png"
+        icon: "/Featured%20Countries/flag.svg"
       }
     ]
   },
