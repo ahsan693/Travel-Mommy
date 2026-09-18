@@ -142,14 +142,14 @@ export const travelData: TravelPageData = {
     image: "/Country Details/Section 2/Images/Rectangle.png",
     imageAlt: "Greece Coastline"
   },
-  destinationsSection: {
+destinationsSection: {
     title: "Explore Greece's Most Popular Destinations",
     description: "Discover the best places to visit in Greece, from bustling cities to idyllic islands.",
     flightsPrefix: "Flights from",
     flightsIcon: "plane",
     hotelsPrefix: "Hotels from",
     hotelsIcon: "building-2",
-    bookNowText: "Book Now",
+    bookNowText: "View Flights", // Updated from "Book Now"
     bookNowIcon: "arrow-right",
     items: [
       {
