@@ -26,7 +26,8 @@ import {
   Sun,
   Cloud,
   Snowflake,
-  Thermometer
+  Thermometer,
+  CloudSun
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -38,6 +39,8 @@ import {
   type TravelFlight,
   type TravelPageData,
   type BestTimeSeason,
+  type WeatherMonth,
+  type AirportItem,
 } from "../../../lib/data/travelData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
@@ -69,6 +72,7 @@ const LucideIconMap: Record<string, React.ComponentType<{ size?: number; classNa
   "cloud": Cloud,
   "snowflake": Snowflake,
   "thermometer": Thermometer,
+  "cloud-sun": CloudSun,
 };
 
 /* =====================================================================
@@ -468,6 +472,152 @@ function BestTimeSection({ data }: { data: TravelPageData["bestTimeSection"] }) 
 }
 
 /* =====================================================================
+   GREECE WEATHER SECTION
+===================================================================== */
+
+function WeatherMonthCard({ item }: { item: WeatherMonth }) {
+  const IconComponent = LucideIconMap[item.icon] || Cloud;
+  const isHighlight = item.isHighlight;
+
+  return (
+    <div
+      className={`flex h-[193px] w-full flex-col justify-between rounded-[14px] px-[12px] py-[20px] text-center transition-transform duration-300 hover:-translate-y-1 ${
+        isHighlight ? "bg-[#FDDB32]" : "bg-[#19191A]"
+      }`}
+    >
+      <span
+        className={`font-sans text-[16px] font-medium leading-[20px] tracking-[0px] ${
+          isHighlight ? "text-[#000000]" : "text-[#FFFFFF]"
+        }`}
+      >
+        {item.month}
+      </span>
+
+      <div className="flex w-full items-center justify-center">
+        <IconComponent
+          size={32}
+          strokeWidth={1.5}
+          className={`${
+            item.icon === "sun"
+              ? "text-amber-400"
+              : isHighlight
+              ? "text-black"
+              : "text-white"
+          }`}
+        />
+      </div>
+
+      <span
+        className={`font-sans text-[32px] font-medium leading-[32px] tracking-[0px] ${
+          isHighlight ? "text-[#000000]" : "text-[#FFFFFF]"
+        }`}
+      >
+        {item.temp}
+      </span>
+
+      <span
+        className={`font-sans text-[13px] font-normal leading-[16px] tracking-[0px] ${
+          isHighlight ? "text-[#333333]" : "text-[#E6E6E6]"
+        }`}
+      >
+        {item.desc}
+      </span>
+    </div>
+  );
+}
+
+function WeatherSection({ data }: { data: TravelPageData["weatherSection"] }) {
+  return (
+    <section className="w-full bg-[#000000] py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[60px] px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        
+        {/* Header */}
+        <div className="flex flex-col gap-[12px] max-w-[1200px] mx-auto w-full">
+          <h2 className="font-sans text-[52px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] max-[768px]:text-[36px]">
+            {data.title}
+          </h2>
+          <p className="font-sans text-[16px] font-normal leading-[1.6] tracking-[0px] text-[#9999AA]">
+            {data.description}
+          </p>
+        </div>
+
+        {/* Cards Row */}
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[24px]">
+          <div className="grid w-full grid-cols-2 gap-[16px] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12">
+            {data.items.map((item, i) => (
+              <WeatherMonthCard key={i} item={item} />
+            ))}
+          </div>
+
+          {/* Legend */}
+          <div className="flex w-full justify-center">
+            <div className="flex items-center gap-[8px] rounded-full bg-[#19191A] px-[16px] py-[8px]">
+              <div className="h-[12px] w-[12px] rounded-full bg-[#FDDB32]" />
+              <span className="font-sans text-[14px] font-normal text-[#9999AA]">
+                {data.legendText}
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* =====================================================================
+   MAJOR AIRPORTS IN GREECE SECTION
+===================================================================== */
+
+function AirportCard({ item }: { item: AirportItem }) {
+  return (
+    <div className="flex h-[320px] w-full flex-col overflow-hidden rounded-[20px] border border-[#E5E5E0] bg-[#FDFCF9] transition-transform duration-300 hover:-translate-y-1">
+      <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-neutral-100">
+        <Image
+          src={item.image}
+          alt={item.name}
+          fill
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 360px"
+          className="object-cover transition-transform duration-700 hover:scale-105"
+        />
+        <div className="absolute bottom-[16px] left-[16px] flex h-[32px] items-center justify-center rounded-[8px] bg-[#FDDB32] px-[12px] py-[4px] shadow-sm">
+          <span className="font-sans text-[14px] font-bold leading-none text-[#000000]">
+            {item.code}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex h-[100px] w-full flex-col gap-[6px] p-[16px]">
+        <h3 className="truncate font-sans text-[22px] font-semibold leading-[25px] tracking-[0px] text-[#111111]">
+          {item.name}
+        </h3>
+        <p className="line-clamp-2 font-sans text-[14px] font-normal leading-[1.4] tracking-[0px] text-[#4D4D4D]">
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function AirportsSection({ data }: { data: TravelPageData["airportsSection"] }) {
+  return (
+    <section className="w-full bg-[#FFFFFF] py-[100px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[48px] px-[160px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        <h2 className="font-sans text-[48px] font-medium leading-[1] tracking-[0px] text-[#000000] max-[768px]:text-[32px]">
+          {data.title}
+        </h2>
+
+        <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-3">
+          {data.items.map((item, i) => (
+            <AirportCard key={i} item={item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =====================================================================
    TRAVEL HELP (FAQ) SECTION
 ===================================================================== */
 
@@ -476,10 +626,10 @@ function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"]
 
   return (
     <section className="w-full bg-[#F9F8F5] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[64px] lg:flex-row lg:items-start px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row px-[160px] gap-[80px] max-[1024px]:px-[40px] max-[768px]:px-[20px] max-[1024px]:gap-[40px]">
         
-        {/* Left Col */}
-        <div className="flex w-full max-w-[400px] flex-col gap-[12px] shrink-0">
+        {/* Left Col (Header Text) */}
+        <div className="flex w-full lg:max-w-[400px] flex-col gap-[24px] shrink-0">
           <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[36px]">
             {faqs.title}
           </h2>
@@ -488,29 +638,39 @@ function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"]
           </p>
         </div>
 
-        {/* Right Col */}
-        <div className="flex w-full flex-col gap-[24px]">
+        {/* Right Col (FAQ Cards) */}
+        <div className="flex w-full lg:max-w-[640px] flex-col gap-[12px]">
           {faqs.faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <div key={i} className="flex flex-col gap-[12px] border-b border-[#E5E7EB] pb-[24px]">
+              <div 
+                key={i} 
+                className="flex flex-col rounded-[24px] bg-[#FFFFFF] p-[32px] transition-colors duration-300"
+              >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between text-left"
+                  className="flex w-full items-center justify-between text-left outline-none"
                 >
                   <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">
                     {faq.q}
                   </span>
-                  <span className="flex shrink-0 text-[#000000]">
-                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                  <span className="flex h-[20px] w-[20px] shrink-0 items-center justify-center text-[#000000]">
+                    {isOpen ? <Minus size={20} strokeWidth={1.5} /> : <Plus size={20} strokeWidth={1.5} />}
                   </span>
                 </button>
-                {isOpen && (
-                  <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#7D7D7D]">
-                    {faq.a}
-                  </p>
-                )}
+                
+                <div 
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] mt-[16px] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#7D7D7D]">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -641,10 +801,9 @@ export default function DiscoverGreecePage({ data = travelData }: { data?: Trave
       <DestinationsSection destinations={data.destinationsSection} />
       <PopularFlightsSection popularFlights={data.popularFlightsSection} />
       <TopThingsToDoSection thingsToDo={data.thingsToDoSection} />
-      
-      {/* NEW SECTION ADDED HERE */}
       <BestTimeSection data={data.bestTimeSection} />
-      
+      <WeatherSection data={data.weatherSection} />
+      <AirportsSection data={data.airportsSection} />
       <TravelHelpSection faqs={data.travelHelpSection} />
       <NearbyCountriesSection nearbyCountries={data.nearbyCountriesSection} />
       <NewsletterSection newsletter={data.newsletterSection} />

@@ -48,6 +48,21 @@ export interface BestTimeSeason {
   iconColor: string;
 }
 
+export interface WeatherMonth {
+  month: string;
+  icon: string;
+  temp: string;
+  desc: string;
+  isHighlight?: boolean;
+}
+
+export interface AirportItem {
+  code: string;
+  name: string;
+  desc: string;
+  image: string;
+}
+
 export interface NearbyCountry { 
   city: string; 
   desc: string; 
@@ -106,6 +121,16 @@ export interface TravelPageData {
   bestTimeSection: {
     title: string;
     items: BestTimeSeason[];
+  };
+  weatherSection: {
+    title: string;
+    description: string;
+    legendText: string;
+    items: WeatherMonth[];
+  };
+  airportsSection: {
+    title: string;
+    items: AirportItem[];
   };
   nearbyCountriesSection: {
     title: string;
@@ -331,6 +356,60 @@ export const travelData: TravelPageData = {
       }
     ]
   },
+  weatherSection: {
+    title: "Greece Weather by Month",
+    description: "Get a quick overview of average high temperatures throughout the year to help you plan your perfect Greek getaway.",
+    legendText: "Best time to visit (shoulder season)",
+    items: [
+      { month: "Jan", icon: "cloud-sun", temp: "13°", desc: "Cool and dry", isHighlight: false },
+      { month: "Feb", icon: "cloud", temp: "14°", desc: "Cool and dry", isHighlight: false },
+      { month: "Mar", icon: "cloud-sun", temp: "16°", desc: "Mild and pleasant", isHighlight: false },
+      { month: "Apr", icon: "sun", temp: "20°", desc: "Warmer days", isHighlight: false },
+      { month: "May", icon: "cloud-sun", temp: "25°", desc: "Great conditions", isHighlight: true },
+      { month: "Jun", icon: "sun", temp: "30°", desc: "Hot and sunny", isHighlight: true },
+      { month: "Jul", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Aug", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Sep", icon: "sun", temp: "29°", desc: "Ideal weather", isHighlight: true },
+      { month: "Oct", icon: "cloud-sun", temp: "24°", desc: "Warm and pleasant", isHighlight: true },
+      { month: "Nov", icon: "cloud", temp: "19°", desc: "Cooler days", isHighlight: false },
+      { month: "Dec", icon: "cloud", temp: "15°", desc: "Cool and quiet", isHighlight: false }
+    ]
+  },
+  airportsSection: {
+    title: "Major Airports in Greece",
+    items: [
+      {
+        code: "ATH",
+        name: "Athens International Airport",
+        desc: "The gateway to Greece, with Acropolis views and warm Mediterranean light.",
+        image: "https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        code: "SKG",
+        name: "Thessaloniki Airport",
+        desc: "A coastal arrival with sunset views, waterfront promenades, and northern Greek charm.",
+        image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        code: "HER",
+        name: "Heraklion Airport",
+        desc: "Crete's main gateway, with Venetian harbor views and a warm island welcome.",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        code: "CHQ",
+        name: "Chania Airport",
+        desc: "A charming arrival in western Crete, with old-town harbor charm and turquoise sea.",
+        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        code: "CFU",
+        name: "Corfu Airport",
+        desc: "A scenic Ionian arrival, with historic architecture, green hills, and island elegance.",
+        image: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
   nearbyCountriesSection: {
     title: "Explore Nearby Countries",
     description: "Extend your journey beyond Greece with these spectacular nearby Mediterranean jewels.",
@@ -364,10 +443,10 @@ export const travelData: TravelPageData = {
     ]
   },
   travelHelpSection: {
-    title: "Travel Help",
-    description: "Everything you need to know before you jet off to the islands.",
+    title: "Travel Help / FAQ",
+    description: "Everything you need to know before visiting Greece.",
     faqs: [
-      { q: "When is the best time to visit Santorini?", a: "The best time to visit is during the shoulder seasons (May-June and September-October) when the weather is pleasant and the crowds are thinner." },
+      { q: "When is the best time to visit Greece?", a: "The best time to visit is during the shoulder seasons (May-June and September-October) when the weather is pleasant and the crowds are thinner." },
       { q: "How do I get around the island?", a: "The most common way to get around is by renting an ATV, scooter, or taking the local buses." },
       { q: "Is Santorini expensive for tourists?", a: "Santorini caters to all budgets, but luxury hotspots like Oia can be on the pricier side compared to other destinations." },
       { q: "What should I pack for my trip?", a: "Pack light, breathable clothing for the summer, comfortable walking shoes for ruins, swimwear, a hat, and plenty of sunscreen." },
