@@ -21,7 +21,12 @@ import {
   Star,
   Check,
   Plus,
-  Minus
+  Minus,
+  Leaf,
+  Sun,
+  Cloud,
+  Snowflake,
+  Thermometer
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -32,6 +37,7 @@ import {
   type TravelDestination,
   type TravelFlight,
   type TravelPageData,
+  type BestTimeSeason,
 } from "../../../lib/data/travelData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
@@ -40,7 +46,7 @@ import { footerData } from "../../../lib/data/footerData";
    LUCIDE ICON MAP & HELPER
 ===================================================================== */
 
-const LucideIconMap: Record<string, React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>> = {
+const LucideIconMap: Record<string, React.ComponentType<{ size?: number; className?: string; strokeWidth?: number; color?: string }>> = {
   "map-pin": MapPin,
   "coins": Coins,
   "message-circle": MessageCircle,
@@ -58,6 +64,11 @@ const LucideIconMap: Record<string, React.ComponentType<{ size?: number; classNa
   "arrow-right": ArrowRight,
   "arrow-up-right": ArrowUpRight,
   "star": Star,
+  "leaf": Leaf,
+  "sun": Sun,
+  "cloud": Cloud,
+  "snowflake": Snowflake,
+  "thermometer": Thermometer,
 };
 
 /* =====================================================================
@@ -201,7 +212,6 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
 
   return (
     <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-[#FFFFFF] transition-transform duration-300 hover:-translate-y-1">
-      {/* Image Container */}
       <div className="relative h-[220px] w-full shrink-0 overflow-hidden bg-neutral-100">
         <Image 
           src={item.image} 
@@ -212,10 +222,7 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
         />
       </div>
 
-      {/* Content Container */}
       <div className="flex h-[260px] w-full flex-col gap-[16px] bg-gradient-to-b from-[#FFFFFF] to-[#F9FBF5] p-[24px]">
-        
-        {/* Title Row */}
         <div className="flex h-[24px] w-full items-center justify-between">
           <div className="flex items-center gap-[10px]">
             <h3 className="font-sans text-[24px] font-medium leading-[24px] tracking-[-0.48px] text-[#000000]">
@@ -223,22 +230,16 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
             </h3>
             {item.icon && (
               <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-100 bg-white">
-                <img
-                  src={item.icon}
-                  alt={`${item.city} flag`}
-                  className="h-full w-full object-cover"
-                />
+                <img src={item.icon} alt={`${item.city} flag`} className="h-full w-full object-cover" />
               </div>
             )}
           </div>
         </div>
 
-        {/* Description */}
         <p className="h-[60px] w-full max-w-[234px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000] opacity-85">
           {item.desc}
         </p>
 
-        {/* Flight Price Badge */}
         <div className="flex items-start">
           {item.flightsFrom && (
             <div className="flex h-[32px] items-center gap-[8px] rounded-full border border-[#E6BD00] bg-[#FFED91] pb-[6px] pl-[8px] pr-[10px] pt-[6px]">
@@ -250,7 +251,6 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
           )}
         </div>
 
-        {/* CTA Button */}
         <div className="mt-auto">
           <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
             {sectionData.bookNowText} <BookIcon size={20} strokeWidth={2} className="text-[#FFFFFF]" />
@@ -265,8 +265,6 @@ function DestinationsSection({ destinations }: { destinations: TravelPageData["d
   return (
     <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        
-        {/* Header Section */}
         <div className="mb-[56px] flex flex-col gap-[12px]">
           <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
             {destinations.title}
@@ -275,8 +273,6 @@ function DestinationsSection({ destinations }: { destinations: TravelPageData["d
             {destinations.description}
           </p>
         </div>
-        
-        {/* Grid Layout */}
         <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
           {destinations.items.map((dest, i) => (
             <DestinationCard key={i} item={dest} sectionData={destinations} />
@@ -346,7 +342,7 @@ function PopularFlightsSection({ popularFlights }: { popularFlights: TravelPageD
       <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
         <div className="mb-[48px] flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[32px]">
-            {popularFlights.titlePart1} <span className="text-[#FDDB32]">{popularFlights.titleHighlight}</span>
+            {popularFlights.titlePart1} <span className="text-[#333333]">{popularFlights.titleHighlight}</span>
           </h2>
           <button className="flex h-[44px] items-center gap-[6px] rounded-[12px] bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000] transition-colors hover:bg-[#e5c52c]">
             {popularFlights.browseCtaText} <BrowseIcon size={14} />
@@ -400,6 +396,76 @@ function TopThingsToDoSection({ thingsToDo }: { thingsToDo: TravelPageData["thin
   );
 }
 
+/* =====================================================================
+   BEST TIME TO VISIT SECTION
+===================================================================== */
+
+function BestTimeCard({ item }: { item: BestTimeSeason }) {
+  const IconComponent = LucideIconMap[item.icon] || Cloud;
+  const ThermometerIcon = LucideIconMap["thermometer"] || Thermometer;
+
+  return (
+    <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FDFCF9] transition-transform duration-300 hover:-translate-y-1 h-[346px]">
+      <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-neutral-100">
+        <Image 
+          src={item.image} 
+          alt={item.season} 
+          fill 
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 262px"
+          className="object-cover transition-transform duration-700 hover:scale-105" 
+        />
+      </div>
+
+      <div className="flex h-[166px] w-full flex-col gap-[16px] p-[20px]">
+        <div className="flex items-center gap-[12px]">
+          <div 
+            className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[18px]" 
+            style={{ backgroundColor: item.iconBg }}
+          >
+            <IconComponent size={18} strokeWidth={2} color={item.iconColor} />
+          </div>
+          <div className="flex flex-col gap-[2px]">
+            <span className="font-sans text-[16px] font-medium leading-[20px] text-[#000000]">
+              {item.season}
+            </span>
+            <span className="font-sans text-[12px] font-normal leading-[16px] text-[#767676]">
+              {item.months}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-[6px]">
+          <ThermometerIcon size={16} strokeWidth={1.8} className="text-[#000000]" />
+          <span className="font-sans text-[14px] font-medium leading-[20px] text-[#000000]">
+            {item.temp}
+          </span>
+        </div>
+
+        <p className="font-sans text-[13px] font-normal leading-[18px] text-[#4B5563]">
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function BestTimeSection({ data }: { data: TravelPageData["bestTimeSection"] }) {
+  return (
+    <section className="w-full bg-[#FFFFFF] py-[100px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[48px] px-[160px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+        <h2 className="font-sans text-[48px] font-medium leading-[1] tracking-[0px] text-[#000000] max-[768px]:text-[32px]">
+          {data.title}
+        </h2>
+        
+        <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
+          {data.items.map((item, i) => (
+            <BestTimeCard key={i} item={item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* =====================================================================
    TRAVEL HELP (FAQ) SECTION
@@ -575,6 +641,10 @@ export default function DiscoverGreecePage({ data = travelData }: { data?: Trave
       <DestinationsSection destinations={data.destinationsSection} />
       <PopularFlightsSection popularFlights={data.popularFlightsSection} />
       <TopThingsToDoSection thingsToDo={data.thingsToDoSection} />
+      
+      {/* NEW SECTION ADDED HERE */}
+      <BestTimeSection data={data.bestTimeSection} />
+      
       <TravelHelpSection faqs={data.travelHelpSection} />
       <NearbyCountriesSection nearbyCountries={data.nearbyCountriesSection} />
       <NewsletterSection newsletter={data.newsletterSection} />

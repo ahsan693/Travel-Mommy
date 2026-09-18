@@ -37,6 +37,17 @@ export interface TravelActivity {
   image: string; 
 }
 
+export interface BestTimeSeason {
+  season: string;
+  months: string;
+  temp: string;
+  desc: string;
+  image: string;
+  icon: string;
+  iconBg: string;
+  iconColor: string;
+}
+
 export interface NearbyCountry { 
   city: string; 
   desc: string; 
@@ -92,6 +103,10 @@ export interface TravelPageData {
     title: string;
     items: TravelActivity[];
   };
+  bestTimeSection: {
+    title: string;
+    items: BestTimeSeason[];
+  };
   nearbyCountriesSection: {
     title: string;
     description: string;
@@ -142,14 +157,14 @@ export const travelData: TravelPageData = {
     image: "/Country Details/Section 2/Images/Rectangle.png",
     imageAlt: "Greece Coastline"
   },
-destinationsSection: {
+  destinationsSection: {
     title: "Explore Greece's Most Popular Destinations",
     description: "Discover the best places to visit in Greece, from bustling cities to idyllic islands.",
     flightsPrefix: "Flights from",
     flightsIcon: "plane",
     hotelsPrefix: "Hotels from",
     hotelsIcon: "building-2",
-    bookNowText: "View Flights", // Updated from "Book Now"
+    bookNowText: "View Flights",
     bookNowIcon: "arrow-right",
     items: [
       {
@@ -246,28 +261,73 @@ destinationsSection: {
     title: "Top Things To Do",
     items: [
       {
-        title: "Oia Sunset Catamaran Cruise",
+        title: "Explore the Acropolis in Athens",
         duration: "5 Hours",
-        price: "From €95",
+        price: "", 
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
       },
       {
-        title: "Acropolis Guided Tour",
-        duration: "2 Hours",
-        price: "From €35",
+        title: "Visit Santorini",
+        duration: "3 Hours",
+        price: "",
         image: "https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&w=1200&q=80"
       },
       {
-        title: "Delos & Rhenia Boat Trip",
-        duration: "6 Hours",
-        price: "From €80",
+        title: "Discover Meteora",
+        duration: "2 Hours",
+        price: "",
         image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80"
       },
       {
-        title: "Knossos Palace Ticket",
-        duration: "Flexible",
-        price: "From €18",
+        title: "Explore Crete",
+        duration: "4 Hours",
+        price: "",
         image: "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80"
+      }
+    ]
+  },
+  bestTimeSection: {
+    title: "Best Time to Visit Greece",
+    items: [
+      {
+        season: "Spring",
+        months: "April – May",
+        temp: "17 – 24°C",
+        desc: "Mild weather, fewer crowds.",
+        image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
+        icon: "leaf",
+        iconBg: "#F0FDF4",
+        iconColor: "#16A34A"
+      },
+      {
+        season: "Summer",
+        months: "June – August",
+        temp: "28 – 35°C",
+        desc: "Hot, busiest period, ideal for beaches.",
+        image: "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=800&q=80",
+        icon: "sun",
+        iconBg: "#FEFCE8",
+        iconColor: "#CA8A04"
+      },
+      {
+        season: "Autumn",
+        months: "September – October",
+        temp: "22 – 28°C",
+        desc: "Warm weather, fewer crowds.",
+        image: "https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?auto=format&fit=crop&w=800&q=80",
+        icon: "cloud",
+        iconBg: "#FFF7ED",
+        iconColor: "#EA580C"
+      },
+      {
+        season: "Winter",
+        months: "November – March",
+        temp: "10 – 16°C",
+        desc: "Cooler and quieter, better for city/cultural travel.",
+        image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80",
+        icon: "snowflake",
+        iconBg: "#EBF8FF",
+        iconColor: "#38BDF8"
       }
     ]
   },
