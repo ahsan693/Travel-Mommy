@@ -361,18 +361,18 @@ export const travelData: TravelPageData = {
     description: "Get a quick overview of average high temperatures throughout the year to help you plan your perfect Greek getaway.",
     legendText: "Best time to visit (shoulder season)",
     items: [
-      { month: "Jan", icon: "cloud-sun", temp: "13°", desc: "Cool and dry", isHighlight: false },
-      { month: "Feb", icon: "cloud", temp: "14°", desc: "Cool and dry", isHighlight: false },
-      { month: "Mar", icon: "cloud-sun", temp: "16°", desc: "Mild and pleasant", isHighlight: false },
-      { month: "Apr", icon: "sun", temp: "20°", desc: "Warmer days", isHighlight: false },
-      { month: "May", icon: "cloud-sun", temp: "25°", desc: "Great conditions", isHighlight: true },
-      { month: "Jun", icon: "sun", temp: "30°", desc: "Hot and sunny", isHighlight: true },
-      { month: "Jul", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
-      { month: "Aug", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
-      { month: "Sep", icon: "sun", temp: "29°", desc: "Ideal weather", isHighlight: true },
-      { month: "Oct", icon: "cloud-sun", temp: "24°", desc: "Warm and pleasant", isHighlight: true },
-      { month: "Nov", icon: "cloud", temp: "19°", desc: "Cooler days", isHighlight: false },
-      { month: "Dec", icon: "cloud", temp: "15°", desc: "Cool and quiet", isHighlight: false }
+      { month: "Jan", icon: "/travel/Weahter Emojis/⛅.png", temp: "13°", desc: "Cool and dry", isHighlight: false },
+      { month: "Feb", icon: "/travel/Weahter Emojis/☁️.png", temp: "14°", desc: "Cool and dry", isHighlight: false },
+      { month: "Mar", icon: "/travel/Weahter Emojis/⛅.png", temp: "16°", desc: "Mild and pleasant", isHighlight: false },
+      { month: "Apr", icon: "/travel/Weahter Emojis/🌞.png", temp: "20°", desc: "Warmer days", isHighlight: false },
+      { month: "May", icon: "/travel/Weahter Emojis/⛅-1.png", temp: "25°", desc: "Great conditions", isHighlight: true },
+      { month: "Jun", icon: "/travel/Weahter Emojis/🌞-1.png", temp: "30°", desc: "Hot and sunny", isHighlight: true },
+      { month: "Jul", icon: "/travel/Weahter Emojis/🌞-2.png", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Aug", icon: "/travel/Weahter Emojis/🌞-3.png", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Sep", icon: "/travel/Weahter Emojis/🌞-1.png", temp: "29°", desc: "Ideal weather", isHighlight: true },
+      { month: "Oct", icon: "/travel/Weahter Emojis/⛅-1.png", temp: "24°", desc: "Warm and pleasant", isHighlight: true },
+      { month: "Nov", icon: "/travel/Weahter Emojis/☁️-1.png", temp: "19°", desc: "Cooler days", isHighlight: false },
+      { month: "Dec", icon: "/travel/Weahter Emojis/☁️-2.png", temp: "15°", desc: "Cool and quiet", isHighlight: false }
     ]
   },
   airportsSection: {
