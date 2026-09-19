@@ -1,89 +1,115 @@
 "use client";
 
-import {
-  ArrowRightLeft,
-  Briefcase,
-  Calendar,
-  ChevronDown,
-  Plane,
-  Users,
-} from "lucide-react";
+import { ChevronDown, Plane, Briefcase } from "lucide-react";
 import { widgetData, type WidgetData } from "../../../lib/data/widgetData";
 
 export default function Widget({ data = widgetData }: { data?: WidgetData }) {
   return (
-    <div className="flex w-full max-w-[1216px] flex-col gap-[10px] rounded-[24px] bg-white p-[24px] shadow-2xl">
+    <div className="mx-auto flex w-full max-w-[1216px] flex-col gap-[10px] rounded-[24px] bg-[#FFFFFF] p-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+      
+      {/* Dropdowns Row */}
       <div className="flex items-center gap-[10px]">
         {data.dropdowns.map((dropdown, index) => (
           <button
             key={dropdown}
-            className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50"
+            className="flex h-[40px] items-center gap-[8px] rounded-full border border-[#E6E6E6] px-[16px] text-[14px] font-medium text-[#111111] transition-colors hover:bg-gray-50"
           >
             {index === 0 ? <Plane size={16} /> : <Briefcase size={16} />}
             {dropdown}
-            <ChevronDown size={16} className="text-gray-500" />
+            <ChevronDown size={16} className="text-[#767676]" />
           </button>
         ))}
       </div>
 
-      <div className="flex flex-col gap-[11px] lg:flex-row lg:items-center">
-        <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-          <Plane size={24} className="text-gray-600" />
-          <div className="flex flex-col">
-            <span className="text-[13px] text-gray-500">{data.departure.label}</span>
-            <span className="text-[16px] font-semibold text-black">{data.departure.value}</span>
+      {/* Main Inputs Row */}
+      <div className="flex w-full flex-col gap-[11px] lg:flex-row lg:items-center">
+        
+        {/* Departure Field */}
+        <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-transparent bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#E6E6E6]">
+          <div className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91]">
+            <img src={encodeURI(data.departure.icon)} alt="Departure Icon" className="h-[16px] w-[16px] object-contain" />
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="truncate text-[13px] font-normal text-[#767676]">{data.departure.label}</span>
+            <span className="truncate text-[16px] font-semibold text-[#111111]">{data.departure.value}</span>
           </div>
         </div>
 
-        <button className="hidden shrink-0 items-center justify-center p-2 text-gray-400 transition-colors hover:text-black lg:flex">
-          <ArrowRightLeft size={20} />
+        {/* Swap Icon */}
+        <button className="hidden h-[30px] w-[30px] shrink-0 items-center justify-center transition-transform hover:scale-110 lg:flex">
+          <img src={encodeURI(data.swapIcon)} alt="Swap" className="h-[30px] w-[30px] object-contain" />
         </button>
 
-        <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-          <Plane size={24} className="text-gray-600" />
-          <div className="flex flex-col">
-            <span className="text-[13px] text-gray-500">{data.destination.label}</span>
-            <span className="text-[16px] font-medium text-gray-400">{data.destination.placeholder}</span>
+        {/* Destination Field */}
+        <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-transparent bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#E6E6E6]">
+          <div className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91]">
+            <img src={encodeURI(data.destination.icon)} alt="Destination Icon" className="h-[16px] w-[16px] object-contain" />
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="truncate text-[13px] font-normal text-[#767676]">{data.destination.label}</span>
+            <span className="truncate text-[16px] font-medium text-[#9999AA]">{data.destination.placeholder}</span>
           </div>
         </div>
 
-        <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-          <Calendar size={24} className="text-gray-600" />
-          <div className="flex flex-col">
-            <span className="text-[13px] text-gray-500">{data.departDate.label}</span>
-            <span className="text-[16px] font-semibold text-black">{data.departDate.value}</span>
+        {/* Depart Date Field */}
+        <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-transparent bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#E6E6E6]">
+          <div className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91]">
+            <img src={encodeURI(data.departDate.icon)} alt="Depart Date Icon" className="h-[16px] w-[16px] object-contain" />
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="truncate text-[13px] font-normal text-[#767676]">{data.departDate.label}</span>
+            <span className="truncate text-[16px] font-semibold text-[#111111]">{data.departDate.value}</span>
           </div>
         </div>
 
-        <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-          <Calendar size={24} className="text-gray-600" />
-          <div className="flex flex-col">
-            <span className="text-[13px] text-gray-500">{data.returnDate.label}</span>
-            <span className="text-[16px] font-semibold text-black">{data.returnDate.value}</span>
+        {/* Return Date Field */}
+        <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-transparent bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#E6E6E6]">
+          <div className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91]">
+            <img src={encodeURI(data.returnDate.icon)} alt="Return Date Icon" className="h-[16px] w-[16px] object-contain" />
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="truncate text-[13px] font-normal text-[#767676]">{data.returnDate.label}</span>
+            <span className="truncate text-[16px] font-semibold text-[#111111]">{data.returnDate.value}</span>
           </div>
         </div>
 
-        <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-          <Users size={24} className="text-gray-600" />
-          <div className="flex flex-col">
-            <span className="text-[13px] text-gray-500">{data.travellers.label}</span>
-            <span className="text-[16px] font-semibold text-black">{data.travellers.value}</span>
+        {/* Travellers Field */}
+        <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-transparent bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#E6E6E6] lg:flex-none lg:w-[248px]">
+          <div className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91]">
+            <img src={encodeURI(data.travellers.icon)} alt="Travellers Icon" className="h-[16px] w-[16px] object-contain" />
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="truncate text-[13px] font-normal text-[#767676]">{data.travellers.label}</span>
+            <span className="truncate text-[16px] font-semibold text-[#111111]">{data.travellers.value}</span>
           </div>
         </div>
 
-        <button className="flex h-[75px] items-center justify-center rounded-2xl bg-[#FDDB32] px-8 text-[18px] font-medium text-black transition-colors hover:bg-[#f0cf2e]">
+        {/* Search Button */}
+        <button className="flex h-[75px] w-full shrink-0 items-center justify-center rounded-[12px] bg-[#FDDB32] text-[16px] font-medium text-[#111111] transition-colors hover:bg-[#f0cf2e] lg:w-[79px]">
           {data.buttonText}
         </button>
       </div>
 
-      <div className="flex items-center gap-6 pb-2 pt-1">
+      {/* Checkboxes Row */}
+      <div className="flex w-full flex-wrap items-center gap-[16px] pt-[2px]">
         {data.checkboxes.map((checkbox, index) => (
-          <label key={`${checkbox}-${index}`} className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
-            <input type="checkbox" defaultChecked={index === 1} className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
-            {checkbox}
+          <label key={index} className="flex cursor-pointer items-center gap-[8px] text-[14px] font-medium text-[#111111]">
+            <div 
+              className={`flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border ${
+                checkbox.checked ? 'border-[#FDDB32] bg-[#FDDB32]' : 'border-[#E6E6E6] bg-white'
+              }`}
+            >
+              {checkbox.checked && (
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 4L3.5 6.5L9 1" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </div>
+            {checkbox.label}
           </label>
         ))}
       </div>
+      
     </div>
   );
 }
