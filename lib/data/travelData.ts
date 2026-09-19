@@ -361,18 +361,18 @@ export const travelData: TravelPageData = {
     description: "Get a quick overview of average high temperatures throughout the year to help you plan your perfect Greek getaway.",
     legendText: "Best time to visit (shoulder season)",
     items: [
-      { month: "Jan", icon: "cloud-sun", temp: "13°", desc: "Cool and dry", isHighlight: false },
-      { month: "Feb", icon: "cloud", temp: "14°", desc: "Cool and dry", isHighlight: false },
-      { month: "Mar", icon: "cloud-sun", temp: "16°", desc: "Mild and pleasant", isHighlight: false },
-      { month: "Apr", icon: "sun", temp: "20°", desc: "Warmer days", isHighlight: false },
-      { month: "May", icon: "cloud-sun", temp: "25°", desc: "Great conditions", isHighlight: true },
-      { month: "Jun", icon: "sun", temp: "30°", desc: "Hot and sunny", isHighlight: true },
-      { month: "Jul", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
-      { month: "Aug", icon: "sun", temp: "33°", desc: "Hot and dry", isHighlight: false },
-      { month: "Sep", icon: "sun", temp: "29°", desc: "Ideal weather", isHighlight: true },
-      { month: "Oct", icon: "cloud-sun", temp: "24°", desc: "Warm and pleasant", isHighlight: true },
-      { month: "Nov", icon: "cloud", temp: "19°", desc: "Cooler days", isHighlight: false },
-      { month: "Dec", icon: "cloud", temp: "15°", desc: "Cool and quiet", isHighlight: false }
+      { month: "Jan", icon: "/travel/⛅.svg", temp: "13°", desc: "Cool and dry", isHighlight: false },
+      { month: "Feb", icon: "/travel/☁️.svg", temp: "14°", desc: "Cool and dry", isHighlight: false },
+      { month: "Mar", icon: "/travel/⛅.svg", temp: "16°", desc: "Mild and pleasant", isHighlight: false },
+      { month: "Apr", icon: "/travel/🌞.svg", temp: "20°", desc: "Warmer days", isHighlight: false },
+      { month: "May", icon: "/travel/⛅-1.svg", temp: "25°", desc: "Great conditions", isHighlight: true },
+      { month: "Jun", icon: "/travel/🌞-1.svg", temp: "30°", desc: "Hot and sunny", isHighlight: true },
+      { month: "Jul", icon: "/travel/🌞-2.svg", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Aug", icon: "/travel/🌞-3.svg", temp: "33°", desc: "Hot and dry", isHighlight: false },
+      { month: "Sep", icon: "/travel/🌞-1.svg", temp: "29°", desc: "Ideal weather", isHighlight: true },
+      { month: "Oct", icon: "/travel/⛅-1.svg", temp: "24°", desc: "Warm and pleasant", isHighlight: true },
+      { month: "Nov", icon: "/travel/☁️-1.svg", temp: "19°", desc: "Cooler days", isHighlight: false },
+      { month: "Dec", icon: "/travel/☁️-2.svg", temp: "15°", desc: "Cool and quiet", isHighlight: false }
     ]
   },
   airportsSection: {
@@ -447,17 +447,17 @@ export const travelData: TravelPageData = {
     description: "Everything you need to know before visiting Greece.",
     faqs: [
       { q: "When is the best time to visit Greece?", a: "The best time to visit is during the shoulder seasons (May-June and September-October) when the weather is pleasant and the crowds are thinner." },
-      { q: "How do I get around the island?", a: "The most common way to get around is by renting an ATV, scooter, or taking the local buses." },
-      { q: "Is Santorini expensive for tourists?", a: "Santorini caters to all budgets, but luxury hotspots like Oia can be on the pricier side compared to other destinations." },
-      { q: "What should I pack for my trip?", a: "Pack light, breathable clothing for the summer, comfortable walking shoes for ruins, swimwear, a hat, and plenty of sunscreen." },
       { q: "Do I need a visa to visit Greece?", a: "Greece is part of the Schengen Area. If you are an EU citizen or from a visa-exempt country, you do not need a visa for up to 90 days." },
-      { q: "Is Greece expensive?", a: "Greece offers excellent value for money. While luxury islands can be expensive, the mainland and lesser-known islands are very affordable." },
-      { q: "Do I need a visa?", a: "Please check your local government's travel advisory for the most up-to-date visa requirements for traveling to Greece." },
-      { q: "Which Greek islands are the best?", a: "Santorini, Mykonos, Crete, and Rhodes are among the most popular and highly rated islands depending on your travel style." },
-      { q: "How many days should I spend in Greece?", a: "A minimum of 7-10 days is recommended to comfortably see Athens and explore one or two major islands." },
-      { q: "Which are the best beaches in Greece?", a: "Navagio in Zakynthos, Elafonissi in Crete, and Myrtos in Kefalonia are consistently ranked as stunning options." },
-      { q: "Which destinations are best for families?", a: "Crete, Naxos, and Rhodes are incredibly family-friendly, offering calm shallow beaches and large resorts." },
-      { q: "Can I island-hop in Greece?", a: "Absolutely. Greece has an extensive and reliable ferry network making it very easy to travel seamlessly between islands." }
+      { q: "How many days do I need in Greece?", a: "A minimum of 7-10 days is recommended to comfortably see Athens and explore one or two major islands." },
+      { q: "Which Greek islands are best for first-time visitors?", a: "Santorini, Mykonos, Crete, and Rhodes are among the most popular and highly rated islands depending on your travel style." },
+      { q: "Is Greece expensive to visit?", a: "Greece offers excellent value for money. While luxury islands can be expensive, the mainland and lesser-known islands are very affordable." },
+      { q: "What are the best beaches in Greece?", a: "Navagio in Zakynthos, Elafonissi in Crete, and Myrtos in Kefalonia are consistently ranked as stunning options." },
+      { q: "Can I island-hop in Greece?", a: "Absolutely. Greece has an extensive and reliable ferry network making it very easy to travel seamlessly between islands." },
+      { q: "Which destinations in Greece are best for families?", a: "Crete, Naxos, and Rhodes are incredibly family-friendly, offering calm shallow beaches and large resorts." },
+      { q: "What currency is used in Greece?", a: "Greece uses the Euro (€) as its official currency. Credit cards are widely accepted." },
+      { q: "What language is spoken in Greece?", a: "The official language is Greek, but English is widely spoken in tourist areas." },
+      { q: "What is the emergency number in Greece?", a: "The general emergency number in Greece and across the EU is 112." },
+      { q: "How do I get around Greece?", a: "You can travel via domestic flights, an extensive ferry network between islands, or rent a car for the mainland." }
     ]
   },
   newsletterSection: {

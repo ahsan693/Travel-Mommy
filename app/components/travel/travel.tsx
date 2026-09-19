@@ -476,7 +476,6 @@ function BestTimeSection({ data }: { data: TravelPageData["bestTimeSection"] }) 
 ===================================================================== */
 
 function WeatherMonthCard({ item }: { item: WeatherMonth }) {
-  const IconComponent = LucideIconMap[item.icon] || Cloud;
   const isHighlight = item.isHighlight;
 
   return (
@@ -493,17 +492,12 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
         {item.month}
       </span>
 
-      <div className="flex w-full items-center justify-center">
-        <IconComponent
-          size={32}
-          strokeWidth={1.5}
-          className={`${
-            item.icon === "sun"
-              ? "text-amber-400"
-              : isHighlight
-              ? "text-black"
-              : "text-white"
-          }`}
+      <div className="flex h-[34px] w-full items-center justify-center">
+        {/* Encode the URI to ensure emojis in file names don't break the Next.js/Browser routing */}
+        <img
+          src={encodeURI(item.icon)}
+          alt={`${item.month} weather icon`}
+          className="h-[34px] w-[34px] object-contain"
         />
       </div>
 
