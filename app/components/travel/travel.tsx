@@ -26,8 +26,7 @@ import {
   Sun,
   Cloud,
   Snowflake,
-  Thermometer,
-  CloudSun
+  Thermometer
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -72,8 +71,57 @@ const LucideIconMap: Record<string, React.ComponentType<{ size?: number; classNa
   "cloud": Cloud,
   "snowflake": Snowflake,
   "thermometer": Thermometer,
-  "cloud-sun": CloudSun,
 };
+
+/* =====================================================================
+   CUSTOM WEATHER SVGS (REPLACES BROKEN IMAGE PATHS)
+===================================================================== */
+
+const ColoredSun = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+    <circle cx="32" cy="32" r="14" fill="#FFD700" />
+    <g stroke="#FFD700" strokeWidth="4" strokeLinecap="round">
+      <line x1="32" y1="4" x2="32" y2="12" />
+      <line x1="32" y1="52" x2="32" y2="60" />
+      <line x1="4" y1="32" x2="12" y2="32" />
+      <line x1="52" y1="32" x2="60" y2="32" />
+      <line x1="12" y1="12" x2="17" y2="17" />
+      <line x1="47" y1="47" x2="52" y2="52" />
+      <line x1="12" y1="52" x2="17" y2="47" />
+      <line x1="47" y1="17" x2="52" y2="12" />
+    </g>
+  </svg>
+);
+
+const ColoredCloud = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M48 44C53.5228 44 58 39.5228 58 34C58 28.4772 53.5228 24 48 24C47.3039 24 46.6247 24.071 45.9686 24.206C44.0298 18.4801 38.5684 14 32 14C23.7157 14 17 20.7157 17 29C17 29.5224 17.0267 30.0385 17.0784 30.5475C12.5369 31.8058 9 35.9576 9 41C9 46.5228 13.4772 51 19 51H48C51.866 51 55 47.866 55 44C55 44 48 44 48 44Z" fill="#F9FAFB" />
+  </svg>
+);
+
+const ColoredCloudSun = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 64 64" className={className} xmlns="http://www.w3.org/2000/svg">
+    <circle cx="44" cy="24" r="10" fill="#FFD700" />
+    <g stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
+      <line x1="44" y1="6" x2="44" y2="10" />
+      <line x1="44" y1="38" x2="44" y2="42" />
+      <line x1="26" y1="24" x2="30" y2="24" />
+      <line x1="58" y1="24" x2="62" y2="24" />
+      <line x1="30" y1="10" x2="33" y2="13" />
+      <line x1="55" y1="35" x2="58" y2="38" />
+      <line x1="30" y1="38" x2="33" y2="35" />
+      <line x1="55" y1="13" x2="58" y2="10" />
+    </g>
+    <path d="M38 46C42.4183 46 46 42.4183 46 38C46 33.5817 42.4183 30 38 30C37.4431 30 36.9001 30.0568 36.3751 30.1648C34.8239 25.5841 30.4547 22 25 22C18.3726 22 13 27.3726 13 34C13 34.4179 13.0213 34.8308 13.0627 35.238C9.42953 36.2447 6.6 39.5661 6.6 43.6C6.6 48.0183 10.1817 51.6 14.6 51.6H38Z" fill="#F9FAFB" />
+  </svg>
+);
+
+const CustomWeatherIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  "sun": ColoredSun,
+  "cloud": ColoredCloud,
+  "cloud-sun": ColoredCloudSun,
+};
+
 
 /* =====================================================================
    HERO SECTION
@@ -477,6 +525,7 @@ function BestTimeSection({ data }: { data: TravelPageData["bestTimeSection"] }) 
 
 function WeatherMonthCard({ item }: { item: WeatherMonth }) {
   const isHighlight = item.isHighlight;
+  const WeatherSVGComponent = CustomWeatherIconMap[item.icon] || ColoredSun;
 
   return (
     <div
@@ -493,12 +542,7 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
       </span>
 
       <div className="flex h-[34px] w-full items-center justify-center">
-        {/* Encode the URI to ensure emojis in file names don't break the Next.js/Browser routing */}
-        <img
-          src={encodeURI(item.icon)}
-          alt={`${item.month} weather icon`}
-          className="h-[34px] w-[34px] object-contain"
-        />
+        <WeatherSVGComponent className="h-[34px] w-[34px]" />
       </div>
 
       <span
@@ -674,7 +718,6 @@ function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"]
     </section>
   );
 }
-
 
 /* =====================================================================
    NEARBY COUNTRIES SECTION
