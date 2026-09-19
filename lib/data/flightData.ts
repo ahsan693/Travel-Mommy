@@ -8,24 +8,12 @@ export interface Airline { name: string; logo: string }
 export interface Airport { name: string; code: string; location: string }
 export interface FlightFaq { question: string; answer: string }
 
-export interface SearchWidgetData {
-  dropdowns: string[];
-  departure: { label: string; value: string };
-  destination: { label: string; placeholder: string };
-  departDate: { label: string; value: string };
-  returnDate: { label: string; value: string };
-  travellers: { label: string; value: string };
-  buttonText: string;
-  checkboxes: string[];
-}
-
 export interface FlightPageData {
   hero: { 
     title: string;
     description: string; 
     image: string; 
     imageAlt: string;
-    searchWidget: SearchWidgetData;
   };
   desktopFields: FlightField[];
   mobileFields: FlightField[];
@@ -80,16 +68,6 @@ export const heroData = {
   description: "Search and compare flight prices from airlines and trusted travel providers. Choose the option that works for you and complete your booking with the provider.", 
   image: "/Flights Page/Section 1/Header Images/nils-nedel-ONpGBpns3cs-unsplash.jpg", 
   imageAlt: "Airplane wing at sunset",
-  searchWidget: {
-    dropdowns: ["One way", "Bags"],
-    departure: { label: "Departure", value: "Dublin (DUB)" },
-    destination: { label: "To", placeholder: "Country, City or air..." },
-    departDate: { label: "Depart", value: "08 Nov 2025" },
-    returnDate: { label: "Return", value: "08 Jan 2026" },
-    travellers: { label: "Travellers and Cabin Class", value: "01 Adult 01 Child" },
-    buttonText: "Search",
-    checkboxes: ["Add Nearby Airports", "Add Nearby Airports", "Direct Flights"]
-  }
 };
 
 // 2. Search Fields

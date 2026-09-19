@@ -2,14 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { 
-  ArrowUpRight, 
-  ChevronDown, 
-  Plane, 
-  Briefcase, 
-  ArrowRightLeft, 
-  Calendar, 
-  Users,
+import {
+  ArrowUpRight,
+  Plane,
   Search,
   SlidersHorizontal,
   Ticket
@@ -21,6 +16,7 @@ import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 import { FlightList, useFlightViewModel } from "../../../lib/features/flights";
 import type { FlightAvailability } from "../../../lib/features/flights/types/flight";
+import Widget from "../widget/widget";
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
   return (
@@ -57,83 +53,8 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
           </h2>
         </div>
 
-        <div className="mt-[60px] flex w-full max-w-[1216px] flex-col gap-[10px] rounded-[24px] bg-white p-[24px] shadow-2xl">
-          
-          <div className="flex items-center gap-[10px]">
-            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
-              <Plane size={16} /> One way <ChevronDown size={16} className="text-gray-500" />
-            </button>
-            <button className="flex h-[40px] items-center gap-2 rounded-full border border-[#E6E6E6] px-4 py-2 text-[14px] font-medium transition-colors hover:bg-gray-50">
-              <Briefcase size={16} /> Bags <ChevronDown size={16} className="text-gray-500" />
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-[11px] lg:flex-row lg:items-center">
-            
-            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-              <Plane size={24} className="text-gray-600" />
-              <div className="flex flex-col">
-                <span className="text-[13px] text-gray-500">Departure</span>
-                <span className="text-[16px] font-semibold text-black">Dublin (DUB)</span>
-              </div>
-            </div>
-
-            <button className="hidden shrink-0 items-center justify-center p-2 text-gray-400 transition-colors hover:text-black lg:flex">
-              <ArrowRightLeft size={20} />
-            </button>
-
-            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-              <Plane size={24} className="text-gray-600" />
-              <div className="flex flex-col">
-                <span className="text-[13px] text-gray-500">To</span>
-                <span className="text-[16px] font-medium text-gray-400">Country, City or air...</span>
-              </div>
-            </div>
-
-            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-              <Calendar size={24} className="text-gray-600" />
-              <div className="flex flex-col">
-                <span className="text-[13px] text-gray-500">Depart</span>
-                <span className="text-[16px] font-semibold text-black">08 Nov 2025</span>
-              </div>
-            </div>
-
-            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-              <Calendar size={24} className="text-gray-600" />
-              <div className="flex flex-col">
-                <span className="text-[13px] text-gray-500">Return</span>
-                <span className="text-[16px] font-semibold text-black">08 Jan 2026</span>
-              </div>
-            </div>
-
-            <div className="flex h-[75px] flex-1 cursor-pointer items-center gap-4 rounded-2xl border border-transparent bg-[#F9FBF5] px-5 transition-colors hover:border-[#E6E6E6] hover:bg-[#f2f5ec]">
-              <Users size={24} className="text-gray-600" />
-              <div className="flex flex-col">
-                <span className="text-[13px] text-gray-500">Travellers and Cabin Class</span>
-                <span className="text-[16px] font-semibold text-black">01 Adult 01 Child</span>
-              </div>
-            </div>
-
-            <button className="flex h-[75px] items-center justify-center rounded-2xl bg-[#FDDB32] px-8 text-[18px] font-medium text-black transition-colors hover:bg-[#f0cf2e]">
-              Search
-            </button>
-          </div>
-
-          <div className="flex items-center gap-6 pb-2 pt-1">
-            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
-              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
-              Add Nearby Airports
-            </label>
-            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
-              <input type="checkbox" defaultChecked className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
-              Add Nearby Airports
-            </label>
-            <label className="flex cursor-pointer items-center gap-2 text-[14px] font-medium text-black">
-              <input type="checkbox" className="size-4 rounded border-gray-300 accent-[#FDDB32]" />
-              Direct Flights
-            </label>
-          </div>
-          
+        <div className="mt-[60px] w-full">
+          <Widget />
         </div>
       </div>
     </section>
