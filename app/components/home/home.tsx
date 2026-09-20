@@ -20,7 +20,7 @@ import Widget from "../widget/widget";
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black pb-[72px] pt-[120px] lg:min-h-[796px] lg:pt-[160px]">
+    <section className="relative flex w-full min-h-[909px] flex-col items-center justify-center overflow-hidden bg-black pb-[40px] pt-[120px] lg:min-h-[796px] lg:pb-[72px] lg:pt-[160px]">
       <Image 
         src={data.image} 
         alt={data.imageAlt} 
@@ -29,10 +29,21 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
         className="object-cover opacity-80" 
       />
       
-      <div className="relative mx-auto flex w-full max-w-[1280px] flex-col justify-between px-[32px]">
+      <div className="relative mx-auto flex w-full max-w-[1280px] flex-col justify-between px-[20px] lg:px-[32px]">
         
-        <div className="flex w-full max-w-[1216px] flex-col text-white">
-          <h1 className="text-left font-medium text-[56px] leading-[1.1] tracking-[-2px] lg:text-[110px] lg:leading-[98px] lg:tracking-[-5px]">
+        {/* Mobile Text (Visible only on < lg) */}
+        <div className="flex w-full flex-col text-white lg:hidden">
+          <h1 className="text-left font-sans text-[42px] font-[570] leading-[44px] tracking-[-1.5px]">
+            {data.title.replace('\n', ' ')} {data.rightHeading.join(' ')}
+          </h1>
+          <p className="mt-[16px] max-w-[330px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px]">
+            {data.description}
+          </p>
+        </div>
+
+        {/* Desktop Text (Visible only on lg+) */}
+        <div className="hidden lg:flex w-full max-w-[1216px] flex-col text-white">
+          <h1 className="text-left font-sans text-[110px] font-medium leading-[98px] tracking-[-5px]">
             {data.title.split("\n").map((line, index) => (
               <span key={index} className="block whitespace-nowrap">
                 {line}
@@ -40,11 +51,11 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
             ))}
           </h1>
           
-          <p className="mt-[20px] max-w-[330px] text-[14px] font-medium leading-[20px] tracking-[-0.28px]">
+          <p className="mt-[20px] max-w-[330px] font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px]">
             {data.description}
           </p>
 
-          <h2 className="mt-[20px] text-right font-medium text-[56px] leading-[1.1] tracking-[-2px] lg:mt-[-40px] lg:text-[110px] lg:leading-[98px] lg:tracking-[-5px]">
+          <h2 className="mt-[-40px] text-right font-sans text-[110px] font-medium leading-[98px] tracking-[-5px]">
             {data.rightHeading.map((line, index) => (
               <span key={index} className="block whitespace-nowrap">
                 {line}
@@ -53,9 +64,11 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
           </h2>
         </div>
 
-        <div className="mt-[60px] w-full">
+        {/* Widget Container */}
+        <div className="mt-[24px] w-full lg:mt-[60px]">
           <Widget />
         </div>
+
       </div>
     </section>
   );

@@ -171,7 +171,7 @@ export const travelData: TravelPageData = {
   aboutSection: {
     title: "About Greece",
     paragraphs: [
-      "Greece, located in southeastern Europe, is celebrated for its breathtaking Aegean and Ionian islands. As the historic cradle of Western civilization, it offers unrivaled ancient landmarks. Book cheap flights to Athens to experience the 5th-century B.C. Acropolis and explore endless Mediterranean beauty seamlessly."
+      "Greece, located in southeastern Europe, is celebrated for breathtaking Aegean and Ionian islands. As the historic cradle of Western civilization, it offers unrivaled ancient landmarks. Book cheap flights to Athens to experience the 5th-century B.C. Acropolis and explore endless Mediterranean beauty seamlessly."
     ],
     features: [
       { icon: "landmark", label: "Ancient History" },
