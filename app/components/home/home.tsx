@@ -90,22 +90,33 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
   const { flights, loading, error } = useFlightViewModel();
 
   return (
-    <section className="bg-white px-4 py-20 text-black lg:px-8">
-      <div className="mx-auto max-w-[1280px]">
-        <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row">
-          <div>
-            <h2 className="text-4xl font-medium lg:text-5xl">
-              {content.title} <span className="text-[#000000]">{content.highlightedTitle}</span>
+    <section className="w-full bg-[#FFFFFF] px-[16px] py-[80px] lg:px-[32px] lg:py-[96px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-[32px] lg:gap-[48px]">
+        
+        <div className="flex flex-col items-start justify-between gap-[16px] lg:flex-row lg:items-end">
+          <div className="flex flex-col">
+            <h2 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#000000] lg:text-[48px] lg:leading-[1.1] lg:tracking-[-1px]">
+              {content.title} <span className="text-[#000000] underline decoration-1 underline-offset-4">{content.highlightedTitle}</span>
             </h2>
-            <p className="mt-3 max-w-[700px] text-sm text-[#555]">
+            <p className="mt-[16px] max-w-[358px] font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333] lg:max-w-[700px]">
               {error ?? (loading ? "Finding cheapest flights..." : content.description)}
             </p>
           </div>
-          <button className="flex h-12 items-center rounded-full bg-[#FDDB32] px-7 text-sm">
-            {content.cta} <ArrowUpRight className="ml-2 inline" size={15} />
+          
+          {/* Desktop CTA Button (Hidden on Mobile) */}
+          <button className="hidden h-[48px] shrink-0 items-center rounded-full bg-[#FDDB32] px-[28px] font-sans text-[14px] font-medium text-[#111827] transition-colors hover:bg-[#e5c52c] lg:flex">
+            {content.cta} <ArrowUpRight className="ml-2 inline" size={16} />
           </button>
         </div>
+
+        {/* Flight Cards Grid Wrapper */}
         <FlightList flights={flights} cta={content.cardCta} onViewFlights={openFlightSearch} />
+
+        {/* Mobile CTA Button (Hidden on Desktop) */}
+        <button className="mt-[8px] flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[14px] bg-[#FDDB32] px-[24px] font-sans text-[16px] font-medium text-[#000000] transition-colors hover:bg-[#e5c52c] lg:hidden">
+          Explore Cheap Deals <ArrowUpRight size={18} />
+        </button>
+
       </div>
     </section>
   );
@@ -119,13 +130,14 @@ function WhyCompare({ content }: { content: HomePageData["whyCompareSection"] })
   };
 
   return (
-    <section className="bg-white py-[96px] px-[32px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center">
+    <section className="w-full bg-[#FFFFFF] px-[24px] pb-[64px] pt-[56px] lg:px-[32px] lg:py-[96px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start lg:items-center">
         
-        <h2 className="text-center font-sans text-[32px] font-medium leading-tight tracking-[-1.5px] text-black lg:text-[56px] lg:leading-[60px]">
+        <h2 className="text-left font-sans text-[36px] font-medium leading-[40px] tracking-[-1.5px] text-[#000000] lg:text-center lg:text-[56px] lg:leading-[60px] lg:tracking-[-1.5px]">
           {content.title}
         </h2>
-        <p className="mt-[16px] max-w-[760px] text-center font-sans text-[16px] font-normal leading-[24px] text-[#333333]">
+        
+        <p className="mt-[16px] max-w-[760px] text-left font-sans text-[16px] font-normal leading-[24px] text-[#333333] lg:text-center">
           {content.description}
         </p>
 
@@ -136,17 +148,17 @@ function WhyCompare({ content }: { content: HomePageData["whyCompareSection"] })
             return (
               <div 
                 key={idx} 
-                className="flex h-auto min-h-[186px] flex-col gap-[20px] rounded-[24px] border border-[#E6EEF8] bg-white p-[24px] shadow-sm lg:h-[186px]"
+                className="flex h-auto min-h-[186px] flex-col gap-[20px] rounded-[24px] border border-[#E6EEF8] bg-[#FFFFFF] p-[24px] shadow-sm lg:h-[186px]"
               >
                 <div className="flex items-center gap-[16px]">
                   <div className="flex size-[56px] shrink-0 items-center justify-center rounded-[18px] bg-[#FDDB32]">
-                    {Icon && <Icon size={24} className="text-black" />}
+                    {Icon && <Icon size={24} className="text-[#000000]" />}
                   </div>
                   <div className="flex flex-col gap-[2px]">
                     <span className="font-sans text-[12px] font-medium leading-[18px] text-[#8E8E8E]">
                       {feature.featureNumber}
                     </span>
-                    <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-black lg:text-[24px] lg:leading-[24px]">
+                    <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-[#000000] lg:text-[24px] lg:leading-[24px]">
                       {feature.title.split('\n').map((line, i) => (
                         <span key={i} className="block">{line}</span>
                       ))}
