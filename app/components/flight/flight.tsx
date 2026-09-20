@@ -445,34 +445,36 @@ function FaqSection({ data }: { data: FlightPageData }) {
 
 function NewsletterSection({ data }: { data: FlightPageData }) {
   return (
-    <section className="w-full bg-[#FDDB32] px-[20px] py-[64px] lg:bg-white lg:px-[32px] lg:pb-[160px] lg:pt-[40px]">
+    <section className="w-full bg-[#FFFFFF] px-[20px] py-[40px] lg:px-[32px] lg:pb-[160px] lg:pt-[40px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
         
         {/* Yellow Inner Container */}
-        <div className="flex w-full max-w-[1216px] flex-col items-center justify-center rounded-[24px] bg-[#FDDB32] lg:px-[20px] lg:py-[50px] text-center">
+        <div className="flex w-full max-w-[1216px] flex-col items-center justify-center gap-[32px] rounded-[24px] bg-[#FDDB32] px-[24px] py-[48px] text-center lg:gap-[24px] lg:px-[20px] lg:py-[50px]">
           
-          {/* Top Pill */}
-          <span className="w-fit rounded-full bg-white px-[16px] py-[8px] font-sans text-[14px] font-medium leading-[20px] text-[#000000]">
-            {data.copy.newsletterPill}
-          </span>
-          
-          {/* Main Title */}
-          <h2 className="mt-[24px] max-w-[350px] font-sans text-[42px] font-[500] leading-[44px] tracking-[-1.5px] text-[#000000] lg:mt-[16px] lg:max-w-2xl lg:text-[48px] lg:leading-[48px] lg:tracking-[-1px]">
-            {data.copy.newsletterTitle}
-          </h2>
-          
-          {/* Subtitle / Description */}
-          <p className="mt-[16px] max-w-[320px] font-sans text-[16px] font-[380] leading-[24px] text-[#000000] lg:max-w-xl lg:font-normal lg:leading-[1.5]">
-            {data.copy.newsletterDescription}
-          </p>
+          <div className="flex flex-col items-center gap-[16px]">
+            {/* Top Pill */}
+            <span className="w-fit rounded-full bg-white px-[16px] py-[8px] font-sans text-[14px] font-medium leading-[20px] text-[#000000]">
+              {data.copy.newsletterPill}
+            </span>
+            
+            {/* Main Title */}
+            <h2 className="max-w-[350px] font-sans text-[42px] font-[500] leading-[44px] tracking-[-1.5px] text-[#000000] lg:max-w-2xl lg:text-[48px] lg:leading-[48px] lg:tracking-[-1px]">
+              {data.copy.newsletterTitle}
+            </h2>
+            
+            {/* Subtitle / Description */}
+            <p className="max-w-[320px] font-sans text-[16px] font-[380] leading-[24px] text-[#000000] lg:max-w-xl lg:font-normal lg:leading-[1.5]">
+              {data.copy.newsletterDescription}
+            </p>
+          </div>
 
           {/* Form & Disclaimer Wrapper */}
-          <div className="mt-[32px] flex w-full flex-col items-center gap-[16px] lg:mt-[20px] lg:gap-[10px]">
+          <div className="flex w-full max-w-[393px] flex-col items-center lg:max-w-none">
             
-            <form className="flex w-full flex-col gap-[16px] sm:flex-row sm:items-center lg:gap-[10px] justify-center">
+            <form className="flex w-full flex-col gap-[12px] sm:flex-row sm:items-center justify-center lg:gap-[10px]">
               
               {/* Input Field */}
-              <div className="flex h-[56px] w-full max-w-[393px] flex-1 items-center justify-between rounded-[16px] bg-white px-[20px] lg:h-[44px] lg:rounded-[14px] lg:px-[18px]">
+              <div className="flex h-[56px] w-full flex-1 items-center justify-between rounded-[16px] bg-white px-[20px] lg:h-[44px] lg:max-w-[393px] lg:rounded-[14px] lg:px-[18px]">
                 <input
                   type="email"
                   aria-label="Email address"
@@ -482,7 +484,8 @@ function NewsletterSection({ data }: { data: FlightPageData }) {
                 <CircleHelp className="h-[20px] w-[20px] shrink-0 text-[#000000] lg:h-[16px] lg:w-[16px]" />
               </div>
               
-              <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#6B7280] lg:hidden">
+              {/* Mobile Disclaimer */}
+              <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#716216] sm:hidden lg:hidden">
                 {data.copy.newsletterFooter}
               </p>
 
@@ -506,7 +509,7 @@ function NewsletterSection({ data }: { data: FlightPageData }) {
             </form>
             
             {/* Footer Disclaimer Text (Desktop Only) */}
-            <p className="hidden font-sans text-[14px] font-normal leading-[20px] text-black/50 lg:block">
+            <p className="hidden mt-[16px] font-sans text-[14px] font-normal leading-[20px] text-black/50 lg:block">
               {data.copy.newsletterFooter}
             </p>
 
