@@ -316,7 +316,7 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
             <Link 
               href={guide.href} 
               key={idx} 
-              className="group flex h-[410px] w-full flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] transition-transform hover:-translate-y-1 hover:shadow-xl lg:h-[434px]"
+              className="group flex h-auto min-h-[410px] w-full flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] transition-transform hover:-translate-y-1 hover:shadow-xl lg:min-h-[434px]"
             >
               <div className="relative h-[200px] w-full shrink-0">
                 <Image 
@@ -327,8 +327,8 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-[20px] lg:p-[24px]">
-                <div className="flex items-center gap-[8px] font-sans text-[12px] font-medium text-[#8E8E8E]">
+              <div className="flex flex-1 flex-col p-[18px]">
+                <div className="flex items-center gap-[8px] font-sans text-[12px] font-medium leading-[18px] text-[#8E8E8E]">
                   <span className="rounded-full border border-[#E6E6E6] px-[8px] py-[2px] text-[10px] font-bold uppercase tracking-[0.5px] text-[#8E8E8E]">
                     {guide.country}
                   </span>
@@ -336,16 +336,16 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
                 </div>
                 
                 {/* Typography synced with Home Destinations Card Titles */}
-                <h3 className="mt-[12px] font-sans text-[20px] font-medium leading-none text-[#111827] line-clamp-2 lg:text-[24px] lg:leading-[24px]">
+                <h3 className="mt-[12px] font-sans text-[18px] font-medium leading-[24px] text-[#111827]">
                   {guide.title}
                 </h3>
                 
                 {/* Typography synced with Home Destinations Card Descriptions */}
-                <p className="mt-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#6B7280] line-clamp-3 lg:text-[14px] lg:leading-[20px]">
+                <p className="mt-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#6B7280]">
                   {guide.description}
                 </p>
 
-                <div className="mt-auto flex items-center gap-[4px] font-sans text-[13px] font-medium leading-[100%] text-[#111827] lg:text-[14px]">
+                <div className="mt-auto flex items-center gap-[4px] font-sans text-[13px] font-medium leading-[15px] text-[#111827]">
                   {guide.exploreText} <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
