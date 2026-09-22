@@ -167,7 +167,6 @@ function RoutesContainer({ data }: { data: RoutesPageData }) {
       {/* SECONDARY FILTER BAR */}
       <div className="mx-auto flex min-h-[80px] w-full max-w-[1440px] items-start justify-between px-[20px] py-[16px] md:items-center md:px-[80px] md:py-0">
         
-        {/* Changed from overflow-x-auto to flex-wrap to prevent clipping of absolute dropdowns */}
         <div className="flex flex-wrap items-center gap-[12px] relative w-full">
           
           {data.hero.secondaryFilters.pills.map((pill) => {
@@ -186,7 +185,114 @@ function RoutesContainer({ data }: { data: RoutesPageData }) {
                   {!isFiltersPill && <RoutesIcon name={pill.icon} size={16} strokeWidth={2} className="text-[#FFFFFF]" />}
                 </button>
 
-                {/* Dropdowns */}
+                {/* Master Filters Dropdown */}
+                {isOpen && isFiltersPill && (
+                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[390px] max-h-[80vh] flex-col rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-xl overflow-hidden">
+                    {/* Header */}
+                    <div className="flex items-center justify-between p-[24px] pb-[16px]">
+                      <h3 className="font-sans text-[20px] font-bold text-[#111111]">Filters</h3>
+                      <button onClick={() => setOpenDropdown(null)} className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6] hover:bg-gray-50 transition-colors">
+                        <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                      </button>
+                    </div>
+
+                    {/* Scrollable Content */}
+                    <div className="flex flex-1 flex-col gap-[24px] overflow-y-auto px-[24px] pb-[24px] hide-scrollbar">
+                      
+                      {/* Stops */}
+                      <div className="flex flex-col gap-[16px]">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Stops</h4>
+                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                        </div>
+                        <div className="flex flex-col gap-[16px]">
+                          {data.hero.secondaryFilters.stopsOptions.map(opt => (
+                            <label key={opt.value} className="flex cursor-pointer items-center gap-[12px]" onClick={() => setStops(opt.value)}>
+                              <div className={`flex h-[20px] w-[20px] items-center justify-center rounded-full border ${stops === opt.value ? 'border-[#111111]' : 'border-[#CCCCCC]'}`}>
+                                {stops === opt.value && <div className="h-[10px] w-[10px] rounded-full bg-[#111111]" />}
+                              </div>
+                              <span className="font-sans text-[14px] font-medium text-[#111111]">{opt.label}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                      {/* Flight Budget */}
+                      <div className="flex flex-col gap-[16px]">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Flight budget</h4>
+                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                        </div>
+                        <span className="font-sans text-[14px] text-[#767676]">Any budget</span>
+                        <input 
+                          type="range" min="100" max="1500" step="50" 
+                          value={budget} onChange={(e) => setBudget(Number(e.target.value))}
+                          className="w-full accent-[#111111]" 
+                        />
+                      </div>
+
+                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                      {/* Trip Style */}
+                      <div className="flex flex-col gap-[16px]">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Trip style</h4>
+                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                        </div>
+                        <div className="flex flex-wrap gap-[12px]">
+                          {data.hero.secondaryFilters.tripStyleOptions.map(opt => {
+                            const isSelected = tripStyles.includes(opt.value);
+                            return (
+                              <button 
+                                key={opt.value} onClick={() => toggleTripStyle(opt.value)}
+                                className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                              >
+                                {opt.label}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                      {/* Continents */}
+                      <div className="flex flex-col gap-[16px]">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Choose where to explore</h4>
+                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                        </div>
+                        <div className="flex flex-wrap gap-[12px]">
+                          {data.hero.secondaryFilters.continentsOptions.map(opt => {
+                            const isSelected = continent === opt.value;
+                            return (
+                              <button 
+                                key={opt.value} onClick={() => setContinent(opt.value)}
+                                className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                              >
+                                {opt.label}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="flex items-center justify-between border-t border-[#E6E6E6] p-[24px]">
+                      <button onClick={clearFilters} className="font-sans text-[14px] font-medium text-[#767676] hover:underline">
+                        Clear filters
+                      </button>
+                      <button onClick={() => setOpenDropdown(null)} className="flex h-[40px] items-center justify-center rounded-[12px] bg-[#FDDB32] px-[24px] font-sans text-[14px] font-bold text-[#111111] hover:bg-[#e5c52c] transition-colors">
+                        Show {displayedRoutes.length} results
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Individual Dropdowns */}
                 {isOpen && pill.id === "stops" && (
                   <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
                     <div className="flex items-center justify-between">
@@ -259,7 +365,7 @@ function RoutesContainer({ data }: { data: RoutesPageData }) {
                         return (
                           <button 
                             key={opt.value} onClick={() => toggleTripStyle(opt.value)}
-                            className={`rounded-full border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                            className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
                           >
                             {opt.label}
                           </button>
@@ -289,7 +395,7 @@ function RoutesContainer({ data }: { data: RoutesPageData }) {
                         return (
                           <button 
                             key={opt.value} onClick={() => setContinent(opt.value)}
-                            className={`rounded-full border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                            className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
                           >
                             {opt.label}
                           </button>
@@ -533,7 +639,6 @@ export default function RoutesPage({ data = routesData }: { data?: RoutesPageDat
   return (
     <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF]">
       <Hero data={data.hero} />
-      {/* RoutesContainer now renders the FilterBar and the Flight Results with integrated state logic */}
       <RoutesContainer data={data} />
       <TipsSection tips={data.tips} />
       <Footer data={footerData} />
