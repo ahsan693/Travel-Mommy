@@ -32,7 +32,7 @@ import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 import exploreFlightsData, { type ExploreIconName } from "../../../lib/data/explore-flightsdata";
 
-const countryFlags: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+const countryFlags: Record<string, React.ElementType> = {
   GR,
   HR,
   ES,

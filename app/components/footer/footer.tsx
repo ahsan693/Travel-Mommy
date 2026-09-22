@@ -79,9 +79,9 @@ const socialIcons = {
 
 export default function Footer({ data = footerData }: { data?: FooterData }) {
   const [openDropdown, setOpenDropdown] = useState<"country" | "language" | "currency" | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState(countryOptions[0]);
-  const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0]);
-  const [selectedCurrency, setSelectedCurrency] = useState(currencyOptions[0]);
+  const [selectedCountry, setSelectedCountry] = useState<DropdownOption>(countryOptions[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState<DropdownOption>(languageOptions[0]);
+  const [selectedCurrency, setSelectedCurrency] = useState<DropdownOption>(currencyOptions[0]);
 
   useEffect(() => {
     if (!openDropdown) {
@@ -133,7 +133,7 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
                   onToggle={() => setOpenDropdown(openDropdown === "country" ? null : "country")}
                   onSelect={(option) => { setSelectedCountry(option); setOpenDropdown(null); }}
                   options={countryOptions}
-                  selected={selectedCountry.code}
+                  selected={selectedCountry.code ?? selectedCountry.label}
                   renderOption={(option) => <>{renderFlag(option.code as keyof typeof footerFlags)}<span>{option.label}</span></>}
                 />
                 <FooterDropdown
