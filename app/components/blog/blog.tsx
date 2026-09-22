@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Award, ArrowRight, MapPin, MessageSquare } from "lucide-react";
+import { Award, ArrowRight, ChevronRight, MapPin, MessageSquare } from "lucide-react";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -36,6 +36,7 @@ function BlogHero({ data }: { data: BlogPageData["hero"] }) {
               <React.Fragment key={crumb.label}>
                 <Link 
                   href={crumb.href} 
+                    style={{ color: index === 0 ? "#FDDB32" : "#FFFFFF" }}
                   className={`hover:underline transition-all ${
                     index === 0 ? "text-[#FDDB32]" : "text-[#FFFFFF]"
                   }`}
@@ -43,7 +44,7 @@ function BlogHero({ data }: { data: BlogPageData["hero"] }) {
                   {crumb.label}
                 </Link>
                 {index < data.breadcrumbs.length - 1 && (
-                  <span className="text-[#FFFFFF]">→</span>
+                  <ChevronRight size={18} strokeWidth={2.5} className="text-[#FFFFFF]" aria-hidden="true" />
                 )}
               </React.Fragment>
             ))}
