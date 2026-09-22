@@ -311,7 +311,7 @@ export const guideData: TravelGuideData = {
   },
 
   sidebarAd: {
-    image: "/08. Tavel Guide Country/Images/Travel Guide img-04.png",
+    image: "/08. Tavel Guide Country/Images/Travel Guide img-03.png",
     title: "Discover Greece",
     description: "From ancient ruins to island getaways, Greece offers unforgettable experiences for every traveler.",
     bullets: [

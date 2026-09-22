@@ -81,55 +81,57 @@ function TableOfContents({ data }: { data: TravelGuideData["tableOfContents"] })
 
 function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"] }) {
   return (
-    <div className="flex flex-col gap-[24px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-      <h3 className="flex items-center gap-[8px] font-sans text-[18px] font-semibold leading-[1.5] text-[#000000]">
+    <>
+      <div className="flex flex-col gap-[16px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px]">
+        <h3 className="flex items-center gap-[8px] font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">
         <TravelGuideIcon name={facts.icon} size={20} className="text-[#000000]" />
         {facts.title}
-      </h3>
+        </h3>
       
-      <div className="flex flex-col gap-[16px]">
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.peakSeasonLabel}</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.peakSeasonValue}</span>
-        </div>
-        <div className="h-[1px] w-full bg-[#F3F4F6]" />
+        <div className="flex flex-col gap-[12px]">
+          <div className="flex flex-col gap-[4px]">
+            <span className="font-sans text-[10px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.peakSeasonLabel}</span>
+            <span className="font-sans text-[12px] font-semibold leading-[1.4] text-[#000000]">{facts.peakSeasonValue}</span>
+          </div>
+          <div className="h-[1px] w-full bg-[#E6E6E6]" />
         
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.budgetMonthsLabel}</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.budgetMonthsValue}</span>
-        </div>
-        <div className="h-[1px] w-full bg-[#F3F4F6]" />
+          <div className="flex flex-col gap-[4px]">
+            <span className="font-sans text-[10px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.budgetMonthsLabel}</span>
+            <span className="font-sans text-[12px] font-semibold leading-[1.4] text-[#000000]">{facts.budgetMonthsValue}</span>
+          </div>
+          <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.bestWeatherLabel}</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.bestWeatherValue}</span>
-        </div>
-        <div className="h-[1px] w-full bg-[#F3F4F6]" />
+          <div className="flex flex-col gap-[4px]">
+            <span className="font-sans text-[10px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.bestWeatherLabel}</span>
+            <span className="font-sans text-[12px] font-semibold leading-[1.4] text-[#000000]">{facts.bestWeatherValue}</span>
+          </div>
+          <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.avgTempLabel}</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.avgTempValue}</span>
-        </div>
-        <div className="h-[1px] w-full bg-[#F3F4F6]" />
+          <div className="flex flex-col gap-[4px]">
+            <span className="font-sans text-[10px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.avgTempLabel}</span>
+            <span className="font-sans text-[12px] font-semibold leading-[1.4] text-[#000000]">{facts.avgTempValue}</span>
+          </div>
+          <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
-        <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.currencyLabel}</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.currencyValue}</span>
+          <div className="flex flex-col gap-[4px]">
+            <span className="font-sans text-[10px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.currencyLabel}</span>
+            <span className="font-sans text-[12px] font-semibold leading-[1.4] text-[#000000]">{facts.currencyValue}</span>
+          </div>
         </div>
       </div>
 
-      <div className="mt-[8px] flex items-start gap-[12px] rounded-[12px] bg-[#F9FBF5] p-[16px]">
+      <div className="flex items-start gap-[12px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[16px]">
         <TravelGuideIcon name={facts.tipIcon} size={18} className="mt-[2px] shrink-0 text-[#000000]" />
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-bold uppercase tracking-[0.5px] text-[#000000]">
+          <span className="font-sans text-[10px] font-bold uppercase tracking-[0.3px] text-[#000000]">
             {facts.tipTitle}
           </span>
-          <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#4B5563]">
+          <p className="font-sans text-[12px] font-normal leading-[1.4] text-[#6E6E6A]">
             {facts.tipText}
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -460,41 +462,46 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
           <SidebarFastFacts facts={data.sidebarFastFacts} />
 
           {/* Discover Greece Ad Card */}
-          <div className="flex flex-col gap-[16px] rounded-[16px] border border-[#E6E6E3] bg-[#FFFFFF] p-[16px] shadow-sm">
-            <div className="relative h-[160px] w-full shrink-0 overflow-hidden rounded-[8px]">
+          <div className="overflow-hidden rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF]">
+            <div className="relative h-[220px] w-full overflow-hidden">
               <Image src={data.sidebarAd.image} alt={data.sidebarAd.title} fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-x-[20px] bottom-[20px] flex flex-col items-start gap-[8px]">
+                <h3 className="font-sans text-[28px] font-semibold leading-[1.2] text-[#FFFFFF]">
+                  {data.sidebarAd.title}
+                </h3>
+                <p className="max-w-[300px] font-sans text-[13px] font-normal leading-[1.35] text-[#FFFFFF]">
+                  {data.sidebarAd.description}
+                </p>
+                <button className="mt-[4px] flex h-[40px] items-center justify-center rounded-full bg-[#FDDB32] px-[20px] font-sans text-[13px] font-semibold text-[#000000] hover:bg-[#e5c52c]">
+                  {data.sidebarAd.buttonText}
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col gap-[8px]">
-              <h3 className="font-sans text-[18px] font-bold text-[#1A1A19]">{data.sidebarAd.title}</h3>
-              <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
-                {data.sidebarAd.description}
-              </p>
-            </div>
-            <div className="flex flex-col gap-[8px]">
+            <div className="flex flex-col gap-[12px] p-[20px]">
               {data.sidebarAd.bullets.map((b, i) => {
                 return (
                   <div key={i} className="flex items-start gap-[8px]">
-                    <TravelGuideIcon name={b.icon} size={14} className="mt-[2px] shrink-0 text-[#F59E0B]" />
-                    <span className="font-sans text-[13px] font-medium text-[#1A1A19]">{b.text}</span>
+                    <TravelGuideIcon name={b.icon} size={14} className="mt-[2px] shrink-0 text-[#FDDB32]" />
+                    <span className="font-sans text-[12px] font-medium leading-[1.4] text-[#1A1A19]">{b.text}</span>
                   </div>
                 );
               })}
             </div>
-            <button className="mt-[4px] flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#000000] hover:bg-[#e5c52c]">
-              {data.sidebarAd.buttonText}
-            </button>
           </div>
 
           {/* Help Centre Card */}
-          <div className="flex flex-col items-start gap-[12px] rounded-[16px] bg-[#F9F8F5] p-[20px] border border-[#E6E6E6]">
-             <div className="flex items-center gap-[8px]">
-               <TravelGuideIcon name={data.sidebarHelp.icon} size={18} className="text-[#1A1A19]" />
-               <h3 className="font-sans text-[16px] font-bold text-[#1A1A19]">{data.sidebarHelp.title}</h3>
+          <div className="flex flex-col items-start gap-[14px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFBE6] p-[20px]">
+             <div className="flex items-start gap-[10px]">
+               <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32]">
+                 <TravelGuideIcon name={data.sidebarHelp.icon} size={17} className="text-[#000000]" />
+               </div>
+               <h3 className="pt-[4px] font-sans text-[16px] font-semibold leading-[1.35] text-[#1A1A19]">{data.sidebarHelp.title}</h3>
              </div>
-             <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
+             <p className="font-sans text-[13px] font-normal leading-[1.45] text-[#6E6E6A]">
                {data.sidebarHelp.description}
              </p>
-             <button className="mt-[4px] flex h-[36px] items-center justify-center rounded-[8px] border border-[#CCCCCC] bg-[#FFFFFF] px-[16px] font-sans text-[13px] font-semibold text-[#1A1A19] hover:bg-gray-50">
+             <button className="flex h-[40px] items-center justify-center rounded-full bg-[#FDDB32] px-[20px] font-sans text-[13px] font-semibold text-[#1A1A19] hover:bg-[#e5c52c]">
                {data.sidebarHelp.buttonText}
              </button>
           </div>
