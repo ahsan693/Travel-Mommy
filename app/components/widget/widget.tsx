@@ -1,124 +1,61 @@
 "use client";
 
-import { ChevronDown, Plane, Briefcase, Search } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Briefcase, Check, ChevronDown, Minus, Plane, Plus, Search } from "lucide-react";
 import { widgetData, type WidgetData } from "../../../lib/data/widgetData";
 
+type OpenPanel = "trip" | "bags" | "departure" | "destination" | "departDate" | "returnDate" | "travellers" | null;
+const airports = [{ city: "Dublin", code: "DUB", country: "Ireland" }, { city: "London", code: "LHR", country: "United Kingdom" }, { city: "Paris", code: "CDG", country: "France" }];
+const months = [{ name: "November", year: 2025, days: 30, start: 6 }, { name: "December", year: 2025, days: 31, start: 1 }];
+
+function Popover({ children, className = "" }: { children: React.ReactNode; className?: string }) { return <div className={`absolute z-[100] mt-3 rounded-[18px] border border-[#E8E8E8] bg-white p-4 shadow-[0_18px_48px_rgba(0,0,0,0.16)] ${className}`}>{children}</div>; }
+function Choice({ label, detail, selected, onClick }: { label: string; detail?: string; selected?: boolean; onClick: () => void }) { return <button type="button" onClick={onClick} className="flex w-full items-center justify-between rounded-[12px] px-3 py-2.5 text-left transition-colors hover:bg-[#FFF9D9]"><span className="flex flex-col gap-0.5"><span className="text-[14px] font-medium text-[#111111]">{label}</span>{detail && <span className="text-[12px] text-[#767676]">{detail}</span>}</span>{selected && <Check size={16} className="text-[#111111]" aria-hidden="true" />}</button>; }
+function FieldIcon({ src, alt }: { src: string; alt: string }) { return <span className="flex h-[28px] w-[30px] shrink-0 items-center justify-center rounded-[7px] bg-[#FFED91]"><img src={encodeURI(src)} alt={alt} className="h-[16px] w-[16px] object-contain" /></span>; }
+function FieldText({ label, value, muted = false }: { label: string; value: string; muted?: boolean }) { return <span className="flex min-w-0 flex-col overflow-hidden text-left"><span className="truncate text-[13px] font-normal text-[#767676]">{label}</span><span className={`truncate text-[16px] font-semibold ${muted ? "text-[#9999AA]" : "text-[#111111]"}`}>{value}</span></span>; }
+
 export default function Widget({ data = widgetData }: { data?: WidgetData }) {
-  return (
-    <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center justify-center rounded-[24px] bg-[#FFFFFF] p-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] lg:p-[24px]">
-      
-      {/* Inner Content Wrapper */}
-      <div className="flex w-full max-w-[1160.78px] flex-col gap-[12px] lg:gap-[10px]">
-        
-        {/* Dropdowns Row */}
-        <div className="flex items-center gap-[8px] pb-[12px] lg:gap-[10px] lg:pb-0">
-          {data.dropdowns.map((dropdown, index) => (
-            <button
-              key={dropdown}
-              className="flex h-[40px] items-center gap-[8px] rounded-full border border-[#E6E6E6] px-[16px] text-[14px] font-medium text-[#111111] transition-colors hover:bg-gray-50"
-            >
-              {index === 0 ? <Plane size={16} /> : <Briefcase size={16} />}
-              {dropdown}
-              <ChevronDown size={16} className="text-[#767676]" />
-            </button>
-          ))}
-        </div>
+  const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
+  const [tripType, setTripType] = useState("One way");
+  const [bagType, setBagType] = useState("Bags");
+  const [departure, setDeparture] = useState(data.departure.value ?? "Dublin (DUB)");
+  const [destination, setDestination] = useState("");
+  const [departDate, setDepartDate] = useState(data.departDate.value ?? "08 Nov 2025");
+  const [returnDate, setReturnDate] = useState(data.returnDate.value ?? "08 Jan 2026");
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(1);
+  const [cabin, setCabin] = useState("Economy");
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const pointer = (event: PointerEvent) => { if (!rootRef.current?.contains(event.target as Node)) setOpenPanel(null); };
+    const key = (event: KeyboardEvent) => { if (event.key === "Escape") setOpenPanel(null); };
+    document.addEventListener("pointerdown", pointer); document.addEventListener("keydown", key);
+    return () => { document.removeEventListener("pointerdown", pointer); document.removeEventListener("keydown", key); };
+  }, []);
+  const toggle = (panel: OpenPanel) => setOpenPanel((current) => current === panel ? null : panel);
+  const pickDate = (month: string, year: number, day: number, panel: "departDate" | "returnDate") => { const date = `${String(day).padStart(2, "0")} ${month.slice(0, 3)} ${year}`; if (panel === "departDate") setDepartDate(date); else setReturnDate(date); };
+  const fieldClass = (panel: OpenPanel) => `group relative flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border bg-[#F9FBF5] px-[14px] text-left transition-all hover:border-[#CFCFCF] focus-visible:outline-none ${openPanel === panel ? "border-[#FDDB32] bg-white shadow-[0_0_0_3px_rgba(253,219,50,0.22)]" : "border-[#E6E6E6]"}`;
+  const selectOption = (setter: (value: string) => void, value: string) => { setter(value); setOpenPanel(null); };
 
-        {/* Main Inputs Row */}
-        <div className="relative flex w-full flex-col gap-[12px] lg:flex-row lg:items-center lg:gap-[11px]">
-          
-          {/* Departure Field */}
-          <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#CCCCCC] lg:w-[194.7px] lg:flex-none">
-            <div className="flex h-[28.2px] w-[29.59px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91] pl-[3px] pr-[2px]">
-              <img src={encodeURI(data.departure.icon)} alt="Departure Icon" className="h-[16px] w-[16px] object-contain" />
-            </div>
-            <div className="flex flex-col overflow-hidden">
-              <span className="truncate text-[13px] font-normal text-[#767676]">{data.departure.label}</span>
-              <span className="truncate text-[16px] font-semibold text-[#111111]">{data.departure.value}</span>
-            </div>
-          </div>
-
-          {/* Swap Icon (Absolute on Desktop to bridge the two pills) */}
-          <button className="hidden lg:flex absolute left-[180px] z-10 h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-white shadow-sm border border-[#E6E6E6] transition-transform hover:scale-110">
-            <img src={encodeURI(data.swapIcon)} alt="Swap" className="h-[16px] w-[16px] object-contain" />
-          </button>
-
-          {/* Destination Field */}
-          <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#CCCCCC] lg:w-[194.7px] lg:flex-none lg:pl-[24px]">
-            <div className="flex h-[28.2px] w-[29.59px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91] pl-[3px] pr-[2px]">
-              <img src={encodeURI(data.destination.icon)} alt="Destination Icon" className="h-[16px] w-[16px] object-contain" />
-            </div>
-            <div className="flex flex-col overflow-hidden">
-              <span className="truncate text-[13px] font-normal text-[#767676]">{data.destination.label}</span>
-              <span className="truncate text-[16px] font-medium text-[#9999AA]">{data.destination.placeholder}</span>
-            </div>
-          </div>
-
-          {/* Dates Row (Side-by-side on mobile, inline on desktop) */}
-          <div className="flex w-full flex-row gap-[12px] lg:w-auto lg:gap-[11px]">
-            {/* Depart Date Field */}
-            <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#CCCCCC] lg:w-[194.7px] lg:flex-none">
-              <div className="flex h-[28.2px] w-[29.59px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91] pl-[3px] pr-[2px]">
-                <img src={encodeURI(data.departDate.icon)} alt="Depart Date Icon" className="h-[16px] w-[16px] object-contain" />
-              </div>
-              <div className="flex flex-col overflow-hidden">
-                <span className="truncate text-[13px] font-normal text-[#767676]">{data.departDate.label}</span>
-                <span className="truncate text-[16px] font-semibold text-[#111111]">{data.departDate.value}</span>
-              </div>
-            </div>
-
-            {/* Return Date Field */}
-            <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#CCCCCC] lg:w-[194.7px] lg:flex-none">
-              <div className="flex h-[28.2px] w-[29.59px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91] pl-[3px] pr-[2px]">
-                <img src={encodeURI(data.returnDate.icon)} alt="Return Date Icon" className="h-[16px] w-[16px] object-contain" />
-              </div>
-              <div className="flex flex-col overflow-hidden">
-                <span className="truncate text-[13px] font-normal text-[#767676]">{data.returnDate.label}</span>
-                <span className="truncate text-[16px] font-semibold text-[#111111]">{data.returnDate.value}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Travellers Field */}
-          <div className="flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border border-[#E6E6E6] bg-[#F9FBF5] pl-[10px] pr-[16px] transition-colors hover:border-[#CCCCCC] lg:w-[248px] lg:flex-none">
-            <div className="flex h-[28.2px] w-[29.59px] shrink-0 items-center justify-center rounded-[7.4px] bg-[#FFED91] pl-[3px] pr-[2px]">
-              <img src={encodeURI(data.travellers.icon)} alt="Travellers Icon" className="h-[16px] w-[16px] object-contain" />
-            </div>
-            <div className="flex flex-col overflow-hidden">
-              <span className="truncate text-[13px] font-normal text-[#767676]">{data.travellers.label}</span>
-              <span className="truncate text-[16px] font-semibold text-[#111111]">{data.travellers.value}</span>
-            </div>
-          </div>
-
-          {/* Search Button */}
-          <button className="flex h-[52px] w-full shrink-0 items-center justify-center gap-[8px] rounded-[16px] bg-[#FDDB32] font-sans text-[16px] font-medium text-[#111111] transition-colors hover:bg-[#f0cf2e] lg:h-[75px] lg:w-[79px] lg:rounded-[12px]">
-            <span className="lg:hidden">Search Flights</span>
-            <span className="hidden lg:inline">{data.buttonText}</span>
-            <Search size={20} className="lg:hidden" />
-          </button>
-        </div>
-
-        {/* Checkboxes Row (Hidden on mobile) */}
-        <div className="hidden w-full flex-wrap items-center gap-[16px] pt-[2px] lg:flex">
-          {data.checkboxes.map((checkbox, index) => (
-            <label key={index} className="flex cursor-pointer items-center gap-[8px] text-[14px] font-medium text-[#111111]">
-              <div 
-                className={`flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border ${
-                  checkbox.checked ? 'border-[#FDDB32] bg-[#FDDB32]' : 'border-[#E6E6E6] bg-white'
-                }`}
-              >
-                {checkbox.checked && (
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 4L3.5 6.5L9 1" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                )}
-              </div>
-              {checkbox.label}
-            </label>
-          ))}
-        </div>
+  return <div ref={rootRef} className="relative z-50 mx-auto flex w-full max-w-[1216px] flex-col items-center justify-center rounded-[24px] bg-white p-[20px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] lg:p-[24px]">
+    <div className="flex w-full max-w-[1160.78px] flex-col gap-[12px] lg:gap-[10px]">
+      <div className="flex items-center gap-[8px] pb-[12px] lg:gap-[10px] lg:pb-0">
+        <div className="relative"><button type="button" aria-expanded={openPanel === "trip"} onClick={() => toggle("trip")} className="flex h-[40px] items-center gap-[8px] rounded-full border border-[#E6E6E6] px-[16px] text-[14px] font-medium text-[#111111] transition-colors hover:bg-[#FFFDF0]"><Plane size={16} aria-hidden="true" />{tripType}<ChevronDown size={16} className="text-[#767676]" aria-hidden="true" /></button>{openPanel === "trip" && <Popover className="left-0 top-full w-[184px] p-2"><Choice label="One way" selected={tripType === "One way"} onClick={() => selectOption(setTripType, "One way")} /><Choice label="Return" selected={tripType === "Return"} onClick={() => selectOption(setTripType, "Return")} /><Choice label="Multi-city" selected={tripType === "Multi-city"} onClick={() => selectOption(setTripType, "Multi-city")} /></Popover>}</div>
+        <div className="relative"><button type="button" aria-expanded={openPanel === "bags"} onClick={() => toggle("bags")} className="flex h-[40px] items-center gap-[8px] rounded-full border border-[#E6E6E6] px-[16px] text-[14px] font-medium text-[#111111] transition-colors hover:bg-[#FFFDF0]"><Briefcase size={16} aria-hidden="true" />{bagType}<ChevronDown size={16} className="text-[#767676]" aria-hidden="true" /></button>{openPanel === "bags" && <Popover className="left-0 top-full w-[184px] p-2"><Choice label="Bags" selected={bagType === "Bags"} onClick={() => selectOption(setBagType, "Bags")} /><Choice label="Cabin bag" selected={bagType === "Cabin bag"} onClick={() => selectOption(setBagType, "Cabin bag")} /><Choice label="Checked bag" selected={bagType === "Checked bag"} onClick={() => selectOption(setBagType, "Checked bag")} /></Popover>}</div>
       </div>
-      
+      <div className="relative flex w-full flex-col gap-[12px] lg:flex-row lg:items-center lg:gap-[11px]">
+        <div role="button" tabIndex={0} aria-expanded={openPanel === "departure"} onClick={() => toggle("departure")} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle("departure"); } }} className={`${fieldClass("departure")} lg:w-[194.7px] lg:flex-none`}><FieldIcon src={data.departure.icon} alt="Departure" /><FieldText label={data.departure.label} value={departure} />{openPanel === "departure" && <Popover className="left-0 top-full w-[270px]"><p className="px-3 pb-2 text-[12px] font-medium uppercase tracking-[0.08em] text-[#767676]">Where are you flying from?</p>{airports.map((airport) => <Choice key={airport.code} label={`${airport.city} (${airport.code})`} detail={airport.country} selected={departure.includes(airport.code)} onClick={() => selectOption(setDeparture, `${airport.city} (${airport.code})`)} />)}</Popover>}</div>
+        <button type="button" aria-label="Swap departure and destination" className="hidden lg:flex absolute left-[180px] z-10 h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border border-[#E6E6E6] bg-white shadow-sm transition-transform hover:scale-110"><img src={encodeURI(data.swapIcon)} alt="" className="h-[16px] w-[16px] object-contain" /></button>
+        <div role="button" tabIndex={0} aria-expanded={openPanel === "destination"} onClick={() => toggle("destination")} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle("destination"); } }} className={`${fieldClass("destination")} lg:w-[194.7px] lg:flex-none lg:pl-[24px]`}><FieldIcon src={data.destination.icon} alt="Destination" /><FieldText label={data.destination.label} value={destination || data.destination.placeholder || "Choose a destination"} muted={!destination} />{openPanel === "destination" && <Popover className="left-0 top-full w-[270px]"><div className="mb-2 flex items-center gap-2 rounded-[10px] border border-[#E6E6E6] px-3 py-2"><Search size={15} className="text-[#767676]" aria-hidden="true" /><input autoFocus placeholder="Search city or airport" className="w-full bg-transparent text-[13px] outline-none" /></div>{airports.map((airport) => <Choice key={airport.code} label={`${airport.city} (${airport.code})`} detail={airport.country} selected={destination.includes(airport.code)} onClick={() => selectOption(setDestination, `${airport.city} (${airport.code})`)} />)}</Popover>}</div>
+        <div className="flex w-full flex-row gap-[12px] lg:w-auto lg:gap-[11px]"><DateField label={data.departDate.label} value={departDate} icon={data.departDate.icon} active={openPanel === "departDate"} onClick={() => toggle("departDate")}><CalendarContent open={openPanel === "departDate"} panel="departDate" value={departDate} onPick={pickDate} onApply={() => setOpenPanel(null)} /></DateField><DateField label={data.returnDate.label} value={returnDate} icon={data.returnDate.icon} active={openPanel === "returnDate"} onClick={() => toggle("returnDate")}><CalendarContent open={openPanel === "returnDate"} panel="returnDate" value={returnDate} onPick={pickDate} onApply={() => setOpenPanel(null)} /></DateField></div>
+        <div role="button" tabIndex={0} aria-expanded={openPanel === "travellers"} onClick={() => toggle("travellers")} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle("travellers"); } }} className={`${fieldClass("travellers")} lg:w-[248px] lg:flex-none`}><FieldIcon src={data.travellers.icon} alt="Travellers" /><FieldText label={data.travellers.label} value={`${adults} Adult${adults === 1 ? "" : "s"} ${children} Child${children === 1 ? "" : "ren"}`} />{openPanel === "travellers" && <Popover className="right-0 top-full w-[292px]"><label className="mb-3 block text-[13px] font-medium text-[#111111]">Cabin class<select value={cabin} onChange={(event) => setCabin(event.target.value)} className="mt-2 h-10 w-full rounded-[10px] border border-[#D8D8D8] bg-white px-3 text-[13px] outline-none focus:border-[#111111]"><option>Economy</option><option>Premium economy</option><option>Business</option><option>First</option></select></label><Counter label="Adults" detail="Age 18+" value={adults} onDecrease={() => setAdults(Math.max(1, adults - 1))} onIncrease={() => setAdults(adults + 1)} /><Counter label="Children" detail="Age 0 to 17" value={children} onDecrease={() => setChildren(Math.max(0, children - 1))} onIncrease={() => setChildren(children + 1)} /><button type="button" onClick={() => setOpenPanel(null)} className="mt-4 h-11 w-full rounded-[10px] bg-[#FDDB32] text-[14px] font-semibold text-[#111111] transition-colors hover:bg-[#F0CF2E]">Apply</button></Popover>}</div>
+        <button type="button" onClick={() => setOpenPanel(null)} className="flex h-[52px] w-full shrink-0 items-center justify-center gap-[8px] rounded-[16px] bg-[#FDDB32] font-sans text-[16px] font-medium text-[#111111] transition-colors hover:bg-[#F0CF2E] lg:h-[75px] lg:w-[79px] lg:rounded-[12px]" aria-label="Search flights"><span className="lg:hidden">Search Flights</span><span className="hidden lg:inline">{data.buttonText}</span><Search size={20} className="lg:hidden" aria-hidden="true" /></button>
+      </div>
+      <div className="hidden w-full flex-wrap items-center gap-[16px] pt-[2px] lg:flex">{data.checkboxes.map((checkbox, index) => <label key={index} className="flex cursor-pointer items-center gap-[8px] text-[14px] font-medium text-[#111111]"><input type="checkbox" defaultChecked={checkbox.checked} className="h-[16px] w-[16px] accent-[#FDDB32]" />{checkbox.label}</label>)}</div>
     </div>
-  );
+  </div>;
 }
+
+function DateField({ label, value, icon, active, onClick, children }: { label: string; value: string; icon: string; active: boolean; onClick: () => void; children: React.ReactNode }) { return <div role="button" tabIndex={0} aria-expanded={active} onClick={onClick} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onClick(); } }} className={`group relative flex h-[75px] min-w-0 flex-1 cursor-pointer items-center gap-[10px] rounded-[20px] border bg-[#F9FBF5] px-[14px] text-left transition-all hover:border-[#CFCFCF] focus-visible:outline-none ${active ? "border-[#FDDB32] bg-white shadow-[0_0_0_3px_rgba(253,219,50,0.22)]" : "border-[#E6E6E6]"} lg:w-[194.7px] lg:flex-none`}><FieldIcon src={icon} alt={label} /><FieldText label={label} value={value} />{children}</div>; }
+function CalendarContent({ open, panel, value, onPick, onApply }: { open: boolean; panel: "departDate" | "returnDate"; value: string; onPick: (month: string, year: number, day: number, panel: "departDate" | "returnDate") => void; onApply: () => void }) { if (!open) return null; return <Popover className="left-0 top-full w-[min(680px,calc(100vw-40px))] p-6"><div className="mb-5 flex flex-wrap items-center justify-between gap-3"><div className="flex items-center gap-2"><button type="button" aria-label="Previous month" className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E6E6E6] hover:bg-[#FFF9D9]"><ArrowLeft size={15} /></button><span className="text-[14px] font-semibold text-[#111111]">{panel === "departDate" ? "Select a departure date" : "Select a return date"}</span></div><span className="rounded-full bg-[#FFF4AE] px-3 py-1.5 text-[11px] font-medium text-[#6C5C00]">Specific dates</span><button type="button" aria-label="Next month" className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E6E6E6] hover:bg-[#FFF9D9]"><ArrowRight size={15} /></button></div><div className="grid grid-cols-1 gap-6 sm:grid-cols-2">{months.map((month) => <div key={month.name} className="min-w-0"><h3 className="mb-3 text-center text-[17px] font-semibold text-[#111111]">{month.name} {month.year}</h3><div className="grid grid-cols-7 gap-1 text-center text-[11px] text-[#767676]">{["M", "T", "W", "T", "F", "S", "S"].map((day, index) => <span key={`${day}-${index}`} className="py-1 font-medium">{day}</span>)}{Array.from({ length: month.start }).map((_, index) => <span key={`empty-${index}`} />)}{Array.from({ length: month.days }, (_, index) => index + 1).map((day) => { const selected = value.includes(`${String(day).padStart(2, "0")} ${month.name.slice(0, 3)} ${month.year}`); return <button key={day} type="button" onClick={(event) => { event.stopPropagation(); onPick(month.name, month.year, day, panel); }} className={`flex h-9 w-9 items-center justify-center rounded-full text-[13px] text-[#111111] transition-colors hover:bg-[#FDDB32] ${selected ? "bg-[#FDDB32] font-semibold" : ""}`}>{day}</button>; })}</div></div>)}</div><div className="mt-6 flex items-center justify-between border-t border-[#E6E6E6] pt-4"><span className="text-[13px] text-[#767676]">Choose your {panel === "departDate" ? "departure" : "return"} date</span><button type="button" onClick={(event) => { event.stopPropagation(); onApply(); }} className="h-11 rounded-[12px] bg-[#FDDB32] px-7 text-[14px] font-semibold text-[#111111] transition-colors hover:bg-[#F0CF2E]">Apply</button></div></Popover>; }
+
+function Counter({ label, detail, value, onDecrease, onIncrease }: { label: string; detail: string; value: number; onDecrease: () => void; onIncrease: () => void }) { return <div className="flex items-center justify-between py-2"><span className="flex flex-col"><span className="text-[14px] font-medium text-[#111111]">{label}</span><span className="text-[12px] text-[#767676]">{detail}</span></span><span className="flex items-center gap-3"><button type="button" onClick={(event) => { event.stopPropagation(); onDecrease(); }} className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#EEF0F2] text-[#111111] transition-colors hover:bg-[#E0E3E6]" aria-label={`Decrease ${label}`}><Minus size={15} /></button><span className="w-4 text-center text-[14px] font-medium">{value}</span><button type="button" onClick={(event) => { event.stopPropagation(); onIncrease(); }} className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#EEF0F2] text-[#111111] transition-colors hover:bg-[#E0E3E6]" aria-label={`Increase ${label}`}><Plus size={15} /></button></span></div>; }

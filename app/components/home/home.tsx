@@ -19,7 +19,7 @@ import Widget from "../widget/widget";
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
   return (
-    <section className="relative flex w-full min-h-[909px] flex-col items-center justify-center overflow-hidden bg-black pb-[40px] pt-[120px] lg:min-h-[796px] lg:pb-[72px] lg:pt-[160px]">
+    <section className="relative z-20 flex w-full min-h-[909px] flex-col items-center justify-center overflow-visible bg-black pb-[40px] pt-[120px] lg:min-h-[796px] lg:pb-[72px] lg:pt-[160px]">
       <Image 
         src={data.image} 
         alt={data.imageAlt} 
@@ -64,7 +64,7 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
         </div>
 
         {/* Widget Container */}
-        <div className="mt-[24px] w-full lg:mt-[60px]">
+        <div className="relative z-50 mt-[24px] w-full lg:mt-[60px]">
           <Widget />
         </div>
 

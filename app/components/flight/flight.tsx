@@ -38,7 +38,7 @@ export default function FlightPage({ data = flightData }: { data?: FlightPageDat
 
 function Hero({ data }: { data: FlightPageData }) {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black pb-[40px] pt-[120px] lg:min-h-[650px] lg:pb-[72px] lg:pt-[140px]">
+    <section className="relative z-20 flex w-full flex-col items-center justify-center overflow-visible bg-black pb-[40px] pt-[120px] lg:min-h-[650px] lg:pb-[72px] lg:pt-[140px]">
       
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
@@ -78,7 +78,7 @@ function Hero({ data }: { data: FlightPageData }) {
           </p>
         </div>
 
-        <div className="mt-[24px] w-full lg:mt-[60px]">
+        <div className="relative z-50 mt-[24px] w-full lg:mt-[60px]">
           <Widget />
         </div>
       </div>
