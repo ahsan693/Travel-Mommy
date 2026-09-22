@@ -28,7 +28,16 @@ export type TravelGuideIconName =
   | "Star"
   | "Sun"
   | "Tag"
-  | "Waves";
+  | "Waves"
+  | "MapPin"
+  | "ChevronRight"
+  | "ArrowRight"
+  | "ArrowUpRight"
+  | "Plane"
+  | "Plus"
+  | "Minus"
+  | "Thermometer"
+  | "Info";
 
 export interface TableOfContentItem {
   id: string;
@@ -182,7 +191,7 @@ export const guideData: TravelGuideData = {
   authorIcon: "Check",
   date: "Updated June 12, 2026",
   readTime: "8 Min Read",
-  heroImage: "/images/bali-rice-terraces.jpg", 
+  heroImage: "/08. Tavel Guide Country/Images/Travel Guide img-01.png", 
   
   tableOfContents: {
     title: "In This Guide",
@@ -243,7 +252,7 @@ export const guideData: TravelGuideData = {
       ],
       tipTitle: "Expert Tip",
       tipText: "Book flights 3-4 months in advance if targeting the July-August high season, as routes to Denpasar fill up extremely quickly.",
-      image: "/images/bali-rice-terraces.jpg",
+      image: "/08. Tavel Guide Country/Images/Travel Guide img-02.png",
       imageAlt: "Bali Rice Terraces",
       imageCaption: "The vibrant green rice terraces in Ubud are most spectacular at the start of the dry season in May."
     },
@@ -273,7 +282,7 @@ export const guideData: TravelGuideData = {
     rainyVsDry: {
       title: "4. Rainy Season vs Dry Season",
       description: "The wet season (November to March) brings dramatic afternoon rainstorms, lush jungle colors, and deep discounts at top resorts. The dry season (April to October) serves up consistent offshore winds, low humidity, and prime conditions for volcano trekking and diving.",
-      image: "/images/bali-rice-terraces.jpg",
+      image: "/08. Tavel Guide Country/Images/Travel Guide img-02.png",
       imageAlt: "Bali Scenery"
     },
     whenToAvoid: {
@@ -302,7 +311,7 @@ export const guideData: TravelGuideData = {
   },
 
   sidebarAd: {
-    image: "/images/santorini-hero.jpg",
+    image: "/08. Tavel Guide Country/Images/Travel Guide img-04.png",
     title: "Discover Greece",
     description: "From ancient ruins to island getaways, Greece offers unforgettable experiences for every traveler.",
     bullets: [
@@ -325,9 +334,9 @@ export const guideData: TravelGuideData = {
     title: "Related Guides",
     linkText: "All Travel Guides",
     guides: [
-      { title: "Japan Travel Guide", image: "/images/japan.jpg", date: "May 15, 2026" },
-      { title: "Paris Travel Guide", image: "/images/paris.jpg", date: "May 15, 2026" },
-      { title: "Netherlands Travel Guide", image: "/images/netherlands.jpg", date: "May 15, 2026" },
+      { title: "Japan Travel Guide", image: "/08. Tavel Guide Country/Images/Travel Guide img-06.png", date: "May 15, 2026" },
+      { title: "Paris Travel Guide", image: "/08. Tavel Guide Country/Images/Travel Guide img-05.png", date: "May 15, 2026" },
+      { title: "Netherlands Travel Guide", image: "/08. Tavel Guide Country/Images/Travel Guide img-04.png", date: "May 15, 2026" },
     ]
   }
 };
