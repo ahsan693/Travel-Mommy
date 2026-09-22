@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { GR, HR, ES, FR, IE, IT, PT, TR } from "country-flag-icons/react/3x2";
 import {
   MapPin,
   Globe,
@@ -30,6 +31,17 @@ import Footer from "../footer/footer";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 import exploreFlightsData, { type ExploreIconName } from "../../../lib/data/explore-flightsdata";
+
+const countryFlags: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+  GR,
+  HR,
+  ES,
+  FR,
+  IE,
+  IT,
+  PT,
+  TR,
+};
 
 /* =====================================================================
    ICON RENDERER
@@ -186,6 +198,7 @@ function ExploreCountries({ data }: { data: typeof exploreFlightsData.exploreCou
         <div className="flex w-full flex-nowrap items-center gap-[12px] overflow-x-auto pb-[8px] hide-scrollbar">
           {data.countries.map((country) => {
             const isActive = activeCountry === country.name;
+            const Flag = countryFlags[country.flag];
             return (
               <button
                 key={country.name}
@@ -194,8 +207,10 @@ function ExploreCountries({ data }: { data: typeof exploreFlightsData.exploreCou
                   isActive ? 'border-[#FDDB32] bg-[#FFFBEB]' : 'border-[#E6E6E6] bg-[#FFFFFF] hover:bg-gray-50'
                 }`}
               >
-                <div className="relative h-[24px] w-[24px] shrink-0 overflow-hidden rounded-full border border-[#E6E6E6] bg-neutral-100">
-                  <Image src={country.flag} alt={`${country.name} flag`} fill className="object-cover" />
+                <div
+                  className="flex h-[24px] w-[24px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E6E6E6] bg-[#F5F5F5]"
+                >
+                  <Flag className="h-full w-full object-cover" aria-label={`${country.name} flag`} role="img" />
                 </div>
                 <span className="font-sans text-[16px] font-semibold text-[#1A1A19]">{country.name}</span>
               </button>

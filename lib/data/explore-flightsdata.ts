@@ -152,14 +152,14 @@ const exploreFlightsData: ExploreFlightsData = {
     backIcon: "ArrowLeft",
     buttonIcon: "ChevronRight",
     countries: [
-      { name: "Greece", flag: "/images/flags/gr.png" },
-      { name: "Italy", flag: "/images/flags/it.png" },
-      { name: "Spain", flag: "/images/flags/es.png" },
-      { name: "France", flag: "/images/flags/fr.png" },
-      { name: "Portugal", flag: "/images/flags/pt.png" },
-      { name: "Croatia", flag: "/images/flags/hr.png" },
-      { name: "Ireland", flag: "/images/flags/ie.png" },
-      { name: "Turkey", flag: "/images/flags/tr.png" }
+      { name: "Greece", flag: "GR" },
+      { name: "Italy", flag: "IT" },
+      { name: "Spain", flag: "ES" },
+      { name: "France", flag: "FR" },
+      { name: "Portugal", flag: "PT" },
+      { name: "Croatia", flag: "HR" },
+      { name: "Ireland", flag: "IE" },
+      { name: "Turkey", flag: "TR" }
     ]
   },
   flightDealsWorkspace: {
