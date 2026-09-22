@@ -113,7 +113,7 @@ function ExploreFlightHero({ data }: { data: typeof exploreFlightsData.hero }) {
       </div>
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] flex-col items-center justify-center gap-[32px] px-[20px] pb-[80px] pt-[120px] md:gap-[48px] md:px-[80px] md:pb-[120px] md:pt-[180px]">
         <div className="flex w-full max-w-[1280px] flex-col items-center justify-center gap-[16px] text-center">
-          <h1 className="font-sans text-[40px] font-[800] leading-[1] tracking-[-0.02em] text-[#FFFFFF] md:text-[52px]">{data.title}</h1>
+          <h1 className="font-sans text-[40px] font-bold leading-[1] tracking-normal text-[#FFFFFF] md:text-[52px]">{data.title}</h1>
           <p className="max-w-[680px] font-sans text-[16px] font-normal leading-[1.5] text-[#FFFFFF]/90 md:text-[18px]">{data.subtitle}</p>
         </div>
         <div className="flex w-full max-w-[1120px] flex-col items-center gap-[16px] rounded-[16px] bg-[#FFFFFF] p-[20px] shadow-[0_12px_24px_rgba(0,0,0,0.0824)] md:h-[104px] md:flex-row md:justify-between">
@@ -399,7 +399,7 @@ function WhyBookGrid({ data }: { data: typeof exploreFlightsData.whyBook }) {
 
 export default function ExploreFlightsClient() {
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#F9F8F5]">
+    <main className="flex min-h-screen w-full flex-col bg-[#F9F8F5] font-sans">
       <ExploreFlightHero data={exploreFlightsData.hero} />
       <BrowseByRegion data={exploreFlightsData.browseRegion} />
       <ExploreCountries data={exploreFlightsData.exploreCountries} />

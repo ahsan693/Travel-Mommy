@@ -208,7 +208,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF]">
+    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF] font-sans">
       
       {/* Hero Section */}
       <section className="relative flex h-auto min-h-[560px] w-full flex-col overflow-hidden bg-[#000000] md:h-[726px]">
@@ -248,7 +248,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
             </div>
             
             <div className="flex flex-col gap-[12px] md:gap-[20px]">
-              <h1 className="font-sans text-[48px] font-medium leading-[1] text-[#FFFFFF] md:text-[69px] md:leading-[68px] md:tracking-[-4px]">
+              <h1 className="font-sans text-[48px] font-medium leading-[1] tracking-normal text-[#FFFFFF] md:text-[69px] md:leading-[68px]">
                 {data.title}
               </h1>
               <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#FFFFFF] md:text-[18px] md:leading-[1.5]">

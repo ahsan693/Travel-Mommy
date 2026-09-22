@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Award, ArrowRight, ChevronRight, MapPin, MessageSquare } from "lucide-react";
+import { Award, ArrowRight, ChevronRight, MapPin, MessageSquare, ArrowUpRight } from "lucide-react";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
@@ -36,7 +36,7 @@ function BlogHero({ data }: { data: BlogPageData["hero"] }) {
               <React.Fragment key={crumb.label}>
                 <Link 
                   href={crumb.href} 
-                    style={{ color: index === 0 ? "#FDDB32" : "#FFFFFF" }}
+                  style={{ color: index === 0 ? "#FDDB32" : "#FFFFFF" }}
                   className={`hover:underline transition-all ${
                     index === 0 ? "text-[#FDDB32]" : "text-[#FFFFFF]"
                   }`}
@@ -50,15 +50,17 @@ function BlogHero({ data }: { data: BlogPageData["hero"] }) {
             ))}
           </div>
 
-          <span className="w-fit rounded-[30px] bg-[#FDDB32] px-[14px] py-[6px] font-sans text-[14px] font-medium uppercase text-[#000000]">
+          <span className="w-fit rounded-[30px] bg-[#FDDB32] px-[14px] py-[6px] font-sans text-[12px] font-bold uppercase tracking-[0.5px] text-[#000000]">
             {data.pill}
           </span>
 
-          <h1 className="font-sans text-[42px] font-normal leading-[1.1] tracking-[-2px] text-[#FFFFFF] lg:text-[69px] lg:leading-[68px] lg:tracking-[-4px]">
+          {/* Typography synced with Home Hero (scaled appropriately for Blog) */}
+          <h1 className="font-sans text-[42px] font-normal leading-[44px] tracking-normal text-[#FFFFFF] lg:text-[69px] lg:leading-[68px]">
             {data.title}
           </h1>
 
-          <p className="max-w-[800px] font-sans text-[16px] font-normal leading-[24px] text-[#FFFFFF] opacity-90">
+          {/* Typography synced with Home Hero Description */}
+          <p className="max-w-[800px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#FFFFFF]">
             {data.subtitle}
           </p>
 
@@ -84,7 +86,7 @@ function CategoryStrip({ categories }: { categories: string[] }) {
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`flex h-[36px] items-center justify-center rounded-full px-[16px] font-sans text-[14px] font-medium transition-colors duration-200 ${
+              className={`flex h-[36px] items-center justify-center rounded-full px-[16px] font-sans text-[14px] font-medium tracking-[-0.28px] transition-colors duration-200 ${
                 activeCategory === category
                   ? "bg-[#FDDB32] text-[#000000] border border-transparent"
                   : "bg-[#FFFFFF] text-[#555555] border border-[#E6E6E6] hover:bg-gray-50 hover:text-black"
@@ -109,10 +111,10 @@ function RegionFilterStrip({ data }: { data: BlogPageData["regionFilters"] }) {
       <div className="flex w-full max-w-[1440px] flex-col gap-[16px]">
         
         <div className="flex h-[14px] w-full items-center justify-between px-[20px] lg:px-[80px]">
-          <span className="font-sans text-[12px] font-bold uppercase leading-[100%] text-[#8E8E8E]">
+          <span className="font-sans text-[12px] font-bold uppercase leading-[100%] tracking-[1px] text-[#8E8E8E]">
             {data.eyebrow}
           </span>
-          <span className="font-sans text-[12px] font-normal leading-[100%] text-[#8E8E8E]">
+          <span className="font-sans text-[14px] font-medium leading-[100%] text-[#8E8E8E]">
             {data.countLabel}
           </span>
         </div>
@@ -136,7 +138,7 @@ function RegionFilterStrip({ data }: { data: BlogPageData["regionFilters"] }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/80 via-black/20 to-transparent" />
                 <div className="relative z-10 mt-auto flex w-full p-[16px]">
-                  <span className="font-sans text-[16px] font-bold leading-[100%] tracking-[-0.2px] text-[#FFFFFF]">
+                  <span className="font-sans text-[16px] font-medium leading-[100%] tracking-[-0.2px] text-[#FFFFFF] lg:text-[18px]">
                     {region.name}
                   </span>
                 </div>
@@ -161,7 +163,7 @@ function FeaturedGuideSection({ data }: { data: BlogPageData["featuredGuide"] })
         
         <div className="flex h-[16px] items-center gap-[8px]">
           <Award size={16} strokeWidth={2.5} className="text-[#7D7D7D]" />
-          <span className="font-sans text-[14px] font-semibold uppercase leading-[100%] tracking-[1px] text-[#7D7D7D]">
+          <span className="font-sans text-[12px] font-bold uppercase leading-[100%] tracking-[1px] text-[#7D7D7D]">
             {data.label}
           </span>
         </div>
@@ -180,18 +182,20 @@ function FeaturedGuideSection({ data }: { data: BlogPageData["featuredGuide"] })
           <div className="flex w-full max-w-[552px] flex-col gap-[20px] pt-[24px] lg:pt-[0px]">
             
             <div className="flex h-[26px] items-center gap-[8px] font-sans text-[14px] font-medium text-[#7D7D7D]">
-              <span className="rounded-full bg-[#FDDB32] px-[10px] py-[4px] text-[12px] font-bold uppercase text-[#000000]">
+              <span className="rounded-full bg-[#FDDB32] px-[10px] py-[4px] text-[12px] font-medium text-[#000000]">
                 {data.country}
               </span>
               <span className="text-[#A3A3A3]">•</span>
               <span>{data.readTime}</span>
             </div>
             
-            <h3 className="font-sans text-[28px] font-medium leading-[1.2] tracking-[-1px] text-[#000000] lg:text-[36px] lg:leading-[42px]">
+            {/* Typography synced with Home Destinations Section Header */}
+            <h3 className="font-sans text-[32px] font-medium leading-[1.1] tracking-[-1px] text-[#000000] lg:text-[48px] lg:leading-[1.1]">
               {data.title}
             </h3>
             
-            <p className="font-sans text-[16px] font-normal leading-[24px] text-[#666666]">
+            {/* Typography synced with Home Section Descriptions */}
+            <p className="font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333]">
               {data.description}
             </p>
 
@@ -216,8 +220,9 @@ function FeaturedGuideSection({ data }: { data: BlogPageData["featuredGuide"] })
                 </div>
               </div>
 
-              <button className="flex items-center justify-center gap-[6px] rounded-full bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-medium text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c]">
-                {data.buttonText} <ArrowRight size={16} />
+              {/* Typography synced with Home buttons */}
+              <button className="flex h-[48px] items-center justify-center gap-[6px] rounded-full bg-[#FDDB32] px-[20px] font-sans text-[14px] font-medium text-[#111827] transition-colors duration-200 hover:bg-[#e5c52c]">
+                {data.buttonText} <ArrowUpRight size={16} />
               </button>
             </div>
 
@@ -246,16 +251,18 @@ function IndependentExpertSection({ data }: { data: BlogPageData["independentExp
         <div className="flex w-full flex-col gap-[12px] lg:max-w-[620px]">
           <div className="flex h-[28px] w-fit items-center gap-[8px] rounded-full border border-[#E6E6E6] bg-[#FFFFFF] px-[12px] py-[6px]">
             <Award size={14} className="text-[#000000]" />
-            <span className="font-sans text-[12px] font-bold uppercase leading-[100%] text-[#000000]">
+            <span className="font-sans text-[12px] font-bold uppercase leading-[100%] tracking-[0.5px] text-[#000000]">
               {data.pill}
             </span>
           </div>
 
-          <h2 className="font-sans text-[24px] font-medium leading-[100%] tracking-[0px] text-[#000000] lg:text-[28px]">
+          {/* Typography synced with Home WhyCompare Section Header */}
+          <h2 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#000000] lg:text-[48px] lg:leading-[1.1] lg:tracking-[-1px]">
             {data.title}
           </h2>
 
-          <p className="font-sans text-[14px] font-normal leading-[20px] text-[#666666] lg:text-[15px] lg:leading-[22px]">
+          {/* Typography synced with Home Section Descriptions */}
+          <p className="font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333]">
             {data.description}
           </p>
         </div>
@@ -267,13 +274,17 @@ function IndependentExpertSection({ data }: { data: BlogPageData["independentExp
             return (
               <div 
                 key={idx} 
-                className="flex flex-1 flex-col gap-[8px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px]"
+                className="flex flex-1 flex-col gap-[8px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] shadow-sm"
               >
-                {Icon && <Icon size={20} className="mb-[4px] text-[#000000]" />}
-                <h3 className="font-sans text-[16px] font-bold leading-[22px] tracking-[0px] text-[#000000] lg:text-[18px]">
+                {Icon && <Icon size={24} className="mb-[4px] text-[#000000]" />}
+                
+                {/* Typography synced with Home WhyCompare Card Titles */}
+                <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-[#000000] lg:text-[24px] lg:leading-[24px]">
                   {feature.title}
                 </h3>
-                <p className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] lg:leading-[20px]">
+                
+                {/* Typography synced with Home WhyCompare Card Descriptions */}
+                <p className="font-sans text-[14px] leading-[20px] text-[#6B7280]">
                   {feature.description}
                 </p>
               </div>
@@ -295,7 +306,8 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
     <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[20px] pb-[80px] pt-[60px] lg:px-[80px]">
       <div className="flex w-full max-w-[1280px] flex-col gap-[32px]">
         
-        <h2 className="font-sans text-[24px] font-bold text-[#000000] lg:text-[32px]">
+        {/* Typography synced with Home Destinations Section Header */}
+        <h2 className="font-sans text-[42px] font-medium leading-[44px] tracking-[-1.5px] text-[#000000] lg:text-[48px] lg:leading-[1.1] lg:tracking-[-1px]">
           {data.title}
         </h2>
 
@@ -304,7 +316,7 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
             <Link 
               href={guide.href} 
               key={idx} 
-              className="group flex h-[410px] w-full flex-col overflow-hidden rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] transition-transform hover:-translate-y-1 hover:shadow-lg"
+              className="group flex h-[410px] w-full flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] transition-transform hover:-translate-y-1 hover:shadow-xl lg:h-[434px]"
             >
               <div className="relative h-[200px] w-full shrink-0">
                 <Image 
@@ -315,7 +327,7 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-[18px]">
+              <div className="flex flex-1 flex-col p-[20px] lg:p-[24px]">
                 <div className="flex items-center gap-[8px] font-sans text-[12px] font-medium text-[#8E8E8E]">
                   <span className="rounded-full border border-[#E6E6E6] px-[8px] py-[2px] text-[10px] font-bold uppercase tracking-[0.5px] text-[#8E8E8E]">
                     {guide.country}
@@ -323,16 +335,18 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
                   <span>{guide.readTime}</span>
                 </div>
                 
-                <h3 className="mt-[12px] font-sans text-[18px] font-medium leading-[24px] text-[#000000] line-clamp-2">
+                {/* Typography synced with Home Destinations Card Titles */}
+                <h3 className="mt-[12px] font-sans text-[20px] font-medium leading-none text-[#111827] line-clamp-2 lg:text-[24px] lg:leading-[24px]">
                   {guide.title}
                 </h3>
                 
-                <p className="mt-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#666666] line-clamp-3">
+                {/* Typography synced with Home Destinations Card Descriptions */}
+                <p className="mt-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#6B7280] line-clamp-3 lg:text-[14px] lg:leading-[20px]">
                   {guide.description}
                 </p>
 
-                <div className="mt-auto flex items-center gap-[4px] font-sans text-[13px] font-medium leading-[100%] text-[#000000]">
-                  {guide.exploreText} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                <div className="mt-auto flex items-center gap-[4px] font-sans text-[13px] font-medium leading-[100%] text-[#111827] lg:text-[14px]">
+                  {guide.exploreText} <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
             </Link>
@@ -353,40 +367,39 @@ function BlogNewsletterSection({ data }: { data: BlogPageData["newsletter"] }) {
     <section className="flex w-full justify-center bg-[#FFFFFF] px-[20px] py-[80px] lg:px-[80px]">
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px]">
         
-        <div className="flex w-full max-w-[512px] flex-col items-center gap-[12px] text-center">
-          <h2 className="font-sans text-[28px] font-medium leading-[100%] text-[#000000] lg:text-[32px]">
+        <div className="flex w-full max-w-[512px] flex-col items-center gap-[16px] text-center">
+          {/* Typography synced with Home CTA Section Header */}
+          <h2 className="font-sans text-[32px] font-medium leading-none tracking-[-1px] text-[#000000] lg:text-[48px]">
             {data.title}
           </h2>
-          <p className="font-sans text-[15px] font-normal leading-[24px] text-[#666666] lg:text-[16px]">
+          {/* Typography synced with Home CTA Section Descriptions */}
+          <p className="font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333]">
             {data.subtitle}
           </p>
         </div>
 
-        <div className="flex flex-col items-center gap-[12px]">
+        <div className="flex w-full flex-col items-center gap-[12px] lg:w-auto">
           
-          {/* Form Wrapper - 12px Gap */}
           <form className="flex w-full flex-col items-center gap-[12px] sm:flex-row sm:justify-center">
             
-            {/* Input Field: 320x40, 12px Radius, #F9FBF5 bg, #7D7D7D placeholder */}
             <input 
               type="email"
               placeholder={data.placeholder}
               aria-label="Email address"
-              className="h-[40px] w-full shrink-0 rounded-[12px] border border-[#E6E6E6] bg-[#F9FBF5] px-[16px] font-sans text-[14px] font-normal leading-[100%] text-[#000000] placeholder:text-[#7D7D7D] outline-none focus:border-[#000000] sm:w-[320px]"
+              className="h-[48px] w-full shrink-0 rounded-[14px] border border-[#E6E6E6] bg-[#F9FBF5] px-[20px] font-sans text-[14px] font-medium leading-[100%] text-[#000000] placeholder:text-[#7D7D7D] outline-none focus:border-[#000000] sm:w-[320px]"
             />
 
-            {/* Subscribe Button: 144x40, 12px Radius, #FDDB32 bg */}
+            {/* Typography synced with Home Button text */}
             <button 
               type="submit" 
-              className="flex h-[40px] w-full shrink-0 items-center justify-center rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-medium leading-[100%] text-[#000000] transition-colors hover:bg-[#e5c52c] sm:w-[144px]"
+              className="flex h-[48px] w-full shrink-0 items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] font-sans text-[14px] font-medium tracking-[-0.28px] text-[#111827] transition-colors hover:bg-[#e5c52c] sm:w-[160px]"
             >
               {data.buttonText}
             </button>
             
           </form>
 
-          {/* Footer Text */}
-          <span className="font-sans text-[12px] font-normal leading-[100%] text-[#7D7D7D]">
+          <span className="font-sans text-[13px] font-normal leading-[100%] text-[#7D7D7D]">
             {data.footerText}
           </span>
           
@@ -403,7 +416,7 @@ function BlogNewsletterSection({ data }: { data: BlogPageData["newsletter"] }) {
 
 export default function BlogPage({ data = blogData }: { data?: BlogPageData }) {
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF]">
+    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF] font-sans">
       <Header data={headerData} />
       <BlogHero data={data.hero} />
       <CategoryStrip categories={data.categories} />
