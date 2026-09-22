@@ -197,11 +197,9 @@ export const guideData: TravelGuideData = {
     title: "In This Guide",
     items: [
       { id: "overview", label: "1. Bali's Seasons: An Overview" },
-      { id: "weather-by-month", label: "2. Bali Weather by Month" },
-      { id: "travel-types", label: "3. Best Time for Different Types of Travel" },
-      { id: "rainy-vs-dry", label: "4. Rainy Season vs Dry Season" },
-      { id: "when-to-avoid", label: "5. When to Avoid Bali" },
-      { id: "recommendation", label: "6. Final Recommendation" },
+      { id: "weather-by-month", label: "2. The Dry Season (April to October) — Peak Tourism" },
+      { id: "rainy-vs-dry", label: "3. The Wet Season (November to March)" },
+      { id: "recommendation", label: "4. Best Time for Budget Travelers" },
     ]
   },
 

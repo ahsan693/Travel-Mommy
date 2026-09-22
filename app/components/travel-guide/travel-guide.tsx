@@ -68,7 +68,7 @@ function TableOfContents({ data }: { data: TravelGuideData["tableOfContents"] })
           <a
             key={item.id}
             href={`#${item.id}`}
-            className="flex items-center gap-[8px] font-sans text-[16px] font-medium leading-[1.5] text-[#000000] transition-colors hover:underline"
+            className="flex items-center gap-[8px] font-sans text-[12px] font-medium leading-[1.5] text-[#000000] underline decoration-[#000000] underline-offset-[2px] transition-colors hover:text-[#5F5F5F]"
           >
             <ChevronRight size={18} className="text-[#000000]" strokeWidth={2} />
             {item.label}
