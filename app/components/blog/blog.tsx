@@ -55,12 +55,12 @@ function BlogHero({ data }: { data: BlogPageData["hero"] }) {
           </span>
 
           {/* Typography synced with Home Hero (scaled appropriately for Blog) */}
-          <h1 className="font-sans text-[42px] font-normal leading-[44px] tracking-normal text-[#FFFFFF] lg:text-[69px] lg:leading-[68px]">
+          <h1 className="font-sans text-[42px] font-normal leading-[44px] tracking-normal text-[#FFFFFF] lg:text-[69px] lg:leading-[68px] lg:tracking-normal">
             {data.title}
           </h1>
 
           {/* Typography synced with Home Hero Description */}
-          <p className="max-w-[800px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#FFFFFF]">
+          <p className="max-w-[800px] font-sans text-[16px] font-normal leading-[26px] tracking-[0px] text-[#FFFFFF]">
             {data.subtitle}
           </p>
 
