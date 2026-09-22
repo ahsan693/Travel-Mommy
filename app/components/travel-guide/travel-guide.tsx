@@ -33,6 +33,9 @@ import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 import { type TravelGuideData, type TravelGuideIconName, guideData } from "../../../lib/data/travel-guide";
 
+// Fallback imports for icons not explicitly in the original import list but typed in your data
+import { MapPin, Plane, Info } from "lucide-react";
+
 const travelGuideIcons: Record<TravelGuideIconName, LucideIcon> = {
   Banknote,
   Bell,
@@ -46,7 +49,7 @@ const travelGuideIcons: Record<TravelGuideIconName, LucideIcon> = {
   Sun,
   Tag,
   Waves,
-  MapPin: MapPin as LucideIcon, // Assuming MapPin needs to be cast or imported if missing from list
+  MapPin: MapPin as LucideIcon, 
   ChevronRight,
   ArrowRight,
   ArrowUpRight,
@@ -56,9 +59,6 @@ const travelGuideIcons: Record<TravelGuideIconName, LucideIcon> = {
   Thermometer,
   Info: Info as LucideIcon,
 };
-
-// Fallback imports for icons not explicitly in the original import list but typed in your data
-import { MapPin, Plane, Info } from "lucide-react";
 
 function TravelGuideIcon({ name, ...props }: { name: TravelGuideIconName } & LucideProps) {
   const Icon = travelGuideIcons[name];
@@ -80,7 +80,7 @@ function TableOfContents({ data }: { data: TravelGuideData["tableOfContents"] })
           <a
             key={item.id}
             href={`#${item.id}`}
-            className="flex items-start gap-[8px] font-sans text-[14px] font-[380] leading-[20px] text-[#000000] underline decoration-[#000000] underline-offset-[2px] transition-colors hover:text-[#5F5F5F] md:items-center md:text-[16px] md:leading-[24px]"
+            className="flex items-start gap-[8px] font-sans text-[14px] font-[380] leading-[1.43] text-[#000000] underline decoration-[#000000] underline-offset-[2px] transition-colors hover:text-[#5F5F5F] md:items-center md:text-[16px] md:leading-[1.5]"
           >
             <ChevronRight size={18} className="mt-[2px] shrink-0 text-[#000000] md:mt-0" strokeWidth={2} />
             {item.label}
@@ -102,32 +102,32 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
       
         <div className="flex flex-col gap-[12px]">
           <div className="flex flex-col gap-[4px]">
-            <span className="font-sans text-[12px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.peakSeasonLabel}</span>
-            <span className="font-sans text-[14px] font-medium leading-[1.4] text-[#000000]">{facts.peakSeasonValue}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.peakSeasonLabel}</span>
+            <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.peakSeasonValue}</span>
           </div>
           <div className="h-[1px] w-full bg-[#E6E6E6]" />
         
           <div className="flex flex-col gap-[4px]">
-            <span className="font-sans text-[12px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.budgetMonthsLabel}</span>
-            <span className="font-sans text-[14px] font-medium leading-[1.4] text-[#000000]">{facts.budgetMonthsValue}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.budgetMonthsLabel}</span>
+            <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.budgetMonthsValue}</span>
           </div>
           <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
           <div className="flex flex-col gap-[4px]">
-            <span className="font-sans text-[12px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.bestWeatherLabel}</span>
-            <span className="font-sans text-[14px] font-medium leading-[1.4] text-[#000000]">{facts.bestWeatherValue}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.bestWeatherLabel}</span>
+            <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.bestWeatherValue}</span>
           </div>
           <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
           <div className="flex flex-col gap-[4px]">
-            <span className="font-sans text-[12px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.avgTempLabel}</span>
-            <span className="font-sans text-[14px] font-medium leading-[1.4] text-[#000000]">{facts.avgTempValue}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.avgTempLabel}</span>
+            <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.avgTempValue}</span>
           </div>
           <div className="h-[1px] w-full bg-[#E6E6E6]" />
 
           <div className="flex flex-col gap-[4px]">
-            <span className="font-sans text-[12px] font-medium leading-[1.2] text-[#7D7D7D]">{facts.currencyLabel}</span>
-            <span className="font-sans text-[14px] font-medium leading-[1.4] text-[#000000]">{facts.currencyValue}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.currencyLabel}</span>
+            <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.currencyValue}</span>
           </div>
         </div>
       </div>
@@ -135,10 +135,10 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
       <div className="flex items-start gap-[12px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px]">
         <TravelGuideIcon name={facts.tipIcon} size={20} className="mt-[2px] shrink-0 text-[#000000]" />
         <div className="flex flex-col gap-[6px]">
-          <span className="font-sans text-[12px] font-bold uppercase tracking-[0.5px] text-[#000000]">
+          <span className="font-sans text-[12px] font-bold uppercase tracking-[0.5px] leading-[1.33] text-[#000000]">
             {facts.tipTitle}
           </span>
-          <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#6E6E6A]">
+          <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#6E6E6A]">
             {facts.tipText}
           </p>
         </div>
@@ -150,7 +150,7 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
 function ArticleSection({ id, title, children, gap = "16px" }: { id: string; title: string; children: React.ReactNode; gap?: string }) {
   return (
     <section id={id} className="mt-[40px] scroll-mt-[100px] lg:mt-[56px]">
-      <h2 className="mb-[16px] font-sans text-[28px] font-medium leading-[32px] tracking-[-1px] text-[#000000] lg:mb-[24px] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
+      <h2 className="mb-[16px] font-sans text-[24px] font-medium leading-[1] text-[#000000] lg:mb-[24px] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
         {title}
       </h2>
       <div className="flex flex-col" style={{ gap }}>
@@ -191,7 +191,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
             <div className="flex flex-wrap items-center gap-[8px]">
               {data.breadcrumbs.map((crumb, idx) => (
                 <div key={idx} className="flex items-center gap-[8px]">
-                  <span className={`font-sans text-[12px] font-medium leading-[1.33] md:text-[14px] cursor-pointer hover:underline transition-all ${idx === 0 ? 'text-[#FDDB32]' : 'text-[#FFFFFF]'}`}>
+                  <span className={`font-sans text-[12px] font-medium leading-[1.33] md:text-[14px] md:leading-[1.43] cursor-pointer hover:underline transition-all ${idx === 0 ? 'text-[#FDDB32]' : 'text-[#FFFFFF]'}`}>
                     {crumb}
                   </span>
                   {idx < data.breadcrumbs.length - 1 && (
@@ -208,12 +208,12 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
               </span>
             </div>
             
-            {/* Typography mapped from Home Page */}
+            {/* Title & Description */}
             <div className="flex flex-col gap-[12px] lg:gap-[16px]">
-              <h1 className="font-sans text-[42px] font-medium leading-[44px] tracking-normal text-[#FFFFFF] lg:text-[69px] lg:leading-[68px]">
+              <h1 className="font-sans text-[42px] font-medium leading-[44px] tracking-normal text-[#FFFFFF] lg:text-[69px] lg:leading-[68px] lg:tracking-normal">
                 {data.title}
               </h1>
-              <p className="font-sans text-[16px] font-normal leading-[24px] tracking-normal text-[#FFFFFF] opacity-90">
+              <p className="font-sans text-[16px] font-[380] leading-[24px] tracking-normal text-[#FFFFFF] opacity-90 lg:text-[18px] lg:leading-[28px]">
                 {data.heroDescription}
               </p>
             </div>
@@ -224,12 +224,12 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-white/10 border border-white/30 backdrop-blur-sm">
                   <TravelGuideIcon name={data.authorIcon} size={12} strokeWidth={2.5} className="text-[#FFFFFF]" />
                 </div>
-                <span className="font-sans text-[12px] font-normal leading-[20px] tracking-normal text-[#FFFFFF] lg:text-[14px]">{data.author}</span>
+                <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#FFFFFF] lg:text-[14px] lg:leading-[1.43]">{data.author}</span>
               </div>
               <div className="h-[4px] w-[4px] rounded-full bg-[#FFFFFF]" />
-              <span className="font-sans text-[12px] font-normal leading-[20px] tracking-normal text-[#FFFFFF] lg:text-[14px]">{data.date}</span>
+              <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#FFFFFF] lg:text-[14px] lg:leading-[1.43]">{data.date}</span>
               <div className="h-[4px] w-[4px] rounded-full bg-[#FFFFFF]" />
-              <span className="font-sans text-[12px] font-normal leading-[20px] tracking-normal text-[#FFFFFF] lg:text-[14px]">{data.readTime}</span>
+              <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#FFFFFF] lg:text-[14px] lg:leading-[1.43]">{data.readTime}</span>
             </div>
             
           </div>
@@ -253,7 +253,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
               <span className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000] lg:text-[18px]">
                 {data.quickAnswer.title}
               </span>
-              <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+              <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
                 {data.quickAnswer.text}
               </p>
             </div>
@@ -261,7 +261,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
 
           <ArticleSection id="overview" title={data.sections.overview.title}>
             {data.sections.overview.paragraphs.map((p, i) => (
-              <p key={i} className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+              <p key={i} className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
                 {p}
               </p>
             ))}
@@ -274,27 +274,27 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 className="object-cover" 
               />
             </div>
-            <span className="text-[13px] font-normal italic text-[#7D7D7D] lg:text-[14px]">
+            <span className="text-[13px] font-normal italic leading-[1.4] text-[#7D7D7D] lg:text-[14px]">
               {data.sections.overview.imageCaption}
             </span>
           </ArticleSection>
 
           <ArticleSection id="weather-by-month" title={data.sections.weatherByMonth.title}>
-            <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+            <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
               {data.sections.weatherByMonth.description}
             </p>
 
-            {/* Mobile Weather View (Stacked Divs) */}
+            {/* Mobile Weather View (Stacked Divs)[cite: 73] */}
             <div className="flex flex-col gap-[16px] md:hidden">
               {data.sections.weatherByMonth.data.map((row, idx) => (
                 <div key={idx} className="flex flex-col gap-[8px] border-b border-[#E6E6E6] pb-[16px] last:border-0 last:pb-0">
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-[16px] font-medium text-[#000000]">{row.month}</span>
-                    <span className="font-sans text-[16px] font-medium text-[#000000]">{row.temp}</span>
+                    <span className="font-sans text-[14px] font-bold leading-[1.43] text-[#000000]">{row.month}</span>
+                    <span className="font-sans text-[14px] font-bold leading-[1.43] text-[#000000]">{row.temp}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-[14px] font-[380] text-[#7D7D7D]">Rain Days: {row.rain}</span>
-                    <span className="font-sans text-[14px] font-[380] text-[#7D7D7D]">{row.conditions}</span>
+                    <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#7D7D7D]">Rain Days: {row.rain}</span>
+                    <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#7D7D7D]">{row.conditions}</span>
                   </div>
                 </div>
               ))}
@@ -306,7 +306,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 <thead className="bg-[#F9FBF5]">
                   <tr>
                     {data.sections.weatherByMonth.tableHeaders.map((h, i) => (
-                      <th key={i} className="px-[20px] py-[16px] font-sans text-[14px] font-medium text-[#000000]">
+                      <th key={i} className="px-[20px] py-[16px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">
                         {h}
                       </th>
                     ))}
@@ -315,10 +315,10 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 <tbody className="divide-y divide-[#E6E6E6]">
                   {data.sections.weatherByMonth.data.map((row, idx) => (
                     <tr key={idx}>
-                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-medium text-[#000000]">{row.month}</td>
-                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal text-[#4B5563]">{row.temp}</td>
-                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal text-[#4B5563]">{row.rain}</td>
-                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal text-[#4B5563]">{row.conditions}</td>
+                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{row.month}</td>
+                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563]">{row.temp}</td>
+                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563]">{row.rain}</td>
+                      <td className="px-[20px] py-[16px] font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563]">{row.conditions}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -330,10 +330,10 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 <TravelGuideIcon name={data.sections.weatherByMonth.tipIcon} size={18} className="text-[#FFFFFF]" />
               </div>
               <div className="flex flex-col gap-[8px]">
-                <span className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000] lg:text-[18px]">
+                <span className="font-sans text-[14px] font-semibold leading-[1.43] text-[#000000] lg:text-[16px] lg:leading-[1.5]">
                   {data.sections.weatherByMonth.tipTitle}
                 </span>
-                <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+                <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
                   {data.sections.weatherByMonth.tipText}
                 </p>
               </div>
@@ -341,16 +341,17 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
           </ArticleSection>
 
           <ArticleSection id="travel-types" title={data.sections.travelTypes.title}>
-            <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+            {/* Travel Types Layout Grid Mobile: cols-2, Desktop: cols-4[cite: 73] */}
+            <div className="grid grid-cols-2 gap-[16px] lg:grid-cols-4">
               {data.sections.travelTypes.types.map((type, i) => {
                 return (
-                  <div key={i} className="flex flex-row items-center gap-[16px] rounded-[16px] border border-[#E6E6E6] p-[16px] lg:flex-col lg:items-start lg:gap-[12px] lg:p-[20px]">
+                  <div key={i} className="flex flex-row items-center gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[16px] lg:flex-col lg:items-start lg:p-[20px]">
                     <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[8px] bg-[#FFED91]">
                       <TravelGuideIcon name={type.icon} size={20} className="text-[#000000]" />
                     </div>
                     <div className="flex flex-col lg:mt-[8px]">
-                      <h3 className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000]">{type.title}</h3>
-                      <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#7D7D7D] lg:mt-[4px]">{type.period}</p>
+                      <h3 className="font-sans text-[14px] font-semibold leading-[1.43] text-[#000000] lg:text-[16px] lg:leading-[1.5]">{type.title}</h3>
+                      <p className="font-sans text-[12px] font-normal leading-[1.33] text-[#7D7D7D] mt-[2px] lg:text-[14px] lg:font-[380] lg:leading-[1.43] lg:mt-[4px]">{type.period}</p>
                     </div>
                   </div>
                 );
@@ -359,7 +360,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
           </ArticleSection>
 
           <ArticleSection id="rainy-vs-dry" title={data.sections.rainyVsDry.title}>
-            <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+            <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
               {data.sections.rainyVsDry.description}
             </p>
             <div className="relative mt-[8px] h-[240px] w-full max-w-[852px] overflow-hidden rounded-[16px] lg:h-[360px]">
@@ -373,20 +374,20 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
           </ArticleSection>
 
           <ArticleSection id="when-to-avoid" title={data.sections.whenToAvoid.title}>
-            <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+            <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
               {data.sections.whenToAvoid.description}
             </p>
           </ArticleSection>
 
           <ArticleSection id="recommendation" title={data.sections.recommendation.title}>
-            <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#333333]">
+            <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#333333] lg:text-[16px] lg:leading-[1.5]">
               {data.sections.recommendation.description}
             </p>
           </ArticleSection>
 
           {/* FAQs */}
           <section className="mt-[48px] border-t border-[#E6E6E6] pt-[40px] lg:mt-[64px] lg:pt-[48px]">
-            <h2 className="mb-[24px] font-sans text-[28px] font-medium leading-[32px] tracking-[-1px] text-[#000000] lg:mb-[32px] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
+            <h2 className="mb-[24px] font-sans text-[24px] font-medium leading-[1] text-[#000000] lg:mb-[32px] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
               {data.faqSection.title}
             </h2>
             <div className="flex w-full flex-col gap-[16px]">
@@ -399,7 +400,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                       onClick={() => setOpenFaqIndex(isOpen ? null : i)}
                       className="flex w-full items-center justify-between text-left outline-none gap-[16px]"
                     >
-                      <span className="font-sans text-[16px] font-medium leading-[24px] text-[#000000] lg:text-[18px]">
+                      <span className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000] lg:text-[18px]">
                         {faq.q}
                       </span>
                       <span className="flex h-[24px] w-[24px] shrink-0 items-center justify-center text-[#000000]">
@@ -413,7 +414,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="font-sans text-[16px] font-[380] leading-[24px] text-[#666666]">
+                        <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#666666] lg:text-[16px] lg:leading-[1.5]">
                           {faq.a}
                         </p>
                       </div>
@@ -437,10 +438,10 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#FDDB32]">
                  <TravelGuideIcon name="Plane" size={20} className="text-[#000000]" />
                </div>
-               <h3 className="font-sans text-[18px] font-medium text-[#000000]">Compare Flights to Bali</h3>
+               <h3 className="font-sans text-[18px] font-medium leading-[1.5] text-[#000000]">Compare Flights to Bali</h3>
             </div>
-            <p className="font-sans text-[14px] text-[#4B5563]">Find and compare flight options from your nearest airport.</p>
-            <button className="mt-[8px] flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] font-sans text-[14px] font-medium text-[#111827] transition-colors hover:bg-[#e5c52c]">
+            <p className="font-sans text-[14px] font-[380] leading-[1.43] text-[#4B5563]">Find and compare flight options from your nearest airport.</p>
+            <button className="mt-[8px] flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] font-sans text-[14px] font-medium leading-[1.43] text-[#111827] transition-colors hover:bg-[#e5c52c]">
               Search Flights <TravelGuideIcon name="ArrowUpRight" size={16} />
             </button>
           </div>
@@ -454,11 +455,12 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[24px] px-[20px] lg:gap-[40px] lg:px-[80px]">
           
           <div className="flex items-center justify-between">
-            <h2 className="font-sans text-[28px] font-medium leading-[32px] tracking-[-1px] text-[#000000] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
+            <h2 className="font-sans text-[24px] font-medium leading-[1] text-[#000000] lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.5px]">
               {data.relatedGuidesSection.title}
             </h2>
-            <Link href="#" className="flex items-center gap-[6px] font-sans text-[14px] font-medium text-[#000000] hover:underline lg:text-[16px]">
-              View All
+            {/* View All Link - always visible on right for mobile as in PDF[cite: 73] */}
+            <Link href="#" className="flex items-center gap-[6px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] hover:underline lg:text-[16px] lg:leading-[1.5]">
+              {data.relatedGuidesSection.linkText}
             </Link>
           </div>
 
@@ -477,10 +479,10 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                   </div>
                 </div>
                 <div className="flex flex-col gap-[8px] py-[16px] lg:py-[20px]">
-                  <span className="font-sans text-[12px] font-normal leading-[16px] text-[#6B7280] lg:text-[13px]">
+                  <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#6B7280] lg:text-[14px] lg:leading-[1.43]">
                     {guide.date}
                   </span>
-                  <h3 className="font-sans text-[18px] font-medium leading-[24px] text-[#111827] lg:text-[20px]">
+                  <h3 className="font-sans text-[18px] font-medium leading-[1.2] text-[#111827] lg:text-[20px]">
                     {guide.title}
                   </h3>
                 </div>

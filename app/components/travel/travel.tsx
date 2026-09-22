@@ -175,13 +175,13 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
                 {aboutData.paragraphs.join(" ")}
               </p>
             </div>
-            <div className="flex w-full max-w-[545px] flex-nowrap items-center gap-[12px] overflow-x-auto pb-2 md:gap-[16px] hide-scrollbar">
+            <div className="grid w-full max-w-[545px] grid-cols-3 items-center gap-[8px] md:gap-[16px]">
               {aboutData.features.map((feat) => {
                 const FeatureIcon = LucideIconMap[feat.icon] || Check;
                 return (
-                  <div key={feat.label} className="flex h-[40px] shrink-0 items-center justify-center gap-[8px] rounded-[20px] bg-[#F9FBF5] px-[16px] md:h-[48px] md:gap-[12px] md:px-[22px]">
+                  <div key={feat.label} className="flex min-w-0 h-[40px] items-center justify-center gap-[6px] rounded-[20px] bg-[#F9FBF5] px-[8px] md:h-[48px] md:gap-[12px] md:px-[12px]">
                     <FeatureIcon size={16} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
-                    <span className="whitespace-nowrap font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] md:text-[15px] md:leading-[22px]">
+                    <span className="min-w-0 text-center font-sans text-[12px] font-medium leading-[1.2] tracking-[0px] text-[#000000] md:text-[15px] md:leading-[22px]">
                       {feat.label}
                     </span>
                   </div>
