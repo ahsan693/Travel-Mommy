@@ -1,8 +1,52 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronDown, Check, Search } from "lucide-react";
+import { AU, CA, CH, DE, DK, ES, EU, FI, FR, GB, IT, JP, NL, NO, SE, US } from "country-flag-icons/react/3x2";
 import { footerData, type FooterData } from "../../../lib/data/footerData";
+
+const footerFlags = { AU, CA, CH, DE, DK, ES, EU, FI, FR, GB, IT, JP, NL, NO, SE, US };
+
+const countryOptions = [
+  { label: "Finland", code: "FI" },
+  { label: "United States", code: "US" },
+  { label: "United Kingdom", code: "GB" },
+  { label: "Canada", code: "CA" },
+  { label: "Australia", code: "AU" },
+  { label: "Germany", code: "DE" },
+  { label: "France", code: "FR" },
+  { label: "Spain", code: "ES" },
+  { label: "Italy", code: "IT" },
+  { label: "Netherlands", code: "NL" },
+];
+
+const languageOptions = [
+  { label: "English (UK)", code: "GB" },
+  { label: "English (US)", code: "US" },
+  { label: "Suomi (FI)", code: "FI" },
+  { label: "Deutsch (DE)", code: "DE" },
+  { label: "Français (FR)", code: "FR" },
+  { label: "Español (ES)", code: "ES" },
+  { label: "Italiano (IT)", code: "IT" },
+  { label: "Nederlands (NL)", code: "NL" },
+  { label: "Svenska (SE)", code: "SE" },
+  { label: "Norsk (NO)", code: "NO" },
+];
+
+const currencyOptions = [
+  { label: "EUR", code: "EU", symbol: "€", description: "Euro" },
+  { label: "USD", code: "US", symbol: "$", description: "US Dollar" },
+  { label: "GBP", code: "GB", symbol: "£", description: "British Pound" },
+  { label: "CAD", code: "CA", symbol: "C$", description: "Canadian Dollar" },
+  { label: "AUD", code: "AU", symbol: "A$", description: "Australian Dollar" },
+  { label: "JPY", code: "JP", symbol: "¥", description: "Japanese Yen" },
+  { label: "CHF", code: "CH", symbol: "Fr.", description: "Swiss Franc" },
+  { label: "SEK", code: "SE", symbol: "kr", description: "Swedish Krona" },
+  { label: "NOK", code: "NO", symbol: "kr", description: "Norwegian Krone" },
+  { label: "DKK", code: "DK", symbol: "kr", description: "Danish Krone" },
+];
 
 const socialIcons = {
   instagram: {
@@ -34,6 +78,32 @@ const socialIcons = {
 };
 
 export default function Footer({ data = footerData }: { data?: FooterData }) {
+  const [openDropdown, setOpenDropdown] = useState<"country" | "language" | "currency" | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState(countryOptions[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0]);
+  const [selectedCurrency, setSelectedCurrency] = useState(currencyOptions[0]);
+
+  useEffect(() => {
+    if (!openDropdown) {
+      return;
+    }
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      const target = event.target;
+      if (target instanceof Element && !target.closest("[data-footer-dropdown]")) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [openDropdown]);
+
+  const renderFlag = (code: keyof typeof footerFlags) => {
+    const Flag = footerFlags[code];
+    return <Flag className="h-[18px] w-[26px] shrink-0 object-cover" aria-hidden="true" />;
+  };
+
   return (
     <footer aria-label="Site footer" className="bg-black text-white">
       <div className="mx-auto flex w-full max-w-[1225px] flex-col gap-[33px] px-6 py-[80px] lg:px-0">
@@ -57,24 +127,33 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
 
               {/* Locale Pills Row - Height 32px */}
               <div className="flex flex-wrap items-center gap-[8px] min-w-max">
-                {data.locales.map((locale, index) => (
-                  <button 
-                    key={index} 
-                    type="button" 
-                    aria-label={locale.label} 
-                    className="flex h-[32px] items-center gap-[8px] rounded-full border border-white/20 bg-transparent px-[12px] font-sans text-[12px] font-medium leading-none text-white transition-colors hover:bg-white/10"
-                  >
-                    {locale.label}
-                    <Image
-                      src={locale.arrowSrc}
-                      alt=""
-                      aria-hidden="true"
-                      width={10}
-                      height={10}
-                      className="object-contain"
-                    />
-                  </button>
-                ))}
+                <FooterDropdown
+                  label={`${selectedCountry.label}`}
+                  isOpen={openDropdown === "country"}
+                  onToggle={() => setOpenDropdown(openDropdown === "country" ? null : "country")}
+                  onSelect={(option) => { setSelectedCountry(option); setOpenDropdown(null); }}
+                  options={countryOptions}
+                  selected={selectedCountry.code}
+                  renderOption={(option) => <>{renderFlag(option.code as keyof typeof footerFlags)}<span>{option.label}</span></>}
+                />
+                <FooterDropdown
+                  label={selectedLanguage.label}
+                  isOpen={openDropdown === "language"}
+                  onToggle={() => setOpenDropdown(openDropdown === "language" ? null : "language")}
+                  onSelect={(option) => { setSelectedLanguage(option); setOpenDropdown(null); }}
+                  options={languageOptions}
+                  selected={selectedLanguage.label}
+                  renderOption={(option) => <>{renderFlag(option.code as keyof typeof footerFlags)}<span>{option.label}</span></>}
+                />
+                <FooterDropdown
+                  label={`${selectedCurrency.label} ${selectedCurrency.symbol}`}
+                  isOpen={openDropdown === "currency"}
+                  onToggle={() => setOpenDropdown(openDropdown === "currency" ? null : "currency")}
+                  onSelect={(option) => { setSelectedCurrency(option); setOpenDropdown(null); }}
+                  options={currencyOptions}
+                  selected={selectedCurrency.label}
+                  renderOption={(option) => <>{renderFlag(option.code as keyof typeof footerFlags)}<span className="w-[34px] text-center text-[#A5A5A5]">{option.label}</span><span className="w-[24px]">{option.symbol}</span><span>{option.description}</span></>}
+                />
               </div>
               
             </div>
@@ -144,5 +223,66 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
 
       </div>
     </footer>
+  );
+}
+
+type DropdownOption = {
+  label: string;
+  code?: string;
+  symbol?: string;
+  description?: string;
+};
+
+function FooterDropdown({
+  label,
+  isOpen,
+  onToggle,
+  onSelect,
+  options,
+  selected,
+  renderOption,
+}: {
+  label: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  onSelect: (option: DropdownOption) => void;
+  options: DropdownOption[];
+  selected: string;
+  renderOption: (option: DropdownOption) => React.ReactNode;
+}) {
+  return (
+    <div className="relative" data-footer-dropdown>
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        onClick={onToggle}
+        className="flex h-[32px] items-center gap-[6px] rounded-full border border-white/20 bg-[#1C1C1C] px-[12px] font-sans text-[12px] font-medium leading-none text-white transition-colors hover:border-white/40"
+      >
+        {label}
+        <ChevronDown size={15} strokeWidth={2.5} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute left-0 top-[40px] z-50 w-[300px] rounded-[16px] border border-white/20 bg-[#171819] p-[12px] shadow-[0_12px_32px_rgba(0,0,0,0.45)]">
+          <div className="mb-[10px] flex h-[38px] items-center gap-[8px] rounded-[10px] border border-white/20 px-[10px] text-[#A5A5A5]">
+            <Search size={16} />
+            <span className="font-sans text-[13px]">Search {label.toLowerCase()}...</span>
+          </div>
+          <div className="flex max-h-[280px] flex-col gap-[2px] overflow-y-auto">
+            {options.map((option) => (
+              <button
+                type="button"
+                key={option.label}
+                onClick={() => onSelect(option)}
+                className={`flex min-h-[38px] w-full items-center gap-[10px] rounded-[8px] px-[10px] text-left font-sans text-[14px] text-white transition-colors hover:bg-white/10 ${selected === (option.code ?? option.label) ? "bg-[#514D1A]" : ""}`}
+              >
+                {renderOption(option)}
+                {selected === (option.code ?? option.label) && <Check size={17} className="ml-auto shrink-0 text-[#FDDB32]" />}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
