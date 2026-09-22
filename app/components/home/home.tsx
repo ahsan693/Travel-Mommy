@@ -15,8 +15,6 @@ import Footer from "../footer/footer";
 import { homeData, type HomePageData } from "../../../lib/data/homeData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
-import { FlightList, useFlightViewModel } from "../../../lib/features/flights";
-import type { FlightAvailability } from "../../../lib/features/flights/types/flight";
 import Widget from "../widget/widget";
 
 function Hero({ data }: { data: HomePageData["hero"] }) {
@@ -75,21 +73,7 @@ function Hero({ data }: { data: HomePageData["hero"] }) {
   );
 }
 
-function openFlightSearch(result: FlightAvailability) {
-  if (result.status !== "available" || !result.flight.ticketLink) {
-    return;
-  }
-
-  const ticketUrl = result.flight.ticketLink.startsWith("http")
-    ? result.flight.ticketLink
-    : `https://www.aviasales.com${result.flight.ticketLink}`;
-
-  window.open(ticketUrl, "_blank", "noopener,noreferrer");
-}
-
 function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) {
-  const { flights, loading, error } = useFlightViewModel();
-
   return (
     <section className="w-full bg-[#FFFFFF] px-[16px] py-[80px] lg:px-[32px] lg:py-[96px]">
       <div className="mx-auto flex max-w-[1280px] flex-col gap-[32px] lg:gap-[48px]">
@@ -100,7 +84,7 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
               {content.title} <span className="text-[#000000] underline decoration-1 underline-offset-4">{content.highlightedTitle}</span>
             </h2>
             <p className="mt-[16px] max-w-[358px] font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333] lg:max-w-[700px]">
-              {error ?? (loading ? "Finding cheapest flights..." : content.description)}
+              {content.description}
             </p>
           </div>
           
@@ -111,73 +95,76 @@ function CheapFlights({ content }: { content: HomePageData["flightsSection"] }) 
         </div>
 
         {/* Flight Cards Custom Grid */}
-        {flights && flights.length > 0 ? (
-          <div className="grid w-full grid-cols-2 gap-x-[10px] gap-y-[20px] md:grid-cols-3 lg:grid-cols-4 lg:gap-[24px]">
-            {flights.map((result: any, idx: number) => {
-              const flight = result.flight || result; 
-              return (
-                <div 
-                  key={idx} 
-                  className="flex h-[332px] flex-col overflow-hidden rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:h-[364px] lg:rounded-[24px]"
-                >
-                  <div className="relative h-[110px] w-full shrink-0 overflow-hidden bg-[#F3F4F6] lg:h-[140px]">
+        <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
+          {content.flights.map((flight) => {
+            return (
+              <div
+              key={`${flight.city}-${flight.route}`}
+              className="group flex h-[364px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="relative h-[140px] w-full shrink-0 overflow-hidden bg-neutral-100">
+                <Image
+                  src={flight.image}
+                  alt={flight.city}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="flex w-full flex-col gap-[12px] p-[20px]">
+                <div className="flex w-full flex-col gap-[4px]">
+                  <h3 className="font-sans text-[24px] font-medium leading-[24px] text-[#000000]">
+                    {flight.city}
+                  </h3>
+                  <p className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">
+                    {flight.route}
+                  </p>
+                </div>
+
+                <div className="flex h-[24px] w-full items-center justify-between">
+                  <p className="font-sans text-[24px] font-medium leading-[24px] text-[#212121]">
+                    {flight.price}
+                  </p>
+                  <div className="flex items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[8px] py-[4px]">
                     <Image
-                      src={flight.image || flight.imageUrl || "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80"}
-                      alt={flight.city || flight.destination || "Destination"}
-                      fill
-                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      src="/Homepage/Section 3/Icon/Airline Logo.png"
+                      alt={`${flight.airline} logo`}
+                      width={16}
+                      height={16}
+                      className="object-contain"
                     />
-                    <div className="absolute left-[12px] top-[12px] flex h-[24px] w-[24px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] p-[4px] shadow-sm lg:left-[16px] lg:top-[16px] lg:h-[32px] lg:w-[32px] lg:p-[6px]">
-                      <img src={flight.flag || flight.flagUrl || "https://flagcdn.com/w40/eu.png"} alt="flag" className="h-full w-full object-contain" />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-[12px] lg:p-[20px]">
-                    <div className="mb-[12px] flex flex-col gap-[2px] lg:mb-[24px] lg:gap-[4px]">
-                      <h3 className="font-sans text-[18px] font-medium leading-[22px] text-[#000000] lg:text-[20px] lg:leading-[24px]">
-                        {flight.city || flight.destination || "City"}
-                      </h3>
-                      <p className="font-sans text-[12px] font-normal leading-[16px] text-[#7D7D7D] lg:text-[14px] lg:leading-[20px]">
-                        {flight.route || "Route"}
-                      </p>
-                    </div>
-
-                    <div className="mb-[12px] flex w-full flex-col items-start justify-between gap-[8px] lg:flex-row lg:items-center lg:gap-0">
-                      <p className="font-sans text-[12px] font-normal text-[#7D7D7D] lg:text-[14px]">
-                        From <span className="text-[18px] font-semibold text-[#212121] lg:text-[24px]">€{flight.price || "24"}</span>
-                      </p>
-                      <div className="flex items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[8px] py-[4px]">
-                        <Plane size={12} className="text-[#000000] lg:hidden" />
-                        <span className="font-sans text-[12px] font-medium leading-[16px] text-[#000000]">
-                          {flight.airline || "Airline"}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-[6px]">
-                      <Clock size={12} className="text-[#7D7D7D] lg:h-[14px] lg:w-[14px]" />
-                      <span className="font-sans text-[12px] font-normal leading-[16px] text-[#7D7D7D] lg:text-[14px] lg:leading-[20px]">
-                        {flight.duration || "Direct • 2h"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto px-[12px] pb-[12px] pt-0 lg:px-[20px] lg:pb-[20px]">
-                    <button 
-                      onClick={() => openFlightSearch(result)}
-                      className="flex h-[40px] w-full items-center justify-center gap-[8px] rounded-[8px] border border-[#E6E6E6] bg-[#FFFFFF] font-sans text-[14px] font-medium text-[#000000] transition-colors duration-300 hover:bg-[#F9FBF5] hover:border-[#FDDB32] lg:h-[44px] lg:rounded-[12px]"
-                    >
-                      <span>{content.cardCta || "View Flights"}</span>
-                      <ArrowUpRight size={14} className="text-[#000000] lg:h-[16px] lg:w-[16px]" />
-                    </button>
+                    <span className="font-sans text-[12px] font-medium leading-[16px] tracking-[0px] text-[#000000]">
+                      {flight.airline}
+                    </span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          <FlightList flights={flights} cta={content.cardCta} onViewFlights={openFlightSearch} />
-        )}
+
+                <div className="flex h-[20px] items-center gap-[6px]">
+                  <Clock size={14} className="text-[#7D7D7D]" />
+                  <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">
+                    Direct &bull; {flight.duration}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-auto px-[20px] pb-[20px] pt-0">
+                <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] transition-colors hover:border-[#FDDB32] hover:bg-[#FDDB32]">
+                  <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
+                    {content.cardCta}
+                  </span>
+                  <Image
+                    src="/Homepage/Section 3/Icon/KQY0VNx64.png"
+                    alt="Arrow Right"
+                    width={14}
+                    height={14}
+                    className="object-contain"
+                  />
+                </button>
+              </div>
+            </div>
+            );
+          })}
+        </div>
 
         {/* Mobile CTA Button (Hidden on Desktop) */}
         <button className="mt-[8px] flex h-[48px] w-full items-center justify-center gap-[10px] rounded-[14px] bg-[#FDDB32] px-[24px] font-sans text-[16px] font-medium text-[#000000] transition-colors hover:bg-[#e5c52c] lg:hidden">
