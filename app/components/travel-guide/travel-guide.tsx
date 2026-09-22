@@ -5,136 +5,66 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
-  Info,
   Calendar,
   Thermometer,
   Banknote,
-  Sun,
-  Waves,
+  Bell,
+  Check,
+  CircleHelp,
+  Clock,
   Heart,
+  Lightbulb,
+  MessageSquare,
   Plus,
   Minus,
   ArrowRight,
   ArrowUpRight,
-  Check,
-  Bell,
-  MessageSquare,
-  Plane,
-  Lightbulb
+  Star,
+  Sun,
+  Tag,
+  Waves,
+  type LucideIcon,
+  type LucideProps,
 } from "lucide-react";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
+import { type TravelGuideData, type TravelGuideIconName, guideData } from "../../../lib/data/travel-guide";
 
-/* =====================================================================
-   MOCK DATA & INTERFACES
-===================================================================== */
-
-export interface WeatherData {
-  month: string;
-  temp: string;
-  rain: string;
-  conditions: string;
-}
-
-export interface FaqItem {
-  q: string;
-  a: string;
-}
-
-export interface RelatedGuide {
-  title: string;
-  image: string;
-  date: string;
-}
-
-export interface TableOfContentItem {
-  id: string;
-  label: string;
-}
-
-export interface FastFacts {
-  highSeason: string;
-  shoulderSeason: string;
-  lowSeason: string;
-  avgTemp: string;
-  currency: string;
-}
-
-export interface TravelGuideData {
-  breadcrumbs: string[];
-  badge: string;
-  title: string;
-  heroDescription: string;
-  author: string;
-  date: string;
-  readTime: string;
-  heroImage: string;
-  quickAnswer: string;
-  fastFacts: FastFacts;
-  tableOfContents: TableOfContentItem[];
-  weatherData: WeatherData[];
-  faqs: FaqItem[];
-  relatedGuides: RelatedGuide[];
-}
-
-export const guideData: TravelGuideData = {
-  breadcrumbs: ["Home", "Travel Guides", "Indonesia"],
-  badge: "INDONESIA TRAVEL GUIDE",
-  title: "Best Time to Visit Bali: A Complete Month-by-Month Guide",
-  heroDescription: "Discover Bali's weather, seasons, crowds and prices to help you choose the perfect time for your trip.",
-  author: "By Sarah Jenkins",
-  date: "Updated June 12, 2026",
-  readTime: "8 Min Read",
-  heroImage: "/images/bali-rice-terraces.jpg", 
-  quickAnswer: "Generally, the best time to visit Bali is during the dry season, from April to June and September to October, which offers good weather and fewer crowds.",
-  fastFacts: {
-    highSeason: "July, August, Christmas/NY",
-    shoulderSeason: "April, May, June, September, October",
-    lowSeason: "January, February, March, November",
-    avgTemp: "27°C - 31°C year-round",
-    currency: "Indonesian Rupiah (IDR)",
-  },
-  tableOfContents: [
-    { id: "overview", label: "1. Bali's Seasons: An Overview" },
-    { id: "weather-by-month", label: "2. Bali Weather by Month" },
-    { id: "travel-types", label: "3. Best Time for Different Types of Travel" },
-    { id: "rainy-vs-dry", label: "4. Rainy Season vs Dry Season" },
-    { id: "when-to-avoid", label: "5. When to Avoid Bali" },
-    { id: "recommendation", label: "6. Final Recommendation" },
-  ],
-  weatherData: [
-    { month: "January", temp: "28°C", rain: "15 Days", conditions: "Heavy Rain" },
-    { month: "April", temp: "29°C", rain: "9 Days", conditions: "Showers / Sun" },
-    { month: "July", temp: "27°C", rain: "4 Days", conditions: "Sunny & Dry" },
-    { month: "October", temp: "28°C", rain: "8 Days", conditions: "Mixed / Warm" },
-  ],
-  faqs: [
-    { q: "Which is the hottest month in Bali?", a: "April and May are typically the hottest months in Bali, with temperatures often reaching up to 32°C (90°F) and high humidity levels before the dry season fully sets in." },
-    { q: "Is Bali safe during the rainy season?", a: "Yes, Bali is generally safe during the rainy season. However, travelers should be cautious of slippery roads, especially if riding scooters, and occasional disrupted boat schedules to nearby islands." },
-    { q: "How many days do I need for a complete Bali trip?", a: "A well-rounded trip to Bali requires at least 10 to 14 days. This gives you enough time to explore the cultural heart of Ubud, relax on the southern beaches, and visit neighboring islands like Nusa Penida." },
-  ],
-  relatedGuides: [
-    { title: "Japan Travel Guide", image: "/images/japan.jpg", date: "May 15, 2026" },
-    { title: "Paris Travel Guide", image: "/images/paris.jpg", date: "May 15, 2026" },
-    { title: "Netherlands Travel Guide", image: "/images/netherlands.jpg", date: "May 15, 2026" },
-  ]
+const travelGuideIcons: Record<TravelGuideIconName, LucideIcon> = {
+  Banknote,
+  Bell,
+  Check,
+  CircleHelp,
+  Clock,
+  Heart,
+  Lightbulb,
+  MessageSquare,
+  Star,
+  Sun,
+  Tag,
+  Waves,
 };
+
+function TravelGuideIcon({ name, ...props }: { name: TravelGuideIconName } & LucideProps) {
+  const Icon = travelGuideIcons[name];
+  return <Icon {...props} />;
+}
 
 /* =====================================================================
    COMPONENTS
 ===================================================================== */
 
-function TableOfContents({ items }: { items: { id: string; label: string }[] }) {
+function TableOfContents({ data }: { data: TravelGuideData["tableOfContents"] }) {
   return (
     <div className="flex w-full flex-col gap-[16px] rounded-[16px] border border-[#E6E6E6] bg-[#FDFCF9] p-[24px]">
       <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-[#000000]">
-        In This Guide
+        {data.title}
       </h3>
       <nav className="flex flex-col gap-[16px]">
-        {items.map((item) => (
+        {data.items.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
@@ -149,53 +79,53 @@ function TableOfContents({ items }: { items: { id: string; label: string }[] }) 
   );
 }
 
-function SidebarFastFacts({ facts }: { facts: TravelGuideData["fastFacts"] }) {
+function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"] }) {
   return (
     <div className="flex flex-col gap-[24px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
       <h3 className="flex items-center gap-[8px] font-sans text-[18px] font-semibold leading-[1.5] text-[#000000]">
-        <Bell size={20} className="text-[#000000]" />
-        Bali Fast Facts
+        <TravelGuideIcon name={facts.icon} size={20} className="text-[#000000]" />
+        {facts.title}
       </h3>
       
       <div className="flex flex-col gap-[16px]">
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">Peak Season</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.highSeason}</span>
+          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.peakSeasonLabel}</span>
+          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.peakSeasonValue}</span>
         </div>
         <div className="h-[1px] w-full bg-[#F3F4F6]" />
         
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">Budget Months</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.lowSeason}</span>
+          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.budgetMonthsLabel}</span>
+          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.budgetMonthsValue}</span>
         </div>
         <div className="h-[1px] w-full bg-[#F3F4F6]" />
 
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">Best Weather</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">May, June, September</span>
+          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.bestWeatherLabel}</span>
+          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.bestWeatherValue}</span>
         </div>
         <div className="h-[1px] w-full bg-[#F3F4F6]" />
 
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">Avg Temperature</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.avgTemp}</span>
+          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.avgTempLabel}</span>
+          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.avgTempValue}</span>
         </div>
         <div className="h-[1px] w-full bg-[#F3F4F6]" />
 
         <div className="flex flex-col gap-[4px]">
-          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">Currency</span>
-          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.currency}</span>
+          <span className="font-sans text-[12px] font-medium text-[#7D7D7D]">{facts.currencyLabel}</span>
+          <span className="font-sans text-[14px] font-semibold text-[#000000]">{facts.currencyValue}</span>
         </div>
       </div>
 
       <div className="mt-[8px] flex items-start gap-[12px] rounded-[12px] bg-[#F9FBF5] p-[16px]">
-        <MessageSquare size={18} className="mt-[2px] shrink-0 text-[#000000]" />
+        <TravelGuideIcon name={facts.tipIcon} size={18} className="mt-[2px] shrink-0 text-[#000000]" />
         <div className="flex flex-col gap-[4px]">
           <span className="font-sans text-[12px] font-bold uppercase tracking-[0.5px] text-[#000000]">
-            Expert Tip
+            {facts.tipTitle}
           </span>
           <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#4B5563]">
-            Book flights at least 6 weeks in advance for peak July/August travel.
+            {facts.tipText}
           </p>
         </div>
       </div>
@@ -213,6 +143,58 @@ function ArticleSection({ id, title, children, gap = "20px" }: { id: string; tit
         {children}
       </div>
     </section>
+  );
+}
+
+function FastFactsGrid({ facts }: { facts: TravelGuideData["fastFactsGrid"] }) {
+  return (
+    <div className="mt-[40px] grid grid-cols-1 gap-[16px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] sm:grid-cols-2 md:p-[24px]">
+      <div className="col-span-1 sm:col-span-2 mb-[8px]">
+        <h3 className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000]">
+          {facts.title}
+        </h3>
+      </div>
+      
+      <div className="flex items-start gap-[12px]">
+        <Calendar className="mt-[2px] h-[18px] w-[18px] shrink-0 text-[#FDDB32]" />
+        <div className="flex flex-col">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.highSeasonLabel}</span>
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.highSeasonValue}</span>
+        </div>
+      </div>
+      
+      <div className="flex items-start gap-[12px]">
+        <Calendar className="mt-[2px] h-[18px] w-[18px] shrink-0 text-[#E6E6E6]" />
+        <div className="flex flex-col">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.shoulderSeasonLabel}</span>
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.shoulderSeasonValue}</span>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-[12px]">
+        <Calendar className="mt-[2px] h-[18px] w-[18px] shrink-0 text-[#E6E6E6]" />
+        <div className="flex flex-col">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.lowSeasonLabel}</span>
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.lowSeasonValue}</span>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-[12px]">
+        <Thermometer className="mt-[2px] h-[18px] w-[18px] shrink-0 text-[#F59E0B]" />
+        <div className="flex flex-col">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.avgTempLabel}</span>
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.avgTempValue}</span>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-[12px] sm:col-span-2">
+        <Banknote className="mt-[2px] h-[18px] w-[18px] shrink-0 text-[#10B981]" />
+        <div className="flex flex-col">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#7D7D7D]">{facts.currencyLabel}</span>
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000]">{facts.currencyValue}</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -234,7 +216,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
         <div className="absolute inset-0 z-0">
           <Image
             src={data.heroImage}
-            alt="Hero Background"
+            alt={data.title}
             fill
             className="object-cover"
             priority
@@ -243,6 +225,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
         </div>
         <div className="relative z-10 flex h-full w-full max-w-[1440px] mx-auto flex-col px-[20px] md:px-[80px]">
           <div className="mt-[120px] flex w-full max-w-[900px] flex-col items-start gap-[16px] md:mt-[232px] md:gap-[20px]">
+            
             <div className="flex flex-wrap items-center gap-[8px]">
               {data.breadcrumbs.map((crumb, idx) => (
                 <div key={idx} className="flex items-center gap-[8px]">
@@ -255,11 +238,13 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 </div>
               ))}
             </div>
+            
             <div className="flex items-center justify-center rounded-[30px] bg-[#F0DB32] px-[14px] py-[6px]">
               <span className="font-sans text-[12px] font-semibold leading-[1.33] text-[#000000] uppercase tracking-[0.5px]">
                 {data.badge}
               </span>
             </div>
+            
             <div className="flex flex-col gap-[12px] md:gap-[20px]">
               <h1 className="font-sans text-[48px] font-medium leading-[1] text-[#FFFFFF] md:text-[69px] md:leading-[68px] md:tracking-[-4px]">
                 {data.title}
@@ -268,10 +253,11 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                 {data.heroDescription}
               </p>
             </div>
+            
             <div className="mt-[4px] flex flex-wrap items-center gap-[16px] md:gap-[24px]">
               <div className="flex items-center gap-[8px]">
                 <div className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-white/10 border border-white/30 backdrop-blur-sm">
-                  <Check size={12} strokeWidth={2.5} className="text-[#FFFFFF]" />
+                  <TravelGuideIcon name={data.authorIcon} size={12} strokeWidth={2.5} className="text-[#FFFFFF]" />
                 </div>
                 <span className="font-sans text-[12px] font-normal text-[#FFFFFF] md:text-[16px]">{data.author}</span>
               </div>
@@ -280,6 +266,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
               <div className="h-[4px] w-[4px] rounded-full bg-[#FFFFFF]" />
               <span className="font-sans text-[12px] font-normal text-[#FFFFFF] md:text-[16px]">{data.readTime}</span>
             </div>
+            
           </div>
         </div>
       </section>
@@ -287,61 +274,63 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
       {/* Main Content Layout */}
       <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[40px] px-[20px] pb-[80px] lg:flex-row lg:justify-center lg:gap-[64px] md:px-[80px] md:pb-[120px] pt-[40px] md:pt-[64px]">
         
-        {/* Left / Main Article Column (852px) */}
+        {/* Left / Main Article Column */}
         <article className="flex w-full flex-1 flex-col max-w-[852px]">
           
-          <TableOfContents items={data.tableOfContents} />
+          <TableOfContents data={data.tableOfContents} />
 
           {/* Quick Answer Block */}
           <div className="mt-[48px] flex items-start gap-[16px] rounded-[16px] bg-[#FAF7EF] p-[20px] border border-[#E8E0CC]">
             <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32]">
-              <Sun size={18} className="text-[#000000]" />
+              <TravelGuideIcon name={data.quickAnswer.icon} size={18} className="text-[#000000]" />
             </div>
             <div className="flex flex-col gap-[8px]">
               <span className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">
-                Quick Answer
+                {data.quickAnswer.title}
               </span>
               <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563] md:text-[16px] md:leading-[1.5]">
-                {data.quickAnswer}
+                {data.quickAnswer.text}
               </p>
             </div>
           </div>
 
-          <ArticleSection id="overview" title={data.tableOfContents[0].label} gap="20px">
-            <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
-              Located just 8 degrees south of the equator, Bali enjoys a warm, tropical climate year-round. However, rather than four distinct seasons, the island experiences two primary weather periods: the dry season and the wet season. Understanding the trade-offs of each will guarantee your tropical holiday lives up to every dream.
-            </p>
-            <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
-              Whether you are looking to surf the world-class breaks off the Bukit Peninsula, trek up the active volcano of Mount Batur, or submerge yourself in Ubud's rich cultural heart, timing your arrival is essential to making the most of your budget and days.
-            </p>
+          <ArticleSection id="overview" title={data.sections.overview.title} gap="20px">
+            {data.sections.overview.paragraphs.map((p, i) => (
+              <p key={i} className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
+                {p}
+              </p>
+            ))}
             
             <div className="relative mt-[16px] h-[360px] w-full max-w-[852px] overflow-hidden rounded-[16px]">
               <Image 
-                src={data.heroImage} 
-                alt="Bali Rice Terraces" 
+                src={data.sections.overview.image} 
+                alt={data.sections.overview.imageAlt} 
                 fill 
                 className="object-cover" 
               />
             </div>
-            <span className="text-[14px] italic text-[#7D7D7D]">The vibrant green rice terraces in Ubud are most spectacular at the start of the dry season in May.</span>
+            <span className="text-[14px] italic text-[#7D7D7D]">
+              {data.sections.overview.imageCaption}
+            </span>
           </ArticleSection>
 
-          <ArticleSection id="weather-by-month" title={data.tableOfContents[1].label} gap="20px">
+          <ArticleSection id="weather-by-month" title={data.sections.weatherByMonth.title} gap="20px">
             <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563] md:text-[16px] md:leading-[1.5]">
-              Plan your travel with our complete month-by-month summary of temperature, rain days, and overall beach conditions.
+              {data.sections.weatherByMonth.description}
             </p>
             <div className="overflow-x-auto rounded-[16px] border border-[#E6E6E6]">
               <table className="w-full min-w-[500px] text-left border-collapse">
                 <thead className="bg-[#F9FBF5]">
                   <tr>
-                    <th className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">Month</th>
-                    <th className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">Avg Temp</th>
-                    <th className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">Rain Days</th>
-                    <th className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">Conditions</th>
+                    {data.sections.weatherByMonth.tableHeaders.map((h, i) => (
+                      <th key={i} className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">
+                        {h}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E6E6E6]">
-                  {data.weatherData.map((row, idx) => (
+                  {data.sections.weatherByMonth.data.map((row, idx) => (
                     <tr key={idx}>
                       <td className="px-[16px] py-[16px] font-sans text-[14px] font-semibold text-[#000000]">{row.month}</td>
                       <td className="px-[16px] py-[16px] font-sans text-[14px] font-normal text-[#4B5563]">{row.temp}</td>
@@ -355,95 +344,70 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
 
             <div className="mt-[16px] flex items-start gap-[16px] rounded-[16px] bg-[#EBF4FF] p-[20px] border border-[#C5DEFF]">
               <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-[#3B82F6]">
-                <Lightbulb size={18} className="text-[#FFFFFF]" />
+                <TravelGuideIcon name={data.sections.weatherByMonth.tipIcon} size={18} className="text-[#FFFFFF]" />
               </div>
               <div className="flex flex-col gap-[8px]">
                 <span className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">
-                  TravelMommy Tip
+                  {data.sections.weatherByMonth.tipTitle}
                 </span>
                 <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563] md:text-[16px] md:leading-[1.5]">
-                  May and September often offer a great balance of good weather, lower prices and smaller crowds.
+                  {data.sections.weatherByMonth.tipText}
                 </p>
               </div>
             </div>
           </ArticleSection>
 
-          <ArticleSection id="travel-types" title={data.tableOfContents[2].label} gap="24px">
+          <ArticleSection id="travel-types" title={data.sections.travelTypes.title} gap="24px">
             <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2 md:grid-cols-4">
-              <div className="flex flex-col gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[20px]">
-                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[8px] bg-[#FFED91]">
-                  <Sun size={20} className="text-[#000000]" />
-                </div>
-                <div className="flex flex-col mt-[8px]">
-                  <h3 className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">Beaches</h3>
-                  <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D] mt-[4px]">July - August</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[20px]">
-                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[8px] bg-[#FFED91]">
-                  <Banknote size={20} className="text-[#000000]" />
-                </div>
-                <div className="flex flex-col mt-[8px]">
-                  <h3 className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">Budget Travel</h3>
-                  <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D] mt-[4px]">April, Oct, Nov</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[20px]">
-                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[8px] bg-[#FFED91]">
-                  <Waves size={20} className="text-[#000000]" />
-                </div>
-                <div className="flex flex-col mt-[8px]">
-                  <h3 className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">Surfing</h3>
-                  <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D] mt-[4px]">May - September</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[20px]">
-                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[8px] bg-[#FFED91]">
-                  <Heart size={20} className="text-[#000000]" />
-                </div>
-                <div className="flex flex-col mt-[8px]">
-                  <h3 className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">Families</h3>
-                  <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D] mt-[4px]">June - September</p>
-                </div>
-              </div>
+              {data.sections.travelTypes.types.map((type, i) => {
+                return (
+                  <div key={i} className="flex flex-col gap-[12px] rounded-[16px] border border-[#E6E6E6] p-[20px]">
+                    <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[8px] bg-[#FFED91]">
+                      <TravelGuideIcon name={type.icon} size={20} className="text-[#000000]" />
+                    </div>
+                    <div className="flex flex-col mt-[8px]">
+                      <h3 className="font-sans text-[16px] font-semibold leading-[1.5] text-[#000000]">{type.title}</h3>
+                      <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D] mt-[4px]">{type.period}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </ArticleSection>
 
-          <ArticleSection id="rainy-vs-dry" title={data.tableOfContents[3].label} gap="16px">
+          <ArticleSection id="rainy-vs-dry" title={data.sections.rainyVsDry.title} gap="16px">
             <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
-              The wet season (November to March) brings dramatic afternoon rainstorms, lush jungle colors, and deep discounts at top resorts. The dry season (April to October) serves up consistent offshore winds, low humidity, and prime conditions for volcano trekking and diving.
+              {data.sections.rainyVsDry.description}
             </p>
             <div className="relative mt-[16px] h-[360px] w-full max-w-[852px] overflow-hidden rounded-[16px]">
               <Image 
-                src={data.heroImage} 
-                alt="Bali Scenery" 
+                src={data.sections.rainyVsDry.image} 
+                alt={data.sections.rainyVsDry.imageAlt} 
                 fill 
                 className="object-cover" 
               />
             </div>
           </ArticleSection>
 
-          <ArticleSection id="when-to-avoid" title={data.tableOfContents[4].label} gap="20px">
+          <ArticleSection id="when-to-avoid" title={data.sections.whenToAvoid.title} gap="20px">
             <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
-              Avoid visiting during the peak monsoon season (January and February) if your heart is set on long beach days. Island hopping and ferry crossings can become rough and unpredictable. Also, be aware of Nyepi (Balinese New Year) in March, when the entire island shuts down completely for 24 hours.
+              {data.sections.whenToAvoid.description}
             </p>
           </ArticleSection>
 
-          <ArticleSection id="recommendation" title={data.tableOfContents[5].label} gap="20px">
+          <ArticleSection id="recommendation" title={data.sections.recommendation.title} gap="20px">
             <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#4B5563] md:text-[16px]">
-              For the perfect balance of superb tropical weather, lower crowds, and sensible flight prices, target the shoulder months: May, June, and September. You get the best of Bali without the extreme congestion of mid-summer.
+              {data.sections.recommendation.description}
             </p>
           </ArticleSection>
 
+          {/* FAQs */}
           <section className="mt-[64px] border-t border-[#E6E6E6] pt-[48px] md:mt-[80px]">
             <h2 className="mb-[32px] font-sans text-[20px] font-semibold leading-[1.2] text-[#000000] md:text-[24px] md:leading-[1]">
-              Frequently Asked Questions
+              {data.faqSection.title}
             </h2>
             <div className="flex w-full flex-col gap-[16px]">
-              {data.faqs.map((faq, i) => {
+              {data.faqSection.faqs.map((faq, i) => {
                 const isOpen = openFaqIndex === i;
                 return (
                   <div key={i} className="flex flex-col border-b border-[#E6E6E6] pb-[20px]">
@@ -459,12 +423,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
                         {isOpen ? <Minus size={18} strokeWidth={1.5} /> : <Plus size={18} strokeWidth={1.5} />}
                       </span>
                     </button>
-                    
-                    <div 
-                      className={`grid transition-all duration-300 ease-in-out ${
-                        isOpen ? 'grid-rows-[1fr] mt-[12px] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                      }`}
-                    >
+                    <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] mt-[12px] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                       <div className="overflow-hidden">
                         <p className="font-sans text-[14px] font-normal leading-[1.6] text-[#7D7D7D] md:text-[16px]">
                           {faq.a}
@@ -477,38 +436,69 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
             </div>
           </section>
 
-        </article>
-
-        {/* Right Sidebar (380px) */}
-        <aside className="flex w-full flex-col gap-[24px] lg:w-[380px] lg:shrink-0">
-          <SidebarFastFacts facts={data.fastFacts} />
-
-          {/* Explore Bali Ad Card */}
-          <div className="relative flex h-[240px] w-full flex-col justify-end overflow-hidden rounded-[16px] p-[24px]">
-             <Image src={data.heroImage} alt="Explore Bali" fill className="object-cover" />
-             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-             <div className="relative z-10 flex flex-col items-start gap-[12px]">
-               <h3 className="font-sans text-[24px] font-semibold text-[#FFFFFF]">Explore Bali</h3>
-               <p className="font-sans text-[14px] text-white/80">Discover the best places to visit, things to do and travel tips.</p>
-               <button className="mt-[8px] flex items-center justify-center gap-[8px] rounded-full bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-semibold text-[#000000] hover:bg-[#e5c52c]">
-                 Explore Bali <ArrowRight size={16} />
-               </button>
-             </div>
-          </div>
-
-          {/* Compare Flights Card */}
-          <div className="flex w-full flex-col items-start gap-[16px] rounded-[16px] bg-[#FFFBEB] p-[24px] border border-[#FDE68A]">
-            <div className="flex items-center gap-[12px]">
-               <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#FDDB32]">
-                 <Plane size={20} className="text-[#000000]" />
-               </div>
-               <h3 className="font-sans text-[18px] font-semibold text-[#000000]">Compare Flights to Bali</h3>
+          {/* Bottom CTA */}
+          <div className="mt-[48px] flex flex-col items-start gap-[24px] rounded-[24px] bg-[#F9FBF5] p-[24px] border border-[#E6E6E6] md:flex-row md:items-center md:justify-between md:p-[32px]">
+            <div className="flex flex-col gap-[8px]">
+              <h3 className="font-sans text-[20px] font-medium leading-[1.2] text-[#000000] md:text-[24px] md:leading-[1]">
+                {data.bottomCta.title}
+              </h3>
+              <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563] md:text-[16px] md:leading-[1.5]">
+                {data.bottomCta.description}
+              </p>
             </div>
-            <p className="font-sans text-[14px] text-[#4B5563]">Find and compare flight options from your nearest airport.</p>
-            <button className="mt-[8px] flex w-full items-center justify-center gap-[8px] rounded-full bg-[#FDDB32] px-[24px] py-[12px] font-sans text-[16px] font-semibold text-[#000000] hover:bg-[#e5c52c]">
-              Search Flights <ArrowRight size={18} />
+            <button className="flex h-[48px] w-full shrink-0 items-center justify-center gap-[8px] rounded-full bg-[#FDDB32] px-[32px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] transition-colors hover:bg-[#e5c52c] md:w-auto md:text-[16px] md:leading-[1.5]">
+              {data.bottomCta.buttonText}
+              <ArrowRight size={18} />
             </button>
           </div>
+
+        </article>
+
+        {/* Right Sidebar */}
+        <aside className="flex w-full flex-col gap-[24px] lg:w-[380px] lg:shrink-0">
+          
+          <SidebarFastFacts facts={data.sidebarFastFacts} />
+
+          {/* Discover Greece Ad Card */}
+          <div className="flex flex-col gap-[16px] rounded-[16px] border border-[#E6E6E3] bg-[#FFFFFF] p-[16px] shadow-sm">
+            <div className="relative h-[160px] w-full shrink-0 overflow-hidden rounded-[8px]">
+              <Image src={data.sidebarAd.image} alt={data.sidebarAd.title} fill className="object-cover" />
+            </div>
+            <div className="flex flex-col gap-[8px]">
+              <h3 className="font-sans text-[18px] font-bold text-[#1A1A19]">{data.sidebarAd.title}</h3>
+              <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
+                {data.sidebarAd.description}
+              </p>
+            </div>
+            <div className="flex flex-col gap-[8px]">
+              {data.sidebarAd.bullets.map((b, i) => {
+                return (
+                  <div key={i} className="flex items-start gap-[8px]">
+                    <TravelGuideIcon name={b.icon} size={14} className="mt-[2px] shrink-0 text-[#F59E0B]" />
+                    <span className="font-sans text-[13px] font-medium text-[#1A1A19]">{b.text}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <button className="mt-[4px] flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#000000] hover:bg-[#e5c52c]">
+              {data.sidebarAd.buttonText}
+            </button>
+          </div>
+
+          {/* Help Centre Card */}
+          <div className="flex flex-col items-start gap-[12px] rounded-[16px] bg-[#F9F8F5] p-[20px] border border-[#E6E6E6]">
+             <div className="flex items-center gap-[8px]">
+               <TravelGuideIcon name={data.sidebarHelp.icon} size={18} className="text-[#1A1A19]" />
+               <h3 className="font-sans text-[16px] font-bold text-[#1A1A19]">{data.sidebarHelp.title}</h3>
+             </div>
+             <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
+               {data.sidebarHelp.description}
+             </p>
+             <button className="mt-[4px] flex h-[36px] items-center justify-center rounded-[8px] border border-[#CCCCCC] bg-[#FFFFFF] px-[16px] font-sans text-[13px] font-semibold text-[#1A1A19] hover:bg-gray-50">
+               {data.sidebarHelp.buttonText}
+             </button>
+          </div>
+
         </aside>
 
       </section>
@@ -516,19 +506,18 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
       {/* Related Guides Section */}
       <section className="w-full border-t border-[#E6E6E6] bg-[#FFFFFF] py-[64px] md:py-[80px]">
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[24px] px-[20px] md:gap-[40px] md:px-[80px]">
-          
           <div className="flex items-center justify-between">
             <h2 className="font-sans text-[24px] font-medium leading-[1] text-[#000000] md:text-[32px]">
-              Related Guides
+              {data.relatedGuidesSection.title}
             </h2>
             <Link href="#" className="hidden items-center gap-[6px] font-sans text-[14px] font-medium text-[#000000] hover:underline md:flex md:text-[16px]">
-              All Travel Guides
+              {data.relatedGuidesSection.linkText}
               <ArrowUpRight size={16} />
             </Link>
           </div>
 
           <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[16px] sm:grid-cols-2 md:gap-[24px] lg:grid-cols-3">
-            {data.relatedGuides.map((guide, idx) => (
+            {data.relatedGuidesSection.guides.map((guide, idx) => (
               <Link href="#" key={idx} className="group flex w-full flex-col">
                 <div className="relative h-[240px] w-full overflow-hidden rounded-[24px] md:h-[400px]">
                   <Image
@@ -554,7 +543,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
           </div>
 
           <button className="mt-[16px] flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full border border-[#E6E6E6] bg-[#FFFFFF] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] md:hidden">
-            All Travel Guides
+            {data.relatedGuidesSection.linkText}
             <ArrowUpRight size={16} />
           </button>
         </div>
@@ -563,4 +552,5 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
       <Footer data={footerData} />
     </main>
   );
-}
+}   
+

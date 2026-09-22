@@ -18,8 +18,12 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 px-6 lg:px-10 py-6">
-      <div className="mx-auto flex w-full max-w-[1216px] items-center justify-between gap-[24px] rounded-[20px] bg-[#f5f5f5] p-[12px] relative">
+    <header className="absolute top-0 left-0 right-0 z-50 px-6 py-6 lg:px-10">
+      {/* 
+        Navigation Container 
+        Width: 1216px, Height: 64px, Radius: 20px, Bg: #F5F5F5 
+      */}
+      <div className="relative mx-auto flex h-[64px] w-full max-w-[1216px] items-center justify-between gap-[24px] rounded-[20px] bg-[#F5F5F5] px-[12px]">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center">
@@ -33,7 +37,7 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
         </Link>
 
         {/* Desktop Nav (Hidden on Mobile) */}
-        <nav aria-label="Primary navigation" className="hidden lg:flex flex-1 items-center justify-end gap-[4px]">
+        <nav aria-label="Primary navigation" className="hidden flex-1 items-center justify-end gap-[4px] lg:flex">
           {/* Nav Links - Mapped to Title S: 14px, Medium, 143% */}
           {data.navigation.map((item) => (
           <Link
@@ -68,7 +72,7 @@ export default function Header({ data = headerData }: { data?: HeaderData }) {
         {/* Mobile Menu Button (Hidden on Desktop) */}
         <button 
           onClick={toggleMobileMenu}
-          className="flex lg:hidden h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#fddb32] text-black transition-transform hover:brightness-105 active:scale-95"
+          className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#fddb32] text-black transition-transform hover:brightness-105 active:scale-95 lg:hidden"
           aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-navigation"
