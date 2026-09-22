@@ -107,16 +107,16 @@ function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
         />
         <div className="absolute inset-0 bg-[rgba(0,0,0,0.3)]" />
       </div>
-      <div className="relative z-10 mt-[104px] mx-auto flex w-full max-w-[1440px] flex-col items-center px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px] text-center">
+      <div className="relative z-10 mt-[104px] mx-auto flex w-full max-w-[1440px] flex-col items-center px-[20px] text-center md:px-[120px] max-[1024px]:px-[40px]">
         <div className="mb-[12px] flex items-center justify-center rounded-full bg-[#FDDB32] px-[12px] py-[4px]">
-          <span className="font-sans text-[12px] font-medium leading-[16px] tracking-[-0.12px] text-[#000000]">
+          <span className="font-sans text-[12px] font-medium leading-[1.33] tracking-[-0.12px] text-[#000000]">
             {hero.badge}
           </span>
         </div>
-        <h1 className="text-page-h1 mb-[12px] font-sans text-[#FFFFFF]">
+        <h1 className="mb-[12px] font-sans text-[48px] font-medium leading-[1] text-[#FFFFFF] md:text-[72px]">
           {hero.title}
         </h1>
-        <p className="max-w-[700px] font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#FFFFFF] max-[768px]:text-[14px]">
+        <p className="max-w-[700px] font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#FFFFFF] md:text-[16px] md:leading-[1.5]">
           {hero.description}
         </p>
       </div>
@@ -131,19 +131,19 @@ function HeroSection({ hero }: { hero: TravelPageData["hero"] }) {
 function InfoBarSection({ infoBarData }: { infoBarData: TravelPageData["infoBarData"] }) {
   return (
     <section className="w-full bg-[#F9FBF5]">
-      <div className="mx-auto flex min-h-[120px] w-full max-w-[1440px] flex-wrap items-center justify-between gap-x-[32px] gap-y-[20px] px-[80px] py-[40px] max-[1024px]:px-[40px] max-[768px]:min-h-0 max-[768px]:justify-start max-[768px]:px-[20px]">
+      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-2 gap-y-[24px] gap-x-[16px] px-[20px] py-[32px] md:flex md:min-h-[120px] md:flex-wrap md:items-center md:justify-between md:gap-x-[32px] md:gap-y-[20px] md:px-[80px] md:py-[40px] max-[1024px]:px-[40px]">
         {infoBarData.map((info, i) => {
           const IconComponent = LucideIconMap[info.icon] || MapPin;
           return (
-            <div key={i} className="flex min-w-[96px] items-center gap-[12px]">
+            <div key={i} className="flex items-center gap-[12px] md:min-w-[96px]">
               <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32]">
                 <IconComponent size={16} strokeWidth={1.8} className="text-[#000000]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-sans text-[12px] font-semibold leading-[16px] tracking-[0px] text-[#000000]">
+                <span className="font-sans text-[12px] font-medium leading-[1.33] tracking-[0px] text-[#000000]">
                   {info.label}
                 </span>
-                <span className="font-sans text-[14px] font-semibold leading-[20px] tracking-[0px] text-[#000000]">
+                <span className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000]">
                   {info.value}
                 </span>
               </div>
@@ -163,25 +163,25 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
   const aboutData = about ?? DEFAULT_ABOUT_SECTION;
 
   return (
-    <section className="w-full bg-[#FFFFFF] py-[80px] max-[1024px]:py-[72px]">
-      <div className="mx-auto w-full max-w-[1440px] px-[80px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="flex flex-col items-center justify-between gap-[72px] lg:flex-row">
-          <div className="flex w-full max-w-[540px] flex-col gap-[32px]">
-            <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[38px] max-[768px]:leading-[40px]">
+    <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[80px] max-[1024px]:py-[72px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[20px] md:px-[80px] max-[1024px]:px-[40px]">
+        <div className="flex flex-col items-center justify-between gap-[40px] md:gap-[72px] lg:flex-row">
+          <div className="flex w-full max-w-[540px] flex-col gap-[24px] md:gap-[32px]">
+            <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:tracking-[-1px]">
               {aboutData.title}
             </h2>
-            <div className="flex min-h-[120px] flex-col justify-start">
-              <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
+            <div className="flex flex-col justify-start md:min-h-[120px]">
+              <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
                 {aboutData.paragraphs.join(" ")}
               </p>
             </div>
-            <div className="flex w-full max-w-[545px] flex-nowrap items-center gap-[16px] max-[640px]:overflow-x-auto">
+            <div className="flex w-full max-w-[545px] flex-nowrap items-center gap-[12px] overflow-x-auto pb-2 md:gap-[16px] hide-scrollbar">
               {aboutData.features.map((feat) => {
                 const FeatureIcon = LucideIconMap[feat.icon] || Check;
                 return (
-                  <div key={feat.label} className="flex h-[48px] shrink-0 items-center justify-center gap-[12px] rounded-[20px] bg-[#F9FBF5] px-[22px]">
-                    <FeatureIcon size={18} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
-                    <span className="whitespace-nowrap font-sans text-[15px] font-semibold leading-[22px] tracking-[0px] text-[#000000]">
+                  <div key={feat.label} className="flex h-[40px] shrink-0 items-center justify-center gap-[8px] rounded-[20px] bg-[#F9FBF5] px-[16px] md:h-[48px] md:gap-[12px] md:px-[22px]">
+                    <FeatureIcon size={16} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
+                    <span className="whitespace-nowrap font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] md:text-[15px] md:leading-[22px]">
                       {feat.label}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
               })}
             </div>
           </div>
-          <div className="relative h-[400px] w-full max-w-[500px] overflow-hidden rounded-[42px] max-[1024px]:max-w-[540px]">
+          <div className="relative h-[240px] w-full max-w-[500px] overflow-hidden rounded-[24px] md:h-[400px] md:rounded-[42px] max-[1024px]:max-w-[540px]">
             <Image
               src={aboutData.image}
               alt={aboutData.imageAlt}
@@ -224,10 +224,10 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
         />
       </div>
 
-      <div className="flex h-[260px] w-full flex-col gap-[16px] bg-gradient-to-b from-[#FFFFFF] to-[#F9FBF5] p-[24px]">
+      <div className="flex h-auto min-h-[260px] w-full flex-col gap-[16px] bg-gradient-to-b from-[#FFFFFF] to-[#F9FBF5] p-[20px] md:p-[24px]">
         <div className="flex h-[24px] w-full items-center justify-between">
           <div className="flex items-center gap-[10px]">
-            <h3 className="font-sans text-[24px] font-medium leading-[24px] tracking-[-0.48px] text-[#000000]">
+            <h3 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:tracking-[-0.48px]">
               {item.city}
             </h3>
             {item.icon && (
@@ -238,24 +238,24 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
           </div>
         </div>
 
-        <p className="h-[60px] w-full max-w-[234px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000] opacity-85">
+        <p className="w-full font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#000000] opacity-85 md:h-[60px] md:max-w-[234px] md:leading-[20px] md:tracking-[-0.28px]">
           {item.desc}
         </p>
 
         <div className="flex items-start">
           {item.flightsFrom && (
-            <div className="flex h-[32px] items-center gap-[8px] rounded-full border border-[#E6BD00] bg-[#FFED91] pb-[6px] pl-[8px] pr-[10px] pt-[6px]">
-              <FlightIcon size={16} strokeWidth={1.8} className="text-[#000000]" />
-              <span className="whitespace-nowrap font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000]">
+            <div className="flex h-[32px] items-center gap-[8px] rounded-full border border-[#E6BD00] bg-[#FFED91] px-[10px] py-[6px]">
+              <FlightIcon size={14} strokeWidth={1.8} className="text-[#000000] md:w-[16px] md:h-[16px]" />
+              <span className="whitespace-nowrap font-sans text-[12px] font-medium leading-[1.33] tracking-[0px] text-[#000000] md:text-[14px] md:leading-[20px] md:tracking-[-0.28px]">
                 {sectionData.flightsPrefix} Dublin from {item.flightsFrom}
               </span>
             </div>
           )}
         </div>
 
-        <div className="mt-auto">
-          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
-            {sectionData.bookNowText} <BookIcon size={20} strokeWidth={2} className="text-[#FFFFFF]" />
+        <div className="mt-[16px] md:mt-auto">
+          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#000000] font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#FFFFFF] transition-colors hover:bg-neutral-800">
+            {sectionData.bookNowText} <BookIcon size={18} strokeWidth={2} className="text-[#FFFFFF] md:w-[20px] md:h-[20px]" />
           </button>
         </div>
       </div>
@@ -265,13 +265,13 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
 
 function DestinationsSection({ destinations }: { destinations: TravelPageData["destinationsSection"] }) {
   return (
-    <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="mb-[56px] flex flex-col gap-[12px]">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#000000] py-[64px] md:py-[96px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+        <div className="mb-[32px] flex flex-col gap-[12px] md:mb-[56px]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] md:text-[48px] md:tracking-[-1px]">
             {destinations.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#D1D5DB]">
+          <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#D1D5DB] md:text-[16px] md:leading-[1.5]">
             {destinations.description}
           </p>
         </div>
@@ -303,30 +303,30 @@ function FlightCard({ flight, sectionData }: { flight: TravelFlight; sectionData
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 282px"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute left-[16px] top-[16px] flex h-[32px] w-[32px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] p-[6px] shadow-sm z-10">
+        <div className="absolute left-[16px] top-[16px] z-10 flex h-[32px] w-[32px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] p-[6px] shadow-sm">
           <img src={encodeURI(flight.flag)} alt={`${flight.city} flag`} className="h-full w-full object-contain" />
         </div>
       </div>
       <div className="flex w-full flex-1 flex-col p-[20px]">
         <div className="mb-[24px] flex w-full flex-col gap-[4px]">
-          <h3 className="font-sans text-[20px] font-medium leading-[24px] text-[#000000]">{flight.city}</h3>
-          <p className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">{flight.route}</p>
+          <h3 className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000] md:text-[20px] md:leading-[24px]">{flight.city}</h3>
+          <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#7D7D7D] md:leading-[20px]">{flight.route}</p>
         </div>
         <div className="mb-[12px] flex w-full items-center justify-between">
-          <p className="font-sans text-[24px] font-semibold leading-[24px] text-[#212121]">{flight.price}</p>
+          <p className="font-sans text-[24px] font-medium leading-[1] text-[#212121] md:font-semibold">{flight.price}</p>
           <div className="flex items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[8px] py-[4px]">
             <Image src={encodeURI(sectionData.airlineLogoFallback)} alt={`${flight.airline} logo`} width={14} height={14} className="object-contain" />
-            <span className="font-sans text-[12px] font-medium leading-[16px] text-[#000000]">{flight.airline}</span>
+            <span className="font-sans text-[12px] font-medium leading-[1.33] text-[#000000] md:leading-[16px]">{flight.airline}</span>
           </div>
         </div>
         <div className="flex items-center gap-[6px]">
           <DurationIcon size={14} className="text-[#7D7D7D]" />
-          <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">{flight.duration}</span>
+          <span className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#7D7D7D] md:leading-[20px]">{flight.duration}</span>
         </div>
       </div>
       <div className="mt-auto px-[20px] pb-[20px] pt-0">
         <button className="flex h-[44px] w-full items-center justify-center gap-[8px] rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] transition-colors duration-300 hover:border-[#FDDB32] hover:bg-[#FDDB32]">
-          <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
+          <span className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] md:leading-[20px]">
             {sectionData.viewFlightsText}
           </span>
           <ViewIcon size={16} className="text-[#000000]" />
@@ -340,13 +340,13 @@ function PopularFlightsSection({ popularFlights }: { popularFlights: TravelPageD
   const BrowseIcon = LucideIconMap[popularFlights.browseCtaIcon] || ArrowUpRight;
 
   return (
-    <section className="w-full bg-[#FFFFFF] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="mb-[48px] flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[120px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+        <div className="mb-[32px] flex flex-col items-start justify-between gap-[16px] md:mb-[48px] md:flex-row md:items-end md:gap-6">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:tracking-[-1px]">
             {popularFlights.titlePart1} <span className="text-[#333333]">{popularFlights.titleHighlight}</span>
           </h2>
-          <button className="flex h-[44px] items-center gap-[6px] rounded-[12px] bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000] transition-colors hover:bg-[#e5c52c]">
+          <button className="flex h-[44px] w-full items-center justify-center gap-[6px] rounded-[12px] bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] transition-colors hover:bg-[#e5c52c] md:w-auto md:leading-[20px] md:tracking-[-0.28px]">
             {popularFlights.browseCtaText} <BrowseIcon size={14} />
           </button>
         </div>
@@ -366,9 +366,9 @@ function PopularFlightsSection({ popularFlights }: { popularFlights: TravelPageD
 
 function TopThingsToDoSection({ thingsToDo }: { thingsToDo: TravelPageData["thingsToDoSection"] }) {
   return (
-    <section className="w-full bg-[#000000] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <h2 className="mb-[48px] font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#000000] py-[64px] md:py-[120px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+        <h2 className="mb-[32px] font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] md:mb-[48px] md:text-[48px] md:tracking-[-1px]">
           {thingsToDo.title}
         </h2>
         <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
@@ -384,10 +384,10 @@ function TopThingsToDoSection({ thingsToDo }: { thingsToDo: TravelPageData["thin
                 />
               </div>
               <div className="flex flex-1 flex-col justify-between px-[12px] pb-[12px] pt-[12px]">
-                <h3 className="truncate font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">{item.title}</h3>
+                <h3 className="truncate font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#000000] md:tracking-[-0.32px]">{item.title}</h3>
                 <div className="flex items-center justify-between">
-                  <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#000000]">{item.duration}</span>
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">{item.price}</span>
+                  <span className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#000000] md:leading-[20px] md:tracking-[-0.28px]">{item.duration}</span>
+                  <span className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px] md:tracking-[-0.32px]">{item.price}</span>
                 </div>
               </div>
             </div>
@@ -407,7 +407,7 @@ function BestTimeCard({ item }: { item: BestTimeSeason }) {
   const ThermometerIcon = LucideIconMap["thermometer"] || Thermometer;
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FDFCF9] transition-transform duration-300 hover:-translate-y-1 h-[346px]">
+    <div className="flex flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FDFCF9] transition-transform duration-300 hover:-translate-y-1 h-auto md:h-[346px]">
       <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-neutral-100">
         <Image 
           src={item.image} 
@@ -418,7 +418,7 @@ function BestTimeCard({ item }: { item: BestTimeSeason }) {
         />
       </div>
 
-      <div className="flex h-[166px] w-full flex-col gap-[16px] p-[20px]">
+      <div className="flex w-full flex-col gap-[12px] p-[20px] md:h-[166px] md:gap-[16px]">
         <div className="flex items-center gap-[12px]">
           <div 
             className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[18px]" 
@@ -427,10 +427,10 @@ function BestTimeCard({ item }: { item: BestTimeSeason }) {
             <IconComponent size={18} strokeWidth={2} color={item.iconColor} />
           </div>
           <div className="flex flex-col gap-[2px]">
-            <span className="font-sans text-[16px] font-medium leading-[20px] text-[#000000]">
+            <span className="font-sans text-[16px] font-medium leading-[1.5] text-[#000000]">
               {item.season}
             </span>
-            <span className="font-sans text-[12px] font-normal leading-[16px] text-[#767676]">
+            <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#767676] md:leading-[16px]">
               {item.months}
             </span>
           </div>
@@ -438,12 +438,12 @@ function BestTimeCard({ item }: { item: BestTimeSeason }) {
 
         <div className="flex items-center gap-[6px]">
           <ThermometerIcon size={16} strokeWidth={1.8} className="text-[#000000]" />
-          <span className="font-sans text-[14px] font-medium leading-[20px] text-[#000000]">
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000] md:leading-[20px]">
             {item.temp}
           </span>
         </div>
 
-        <p className="font-sans text-[13px] font-normal leading-[18px] text-[#4B5563]">
+        <p className="font-sans text-[14px] font-normal leading-[1.43] text-[#4B5563] md:text-[13px] md:leading-[18px]">
           {item.desc}
         </p>
       </div>
@@ -453,9 +453,9 @@ function BestTimeCard({ item }: { item: BestTimeSeason }) {
 
 function BestTimeSection({ data }: { data: TravelPageData["bestTimeSection"] }) {
   return (
-    <section className="w-full bg-[#FFFFFF] py-[100px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[48px] px-[160px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <h2 className="font-sans text-[48px] font-medium leading-[1] tracking-[0px] text-[#000000] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[100px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[32px] px-[20px] md:gap-[48px] md:px-[160px] max-[1024px]:px-[40px]">
+        <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px]">
           {data.title}
         </h2>
         
@@ -478,12 +478,12 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
 
   return (
     <div
-      className={`flex h-[193px] w-full flex-col justify-between rounded-[14px] px-[12px] py-[20px] text-center transition-transform duration-300 hover:-translate-y-1 ${
+      className={`flex h-[170px] w-full flex-col justify-between rounded-[14px] px-[12px] py-[16px] text-center transition-transform duration-300 hover:-translate-y-1 md:h-[193px] md:py-[20px] ${
         isHighlight ? "bg-[#FDDB32]" : "bg-[#19191A]"
       }`}
     >
       <span
-        className={`font-sans text-[16px] font-medium leading-[20px] tracking-[0px] ${
+        className={`font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] md:text-[16px] md:leading-[20px] ${
           isHighlight ? "text-[#000000]" : "text-[#FFFFFF]"
         }`}
       >
@@ -494,12 +494,12 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
         <img
           src={encodeURI(item.icon)}
           alt={`${item.month} weather icon`}
-          className="h-[34px] w-[34px] object-contain"
+          className="h-[30px] w-[30px] object-contain md:h-[34px] md:w-[34px]"
         />
       </div>
 
       <span
-        className={`font-sans text-[32px] font-medium leading-[32px] tracking-[0px] ${
+        className={`font-sans text-[24px] font-medium leading-[1] tracking-[0px] md:text-[32px] md:leading-[32px] ${
           isHighlight ? "text-[#000000]" : "text-[#FFFFFF]"
         }`}
       >
@@ -507,7 +507,7 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
       </span>
 
       <span
-        className={`font-sans text-[13px] font-normal leading-[16px] tracking-[0px] ${
+        className={`font-sans text-[12px] font-normal leading-[1.33] tracking-[0px] md:text-[13px] md:leading-[16px] ${
           isHighlight ? "text-[#333333]" : "text-[#E6E6E6]"
         }`}
       >
@@ -519,22 +519,22 @@ function WeatherMonthCard({ item }: { item: WeatherMonth }) {
 
 function WeatherSection({ data }: { data: TravelPageData["weatherSection"] }) {
   return (
-    <section className="w-full bg-[#000000] py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[60px] px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
+    <section className="w-full bg-[#000000] py-[64px] md:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[40px] px-[20px] md:gap-[60px] md:px-[120px] max-[1024px]:px-[40px]">
         
         {/* Header */}
-        <div className="flex flex-col gap-[12px] max-w-[1200px] mx-auto w-full">
-          <h2 className="font-sans text-[52px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] max-[768px]:text-[36px]">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[12px]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] md:text-[52px]">
             {data.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[1.6] tracking-[0px] text-[#9999AA]">
+          <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#9999AA] md:text-[16px] md:leading-[1.6]">
             {data.description}
           </p>
         </div>
 
         {/* Cards Row */}
         <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-[24px]">
-          <div className="grid w-full grid-cols-2 gap-[16px] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12">
+          <div className="grid w-full grid-cols-3 gap-[12px] sm:grid-cols-4 md:gap-[16px] lg:grid-cols-12">
             {data.items.map((item, i) => (
               <WeatherMonthCard key={i} item={item} />
             ))}
@@ -544,7 +544,7 @@ function WeatherSection({ data }: { data: TravelPageData["weatherSection"] }) {
           <div className="flex w-full justify-center">
             <div className="flex items-center gap-[8px] rounded-full bg-[#19191A] px-[16px] py-[8px]">
               <div className="h-[12px] w-[12px] rounded-full bg-[#FDDB32]" />
-              <span className="font-sans text-[14px] font-normal text-[#9999AA]">
+              <span className="font-sans text-[12px] font-normal leading-[1.33] text-[#9999AA] md:text-[14px]">
                 {data.legendText}
               </span>
             </div>
@@ -572,17 +572,17 @@ function AirportCard({ item }: { item: AirportItem }) {
           className="object-cover transition-transform duration-700 hover:scale-105"
         />
         <div className="absolute bottom-[16px] left-[16px] flex h-[32px] items-center justify-center rounded-[8px] bg-[#FDDB32] px-[12px] py-[4px] shadow-sm">
-          <span className="font-sans text-[14px] font-bold leading-none text-[#000000]">
+          <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#000000] md:font-bold md:leading-none">
             {item.code}
           </span>
         </div>
       </div>
 
       <div className="flex h-[100px] w-full flex-col gap-[6px] p-[16px]">
-        <h3 className="truncate font-sans text-[22px] font-semibold leading-[25px] tracking-[0px] text-[#111111]">
+        <h3 className="truncate font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#111111] md:text-[22px] md:font-semibold md:leading-[25px]">
           {item.name}
         </h3>
-        <p className="line-clamp-2 font-sans text-[14px] font-normal leading-[1.4] tracking-[0px] text-[#4D4D4D]">
+        <p className="line-clamp-2 font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#4D4D4D] md:leading-[1.4]">
           {item.desc}
         </p>
       </div>
@@ -592,9 +592,9 @@ function AirportCard({ item }: { item: AirportItem }) {
 
 function AirportsSection({ data }: { data: TravelPageData["airportsSection"] }) {
   return (
-    <section className="w-full bg-[#FFFFFF] py-[100px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[48px] px-[160px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <h2 className="font-sans text-[48px] font-medium leading-[1] tracking-[0px] text-[#000000] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[100px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[32px] px-[20px] md:gap-[48px] md:px-[160px] max-[1024px]:px-[40px]">
+        <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px]">
           {data.title}
         </h2>
 
@@ -616,34 +616,34 @@ function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"]
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full bg-[#F9F8F5] py-[120px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col lg:flex-row px-[160px] gap-[80px] max-[1024px]:px-[40px] max-[768px]:px-[20px] max-[1024px]:gap-[40px]">
+    <section className="w-full bg-[#F9F8F5] py-[64px] md:py-[120px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-[40px] px-[20px] md:px-[160px] lg:flex-row lg:gap-[80px] max-[1024px]:px-[40px]">
         
         {/* Left Col (Header Text) */}
-        <div className="flex w-full lg:max-w-[400px] flex-col gap-[24px] shrink-0">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#000000] max-[768px]:text-[36px]">
+        <div className="flex w-full shrink-0 flex-col gap-[16px] lg:max-w-[400px] md:gap-[24px]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:tracking-[-1px]">
             {faqs.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#000000]">
+          <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
             {faqs.description}
           </p>
         </div>
 
         {/* Right Col (FAQ Cards) */}
-        <div className="flex w-full lg:max-w-[640px] flex-col gap-[12px]">
+        <div className="flex w-full flex-col gap-[12px] lg:max-w-[640px]">
           {faqs.faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div 
                 key={i} 
-                className="flex flex-col rounded-[24px] bg-[#FFFFFF] p-[32px] transition-colors duration-300"
+                className="flex flex-col rounded-[24px] bg-[#FFFFFF] p-[24px] transition-colors duration-300 md:p-[32px]"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between text-left outline-none"
+                  className="flex w-full items-center justify-between text-left outline-none gap-[16px]"
                 >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[-0.32px] text-[#000000]">
+                  <span className="font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#000000] md:leading-[24px] md:tracking-[-0.32px]">
                     {faq.q}
                   </span>
                   <span className="flex h-[20px] w-[20px] shrink-0 items-center justify-center text-[#000000]">
@@ -657,7 +657,7 @@ function TravelHelpSection({ faqs }: { faqs: TravelPageData["travelHelpSection"]
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#7D7D7D]">
+                    <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#7D7D7D] md:text-[16px] md:leading-[24px]">
                       {faq.a}
                     </p>
                   </div>
@@ -692,26 +692,26 @@ function NearbyCountryCard({ item, sectionData }: { item: NearbyCountry; section
         />
       </div>
 
-      <div className="flex flex-1 flex-col p-[24px]">
+      <div className="flex flex-1 flex-col p-[20px] md:p-[24px]">
         <div className="mb-[16px] flex items-center gap-[8px]">
-          <h3 className="font-sans text-[20px] font-medium leading-[28px] tracking-[-0.4px] text-[#000000]">
+          <h3 className="font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#000000] md:text-[20px] md:leading-[28px] md:tracking-[-0.4px]">
             {item.city}
           </h3>
-          <div className="flex h-[20px] w-[20px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] shadow-sm border border-[#E5E7EB] p-[2px]">
+          <div className="flex h-[20px] w-[20px] items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] p-[2px] shadow-sm border border-[#E5E7EB]">
             <img 
                src={encodeURI(item.flag)} 
                alt={`${item.city} flag`} 
-               className="h-full w-full object-cover rounded-full" 
+               className="h-full w-full rounded-full object-cover" 
             />
           </div>
         </div>
 
-        <p className="mb-[24px] min-h-[60px] font-sans text-[14px] font-normal leading-[20px] tracking-[-0.28px] text-[#4B5563]">
+        <p className="mb-[24px] min-h-[60px] font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#4B5563] md:leading-[20px] md:tracking-[-0.28px]">
           {item.desc}
         </p>
 
         <div className="mt-auto pt-[8px]">
-          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#000000] font-sans text-[16px] font-medium leading-[24px] tracking-[0px] text-[#FFFFFF] transition-colors duration-300 hover:bg-[#FDDB32] hover:text-[#000000]">
+          <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-full bg-[#000000] font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#FFFFFF] transition-colors duration-300 hover:bg-[#FDDB32] hover:text-[#000000] md:leading-[24px]">
             {sectionData.bookNowText}
             <BookIcon size={18} className="text-current" />
           </button>
@@ -723,13 +723,13 @@ function NearbyCountryCard({ item, sectionData }: { item: NearbyCountry; section
 
 function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPageData["nearbyCountriesSection"] }) {
   return (
-    <section className="w-full bg-[#000000] py-[96px] max-[1024px]:py-[80px]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="mb-[56px] flex flex-col gap-[12px]">
-          <h2 className="font-sans text-[48px] font-medium leading-[48px] tracking-[-1px] text-[#FFFFFF] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#000000] py-[64px] md:py-[96px] max-[1024px]:py-[80px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+        <div className="mb-[32px] flex flex-col gap-[12px] md:mb-[56px]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#FFFFFF] md:text-[48px] md:tracking-[-1px]">
             {nearbyCountries.title}
           </h2>
-          <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0px] text-[#D1D5DB] max-w-[700px]">
+          <p className="max-w-[700px] font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#D1D5DB] md:text-[16px] md:leading-[24px]">
             {nearbyCountries.description}
           </p>
         </div>
@@ -750,13 +750,13 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
 
  function NewsletterSection({ newsletter }: { newsletter: TravelPageData["newsletterSection"] }) {
   return (
-    <section className="w-full bg-[#FFFFFF] py-[80px]">
-      <div className="mx-auto w-full max-w-[1440px] px-[120px] max-[1024px]:px-[40px] max-[768px]:px-[20px]">
-        <div className="mx-auto flex w-full flex-col items-center justify-center rounded-[42px] bg-[#FDDB32] py-[64px] px-[64px] text-center max-[768px]:rounded-[32px] max-[768px]:py-[48px] max-[768px]:px-[24px]">
-          <h2 className="font-sans text-[48px] font-bold leading-[1.1] tracking-[-0.02em] text-[#000000] max-[768px]:text-[32px]">
+    <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[80px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+        <div className="mx-auto flex w-full flex-col items-center justify-center rounded-[32px] bg-[#FDDB32] px-[24px] py-[48px] text-center md:rounded-[42px] md:px-[64px] md:py-[64px]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:font-bold md:leading-[1.1] md:tracking-[-0.02em]">
             {newsletter.title}
           </h2>
-          <p className="mt-[16px] max-w-[680px] font-sans text-[16px] font-normal leading-[24px] text-[#000000]">
+          <p className="mt-[16px] max-w-[680px] font-sans text-[14px] font-normal leading-[1.43] text-[#000000] md:text-[16px] md:leading-[24px]">
             {newsletter.description}
           </p>
           <form className="mt-[36px] flex w-full max-w-[547px] flex-col gap-[12px] sm:flex-row">
@@ -764,11 +764,11 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
               type="email"
               placeholder={newsletter.inputPlaceholder}
               aria-label="Email address"
-              className="bg-[#FFFFFF] h-[56px] flex-1 rounded-[16px] px-[24px] font-sans text-[16px] font-normal text-[#000000] placeholder:text-[#767676]"
+              className="h-[56px] flex-1 rounded-[16px] bg-[#FFFFFF] px-[24px] font-sans text-[14px] font-normal leading-[1.43] text-[#000000] placeholder:text-[#767676] md:text-[16px]"
             />
             <button
               type="submit"
-              className="flex h-[56px] shrink-0 items-center justify-center rounded-[16px] bg-[#000000] px-[32px] font-sans text-[16px] font-medium text-[#FFFFFF] transition-all hover:bg-neutral-800 active:scale-95"
+              className="flex h-[56px] shrink-0 items-center justify-center rounded-[16px] bg-[#000000] px-[32px] font-sans text-[16px] font-medium leading-[1.5] text-[#FFFFFF] transition-all hover:bg-neutral-800 active:scale-95"
             >
               {newsletter.buttonText}
             </button>

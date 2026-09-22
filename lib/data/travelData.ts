@@ -235,7 +235,7 @@ export const travelData: TravelPageData = {
     ]
   },
   popularFlightsSection: {
-    titlePart1: "Popular Flights to",
+    titlePart1: "Popular Routes to",
     titleHighlight: "Greece",
     browseCtaText: "Browse All Greece Routes",
     browseCtaIcon: "arrow-up-right",
