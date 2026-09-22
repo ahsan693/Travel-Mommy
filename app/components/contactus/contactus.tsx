@@ -206,16 +206,25 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                 <label htmlFor="subject" className="font-sans text-[14px] font-medium leading-[20px] tracking-[-0.28px] text-[#000000] md:text-[14px] md:tracking-[0px]">
                   {data.subjectLabel}
                 </label>
-                <input
+                <select
                   id="subject"
                   name="subject"
-                  type="text"
-                  placeholder={data.subjectPlaceholder}
                   value={form.subject}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
-                />
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                >
+                  <option value="" disabled>
+                    {data.subjectPlaceholder}
+                  </option>
+                  <option value="General enquiry">General enquiry</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Press/Media">Press/Media</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Technical issue">Technical issue</option>
+                  <option value="Other">Other</option>
+                  <option value="Message">Message</option>
+                </select>
               </div>
 
               <div className="flex flex-col gap-[8px] md:gap-[10px]">

@@ -208,7 +208,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF] font-sans">
+    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF]">
       
       {/* Hero Section */}
       <section className="relative flex h-auto min-h-[560px] w-full flex-col overflow-hidden bg-[#000000] md:h-[726px]">

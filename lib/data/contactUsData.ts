@@ -6,11 +6,11 @@ export interface ContactUsPageData { hero: { title: string; description: string 
 export const contactUsData: ContactUsPageData = {
   hero: { 
     title: "Contact TravelMommy", 
-    description: "Have a question about TravelMommy? We're here to help. Whether you need assistance using our platform, have feedback, or want to discuss a partnership, we'd love to hear from you." 
+    description: "Have a question, partnership enquiry, press request, or feedback? Get in touch with the TravelMommy team." 
   },
   form: { 
     title: "Before You Get in Touch", 
-    description: "TravelMommy helps you compare flights and hotels from trusted travel partners. We don't process bookings or payments directly. If you've already made a booking, please contact the booking provider shown in your confirmation email for assistance with cancellations, refunds or booking changes.", 
+    description: "TravelMommy compares flight options but does not issue tickets or manage bookings. If your question is about a booking, cancellation, refund, baggage, or check-in, please contact the airline or travel provider you booked with.", 
     successTitle: "Message sent!", 
     successDescription: "Thanks for reaching out. Our team will get back to you shortly.", 
     nameLabel: "Full Name", 
@@ -21,7 +21,7 @@ export const contactUsData: ContactUsPageData = {
     subjectPlaceholder: "General Enquiry", 
     messageLabel: "Message", 
     messagePlaceholder: "How can we help you today?", 
-    submitLabel: "Send Message" 
+    submitLabel: "Send Enquiry" 
   },
   faq: { 
     title: "Frequently Asked Questions", 
@@ -29,15 +29,16 @@ export const contactUsData: ContactUsPageData = {
   },
   followTitle: "Follow Us",
   contactCards: [
-    { icon: "mail", title: "General Enquiries", description: "Questions about using TravelMommy or general support.", email: "support@travelmommy.com" },
-    { icon: "handshake", title: "Business & Partnerships", description: "Affiliate partnerships, collaborations and business enquiries.", email: "partners@travelmommy.com" },
-    { icon: "megaphone", title: "Media & Press", description: "Press enquiries and media requests.", email: "press@travelmommy.com" },
+    { icon: "mail", title: "General Enquiries", description: "For questions about TravelMommy, feedback, or general support.", email: "support@travelmommy.com" },
+    { icon: "handshake", title: "Business & Partnerships", description: "For affiliate, advertising, collaboration, and partnership enquiries.", email: "partners@travelmommy.com" },
+    { icon: "megaphone", title: "Media & Press", description: "For press, interviews, media requests, and brand enquiries.", email: "press@travelmommy.com" },
   ],
   faqs: [
-    { question: "Can I change my booking?", answer: "No. Bookings are completed through our travel partners. Please contact the provider you booked with directly." },
-    { question: "Does TravelMommy charge booking fees?", answer: "No. TravelMommy is free to use, and we don't add extra booking fees." },
-    { question: "I found an incorrect price.", answer: "Travel prices change frequently. If you notice an issue, let us know and we'll investigate." },
-    { question: "Can I advertise on TravelMommy?", answer: "Yes. Please contact our partnerships team for collaboration opportunities." },
+    { question: "Can TravelMommy charge or cancel my booking?", answer: "No. TravelMommy does not manage bookings. Please contact the airline or travel provider you booked with for changes, cancellations, refunds, baggage, or check-in support." },
+    { question: "Does TravelMommy charge booking fees?", answer: "TravelMommy does not sell flight tickets or charge a TravelMommy booking fee. Any charges from the airline or travel provider are shown by that provider." },
+    { question: "I found incorrect information on TravelMommy. What should I do?", answer: "Please use the contact form and select \"Feedback\" or \"Technical issue.\" Include the page URL and a short description so we can review it." },
+    { question: "Can I advertise or partner with TravelMommy?", answer: "Yes. Please select \"Partnership\" in the contact form or contact our partnerships team." },
+    { question: "How do I contact TravelMommy about media or press?", answer: "Use the Media & Press contact option or select \"Press/Media\" in the form." },
   ],
   socialLinks: [
     { icon: "instagram", href: "#", label: "Instagram", bgColor: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" },

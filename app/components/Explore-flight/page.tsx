@@ -399,7 +399,7 @@ function WhyBookGrid({ data }: { data: typeof exploreFlightsData.whyBook }) {
 
 export default function ExploreFlightsClient() {
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#F9F8F5] font-sans">
+    <main className="flex min-h-screen w-full flex-col bg-[#F9F8F5]">
       <ExploreFlightHero data={exploreFlightsData.hero} />
       <BrowseByRegion data={exploreFlightsData.browseRegion} />
       <ExploreCountries data={exploreFlightsData.exploreCountries} />

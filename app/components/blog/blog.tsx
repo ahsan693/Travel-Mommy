@@ -121,13 +121,13 @@ function RegionFilterStrip({ data }: { data: BlogPageData["regionFilters"] }) {
 
         <div className="mx-[20px] h-[1px] bg-[#E6E6E6] lg:mx-[80px]" />
 
-        <div className="no-scrollbar flex w-full overflow-x-auto px-[20px] pb-[10px] lg:px-[80px]">
-          <div className="flex gap-[14px]">
+        <div className="w-full px-[20px] pb-[10px] lg:px-[80px]">
+          <div className="grid w-full grid-cols-3 gap-[12px] md:grid-cols-5 lg:grid-cols-9">
             {data.regions.map((region) => (
               <Link 
                 href="#" 
                 key={region.name}
-                className="group relative flex h-[180px] w-[130px] shrink-0 flex-col overflow-hidden rounded-[16px] border border-[#E6E6E6] transition-transform hover:-translate-y-1 hover:shadow-lg"
+                className="group relative flex h-[180px] w-full flex-col overflow-hidden rounded-[16px] border border-[#E6E6E6] transition-transform hover:-translate-y-1 hover:shadow-lg"
               >
                 <Image
                   src={region.image}
@@ -190,7 +190,7 @@ function FeaturedGuideSection({ data }: { data: BlogPageData["featuredGuide"] })
             </div>
             
             {/* Typography synced with Home Destinations Section Header */}
-            <h3 className="font-sans text-[32px] font-medium leading-[1.1] tracking-[-1px] text-[#000000] lg:text-[48px] lg:leading-[1.1]">
+            <h3 className="font-sans text-[32px] font-medium leading-[1.1] tracking-[-1px] text-[#000000] lg:text-[48px]">
               {data.title}
             </h3>
             
@@ -416,7 +416,7 @@ function BlogNewsletterSection({ data }: { data: BlogPageData["newsletter"] }) {
 
 export default function BlogPage({ data = blogData }: { data?: BlogPageData }) {
   return (
-    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF] font-sans">
+    <main className="flex min-h-screen w-full flex-col bg-[#FFFFFF]">
       <Header data={headerData} />
       <BlogHero data={data.hero} />
       <CategoryStrip categories={data.categories} />
