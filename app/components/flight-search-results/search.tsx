@@ -45,27 +45,27 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
   return (
     <aside className="hidden w-[300px] shrink-0 flex-col gap-[24px] lg:flex">
       <div className="flex items-center justify-between pb-[16px]">
-        <span className="text-[16px] font-medium text-black">{filters.title}</span>
-        <button type="button" className="text-[13px] text-[#7d7d7d] hover:text-black">{filters.resetLabel}</button>
+        <span className="font-sans text-[16px] font-medium text-black">{filters.title}</span>
+        <button type="button" className="font-sans text-[13px] text-[#7d7d7d] hover:text-black">{filters.resetLabel}</button>
       </div>
 
       <div className="flex flex-col gap-[16px] pb-[24px] border-b border-[#F0F0F0]">
-        <span className="text-[14px] font-medium text-black">{filters.stopsLabel}</span>
+        <span className="font-sans text-[14px] font-medium text-black">{filters.stopsLabel}</span>
         {filters.stops.map((stop) => (
-          <label key={stop.label} className="flex cursor-pointer items-center justify-between text-[14px]">
+          <label key={stop.label} className="flex cursor-pointer items-center justify-between font-sans text-[14px]">
             <div className="flex items-center gap-[12px]">
               <input type="checkbox" defaultChecked={stop.checked} className="h-[18px] w-[18px] accent-[#fddb32]" />
-              <span className="text-black">{stop.label}</span>
+              <span className="font-sans text-black">{stop.label}</span>
             </div>
-            <span className="text-[#7d7d7d]">${stop.price}</span>
+            <span className="font-sans text-[#7d7d7d]">${stop.price}</span>
           </label>
         ))}
       </div>
 
       <div className="flex flex-col gap-[16px] pb-[24px] border-b border-[#F0F0F0]">
-        <span className="text-[14px] font-medium text-black">{filters.airlinesLabel}</span>
+        <span className="font-sans text-[14px] font-medium text-black">{filters.airlinesLabel}</span>
         {filters.airlines.map((airline) => (
-          <label key={airline.label} className="flex cursor-pointer items-center gap-[12px] text-[14px] text-black">
+          <label key={airline.label} className="flex cursor-pointer items-center gap-[12px] font-sans text-[14px] text-black">
             <input type="checkbox" defaultChecked={airline.checked} className="h-[18px] w-[18px] accent-[#fddb32]" />
             {airline.label}
           </label>
@@ -73,21 +73,21 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
       </div>
 
       <div className="flex flex-col gap-[16px] pb-[24px] border-b border-[#F0F0F0]">
-        <span className="text-[14px] font-medium text-black">{filters.priceRangeLabel}</span>
+        <span className="font-sans text-[14px] font-medium text-black">{filters.priceRangeLabel}</span>
         <div className="px-2 pt-2">
           <input type="range" min="0" max="2000" defaultValue="1200" className="h-[4px] w-full appearance-none rounded-full bg-[#E6E6E6] accent-[#fddb32]" />
         </div>
         <div className="flex gap-[16px] pt-[8px]">
-          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] text-[14px] font-medium text-black">${filters.priceRange.min}</div>
-          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] text-[14px] font-medium text-black">${filters.priceRange.max}</div>
+          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">${filters.priceRange.min}</div>
+          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">${filters.priceRange.max}</div>
         </div>
       </div>
 
       <div className="flex flex-col gap-[16px] pb-[24px]">
-        <span className="text-[14px] font-medium text-black">{filters.departureTimeLabel}</span>
+        <span className="font-sans text-[14px] font-medium text-black">{filters.departureTimeLabel}</span>
         <div className="flex flex-wrap gap-[10px]">
           {filters.departureTimes.map((time) => (
-            <button type="button" key={time} className="rounded-[8px] border border-[#E6E6E6] bg-white px-[16px] py-[10px] text-[13px] text-black hover:border-black">{time}</button>
+            <button type="button" key={time} className="rounded-[8px] border border-[#E6E6E6] bg-white px-[16px] py-[10px] font-sans text-[13px] text-black hover:border-black">{time}</button>
           ))}
         </div>
       </div>
@@ -110,17 +110,26 @@ function ResultsSection({ data }: { data: SearchPageData }) {
         <FiltersSidebar filters={data.filters} />
 
         {/* ResultsContainer: 932px width, 24px gap */}
-        <div className="flex w-full max-w-[932px] min-w-0 flex-col gap-6">
+        <div className="flex w-full max-w-[932px] min-w-0 flex-col gap-[24px]">
           
           {/* Top Bar */}
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <span className="text-[14px] font-medium text-black">{data.resultsHeader.count} {data.resultsHeader.countLabel}</span>
-            <div className="flex max-w-full overflow-x-auto rounded-full bg-[#F9F9F9] p-1">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between">
+            {/* Title and disclosure text container restricted to 327px width */}
+            <div className="flex w-full max-w-[327px] flex-col gap-[4px]">
+              <span className="font-sans text-[14px] font-medium text-black">
+                {data.resultsHeader.count} {data.resultsHeader.countLabel}
+              </span>
+              <p className="font-sans text-[10px] font-normal leading-[1.4] text-[#808080]">
+                Prices and availability can change. TravelMommy compares flight options and redirects you to the selected provider to complete your booking.
+              </p>
+            </div>
+            
+            <div className="flex max-w-full shrink-0 overflow-x-auto rounded-full bg-[#F9F9F9] p-1">
               {data.resultsHeader.tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`rounded-[100px] px-[24px] py-[8px] text-[13px] font-medium transition-colors ${activeTab === tab ? "bg-white text-black shadow-sm" : "text-[#7d7d7d] hover:text-black"}`}
+                  className={`rounded-[100px] px-[24px] py-[8px] font-sans text-[13px] font-medium transition-colors ${activeTab === tab ? "bg-white text-black shadow-sm" : "text-[#7d7d7d] hover:text-black"}`}
                 >
                   {tab}
                 </button>
@@ -129,57 +138,60 @@ function ResultsSection({ data }: { data: SearchPageData }) {
           </div>
 
           {/* Flights List */}
-          <div className="flex flex-col gap-[24px]">
+          <div className="flex flex-col gap-[16px]">
             {data.flights.map((flight) => (
-              <div key={flight.id} className="flex flex-col rounded-[16px] border border-[#F0F0F0] bg-[#FAFAFA] p-[24px] sm:flex-row sm:items-center sm:justify-between">
+              /* Applied 20px radius, 20px padding, 24px gap, 1px border, and #F9FBF5 highlight */
+              <div key={flight.id} className="flex flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] transition-colors hover:bg-[#F9FBF5] sm:flex-row sm:items-center sm:justify-between">
                 
-                {/* Airline Info */}
-                <div className="flex w-[180px] flex-col gap-[8px]">
-                  <div className="flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-[8px] bg-white border border-[#E6E6E6]">
+                {/* Airline Info - Fixed 140px width */}
+                <div className="flex w-full shrink-0 flex-col gap-[8px] sm:w-[140px]">
+                  <div className="flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-[8px] border border-[#E6E6E6] bg-white">
                     <Image src={flight.logoUrl} alt={flight.airline} width={24} height={24} className="object-contain" />
                   </div>
-                  <span className="text-[13px] font-medium text-black">{flight.airline}</span>
+                  <span className="font-sans text-[13px] font-medium text-black">{flight.airline}</span>
                 </div>
 
-                {/* Times & Stops */}
-                  <div className="flex flex-1 items-center justify-center gap-[40px]">
-                  <div className="flex flex-col items-end">
-                    <span className="text-[16px] font-medium text-black">{flight.departureTime}</span>
-                    <span className="text-[13px] text-[#7d7d7d]">{flight.departureAirport}</span>
+                {/* Times & Stops - Flex fill with 80px gap on desktop */}
+                <div className="flex flex-1 items-center justify-between gap-[20px] sm:justify-center sm:gap-[40px] md:gap-[80px]">
+                  <div className="flex flex-col items-end gap-[2px]">
+                    <span className="font-sans text-[16px] font-medium text-black">{flight.departureTime}</span>
+                    <span className="font-sans text-[13px] text-[#7d7d7d]">{flight.departureAirport}</span>
                   </div>
                   
                   <div className="flex flex-col items-center gap-[4px]">
-                    <span className="text-[12px] text-[#7d7d7d]">{flight.duration}</span>
-                    <div className="h-[1px] w-[80px] bg-[#E6E6E6] relative">
-                        <div className="absolute top-1/2 left-1/2 h-[6px] w-[6px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/20"></div>
+                    <span className="font-sans text-[12px] text-[#7d7d7d]">{flight.duration}</span>
+                    <div className="relative h-[1px] w-[60px] bg-[#E6E6E6] sm:w-[80px]">
+                        <div className="absolute left-1/2 top-1/2 h-[6px] w-[6px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#111111]/20"></div>
                     </div>
-                    <span className="text-[12px] font-medium text-black">{flight.stops}</span>
+                    <span className="font-sans text-[12px] font-bold text-black">{flight.stops}</span>
                   </div>
                   
-                  <div className="flex flex-col items-start">
-                    <span className="text-[16px] font-medium text-black">{flight.arrivalTime}</span>
-                    <span className="text-[13px] text-[#7d7d7d]">{flight.arrivalAirport}</span>
+                  <div className="flex flex-col items-start gap-[2px]">
+                    <span className="font-sans text-[16px] font-medium text-black">{flight.arrivalTime}</span>
+                    <span className="font-sans text-[13px] text-[#7d7d7d]">{flight.arrivalAirport}</span>
                   </div>
                 </div>
 
-                {/* Vertical Divider (Desktop only) */}
-                <div className="hidden h-[60px] w-[1px] bg-[#E6E6E6] sm:block mx-[24px]"></div>
-
-                {/* Price & CTA */}
-                <div className="flex w-[140px] flex-col items-end gap-[4px] mt-[16px] sm:mt-0 border-t border-[#E6E6E6] pt-[16px] sm:border-0 sm:pt-0">
-                  <span className="text-[12px] text-[#7d7d7d]">{data.resultsHeader.sitesLabel.replace("{count}", String(flight.sitesCount))}</span>
-                  <span className="text-[24px] font-semibold text-black">${flight.price}</span>
-                  <button type="button" className="mt-[4px] w-full rounded-full bg-[#fddb32] px-[24px] py-[10px] text-[14px] font-medium text-black transition-colors hover:bg-[#e5c52c]">
+                {/* Price & CTA - Fixed 180px with left border on desktop */}
+                <div className="flex w-full shrink-0 flex-col items-end gap-[8px] border-t border-[#E6E6E6] pt-[16px] sm:mt-0 sm:w-[180px] sm:border-l sm:border-t-0 sm:pl-[24px] sm:pt-0">
+                  <div className="flex flex-col items-end">
+                    <span className="font-sans text-[24px] font-bold text-black">${flight.price}</span>
+                    <span className="font-sans text-[12px] text-[#7d7d7d]">
+                      {data.resultsHeader.sitesLabel.replace("{count}", String(flight.sitesCount))}
+                    </span>
+                  </div>
+                  <button type="button" className="flex h-[40px] w-full items-center justify-center rounded-[8px] bg-[#fddb32] px-[24px] font-sans text-[14px] font-bold text-black transition-colors hover:bg-[#e5c52c]">
                     {data.resultsHeader.dealLabel}
                   </button>
                 </div>
+                
               </div>
             ))}
           </div>
 
           {/* Load More Button */}
           <div className="mt-[16px] flex justify-center">
-            <button type="button" className="rounded-[100px] border border-black bg-white px-[32px] py-[12px] text-[14px] font-medium text-black transition-colors hover:bg-black hover:text-white">
+            <button type="button" className="rounded-[100px] border border-[#E6E6E6] bg-white px-[32px] py-[12px] font-sans text-[14px] font-medium text-black transition-colors hover:bg-gray-50">
               {data.resultsHeader.loadMoreLabel}
             </button>
           </div>
