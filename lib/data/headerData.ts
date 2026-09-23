@@ -32,7 +32,7 @@ export const headerData: HeaderData = {
   ],
   search: {
     label: "Exlore FLight  Deals",
-    href: "/searchwidgetpage",
+    href: "/flightsearch-results",
     iconSrc: "/Homepage/Section 1/Header Icons/Icons/Component 1.png",
     desktopIconSize: 14,
     mobileIconSize: 18,

@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  CalendarDays,
-  Users,
-  Search,
-  ArrowRightLeft,
-} from "lucide-react";
 
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import Widget from "../widget/widget";
 import { searchData, type SearchPageData } from "../../../lib/data/searchData";
 import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
@@ -23,7 +18,7 @@ export default function SearchPage({ data = searchData }: { data?: SearchPageDat
   return (
     <main className="min-h-screen bg-white pt-[104px] lg:pt-[112px]">
       <Header data={headerData} />
-      <SearchBarSection data={data} />
+      <SearchBarSection />
       <ResultsSection data={data} />
       <Footer data={footerData} />
     </main>
@@ -34,53 +29,10 @@ export default function SearchPage({ data = searchData }: { data?: SearchPageDat
    SEARCH BAR
 ---------------------------------------------------------------- */
 
-function SearchBarSection({ data }: { data: SearchPageData }) {
+function SearchBarSection() {
   return (
     <section className="border-b border-[#E6E6E6] bg-[#FAFAFA] px-4 py-5 sm:px-6 lg:px-20 lg:py-6">
-      <form className="mx-auto flex w-full max-w-[1280px] items-center justify-center">
-        <div className="flex w-full max-w-[1120px] flex-col gap-3 rounded-[18px] border border-[#E6E6E6] bg-white p-2 shadow-[0_10px_30px_rgba(0,0,0,0.06)] lg:h-[76px] lg:flex-row lg:items-center lg:gap-2 lg:p-2.5">
-          
-          <div className="flex min-h-[56px] flex-1 items-center rounded-xl border border-transparent px-4 py-2 transition-colors focus-within:border-black/20 focus-within:bg-[#FAFAFA]">
-            <img src={data.search.departureIcon} alt="" className="mr-[10px] h-[20px] w-[20px] opacity-60" />
-            <div className="flex flex-col">
-              <span className="text-[12px] text-[#7d7d7d] leading-tight">{data.search.departureLabel}</span>
-              <input type="text" defaultValue={data.search.departure} className="text-[14px] font-medium text-black outline-none leading-tight" />
-            </div>
-          </div>
-
-          <button type="button" aria-label={data.search.swapLabel} className="flex h-8 w-8 shrink-0 self-start items-center justify-center rounded-full border border-[#E6E6E6] bg-white text-black transition-colors hover:bg-gray-100 lg:mx-[-4px] lg:self-auto lg:z-10">
-            <ArrowRightLeft size={16} aria-hidden="true" />
-          </button>
-
-          <div className="flex min-h-[56px] flex-1 items-center rounded-xl border border-transparent px-4 py-2 transition-colors focus-within:border-black/20 focus-within:bg-[#FAFAFA]">
-            <img src={data.search.arrivalIcon} alt="" className="mr-[10px] h-[20px] w-[20px] opacity-60" />
-            <div className="flex flex-col">
-              <span className="text-[12px] text-[#7d7d7d] leading-tight">{data.search.arrivalLabel}</span>
-              <input type="text" defaultValue={data.search.arrival} className="text-[14px] font-medium text-black outline-none leading-tight" />
-            </div>
-          </div>
-
-          <div className="flex min-h-[56px] flex-1 items-center rounded-xl border border-transparent px-4 py-2 transition-colors focus-within:border-black/20 focus-within:bg-[#FAFAFA]">
-            <CalendarDays size={18} className="mr-[10px] text-[#7d7d7d]" aria-hidden="true" />
-            <div className="flex flex-col">
-              <span className="text-[12px] text-[#7d7d7d] leading-tight">{data.search.datesLabel}</span>
-              <input type="text" defaultValue={data.search.dates} className="text-[14px] font-medium text-black outline-none leading-tight" />
-            </div>
-          </div>
-
-          <div className="flex min-h-[56px] flex-1 items-center rounded-xl border border-transparent px-4 py-2 transition-colors focus-within:border-black/20 focus-within:bg-[#FAFAFA]">
-            <Users size={18} className="mr-[10px] text-[#7d7d7d]" aria-hidden="true" />
-            <div className="flex flex-col">
-              <span className="text-[12px] text-[#7d7d7d] leading-tight">{data.search.travellersLabel}</span>
-              <input type="text" defaultValue={data.search.travellers} className="text-[14px] font-medium text-black outline-none leading-tight" />
-            </div>
-          </div>
-
-          <button type="submit" aria-label={data.search.submitLabel} className="flex h-14 w-full shrink-0 items-center justify-center rounded-xl bg-[#fddb32] text-black transition-transform hover:scale-[1.02] lg:w-14">
-            <Search size={20} className="text-black" aria-hidden="true" />
-          </button>
-        </div>
-      </form>
+      <Widget />
     </section>
   );
 }
