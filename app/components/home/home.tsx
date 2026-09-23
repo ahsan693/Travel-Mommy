@@ -317,32 +317,40 @@ function TravelGuides({ guides, content }: { guides: HomePageData["guides"]; con
           {content.title}
         </h2>
 
-        <div className="flex flex-col gap-[24px] md:flex-row lg:gap-[24px]">
+        {/* Added justify-center to keep the 298px cards centered beautifully */}
+        <div className="flex flex-col items-center justify-center gap-[24px] md:flex-row lg:gap-[32px]">
           {guides.map(({ date, title, image }, index) => (
             <article 
               key={title} 
               onMouseEnter={() => setActive(index)} 
               onMouseLeave={() => setActive(null)} 
-              className={`relative flex h-[336px] flex-col overflow-hidden rounded-[24px] transition-all duration-500 lg:h-[430px] lg:rounded-[32px] ${active === index ? "md:flex-[2]" : "flex-1"}`}
+              // Inactive state is fixed to 298px width. Active state expands.
+              className={`group relative flex w-full flex-col transition-all duration-500 ease-in-out ${
+                active === index ? "lg:flex-[2] lg:max-w-[500px]" : "lg:flex-1 lg:max-w-[298px]"
+              }`}
             >
-              <div className="relative h-[240px] w-full shrink-0 overflow-hidden rounded-[24px] lg:h-[330px] lg:rounded-none lg:rounded-t-[32px]">
+              {/* Image Container: Fixed 400px height as per Figma */}
+              <div className="relative h-[400px] w-full shrink-0 overflow-hidden rounded-[24px]">
                 <Image 
                   src={image} 
                   alt={title} 
                   fill 
-                  sizes="(max-width: 767px) 100vw, 33vw" 
-                  className={`scale-[1.04] object-cover transition-transform duration-500 ${active === index ? "scale-110" : ""}`} 
+                  sizes="(max-width: 767px) 100vw, 50vw" 
+                  className={`object-cover object-center transition-transform duration-700 ${
+                    active === index ? "scale-105" : "scale-100"
+                  }`} 
                 />
-                <div className="absolute right-[16px] top-[16px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-white text-black shadow-sm lg:right-[24px] lg:top-[24px] lg:h-[40px] lg:w-[40px]">
+                <div className="absolute right-[16px] top-[16px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-white text-black shadow-sm transition-transform duration-300 group-hover:scale-110 lg:right-[24px] lg:top-[24px] lg:h-[40px] lg:w-[40px]">
                   <ArrowUpRight size={18} className="lg:h-[20px] lg:w-[20px]" />
                 </div>
               </div>
               
-              <div className="flex flex-col justify-center px-[4px] py-[16px] lg:px-0 lg:py-[20px]">
-                <p className="font-sans text-[12px] font-normal leading-[16px] text-[#6B7280] lg:text-[13px]">
+              {/* Text Content */}
+              <div className="flex flex-col justify-center px-[4px] pt-[16px] lg:pt-[20px]">
+                <p className="font-sans text-[13px] font-normal leading-[16px] text-[#6B7280] lg:text-[14px]">
                   {date}
                 </p>
-                <h3 className="mt-[4px] font-sans text-[18px] font-medium leading-[24px] text-[#111827] lg:mt-[8px] lg:text-[20px]">
+                <h3 className="mt-[4px] font-sans text-[18px] font-medium leading-[24px] text-[#111827] lg:mt-[8px] lg:text-[22px] lg:leading-[28px]">
                   {title}
                 </h3>
               </div>
