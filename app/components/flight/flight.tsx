@@ -120,36 +120,36 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
           </Link>
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-[10px] sm:gap-[24px] lg:grid-cols-4">
           {data.cheapFlights.map((flight) => (
             <div
               key={`${flight.city}-${flight.route}`}
-              className="group flex h-[364px] flex-col overflow-hidden rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group flex h-[332px] flex-col overflow-hidden rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:h-[364px] lg:rounded-[24px]"
             >
-              <div className="relative h-[140px] w-full shrink-0 overflow-hidden bg-neutral-100">
+              <div className="relative h-[110px] w-full shrink-0 overflow-hidden bg-neutral-100 lg:h-[140px]">
                 <Image
                   src={flight.image}
                   alt={flight.city}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-left object-cover transition-transform duration-700 group-hover:scale-105 lg:object-center"
                 />
               </div>
 
-              <div className="flex w-full flex-col gap-[12px] p-[20px]">
+              <div className="flex w-full flex-col gap-[12px] p-[12px] lg:p-[20px]">
                 <div className="flex w-full flex-col gap-[4px]">
-                  <h3 className="font-sans text-[24px] font-medium leading-[24px] text-[#000000]">
+                  <h3 className="font-sans text-[20px] font-medium leading-[24px] text-[#000000] lg:text-[24px]">
                     {flight.city}
                   </h3>
-                  <p className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">
+                  <p className="font-sans text-[12px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D] lg:text-[14px]">
                     {flight.route}
                   </p>
                 </div>
 
                 <div className="flex h-[24px] w-full items-center justify-between">
-                  <p className="font-sans text-[24px] font-medium leading-[24px] text-[#212121]">
+                  <p className="font-sans text-[20px] font-medium leading-[24px] text-[#212121] lg:text-[24px]">
                     {flight.price}
                   </p>
-                  <div className="flex items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[8px] py-[4px]">
+                  <div className="flex min-w-0 items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[6px] py-[3px] lg:px-[8px] lg:py-[4px]">
                     <Image
                       src={data.icons.airlineLogoPlaceholder}
                       alt={`${flight.airline} logo`}
@@ -157,23 +157,23 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
                       height={16}
                       className="object-contain"
                     />
-                    <span className="font-sans text-[12px] font-medium leading-[16px] tracking-[0px] text-[#000000]">
+                    <span className="truncate font-sans text-[11px] font-medium leading-[16px] tracking-[0px] text-[#000000] lg:text-[12px]">
                       {flight.airline}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex h-[20px] items-center gap-[6px]">
-                  <Clock size={14} className="text-[#7D7D7D]" />
-                  <span className="font-sans text-[14px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D]">
+                  <Clock size={12} className="shrink-0 text-[#7D7D7D] lg:h-[14px] lg:w-[14px]" />
+                  <span className="truncate font-sans text-[12px] font-normal leading-[20px] tracking-[0px] text-[#7D7D7D] lg:text-[14px]">
                     Direct &bull; {flight.duration}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-auto px-[20px] pb-[20px] pt-0">
-                <button className="flex h-[48px] w-full items-center justify-center gap-[8px] rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] transition-colors hover:border-[#FDDB32] hover:bg-[#FDDB32]">
-                  <span className="font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
+              <div className="mt-auto px-[12px] pb-[12px] pt-0 lg:px-[20px] lg:pb-[20px]">
+                <button className="flex h-[40px] w-full items-center justify-center gap-[6px] rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] transition-colors hover:border-[#FDDB32] hover:bg-[#FDDB32] lg:h-[48px] lg:gap-[8px] lg:rounded-[12px]">
+                  <span className="font-sans text-[12px] font-medium leading-[20px] tracking-[0px] text-[#000000] lg:text-[14px]">
                     {data.copy.viewFlightsCta}
                   </span>
                   <Image
