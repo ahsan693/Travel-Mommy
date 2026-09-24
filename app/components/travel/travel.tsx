@@ -764,7 +764,7 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
               type="email"
               placeholder={newsletter.inputPlaceholder}
               aria-label="Email address"
-              className="h-[56px] flex-1 rounded-[16px] bg-[#FFFFFF] px-[24px] font-sans text-[14px] font-normal leading-[1.43] text-[#000000] placeholder:text-[#767676] md:text-[16px]"
+              className="h-[48px] flex-1 rounded-[14px] bg-[#FFFFFF] px-[16px] font-sans text-[14px] font-normal leading-[20px] text-[#000000] placeholder:text-[#767676] md:h-[56px] md:rounded-[16px] md:px-[24px] md:text-[16px] md:leading-[1.43]"
             />
             <button
               type="submit"
