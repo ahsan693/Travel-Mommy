@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { GR } from "country-flag-icons/react/3x2";
 import {
   MapPin,
   Coins,
@@ -230,11 +231,9 @@ function DestinationCard({ item, sectionData }: { item: TravelDestination; secti
             <h3 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:tracking-[-0.48px]">
               {item.city}
             </h3>
-            {item.icon && (
-              <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-100 bg-white">
-                <img src={encodeURI(item.icon)} alt={`${item.city} flag`} className="h-full w-full object-cover" />
-              </div>
-            )}
+            <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-100 bg-white">
+              <GR className="h-full w-full object-cover" aria-label="Greece flag" role="img" />
+            </div>
           </div>
         </div>
 
