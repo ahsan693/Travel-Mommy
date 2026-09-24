@@ -139,10 +139,10 @@ const exploreFlightsData: ExploreFlightsData = {
       { name: "Asia", description: "Incredible destinations, rich cultures and unforgettable experiences.", image: "/10. Flights By Region/imgs/region-image-1.png" },
       { name: "North America", description: "Vibrant cities, national parks and endless adventures.", image: "/10. Flights By Region/imgs/region-image-2.png" },
       { name: "South America", description: "Breathtaking landscapes, ancient history and vibrant cultures.", image: "/10. Flights By Region/imgs/region-image-3.png" },
-      { name: "Africa", description: "Extraordinary wildlife, amazing landscapes and rich cultures.", image: "/10. Flights By Region/imgs/region-image-4.png" },
-      { name: "Middle East", description: "Modern cities, rich history and unique experiences.", image: "/10. Flights By Region/imgs/region-image-5.png" },
-      { name: "Caribbean", description: "Beautiful beaches, turquoise waters and a laid-back atmosphere.", image: "/10. Flights By Region/imgs/region-image-6.png" },
-      { name: "Oceania", description: "Stunning islands, unique wildlife and incredible natural beauty.", image: "/10. Flights By Region/imgs/region-image-7.png" }
+      { name: "Africa", description: "Extraordinary wildlife, amazing landscapes and rich cultures.", image: "/10. Flights By Region/imgs/region-image-7.png" },
+      { name: "Middle East", description: "Modern cities, rich history and unique experiences.", image: "/10. Flights By Region/imgs/region-image-6.png" },
+      { name: "Caribbean", description: "Beautiful beaches, turquoise waters and a laid-back atmosphere.", image: "/10. Flights By Region/imgs/region-image-5.png" },
+      { name: "Oceania", description: "Stunning islands, unique wildlife and incredible natural beauty.", image: "/10. Flights By Region/imgs/region-image-4.png" }
     ]
   },
   exploreCountries: {
