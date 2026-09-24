@@ -251,7 +251,8 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
 
   return (
     <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[20px] pb-[64px] pt-[24px] md:px-[80px] md:pb-[96px] md:pt-[32px]">
-      <div className="flex w-full max-w-[1440px] flex-col gap-[24px]">
+      {/* Container constrained to 1280px to align perfectly with all other sections */}
+      <div className="flex w-full max-w-[1280px] flex-col gap-[24px]">
         <div className="flex w-full flex-col items-start justify-between gap-[16px] border-b border-[#E6E6E6] pb-[16px] md:flex-row md:items-center md:border-none md:pb-0">
           <div className="flex flex-col gap-[4px]">
             <h2 className="font-sans text-[20px] font-bold text-[#1A1A19] md:text-[24px]">
