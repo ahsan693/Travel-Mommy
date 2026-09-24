@@ -222,7 +222,33 @@ function ExploreCountries({ data }: { data: typeof exploreFlightsData.exploreCou
   );
 }
 
+function parseDuration(duration: string) {
+  const hours = Number.parseInt(duration.match(/(\d+)h/)?.[1] ?? "0", 10);
+  const minutes = Number.parseInt(duration.match(/(\d+)m/)?.[1] ?? "0", 10);
+  return hours * 60 + minutes;
+}
+
 function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flightDealsWorkspace }) {
+  const [sortOption, setSortOption] = useState(data.header.sortDefault);
+  const sortedDeals = [...data.deals].sort((firstDeal, secondDeal) => {
+    const firstPrice = Number.parseFloat(firstDeal.price.replace(/[^0-9.]/g, ""));
+    const secondPrice = Number.parseFloat(secondDeal.price.replace(/[^0-9.]/g, ""));
+    const firstDuration = parseDuration(firstDeal.duration);
+    const secondDuration = parseDuration(secondDeal.duration);
+
+    switch (sortOption) {
+      case "Highest Price":
+        return secondPrice - firstPrice;
+      case "Shortest Duration":
+        return firstDuration - secondDuration;
+      case "Longest Duration":
+        return secondDuration - firstDuration;
+      case "Lowest Price":
+      default:
+        return firstPrice - secondPrice;
+    }
+  });
+
   return (
     <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[20px] pb-[64px] pt-[24px] md:px-[80px] md:pb-[96px] md:pt-[32px]">
       <div className="flex w-full max-w-[1440px] flex-col gap-[24px]">
@@ -237,17 +263,27 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
           </div>
           <div className="flex items-center gap-[8px]">
             <span className="font-sans text-[13px] font-normal text-[#7D7D7D]">{data.header.sortLabel}</span>
-            <button className="flex h-[36px] items-center justify-between gap-[12px] rounded-[8px] border border-[#E6E6E6] bg-[#FFFFFF] px-[12px] font-sans text-[14px] font-medium text-[#1A1A19] transition-colors hover:bg-gray-50">
-              {data.header.sortDefault}
-              <ExploreIcon name={data.header.sortIcon} size={14} className="text-[#7D7D7D]" />
-            </button>
+            <div className="relative">
+              <select
+                aria-label={data.header.sortLabel}
+                value={sortOption}
+                onChange={(event) => setSortOption(event.target.value)}
+                className="h-[36px] appearance-none rounded-[8px] border border-[#E6E6E6] bg-[#FFFFFF] px-[12px] pr-[36px] font-sans text-[14px] font-medium text-[#1A1A19] outline-none transition-colors hover:bg-gray-50 focus:border-[#FDDB32]"
+              >
+                <option value="Lowest Price">Lowest Price</option>
+                <option value="Highest Price">Highest Price</option>
+                <option value="Shortest Duration">Shortest Duration</option>
+                <option value="Longest Duration">Longest Duration</option>
+              </select>
+              <ExploreIcon name={data.header.sortIcon} size={14} className="pointer-events-none absolute right-[12px] top-1/2 -translate-y-1/2 text-[#7D7D7D]" />
+            </div>
           </div>
         </div>
 
         <div className="flex w-full flex-col gap-[32px] lg:flex-row lg:justify-between">
           <div className="flex flex-col flex-1 lg:max-w-[928px]">
             <div className="grid w-full grid-cols-1 gap-[18px] sm:grid-cols-2 lg:grid-cols-3">
-              {data.deals.map((deal, idx) => (
+              {sortedDeals.map((deal, idx) => (
                 <div key={idx} className="flex flex-col justify-between gap-[16px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[18px] transition-shadow hover:shadow-md">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col">
