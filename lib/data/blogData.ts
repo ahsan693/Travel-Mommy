@@ -112,15 +112,15 @@ export const blogData: BlogPageData = {
     eyebrow: "FILTER BY REGION",
     countLabel: "9 global regions available",
     regions: [
-      { name: "Europe", image: "/09. Travel Guide Hompage/images/guide homepage images-02.png" },
-      { name: "Asia", image: "/09. Travel Guide Hompage/images/guide homepage images-03.png" },
-      { name: "North Amer...", image: "/09. Travel Guide Hompage/images/guide homepage images-04.png" },
-      { name: "South Amer...", image: "/09. Travel Guide Hompage/images/guide homepage images-05.png" },
+      { name: "Europe", image: "/09. Travel Guide Hompage/images/guide homepage images-10.png" },
+      { name: "Asia", image: "/09. Travel Guide Hompage/images/guide homepage images-09.png" },
+      { name: "North Amer...", image: "/09. Travel Guide Hompage/images/guide homepage images-08.png" },
+      { name: "South Amer...", image: "/09. Travel Guide Hompage/images/guide homepage images-07.png" },
       { name: "Central Am...", image: "/09. Travel Guide Hompage/images/guide homepage images-06.png" },
-      { name: "Caribbean", image: "/09. Travel Guide Hompage/images/guide homepage images-07.png" },
-      { name: "Africa", image: "/09. Travel Guide Hompage/images/guide homepage images-08.png" },
-      { name: "Middle East", image: "/09. Travel Guide Hompage/images/guide homepage images-09.png" },
-      { name: "Oceania", image: "/09. Travel Guide Hompage/images/guide homepage images-10.png" }
+      { name: "Caribbean", image: "/09. Travel Guide Hompage/images/guide homepage images-05.png" },
+      { name: "Africa", image: "/09. Travel Guide Hompage/images/guide homepage images-04.png" },
+      { name: "Middle East", image: "/09. Travel Guide Hompage/images/guide homepage images-03.png" },
+      { name: "Oceania", image: "/09. Travel Guide Hompage/images/guide homepage images-02.png" }
     ]
   },
   featuredGuide: {
@@ -162,7 +162,7 @@ export const blogData: BlogPageData = {
         readTime: "6 Min Read",
         title: "Slowing Down in Tokyo: Finding Quiet Temples & Tea Houses",
         description: "A mindful guide to Tokyo's serene side, highlighting tucked-away neighborhood gardens, traditional kissaten, and ancient shrines.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-13.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-18.png",
         exploreText: "Explore Tokyo",
         href: "#"
       },
@@ -171,7 +171,7 @@ export const blogData: BlogPageData = {
         readTime: "10 Min Read",
         title: "Paris on Foot: A Local's Guide to Secret Arrondissements",
         description: "Skip the queues and walk through winding cobblestone passages, artisan bakeries, and romantic quiet plazas in the 10th and 11th.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-14.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-17.png",
         exploreText: "Explore Paris",
         href: "#"
       },
@@ -180,7 +180,7 @@ export const blogData: BlogPageData = {
         readTime: "7 Min Read",
         title: "Beyond the Caldera: Exploring Santorini's Hidden Villages",
         description: "Escape the crowds of Oia to discover Pyrgos and Emporio—where white-washed windmills meet authentic, quiet Greek life.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-15.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-16.png",
         exploreText: "Explore Santorini",
         href: "#"
       },
@@ -189,7 +189,7 @@ export const blogData: BlogPageData = {
         readTime: "9 Min Read",
         title: "In Search of Sanctuary: A Guide to Marrakech's Hidden Riads",
         description: "Step through unmarked wooden doors into interior courtyards of orange trees, emerald green zellige tilework, and absolute silence.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-16.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-15.png",
         exploreText: "Explore Marrakech",
         href: "#"
       },
@@ -198,7 +198,7 @@ export const blogData: BlogPageData = {
         readTime: "12 Min Read",
         title: "Patagonia Borderlands: Treks Across Lakes and Glaciers",
         description: "An adventure guide to the ultimate edge of the earth. Route planning, gear lists, and weather survival guides for the Fitz Roy trek.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-17.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-12.png",
         exploreText: "Explore Patagonia",
         href: "#"
       },
@@ -207,7 +207,7 @@ export const blogData: BlogPageData = {
         readTime: "11 Min Read",
         title: "Icelandic Ring Road: Ultimate Winter Self-Drive Guide",
         description: "How to navigate volcanic basalt columns, hidden hot pools, and cascading frozen waterfalls under the dancing green northern lights.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-18.png",
+        image: "/09. Travel Guide Hompage/images/guide homepage images-13.png",
         exploreText: "Explore Iceland",
         href: "#"
       },
@@ -216,7 +216,7 @@ export const blogData: BlogPageData = {
         readTime: "5 Min Read",
         title: "Autumn in New York: The Best Parks, Skylines & Galleries",
         description: "Witness the brownstones of Brooklyn and Central Park paths turn amber, paired with our curated checklist of new independent art galleries.",
-        image: "/09. Travel Guide Hompage/images/guide homepage images-18.png", // Reusing 18 as only 18 images exist in the folder
+        image: "/09. Travel Guide Hompage/images/guide homepage images-14.png", // Reusing 18 as only 18 images exist in the folder
         exploreText: "Explore New York",
         href: "#"
       }
