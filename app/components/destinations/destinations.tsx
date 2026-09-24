@@ -7,10 +7,14 @@ import {
   ChevronDown,
   ArrowUpRight,
   Star,
-  Clock,
   ArrowRight,
   ChevronRight,
   MapPin,
+  Plane,
+  Building2,
+  Umbrella,
+  Minus,
+  Plus,
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -40,26 +44,26 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
         <div className="absolute inset-0 bg-black/55 md:bg-transparent md:bg-gradient-to-t md:from-black/80 md:via-black/20 md:to-black/60" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full max-w-[1440px] flex-col px-[20px] pb-[40px] pt-[24px] md:px-[112px] md:pb-[80px] md:pt-[24px]">
+      <div className="relative z-10 flex h-full w-full max-w-[1440px] flex-col px-[16px] pb-[32px] pt-[12px] md:px-[112px] md:pb-[80px] md:pt-[24px]">
         <Header data={headerData} />
 
-        <div className="mt-[80px] flex w-full max-w-[1198px] flex-col gap-[24px] md:mt-auto md:gap-[26px]">
+        <div className="mt-[120px] flex w-full max-w-[1198px] flex-col gap-[10px] md:mt-auto md:gap-[26px]">
           
-          <div className="flex flex-col items-start gap-[12px] text-left">
-            <h1 className="font-sans text-[48px] font-medium leading-[1] text-[#FFFFFF] md:text-[72px]">
-              <span className="block md:hidden">
+          <div className="flex flex-col items-start gap-[20px] text-left md:gap-[12px]">
+            <h1 className="font-sans text-[2.625rem] font-medium leading-[2.75rem] tracking-[-1.5px] text-[#FFFFFF] sm:text-[2.625rem] sm:leading-[2.75rem] sm:tracking-[-1.5px] md:text-[4.5rem] md:font-medium md:leading-[1.05] md:tracking-normal">
+              <span className="flex flex-col gap-0 md:hidden">
                 {data.hero.mobileTitle.map((line) => (
                   <span key={line} className="block">{line}</span>
                 ))}
               </span>
               {/* Desktop three-line rendering */}
-              <span className="hidden md:block">
+              <span className="hidden flex-col gap-[2px] md:flex">
                 {data.hero.mobileTitle.map((line) => (
                   <span key={line} className="block">{line}</span>
                 ))}
               </span>
             </h1>
-            <p className="max-w-[700px] font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#FFFFFF] md:text-[16px] md:leading-[1.5] md:text-[rgba(255,255,255,0.8)]">
+            <p className="max-w-[700px] font-sans text-[14px] font-[400] leading-[20px] tracking-[0px] text-[#FFFFFF] md:text-[16px] md:font-normal md:leading-[1.5] md:text-[rgba(255,255,255,0.8)]">
               <span className="md:hidden">
                 {data.hero.mobileDescription}
               </span>
@@ -70,7 +74,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
           </div>
 
           <div className="flex flex-col items-start gap-[12px] text-left md:gap-[19px]">
-            <p className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#F9FBF5] md:text-[#FFFFFF]">
+            <p className="font-sans text-[13px] font-normal leading-[18px] tracking-[0px] text-[#F9FBF5] md:text-[#FFFFFF]">
               {data.hero.prompt}
             </p>
 
@@ -80,7 +84,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
                   key={region}
                   type="button"
                   onClick={() => setActiveRegion(region)}
-                  className={`flex h-[32px] items-center gap-[6px] rounded-full px-[14px] py-[8px] font-sans text-[12px] font-medium leading-[1.33] tracking-[0.1px] transition-colors md:h-[40px] md:px-[20px] md:py-0 md:text-[14px] md:leading-[1.43] md:tracking-[0px] ${
+                  className={`flex h-[32px] items-center gap-[6px] rounded-full px-[14px] py-[8px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] transition-colors md:h-[40px] md:px-[20px] md:py-0 md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] ${
                     activeRegion === region
                       ? "border border-[#000000] bg-[#FDDB32] text-[#000000] md:border-none"
                       : "bg-[#F9FBF5] text-[#000000] hover:bg-[#F9FBF5] md:bg-[#FFFFFF] md:border-none"
@@ -94,7 +98,7 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
 
             <div className="my-[12px] block h-[1px] w-full bg-[#E6E6E6] opacity-30 md:w-[358px]" />
 
-            <p className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#F9FBF5] md:hidden">
+            <p className="font-sans text-[13px] font-normal leading-[18px] tracking-[0px] text-[#F9FBF5] md:hidden">
               {data.hero.popularLabel}
             </p>
 
@@ -103,15 +107,19 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
                 <button
                   key={chip.name}
                   type="button"
-                  className="flex h-[40px] items-center gap-[8px] rounded-full bg-[#F9FBF5] py-[6px] pl-[6px] pr-[14px] font-sans text-[12px] font-medium leading-[1.33] tracking-[0.1px] text-[#000000] transition-colors hover:bg-[#e8ece3] md:border md:border-white/20 md:bg-white/10 md:py-[4px] md:pl-[4px] md:pr-[16px] md:text-[14px] md:leading-[1.43] md:tracking-[0px] md:text-[#FFFFFF] md:backdrop-blur-sm md:hover:bg-white/20"
+                  className="flex h-[40px] items-center gap-[8px] rounded-full bg-[#F9FBF5] py-[6px] pl-[6px] pr-[14px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] text-[#000000] transition-colors hover:bg-[#e8ece3] md:border md:border-white/20 md:bg-white/10 md:py-[4px] md:pl-[4px] md:pr-[16px] md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] md:text-[#FFFFFF] md:backdrop-blur-sm md:hover:bg-white/20"
                 >
-                  <Image
-                    src={chip.img}
-                    alt={chip.name}
-                    width={32}
-                    height={32}
-                    className="h-[28px] w-[28px] rounded-full object-cover md:h-[32px] md:w-[32px]"
-                  />
+                  {chip.swatch ? (
+                    <span className="h-[28px] w-[28px] rounded-full md:h-[32px] md:w-[32px]" style={{ backgroundColor: chip.swatch }} />
+                  ) : (
+                    <Image
+                      src={chip.img}
+                      alt={chip.name}
+                      width={32}
+                      height={32}
+                      className="h-[28px] w-[28px] rounded-full object-cover md:h-[32px] md:w-[32px]"
+                    />
+                  )}
                   {chip.name}
                 </button>
               ))}
@@ -131,22 +139,22 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
 
 export function FeaturedCountriesSection({ data }: { data: DestinationsPageData }) {
   return (
-    <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[20px] py-[64px] md:px-[80px] md:py-[96px]">
+    <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[16px] py-[40px] md:px-[80px] md:py-[96px]">
       <div className="flex w-full max-w-[1440px] flex-col md:px-[0px]">
         
-        <div className="mb-[24px] flex flex-col items-start text-left md:mb-[40px] md:items-center md:text-center">
-          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px]">
+        <div className="mb-[24px] flex flex-col items-center text-center md:mb-[40px] md:items-center md:text-center">
+          <h2 className="font-sans text-[32px] font-medium leading-[38px] tracking-[0px] text-[#000000] md:text-[48px]">
             {data.copy.featuredTitle || "Featured Countries"}
           </h2>
         </div>
 
-        <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[20px] md:grid-cols-3 md:gap-[24px]">
+        <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[16px] md:grid-cols-3 md:gap-[24px]">
           {data.featuredCountries.map((country) => (
             <div
               key={country.name}
-              className="group flex min-h-[440px] w-full flex-col overflow-hidden rounded-[16px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] p-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 md:rounded-[20px] md:p-[14px]"
+              className="group flex h-[490px] w-full flex-col overflow-hidden rounded-[20px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] pb-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 md:h-[527px] md:p-[14px]"
             >
-              <div className="relative h-[180px] w-full shrink-0 overflow-hidden rounded-[10px] bg-[#F3F4F6] md:h-[220px] md:rounded-[12px]">
+              <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-[#F3F4F6] p-[12px] md:h-[220px] md:rounded-[12px] md:p-0">
                 <Image
                   src={country.image}
                   alt="Destination"
@@ -154,18 +162,18 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
-                <div className="absolute left-[10px] top-[10px] rounded-full border border-[#FFFFFF] bg-white px-[12px] py-[4px] shadow-sm md:left-[12px] md:top-[12px]">
-                  <span className="font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] md:leading-[20px]">
+                <div className="absolute left-[12px] top-[12px] rounded-full border border-[#FFFFFF] bg-white/30 px-[10px] py-[4px] backdrop-blur-[4px] shadow-sm md:border-none md:bg-[#FFFFFF] md:px-[12px]">
+                  <span className="font-sans text-[13px] font-medium leading-[18px] tracking-[0px] text-[#000000] md:text-[14px] md:leading-[20px]">
                     Popular
                   </span>
                 </div>
                 
-                <div className="absolute right-[10px] top-[10px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#FDDB32] shadow-md transition-transform group-hover:scale-110 md:right-[12px] md:top-[12px] md:h-[36px] md:w-[36px]">
-                  <ArrowUpRight size={18} strokeWidth={2} className="text-[#000000]" />
+                <div className="absolute right-[12px] top-[12px] flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#FFFFFF] bg-white/30 backdrop-blur-[3px] shadow-md transition-transform group-hover:scale-110 md:h-[36px] md:w-[36px] md:border-none md:bg-[#FDDB32]">
+                  <ArrowUpRight size={16} strokeWidth={2.5} className="text-[#000000]" />
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col gap-[14px] px-[4px] pb-[4px] pt-[16px] md:gap-[16px] md:px-[2px] md:pt-[18px]">
+              <div className="flex flex-1 flex-col gap-[12px] p-[14px] md:gap-[16px] md:px-[2px] md:pt-[18px]">
                 
                 <div className="flex items-center gap-[8px]">
                   <div className="flex gap-[2px]">
@@ -176,6 +184,18 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
                   <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#F59E0B]">
                     {country.rating}/5
                   </span>
+                </div>
+
+                <div className="flex flex-col gap-[2px]">
+                  <h3 className="font-sans text-[15px] font-medium leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
+                    {country.name}
+                  </h3>
+                  <div className="flex items-center gap-[4px] md:gap-[6px]">
+                    <MapPin size={12} className="text-[#7D7D7D] md:h-[14px] md:w-[14px]" />
+                    <span className="font-sans text-[13px] font-normal leading-[18px] tracking-[0px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
+                      {country.desc}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-[8px]">
@@ -191,29 +211,39 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
 
                 <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
 
-                <div className="flex items-center gap-[8px] font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D]">
-                  <Clock size={16} strokeWidth={1.5} className="text-[#7D7D7D]" />
-                  <span>{country.perk}</span>
+                <div className="flex flex-col gap-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
+                  <div className="flex items-center gap-[8px]">
+                    <Plane size={14} className="text-[#7D7D7D]" />
+                    <span>{data.copy.flightsLabel} {country.flightsFrom}</span>
+                  </div>
+                  <div className="flex items-center gap-[8px]">
+                    <Building2 size={14} className="text-[#7D7D7D]" />
+                    <span>{data.copy.hotelsLabel} {country.hotelsFrom}</span>
+                  </div>
+                  <div className="flex items-center gap-[8px]">
+                    <Umbrella size={14} className="text-[#7D7D7D]" />
+                    <span>{country.perk}</span>
+                  </div>
                 </div>
 
                 <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
 
                 <div className="mt-auto flex items-end justify-between pt-[4px]">
                   <div className="flex flex-col gap-[2px]">
-                    <span className="font-sans text-[13px] font-normal leading-[1.43] text-[#7D7D7D] md:text-[14px]">
-                      Flights from Dublin
+                    <span className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
+                      {data.copy.featuredPriceLabel}
                     </span>
                     <div className="flex items-baseline gap-[4px]">
-                      <span className="font-sans text-[24px] font-medium leading-[1] text-[#000000]">
+                      <span className="font-sans text-[20px] font-medium leading-[24px] text-[#000000] md:text-[22px] md:leading-[1]">
                         {country.price}
                       </span>
-                      <span className="font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D]">
-                        / from
+                      <span className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
+                        {data.copy.featuredPriceSuffix}
                       </span>
                     </div>
                   </div>
-                  <button className="flex h-[40px] items-center justify-center rounded-full bg-[#FDDB32] px-[20px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c]">
-                    Explore &rarr;
+                  <button className="flex h-[38px] items-center justify-center gap-[4px] rounded-full bg-[#FDDB32] px-[18px] font-sans text-[13px] font-medium leading-[18px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c] md:h-[40px] md:gap-[6px] md:px-[16px] md:text-[14px] md:leading-[20px]">
+                    {data.copy.featuredCta}
                   </button>
                 </div>
                 
@@ -232,7 +262,7 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
 
 function ExploreByRegionSection({ data }: { data: DestinationsPageData }) {
   return (
-    <section className="flex w-full flex-col items-center bg-[#F9F8F5] px-[20px] py-[64px] md:bg-[#FFFFFF] md:pb-[160px] md:pt-[0px]">
+    <section className="hidden w-full flex-col items-center bg-[#F9F8F5] px-[20px] py-[64px] md:flex md:bg-[#FFFFFF] md:pb-[160px] md:pt-[0px]">
       
       {/* Header */}
       <div className="mb-[32px] flex w-full max-w-[860px] flex-col items-start text-left md:mb-[40px] md:items-center md:text-center">
@@ -338,11 +368,11 @@ function ExploreByRegionSection({ data }: { data: DestinationsPageData }) {
 
 function WhyPlanSection({ data }: { data: DestinationsPageData }) {
   return (
-    <section className="flex w-full flex-col items-center bg-[#FFFFFF] py-[64px] px-[20px] md:py-[80px] md:px-[32px]">
+    <section className="flex w-full flex-col items-center bg-[#FFFFFF] px-[16px] py-[48px] md:px-[32px] md:py-[80px]">
       <div className="flex w-full max-w-[1280px] flex-col items-center md:px-[0px]">
         
-        <div className="mb-[32px] flex w-full max-w-[1216px] flex-col items-center text-center gap-[12px] md:mb-[48px] md:gap-[24px]">
-          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:leading-[1]">
+        <div className="mb-[32px] flex w-full max-w-[1216px] flex-col items-center gap-[12px] text-center md:mb-[48px] md:gap-[24px]">
+          <h2 className="font-sans text-[32px] font-medium leading-[38px] tracking-[0px] text-[#000000] md:text-[48px] md:leading-[1]">
             <span className="block md:hidden">
               <span className="block">Why Plan Your Trip with</span>
               <span className="block">TravelMommy?</span>
@@ -351,7 +381,7 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
               {data.copy.whyTitle}
             </span>
           </h2>
-          <p className="max-w-[700px] font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
+          <p className="max-w-[700px] font-sans text-[15px] font-normal leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
             {data.copy.whyDescription}
           </p>
         </div>
@@ -360,16 +390,16 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
           {data.whyCompare.map((feature, i) => (
             <div
               key={i}
-              className="flex flex-col items-start justify-start rounded-[20px] border-[1.5px] border-[#E6E6E6] bg-[#F9FBF5] p-[24px] text-left gap-[16px] md:items-center md:justify-center md:p-[30px] md:text-center md:gap-[0px]"
+              className="flex flex-col items-center justify-center gap-[16px] rounded-[20px] border-[1.5px] border-[#E6E6E6] bg-[#F9FBF5] p-[24px] text-center md:gap-0 md:p-[30px]"
             >
-              <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-[#FFED91] md:mb-[15px] md:h-[56px] md:w-[56px]">
+              <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#FFED91] md:mb-[15px] md:h-[56px] md:w-[56px]">
                 <Image src={feature.icon} alt={feature.title} width={24} height={24} className="object-contain md:w-[28px] md:h-[28px]" />
               </div>
-              <div className="flex flex-col items-start gap-[8px] md:items-center md:gap-[15px]">
-                <h3 className="font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#000000] md:text-[24px] md:leading-[1]">
+              <div className="flex flex-col items-center gap-[8px] md:gap-[15px]">
+                <h3 className="font-sans text-[20px] font-medium leading-[26px] tracking-[0px] text-[#000000] md:text-[24px] md:leading-[1]">
                   {feature.title}
                 </h3>
-                <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#555555] md:text-[#000000] md:text-[16px] md:leading-[1.5]">
+                <p className="font-sans text-[15px] font-normal leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
                   {feature.description}
                 </p>
               </div>
@@ -377,8 +407,8 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
           ))}
         </div>
 
-        <div className="mt-[24px] w-full md:mt-[48px] md:w-auto">
-          <button className="flex w-full h-[48px] items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] px-[20px] font-sans text-[14px] font-medium leading-[1.43] tracking-[0px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c] md:h-[44px] md:w-auto md:gap-[6px] md:rounded-full md:px-[24px]">
+        <div className="mt-[16px] w-full md:mt-[48px] md:w-auto">
+          <button className="flex h-[44px] w-full items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] px-[20px] font-sans text-[13px] font-medium leading-[18px] tracking-[0px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c] md:w-auto md:gap-[6px] md:rounded-full md:px-[24px] md:text-[14px] md:leading-[20px]">
             {data.copy.whyCta}
             <ArrowUpRight size={16} className="md:w-[16px] md:h-[16px]" />
           </button>
@@ -394,25 +424,43 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
 ===================================================================== */
 
 function FaqSection({ data }: { data: DestinationsPageData }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
-    <section className="flex w-full flex-col items-center bg-[#F9F8F5] py-[64px] px-[20px] md:bg-[#FFFFFF] md:px-[80px] md:pb-[160px] md:pt-[80px]">
-      <div className="flex w-full max-w-[800px] flex-col items-start md:items-center">
+    <section className="flex w-full flex-col items-center bg-[#F9F8F5] px-[24px] py-[64px] md:bg-[#FFFFFF] md:px-[80px] md:pb-[160px] md:pt-[80px]">
+      <div className="flex w-full max-w-[800px] flex-col items-center">
         
-        <h2 className="mb-[32px] text-left font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:mb-[48px] md:text-center md:text-[48px]">
+        <h2 className="mb-[32px] text-center font-sans text-[20px] font-medium leading-[26px] tracking-[0px] text-[#000000] md:mb-[48px] md:text-[48px] md:leading-[48px]">
           {data.copy.faqTitle}
         </h2>
 
         <div className="flex w-full flex-col gap-[24px]">
-          {data.faqs.map((faq, i) => (
-            <div key={i} className="flex flex-col gap-[12px] border-b border-[#E6E6E6] pb-[24px] last:border-0">
-              <h3 className="font-sans text-[16px] font-medium leading-[1.5] tracking-[0px] text-[#000000]">
-                {faq.q}
-              </h3>
-              <p className="font-sans text-[14px] font-normal leading-[1.43] tracking-[0px] text-[#7D7D7D] md:text-[16px] md:leading-[1.5]">
-                {faq.a}
-              </p>
+          {data.faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+
+            return (
+            <div key={i} className="flex flex-col gap-[12px] md:border-b md:border-[#E6E6E6] md:pb-[24px]">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : i)}
+                className="flex w-full items-center justify-between text-left"
+              >
+                <span className="font-sans text-[15px] font-medium leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
+                  {faq.q}
+                </span>
+                <span className="flex shrink-0 text-[#000000]">
+                  {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                </span>
+              </button>
+              {isOpen && (
+                <p className="font-sans text-[15px] font-normal leading-[22px] tracking-[0px] text-[#7D7D7D] md:text-[16px] md:leading-[24px]">
+                  {faq.a}
+                </p>
+              )}
+              <div className="block h-[1px] w-full bg-transparent md:hidden" />
             </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
