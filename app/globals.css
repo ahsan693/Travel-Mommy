@@ -228,30 +228,6 @@ body {
   }
 }
 
-/* Component pages use responsive arbitrary size utilities. Keep those sizes
-   on the same source of truth without requiring markup changes in every section. */
-:where([class*="text-[9px]"]) { font-size: var(--text-mobile-xs) !important; }
-:where([class*="text-[11px]"]) { font-size: var(--text-mobile-s) !important; }
-:where([class*="text-[12px]"]) { font-size: var(--text-title-xs) !important; }
-:where([class*="text-[13px]"]) { font-size: var(--text-body-s) !important; }
-:where([class*="text-[14px]"]) { font-size: var(--text-body-m) !important; }
-:where([class*="text-[15px]"]) { font-size: var(--text-mobile-l) !important; }
-:where([class*="text-[16px]"]) { font-size: var(--text-body-l) !important; }
-:where([class*="text-[18px]"]) { font-size: var(--text-card-m) !important; }
-:where([class*="text-[20px]"]) { font-size: var(--text-card-l) !important; }
-:where([class*="text-[22px]"]) { font-size: var(--text-card-xl) !important; }
-:where([class*="text-[24px]"]) { font-size: var(--text-title-l) !important; }
-:where([class*="text-[26px]"]) { font-size: var(--text-heading-xs) !important; }
-:where([class*="text-[28px]"]) { font-size: var(--text-heading-s) !important; }
-:where([class*="text-[32px]"]) { font-size: var(--text-heading-m) !important; }
-:where([class*="text-[36px]"]) { font-size: var(--text-heading-l) !important; }
-:where([class*="text-[42px]"]) { font-size: var(--text-display-mobile) !important; }
-:where([class*="text-[44px]"]) { font-size: var(--text-display-s) !important; }
-:where([class*="text-[48px]"]) { font-size: var(--text-display-l) !important; }
-:where([class*="text-[64px]"]) { font-size: var(--text-display-m) !important; }
-:where([class*="text-[72px]"]) { font-size: var(--text-display-xl) !important; }
-:where([class*="text-[110px]"]) { font-size: var(--text-display-xxl) !important; }
-
 a {
   color: inherit;
 }

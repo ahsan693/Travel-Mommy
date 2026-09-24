@@ -262,14 +262,14 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
 
 function ExploreByRegionSection({ data }: { data: DestinationsPageData }) {
   return (
-    <section className="hidden w-full flex-col items-center bg-[#F9F8F5] px-[20px] py-[64px] md:flex md:bg-[#FFFFFF] md:pb-[160px] md:pt-[0px]">
+    <section className="flex w-full flex-col items-center bg-[#F9F8F5] px-[20px] py-[64px] md:bg-[#FFFFFF] md:pb-[160px] md:pt-[0px]">
       
       {/* Header */}
-      <div className="mb-[32px] flex w-full max-w-[860px] flex-col items-start text-left md:mb-[40px] md:items-center md:text-center">
-        <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:tracking-[-0.03em]">
+      <div className="mb-[32px] flex w-full max-w-[860px] flex-col items-center text-center md:mb-[40px] md:items-center md:text-center">
+        <h2 className="font-sans text-[2.625rem] font-medium leading-[2.75rem] tracking-[-1.5px] text-[#000000] md:text-[48px] md:tracking-[-0.03em]">
           {data.exploreByRegion.title}
         </h2>
-        <p className="mt-[12px] max-w-[680px] font-sans text-[14px] font-normal leading-[1.43] text-[#555555] md:mt-[16px] md:text-[16px] md:leading-[1.5]">
+        <p className="mt-[12px] max-w-[680px] font-sans text-[20px] font-normal leading-[26px] text-[#555555] md:mt-[16px] md:text-[16px] md:leading-[1.5]">
           {data.exploreByRegion.subtitle}
         </p>
       </div>
@@ -341,7 +341,7 @@ function ExploreByRegionSection({ data }: { data: DestinationsPageData }) {
                 <span key={idx} className="block">{line}</span>
               ))}
             </h3>
-            <p className="mt-[16px] font-sans text-[14px] font-normal leading-[1.43] text-[#7D7D7D]">
+            <p className="mt-[16px] font-sans text-[20px] font-normal leading-[26px] text-[#7D7D7D] md:text-[14px] md:leading-[1.43]">
               {data.exploreByRegion.ctaCard.description}
             </p>
           </div>
@@ -372,7 +372,7 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
       <div className="flex w-full max-w-[1280px] flex-col items-center md:px-[0px]">
         
         <div className="mb-[32px] flex w-full max-w-[1216px] flex-col items-center gap-[12px] text-center md:mb-[48px] md:gap-[24px]">
-          <h2 className="font-sans text-[32px] font-medium leading-[38px] tracking-[0px] text-[#000000] md:text-[48px] md:leading-[1]">
+          <h2 className="w-full max-w-[358px] font-sans text-[30px] font-medium leading-[36px] tracking-[-0.5px] text-[#000000] md:text-[48px] md:leading-[1]">
             <span className="block md:hidden">
               <span className="block">Why Plan Your Trip with</span>
               <span className="block">TravelMommy?</span>
@@ -381,7 +381,7 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
               {data.copy.whyTitle}
             </span>
           </h2>
-          <p className="max-w-[700px] font-sans text-[15px] font-normal leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
+                <p className="max-w-[700px] font-sans text-[20px] font-normal leading-[26px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[1.5]">
             {data.copy.whyDescription}
           </p>
         </div>
@@ -430,7 +430,7 @@ function FaqSection({ data }: { data: DestinationsPageData }) {
     <section className="flex w-full flex-col items-center bg-[#F9F8F5] px-[24px] py-[64px] md:bg-[#FFFFFF] md:px-[80px] md:pb-[160px] md:pt-[80px]">
       <div className="flex w-full max-w-[800px] flex-col items-center">
         
-        <h2 className="mb-[32px] text-center font-sans text-[20px] font-medium leading-[26px] tracking-[0px] text-[#000000] md:mb-[48px] md:text-[48px] md:leading-[48px]">
+        <h2 className="mb-[32px] w-full max-w-[342px] text-center font-sans text-[20px] font-medium leading-[26px] tracking-[-0.2px] text-[#000000] md:mb-[48px] md:text-[48px] md:leading-[48px]">
           {data.copy.faqTitle}
         </h2>
 
@@ -445,7 +445,7 @@ function FaqSection({ data }: { data: DestinationsPageData }) {
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className="flex w-full items-center justify-between text-left"
               >
-                <span className="font-sans text-[15px] font-medium leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
+                <span className="font-sans text-[20px] font-medium leading-[26px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
                   {faq.q}
                 </span>
                 <span className="flex shrink-0 text-[#000000]">
@@ -453,7 +453,7 @@ function FaqSection({ data }: { data: DestinationsPageData }) {
                 </span>
               </button>
               {isOpen && (
-                <p className="font-sans text-[15px] font-normal leading-[22px] tracking-[0px] text-[#7D7D7D] md:text-[16px] md:leading-[24px]">
+                <p className="font-sans text-[20px] font-normal leading-[26px] tracking-[0px] text-[#7D7D7D] md:text-[16px] md:leading-[24px]">
                   {faq.a}
                 </p>
               )}
