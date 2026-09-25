@@ -189,9 +189,9 @@ export const homeData: HomePageData = {
   },
   guidesSection: { title: "Featured Travel Guides", cta: "View All Guides" },
   guides: [
-    { date: "June 12, 2026", title: "Best Time to Visit Bali", image: "/Homepage/Section 6/Images/bali.png" },
-    { date: "May 28, 2026", title: "How to Find Cheap Flights", image: "/Homepage/Section 6/Images/plane travel.png" },
-    { date: "May 15, 2026", title: "Paris Travel Guide", image: "/Homepage/Section 6/Images/paris night.png" },
+    { date: "June 12, 2026", title: "Best Time to Visit Bali", image: "/Homepage/Section 6/Images/bali.jpg" },
+    { date: "May 28, 2026", title: "How to Find Cheap Flights", image: "/Homepage/Section 6/Images/cheapflight.jpg" },
+    { date: "May 15, 2026", title: "Paris Travel Guide", image: "/Homepage/Section 6/Images/france.jpg" },
   ],
   ctaSection: {
     title: "Ready to find your next flight?",
