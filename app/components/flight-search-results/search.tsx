@@ -53,9 +53,25 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
       <div className="flex flex-col gap-[16px] border-b border-[#F0F0F0] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.stopsLabel}</span>
         {filters.stops.map((stop) => (
-          <label key={stop.label} className="flex cursor-pointer items-center justify-between font-sans text-[14px]">
+          <label key={stop.label} className="flex cursor-pointer items-center justify-between font-sans text-[14px] group">
             <div className="flex items-center gap-[12px]">
-              <input type="checkbox" defaultChecked={stop.checked} className="h-[18px] w-[18px] accent-[#fddb32]" />
+              <div className="relative flex items-center justify-center">
+                <input 
+                  type="checkbox" 
+                  defaultChecked={stop.checked} 
+                  className="peer h-[20px] w-[20px] appearance-none rounded-[5px] border border-[#E6E6E6] bg-white cursor-pointer checked:border-[#FDDB32] checked:bg-[#FDDB32] transition-colors" 
+                />
+                <svg
+                  className="pointer-events-none absolute hidden peer-checked:block"
+                  width="10"
+                  height="8"
+                  viewBox="0 0 10 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1 4.5L3.5 7L9 1" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <span className="font-sans text-black">{stop.label}</span>
             </div>
             <span className="font-sans text-[#7d7d7d]">${stop.price}</span>
@@ -66,21 +82,60 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
       <div className="flex flex-col gap-[16px] border-b border-[#F0F0F0] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.airlinesLabel}</span>
         {filters.airlines.map((airline) => (
-          <label key={airline.label} className="flex cursor-pointer items-center gap-[12px] font-sans text-[14px] text-black">
-            <input type="checkbox" defaultChecked={airline.checked} className="h-[18px] w-[18px] accent-[#fddb32]" />
+          <label key={airline.label} className="flex cursor-pointer items-center gap-[12px] font-sans text-[14px] text-black group">
+            <div className="relative flex items-center justify-center">
+              <input 
+                type="checkbox" 
+                defaultChecked={airline.checked} 
+                className="peer h-[20px] w-[20px] appearance-none rounded-[5px] border border-[#E6E6E6] bg-white cursor-pointer checked:border-[#FDDB32] checked:bg-[#FDDB32] transition-colors" 
+              />
+              <svg
+                className="pointer-events-none absolute hidden peer-checked:block"
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 4.5L3.5 7L9 1" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             {airline.label}
           </label>
         ))}
       </div>
 
-      <div className="flex flex-col gap-[16px] border-b border-[#F0F0F0] pb-[24px]">
+      {/* PRICE RANGE FILTER */}
+      <div className="flex w-[300px] flex-col gap-[16px] border-b border-[#F0F0F0] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.priceRangeLabel}</span>
-        <div className="px-2 pt-2">
-          <input type="range" min="0" max="2000" defaultValue="1200" className="h-[4px] w-full appearance-none rounded-full bg-[#E6E6E6] accent-[#fddb32]" />
-        </div>
-        <div className="flex gap-[16px] pt-[8px]">
-          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">${filters.priceRange.min}</div>
-          <div className="flex h-[40px] flex-1 items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">${filters.priceRange.max}</div>
+        
+        {/* Frame: 300px Width, Vertical Flow, 16px Gap */}
+        <div className="flex w-full flex-col gap-[16px]">
+          
+          {/* Slider Track Container: 300px width x 40px height */}
+          <div className="relative flex h-[40px] w-full items-center">
+            {/* Background Gray Track */}
+            <div className="absolute h-[4px] w-full rounded-full bg-[#E6E6E6]"></div>
+            {/* Active Yellow Track (Mocked between 15% and 80%) */}
+            <div className="absolute left-[15%] right-[20%] h-[4px] rounded-full bg-[#FDDB32]"></div>
+            
+            {/* Left Thumb */}
+            <div className="absolute left-[15%] h-[20px] w-[20px] -translate-x-1/2 cursor-pointer rounded-full border border-[#E6E6E6] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform hover:scale-110"></div>
+            {/* Right Thumb */}
+            <div className="absolute right-[20%] h-[20px] w-[20px] translate-x-1/2 cursor-pointer rounded-full border border-[#E6E6E6] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform hover:scale-110"></div>
+          </div>
+
+          {/* Value Badges Container: 300px width x 40px height, space-between */}
+          <div className="flex h-[40px] w-full items-center justify-between">
+            <div className="flex h-full w-[130px] items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">
+              ${filters.priceRange.min}
+            </div>
+            <div className="h-[1px] w-[12px] bg-[#E6E6E6]"></div>
+            <div className="flex h-full w-[130px] items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">
+              ${filters.priceRange.max.toLocaleString()}
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -88,7 +143,7 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
         <span className="font-sans text-[14px] font-medium text-black">{filters.departureTimeLabel}</span>
         <div className="flex flex-wrap gap-[10px]">
           {filters.departureTimes.map((time) => (
-            <button type="button" key={time} className="rounded-[8px] border border-[#E6E6E6] bg-white px-[16px] py-[10px] font-sans text-[13px] text-black hover:border-black">{time}</button>
+            <button type="button" key={time} className="rounded-[8px] border border-[#E6E6E6] bg-white px-[16px] py-[10px] font-sans text-[13px] text-black transition-colors hover:border-black">{time}</button>
           ))}
         </div>
       </div>
@@ -105,12 +160,10 @@ function ResultsSection({ data }: { data: SearchPageData }) {
 
   return (
     <section className="bg-white px-[16px] py-[24px] sm:px-6 sm:py-10 lg:px-20 lg:py-14">
-      {/* 1440px total layout, Gap between sidebar and results is 48px to distribute properly */}
       <div className="mx-auto flex w-full max-w-[1280px] flex-col justify-between gap-[24px] lg:flex-row lg:gap-12">
         
         <FiltersSidebar filters={data.filters} />
 
-        {/* ResultsContainer: 932px width */}
         <div className="flex w-full max-w-[932px] min-w-0 flex-col gap-[24px]">
           
           {/* Top Bar Mobile */}
@@ -124,17 +177,8 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   Prices and availability can change. TravelMommy compares flight options and redirects you to the selected provider to complete your booking.
                 </p>
               </div>
-              <div className="flex shrink-0 gap-[8px] pt-[2px]">
-                <button className="flex h-[36px] items-center justify-center rounded-[18px] border border-[#E6E6E6] bg-white px-[16px] font-sans text-[13px] font-medium text-[#111111] shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-colors hover:bg-gray-50">
-                  Filters <span className="ml-[4px] text-[#D9A000]">(2)</span>
-                </button>
-                <button className="flex h-[36px] items-center justify-center rounded-[18px] border border-[#E6E6E6] bg-white px-[16px] font-sans text-[13px] font-medium text-[#111111] shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-colors hover:bg-gray-50">
-                  Sort
-                </button>
-              </div>
             </div>
 
-            {/* Mobile Segmented Control */}
             <div className="flex w-full overflow-x-auto rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] p-[4px]">
               {data.resultsHeader.tabs.map((tab) => (
                 <button
@@ -166,15 +210,32 @@ function ResultsSection({ data }: { data: SearchPageData }) {
             
             <div className="flex max-w-full shrink-0 overflow-x-auto rounded-full bg-[#F9F9F9] p-1">
               {data.resultsHeader.tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`rounded-[100px] px-[24px] py-[8px] font-sans text-[13px] font-medium transition-colors ${
-                    activeTab === tab ? "bg-white text-black shadow-sm" : "text-[#7d7d7d] hover:text-black"
-                  }`}
-                >
-                  {tab}
-                </button>
+                <div key={tab} className="relative group">
+                  <button
+                    onClick={() => setActiveTab(tab)}
+                    className={`flex items-center rounded-[100px] px-[24px] py-[8px] font-sans text-[13px] font-medium transition-colors ${
+                      activeTab === tab ? "bg-white text-black shadow-sm" : "text-[#7d7d7d] hover:text-black"
+                    }`}
+                  >
+                    {tab}
+                    {tab === "Best" && <Info size={14} strokeWidth={2} className="ml-[4px] inline-block text-[#999999]" />}
+                  </button>
+                  
+                  {/* Tooltip for Best Tab (234px Width x 38px Height total) */}
+                  {tab === "Best" && (
+                    <div className="absolute left-1/2 top-full mt-[4px] hidden w-[234px] -translate-x-1/2 flex-col items-center z-10 opacity-0 transition-opacity group-hover:flex group-hover:opacity-100">
+                      {/* Caret (6px Height) */}
+                      <div 
+                        className="h-[6px] w-[12px] bg-[#26262B]" 
+                        style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
+                      />
+                      {/* Body (32px Height) */}
+                      <div className="flex h-[32px] w-full items-center justify-center rounded-[8px] bg-[#26262B] px-[12px] text-center font-sans text-[13px] text-white shadow-lg">
+                        Best balances price and journey time
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -182,9 +243,8 @@ function ResultsSection({ data }: { data: SearchPageData }) {
           {/* Flights List */}
           <div className="flex flex-col gap-[16px]">
             {data.flights.map((flight) => (
-              <div key={flight.id} className="flex flex-col gap-[20px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[16px] transition-colors hover:bg-[#F9FBF5] sm:flex-row sm:items-center sm:justify-between sm:gap-[24px] lg:rounded-[20px] lg:p-[20px]">
+              <div key={flight.id} className="flex flex-col gap-[20px] rounded-[16px] border border-[#E6E6E6] bg-[#F9FBF5] p-[16px] transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-[24px] lg:rounded-[20px] lg:p-[20px]">
                 
-                {/* Mobile Top Row: Logo, Name, Sites */}
                 <div className="flex items-center justify-between sm:hidden">
                   <div className="flex items-center gap-[12px]">
                     <div className="flex h-[24px] w-[24px] items-center justify-center overflow-hidden">
@@ -197,7 +257,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   </span>
                 </div>
 
-                {/* Desktop Airline Info */}
                 <div className="hidden w-full shrink-0 flex-col gap-[8px] sm:flex sm:w-[140px]">
                   <div className="flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-[8px] border border-[#E6E6E6] bg-white">
                     <Image src={flight.logoUrl} alt={flight.airline} width={24} height={24} className="object-contain" />
@@ -205,7 +264,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   <span className="font-sans text-[13px] font-medium text-black">{flight.airline}</span>
                 </div>
 
-                {/* Times & Stops - Works for both */}
                 <div className="flex flex-1 items-center justify-between sm:justify-center sm:gap-[40px] md:gap-[80px]">
                   <div className="flex flex-col items-start gap-[4px] sm:items-end sm:gap-[2px]">
                     <span className="font-sans text-[16px] font-bold text-[#111111] sm:font-medium">{flight.departureTime}</span>
@@ -226,8 +284,7 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   </div>
                 </div>
 
-                {/* Mobile Bottom Row: Price & View Deal */}
-                <div className="mt-[4px] flex items-end justify-between border-t border-[#F0F0F0] pt-[16px] sm:hidden">
+                <div className="mt-[4px] flex items-end justify-between border-t border-[#E6E6E6] pt-[16px] sm:hidden">
                   <div className="flex flex-col items-start gap-[2px]">
                     <span className="font-sans text-[12px] font-normal text-[#7D7D7D]">From</span>
                     <span className="font-sans text-[24px] font-bold leading-[28px] text-[#111111]">${flight.price}</span>
@@ -237,7 +294,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   </button>
                 </div>
 
-                {/* Desktop Price & CTA */}
                 <div className="hidden w-full shrink-0 flex-col items-end gap-[8px] sm:flex sm:w-[180px] sm:border-l sm:border-[#E6E6E6] sm:pl-[24px]">
                   <div className="flex flex-col items-end">
                     <span className="font-sans text-[24px] font-bold text-black">${flight.price}</span>
@@ -254,7 +310,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
             ))}
           </div>
 
-          {/* Load More Button */}
           <div className="mt-[8px] flex justify-center lg:mt-[16px]">
             <button type="button" className="flex h-[48px] w-full items-center justify-center rounded-[12px] border border-[#111111] bg-white font-sans text-[14px] font-medium text-[#111111] transition-colors hover:bg-gray-50 sm:h-auto sm:w-auto sm:rounded-[100px] sm:border-[#E6E6E6] sm:px-[32px] sm:py-[12px]">
               {data.resultsHeader.loadMoreLabel}
