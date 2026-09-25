@@ -84,7 +84,7 @@ export const homeData: HomePageData = {
   hero: {
     title: "Compare\nCheap Flights",
     description: "Search and compare flight prices from airlines and travel providers in one place. Choose the option that suits you and complete your booking with the provider.",
-    image: "/Homepage/Section 1/Header Images/homeimg1.png",
+    image: "/Homepage/Section 1/Header Images/hero.png",
     imageAlt: "Travel destination",
     cta: "Compare Flights",
     rating: "★★★★★ 4.9 / 5",
