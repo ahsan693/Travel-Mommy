@@ -129,7 +129,6 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
         </div>
       </div>
 
-      {/* DEPARTURE TIME FILTER */}
       <div className="flex w-[300px] flex-col gap-[16px] border-b-2 border-[#F9FBF5] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.departureTimeLabel}</span>
         <div className="flex flex-wrap gap-[12px]">
@@ -243,10 +242,11 @@ function ResultsSection({ data }: { data: SearchPageData }) {
             {data.flights.map((flight) => (
               <div key={flight.id} className="flex flex-col gap-[20px] rounded-[16px] border border-[#E6E6E6] bg-[#F9FBF5] p-[16px] transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-[24px] lg:rounded-[20px] lg:p-[20px]">
                 
+                {/* MOBILE LOGO */}
                 <div className="flex items-center justify-between sm:hidden">
                   <div className="flex items-center gap-[12px]">
-                    <div className="flex h-[24px] w-[24px] items-center justify-center overflow-hidden">
-                      <Image src={flight.logoUrl} alt={flight.airline} width={24} height={24} className="object-contain" />
+                    <div className={`flex h-[32px] w-[32px] items-center justify-center overflow-hidden rounded-[6px] ${flight.id === "1" || flight.id === "4" ? "border border-[#E6E6E6] bg-white p-[6px]" : ""}`}>
+                      <Image src={flight.logoUrl} alt={flight.airline} width={32} height={32} className="h-full w-full object-contain" />
                     </div>
                     <span className="font-sans text-[14px] font-bold text-[#111111]">{flight.airline}</span>
                   </div>
@@ -255,9 +255,10 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                   </span>
                 </div>
 
+                {/* DESKTOP LOGO */}
                 <div className="hidden w-full shrink-0 flex-col gap-[8px] sm:flex sm:w-[140px]">
-                  <div className="flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-[8px] border border-[#E6E6E6] bg-white">
-                    <Image src={flight.logoUrl} alt={flight.airline} width={24} height={24} className="object-contain" />
+                  <div className={`flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-[8px] ${flight.id === "1" || flight.id === "4" ? "border border-[#E6E6E6] bg-white p-[8px]" : ""}`}>
+                    <Image src={flight.logoUrl} alt={flight.airline} width={40} height={40} className="h-full w-full object-contain" />
                   </div>
                   <span className="font-sans text-[13px] font-medium text-black">{flight.airline}</span>
                 </div>
