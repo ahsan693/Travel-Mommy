@@ -608,12 +608,12 @@ function TipsSection({ tips }: { tips: RoutesPageData["tips"] }) {
             return (
               <div 
                 key={idx}
-                className="flex h-[170px] min-w-[200px] snap-start flex-col items-center justify-center gap-[12px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] text-center shadow-sm"
+                className="flex h-[170px] min-w-[200px] snap-start flex-col items-center justify-start rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] pt-[28px] text-center shadow-sm"
               >
-                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#FDDB32]">
+                <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-full bg-[#FDDB32] mb-[12px]">
                   <RoutesIcon name={tip.icon as RoutesIconName} size={18} className="text-[#1A1A19]" strokeWidth={2} />
                 </div>
-                <div className="flex flex-col items-center gap-[4px]">
+                <div className="flex flex-col items-center gap-[4px] w-full">
                   <span className="font-sans text-[11px] font-medium uppercase tracking-[0.5px] text-[#7D7D7D]">
                     {tip.label}
                   </span>
