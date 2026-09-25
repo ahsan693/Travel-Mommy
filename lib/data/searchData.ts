@@ -99,7 +99,7 @@ export const searchData: SearchPageData = {
     {
       id: "1",
       airline: "Delta Air Lines",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png", 
+      logoUrl: "/assets/Airlines logos/Logo.png", 
       departureTime: "06:00 PM",
       departureAirport: "JFK",
       duration: "7h 15m",
@@ -112,7 +112,7 @@ export const searchData: SearchPageData = {
     {
       id: "2",
       airline: "British Airways",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      logoUrl: "/assets/Airlines logos/Logo-1.png",
       departureTime: "09:30 PM",
       departureAirport: "JFK",
       duration: "7h 15m",
@@ -125,7 +125,7 @@ export const searchData: SearchPageData = {
     {
       id: "3",
       airline: "United Airlines",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      logoUrl: "/assets/Airlines logos/Logo-2.png",
       departureTime: "07:15 PM",
       departureAirport: "JFK",
       duration: "10h 05m",
@@ -138,7 +138,7 @@ export const searchData: SearchPageData = {
     {
       id: "4",
       airline: "Virgin Atlantic",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      logoUrl: "/assets/Airlines logos/Logo-3.png",
       departureTime: "10:50 PM",
       departureAirport: "JFK",
       duration: "7h 10m",
@@ -151,7 +151,7 @@ export const searchData: SearchPageData = {
     {
       id: "5",
       airline: "American Airlines",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      logoUrl: "/assets/Airlines logos/Logo-4.png",
       departureTime: "05:30 PM",
       departureAirport: "JFK",
       duration: "7h 15m",
@@ -164,7 +164,7 @@ export const searchData: SearchPageData = {
     {
       id: "6",
       airline: "Lufthansa",
-      logoUrl: "/Homepage/Section 3/Icon/Airline Logo.png",
+      logoUrl: "/assets/Airlines logos/Logo-5.png",
       departureTime: "03:20 PM",
       departureAirport: "JFK",
       duration: "12h 50m",

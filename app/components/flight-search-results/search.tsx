@@ -105,27 +105,18 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
         ))}
       </div>
 
-      {/* PRICE RANGE FILTER */}
       <div className="flex w-[300px] flex-col gap-[16px] border-b border-[#F0F0F0] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.priceRangeLabel}</span>
         
-        {/* Frame: 300px Width, Vertical Flow, 16px Gap */}
         <div className="flex w-full flex-col gap-[16px]">
-          
-          {/* Slider Track Container: 300px width x 40px height */}
           <div className="relative flex h-[40px] w-full items-center">
-            {/* Background Gray Track */}
             <div className="absolute h-[4px] w-full rounded-full bg-[#E6E6E6]"></div>
-            {/* Active Yellow Track (Mocked between 15% and 80%) */}
             <div className="absolute left-[15%] right-[20%] h-[4px] rounded-full bg-[#FDDB32]"></div>
             
-            {/* Left Thumb */}
             <div className="absolute left-[15%] h-[20px] w-[20px] -translate-x-1/2 cursor-pointer rounded-full border border-[#E6E6E6] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform hover:scale-110"></div>
-            {/* Right Thumb */}
             <div className="absolute right-[20%] h-[20px] w-[20px] translate-x-1/2 cursor-pointer rounded-full border border-[#E6E6E6] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.15)] transition-transform hover:scale-110"></div>
           </div>
 
-          {/* Value Badges Container: 300px width x 40px height, space-between */}
           <div className="flex h-[40px] w-full items-center justify-between">
             <div className="flex h-full w-[130px] items-center justify-center rounded-[8px] border border-[#E6E6E6] bg-[#FAFAFA] font-sans text-[14px] font-medium text-black">
               ${filters.priceRange.min}
@@ -135,15 +126,21 @@ function FiltersSidebar({ filters }: { filters: SearchPageData["filters"] }) {
               ${filters.priceRange.max.toLocaleString()}
             </div>
           </div>
-
         </div>
       </div>
 
-      <div className="flex flex-col gap-[16px] pb-[24px]">
+      {/* DEPARTURE TIME FILTER */}
+      <div className="flex w-[300px] flex-col gap-[16px] border-b-2 border-[#F9FBF5] pb-[24px]">
         <span className="font-sans text-[14px] font-medium text-black">{filters.departureTimeLabel}</span>
-        <div className="flex flex-wrap gap-[10px]">
+        <div className="flex flex-wrap gap-[12px]">
           {filters.departureTimes.map((time) => (
-            <button type="button" key={time} className="rounded-[8px] border border-[#E6E6E6] bg-white px-[16px] py-[10px] font-sans text-[13px] text-black transition-colors hover:border-black">{time}</button>
+            <button 
+              type="button" 
+              key={time} 
+              className="flex h-[36px] items-center justify-center rounded-[10px] border border-[#F9FBF5] bg-white px-[12px] py-[8px] font-sans text-[13px] text-black transition-colors hover:border-[#d9d9d9] hover:bg-gray-50"
+            >
+              {time}
+            </button>
           ))}
         </div>
       </div>
@@ -166,7 +163,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
 
         <div className="flex w-full max-w-[932px] min-w-0 flex-col gap-[24px]">
           
-          {/* Top Bar Mobile */}
           <div className="flex flex-col gap-[16px] lg:hidden">
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-[4px] pr-[16px]">
@@ -179,7 +175,7 @@ function ResultsSection({ data }: { data: SearchPageData }) {
               </div>
             </div>
 
-            <div className="flex w-full overflow-x-auto rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] p-[4px]">
+            <div className="flex w-full rounded-[12px] border border-[#E6E6E6] bg-[#FFFFFF] p-[4px]">
               {data.resultsHeader.tabs.map((tab) => (
                 <button
                   key={tab}
@@ -197,7 +193,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
             </div>
           </div>
 
-          {/* Top Bar Desktop */}
           <div className="hidden flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between lg:flex">
             <div className="flex w-full max-w-[327px] flex-col gap-[4px]">
               <span className="font-sans text-[14px] font-medium text-black">
@@ -208,9 +203,9 @@ function ResultsSection({ data }: { data: SearchPageData }) {
               </p>
             </div>
             
-            <div className="flex max-w-full shrink-0 overflow-x-auto rounded-full bg-[#F9F9F9] p-1">
+            <div className="flex shrink-0 rounded-full bg-[#F9F9F9] p-1">
               {data.resultsHeader.tabs.map((tab) => (
-                <div key={tab} className="relative group">
+                <div key={tab} className="relative flex group" tabIndex={0}>
                   <button
                     onClick={() => setActiveTab(tab)}
                     className={`flex items-center rounded-[100px] px-[24px] py-[8px] font-sans text-[13px] font-medium transition-colors ${
@@ -218,20 +213,24 @@ function ResultsSection({ data }: { data: SearchPageData }) {
                     }`}
                   >
                     {tab}
-                    {tab === "Best" && <Info size={14} strokeWidth={2} className="ml-[4px] inline-block text-[#999999]" />}
+                    {tab === "Best" && (
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-[4px] inline-block">
+                        <circle cx="6" cy="6" r="5.585" stroke="#999999" strokeWidth="0.83"/>
+                        <path d="M6 5.5V8.5" stroke="#999999" strokeWidth="0.83" strokeLinecap="round"/>
+                        <circle cx="6" cy="3.5" r="0.8" fill="#999999"/>
+                      </svg>
+                    )}
                   </button>
                   
-                  {/* Tooltip for Best Tab (234px Width x 38px Height total) */}
                   {tab === "Best" && (
-                    <div className="absolute left-1/2 top-full mt-[4px] hidden w-[234px] -translate-x-1/2 flex-col items-center z-10 opacity-0 transition-opacity group-hover:flex group-hover:opacity-100">
-                      {/* Caret (6px Height) */}
-                      <div 
-                        className="h-[6px] w-[12px] bg-[#26262B]" 
-                        style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
-                      />
-                      {/* Body (32px Height) */}
-                      <div className="flex h-[32px] w-full items-center justify-center rounded-[8px] bg-[#26262B] px-[12px] text-center font-sans text-[13px] text-white shadow-lg">
-                        Best balances price and journey time
+                    <div className="absolute left-1/2 top-full mt-[2px] hidden w-[234px] -translate-x-1/2 flex-col items-center z-50 opacity-0 transition-opacity group-hover:flex group-hover:opacity-100 group-focus-within:flex group-focus-within:opacity-100 group-focus:flex group-focus:opacity-100">
+                      <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0L12 0L6 6L0 0Z" fill="#26262B"/>
+                      </svg>
+                      <div className="flex h-[32px] w-full items-center justify-center rounded-[8px] bg-[#26262B] px-[12px] py-[8px] shadow-lg">
+                        <span className="w-[210px] font-sans text-[12px] font-normal leading-[16px] text-[#FFFFFF] text-center">
+                          Best balances price and journey time
+                        </span>
                       </div>
                     </div>
                   )}
@@ -240,7 +239,6 @@ function ResultsSection({ data }: { data: SearchPageData }) {
             </div>
           </div>
 
-          {/* Flights List */}
           <div className="flex flex-col gap-[16px]">
             {data.flights.map((flight) => (
               <div key={flight.id} className="flex flex-col gap-[20px] rounded-[16px] border border-[#E6E6E6] bg-[#F9FBF5] p-[16px] transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-[24px] lg:rounded-[20px] lg:p-[20px]">
