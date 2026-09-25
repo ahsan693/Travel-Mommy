@@ -1,6 +1,11 @@
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
 export interface FooterColumn {
   title: string;
-  links: string[];
+  links: FooterLink[];
 }
 
 export type FooterSocialIcon = "instagram" | "facebook" | "tiktok";
@@ -47,10 +52,38 @@ export const footerData: FooterData = {
   ],
   description: "Compare flight prices from airlines and travel providers in one place. Complete your booking with the provider you choose.",
   columns: [
-    { title: "Flights", links: ["Search Flights", "Cheap Flights from Dublin"] },
-    { title: "Explore", links: ["Destinations", "Travel Guides"] },
-    { title: "TravelMommy", links: ["How It Works", "Help Centre", "Contact"] },
-    { title: "Legal", links: ["Privacy Policy", "Terms & Conditions", "Cookie Policy", "Affiliate Disclosure", "Accessibility"] },
+    { 
+      title: "Flights", 
+      links: [
+        { label: "Search Flights", href: "/" },
+        { label: "Cheap Flights from Dublin", href: "/routes" }
+      ] 
+    },
+    { 
+      title: "Explore", 
+      links: [
+        { label: "Destinations", href: "/travel" },
+        { label: "Travel Guides", href: "/blog" }
+      ] 
+    },
+    { 
+      title: "TravelMommy", 
+      links: [
+        { label: "How It Works", href: "/contactus" },
+        { label: "Help Centre", href: "/contactus" },
+        { label: "Contact", href: "/contactus" }
+      ] 
+    },
+    { 
+      title: "Legal", 
+      links: [
+        { label: "Privacy Policy", href: "/privacy-policy" },
+        { label: "Terms & Conditions", href: "/terms" },
+        { label: "Cookie Policy", href: "/cookie-policy" },
+        { label: "Affiliate Disclosure", href: "/affiliate-disclosure" },
+        { label: "Accessibility", href: "/accessibility" }
+      ] 
+    },
   ],
   mobileOrder: ["order-1", "order-3", "order-2", "order-4"],
   socialNavAriaLabel: "Social links",

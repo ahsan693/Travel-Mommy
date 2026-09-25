@@ -112,7 +112,6 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
 
           <div className="flex flex-col gap-[24px]">
             
-            {/* Logo and Pills Wrapper - Matches Figma Layout precisely (261px width, 9px gap) */}
             <div className="flex w-full max-w-[261px] flex-col gap-[9px]">
               
               <Link href="/" className="flex items-center">
@@ -125,7 +124,6 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
                 />
               </Link>
 
-              {/* Locale Pills Row - Height 32px */}
               <div className="flex flex-wrap items-center gap-[8px] min-w-max">
                 <FooterDropdown
                   label={`${selectedCountry.label}`}
@@ -158,7 +156,6 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
               
             </div>
 
-            {/* Description & Socials */}
             <div className="flex flex-col gap-[16px] mt-2">
               <p className="w-full max-w-[320px] font-sans text-[16px] font-normal leading-[24px] text-white">
                 {data.description}
@@ -192,12 +189,12 @@ export default function Footer({ data = footerData }: { data?: FooterData }) {
 
                 <ul className="m-0 flex list-none flex-col gap-0 p-0">
                   {col.links.map((link) => (
-                    <li key={link} className="m-0 p-0">
+                    <li key={link.label} className="m-0 p-0">
                       <Link
-                        href="#"
+                        href={link.href}
                         className="block py-[8px] font-sans text-[14px] font-normal leading-[20px] !text-[#E0E0E0] transition-colors hover:!text-white"
                       >
-                        {link}
+                        {link.label}
                       </Link>
                     </li>
                   ))}
