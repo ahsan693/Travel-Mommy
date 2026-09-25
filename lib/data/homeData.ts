@@ -87,14 +87,8 @@ export const homeData: HomePageData = {
     image: "/Homepage/Section 1/Header Images/hero.png",
     imageAlt: "Travel destination",
     cta: "Compare Flights",
-    rating: "★★★★★ 4.9 / 5",
-    trustText: "Trusted by 300+ travelers",
-    reviewerImages: [
-      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Michael Foster.png",
-      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Lindsay Walton.png",
-      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Tom Cook.png",
-      "/Homepage/Section 1/Header Icons/Icons/Profile picture of Tom Walton.png",
-    ],
+ 
+   
     reviewText: "Compare live prices from trusted airlines and travel websites.",
     rightHeading: ["from 500+", "Airlines & Sites"],
   },
