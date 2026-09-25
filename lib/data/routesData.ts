@@ -34,7 +34,6 @@ export interface RouteResult {
   airlineColor: string;
   duration: string;
   price: string;
-  // Added properties for filtering
   stops: "direct" | "1plus";
   continent: string;
   styles: string[];
@@ -84,6 +83,7 @@ export interface RoutesPageData {
   };
   results: {
     title: string;
+    originCity: string;
     description: string;
     sortLabel: string;
     sortValue: string;
@@ -167,7 +167,8 @@ export const routesData: RoutesPageData = {
     }
   },
   results: {
-    title: "Cheap Flight Routes from Dublin",
+    title: "Cheap Flight Routes from",
+    originCity: "Dublin",
     description: "Showing recently found fares from airlines and travel providers.",
     sortLabel: "Sort by:",
     sortValue: "Lowest Price",

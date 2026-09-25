@@ -48,7 +48,7 @@ function FilterWidget({ data }: { data: RoutesPageData["hero"]["filter"] }) {
     <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-[16px] rounded-[24px] border border-[#E6E6E6] bg-[#F9FBF5] p-[20px] shadow-lg md:h-[136px] md:flex-row md:items-center md:gap-[24px] md:p-[32px]">
       <div className="flex w-full flex-1 flex-col gap-[16px] md:flex-row md:items-center md:gap-[24px]">
         {data.fields.map((field) => (
-          <div key={field.id} className="flex flex-1 flex-col gap-[8px] justify-center md:h-[72px]">
+          <div key={field.id} className="flex flex-1 flex-col justify-center gap-[8px] md:h-[72px]">
             <label htmlFor={field.id} className="font-sans text-[12px] font-semibold text-[#111111]">
               {field.label}
             </label>
@@ -164,267 +164,268 @@ function RoutesContainer({ data }: { data: RoutesPageData }) {
   return (
     <div className="flex w-full flex-col bg-[#0A0A0A]">
       
-      {/* SECONDARY FILTER BAR */}
-      <div className="mx-auto flex min-h-[80px] w-full max-w-[1440px] items-start justify-between px-[20px] py-[16px] md:items-center md:px-[80px] md:py-0">
-        
-        <div className="flex flex-wrap items-center gap-[12px] relative w-full">
+      {/* SECONDARY FILTER BAR WITH BOTTOM DIVIDER LINE */}
+      <div className="w-full border-b border-white/10">
+        <div className="mx-auto flex min-h-[80px] w-full max-w-[1440px] items-start justify-between px-[20px] py-[16px] md:items-center md:px-[80px] md:py-0">
           
-          {data.hero.secondaryFilters.pills.map((pill) => {
-            const isOpen = openDropdown === pill.id;
-            const isFiltersPill = pill.id === "filters";
-            return (
-              <div key={pill.id} className="relative">
-                <button
-                  onClick={() => toggleDropdown(pill.id)}
-                  className={`flex h-[40px] shrink-0 items-center justify-center gap-[8px] rounded-[100px] border border-white/20 px-[14px] py-[10px] font-sans text-[14px] font-medium transition-colors ${
-                    isOpen ? 'bg-white/20 text-[#FFFFFF]' : 'bg-white/10 text-[#FFFFFF] hover:bg-white/20'
-                  }`}
-                >
-                  {isFiltersPill && <RoutesIcon name={pill.icon} size={16} strokeWidth={2} className="text-[#FFFFFF]" />}
-                  {pill.label}
-                  {!isFiltersPill && <RoutesIcon name={pill.icon} size={16} strokeWidth={2} className="text-[#FFFFFF]" />}
-                </button>
+          <div className="relative flex flex-wrap items-center gap-[12px] w-full">
+            
+            {data.hero.secondaryFilters.pills.map((pill) => {
+              const isOpen = openDropdown === pill.id;
+              const isFiltersPill = pill.id === "filters";
+              return (
+                <div key={pill.id} className="relative">
+                  <button
+                    onClick={() => toggleDropdown(pill.id)}
+                    className={`flex h-[40px] shrink-0 items-center justify-center gap-[8px] rounded-[100px] border border-white/20 px-[14px] py-[10px] font-sans text-[14px] font-medium transition-colors ${
+                      isOpen ? 'bg-white/20 text-[#FFFFFF]' : 'bg-white/10 text-[#FFFFFF] hover:bg-white/20'
+                    }`}
+                  >
+                    {isFiltersPill && <RoutesIcon name={pill.icon} size={16} strokeWidth={2} className="text-[#FFFFFF]" />}
+                    {pill.label}
+                    {!isFiltersPill && <RoutesIcon name={pill.icon} size={16} strokeWidth={2} className="text-[#FFFFFF]" />}
+                  </button>
 
-                {/* Master Filters Dropdown */}
-                {isOpen && isFiltersPill && (
-                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[390px] max-h-[80vh] flex-col rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-xl overflow-hidden">
-                    {/* Header */}
-                    <div className="flex items-center justify-between p-[24px] pb-[16px]">
-                      <h3 className="font-sans text-[20px] font-bold text-[#111111]">Filters</h3>
-                      <button onClick={() => setOpenDropdown(null)} className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6] hover:bg-gray-50 transition-colors">
-                        <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
-                      </button>
-                    </div>
+                  {/* Master Filters Dropdown */}
+                  {isOpen && isFiltersPill && (
+                    <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[390px] max-h-[80vh] flex-col rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] shadow-xl overflow-hidden">
+                      <div className="flex items-center justify-between p-[24px] pb-[16px]">
+                        <h3 className="font-sans text-[20px] font-bold text-[#111111]">Filters</h3>
+                        <button onClick={() => setOpenDropdown(null)} className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6] hover:bg-gray-50 transition-colors">
+                          <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                        </button>
+                      </div>
 
-                    {/* Scrollable Content */}
-                    <div className="flex flex-1 flex-col gap-[24px] overflow-y-auto px-[24px] pb-[24px] hide-scrollbar">
-                      
-                      {/* Stops */}
-                      <div className="flex flex-col gap-[16px]">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Stops</h4>
-                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
-                        </div>
+                      <div className="flex flex-1 flex-col gap-[24px] overflow-y-auto px-[24px] pb-[24px] hide-scrollbar">
+                        
+                        {/* Stops */}
                         <div className="flex flex-col gap-[16px]">
-                          {data.hero.secondaryFilters.stopsOptions.map(opt => (
-                            <label key={opt.value} className="flex cursor-pointer items-center gap-[12px]" onClick={() => setStops(opt.value)}>
-                              <div className={`flex h-[20px] w-[20px] items-center justify-center rounded-full border ${stops === opt.value ? 'border-[#111111]' : 'border-[#CCCCCC]'}`}>
-                                {stops === opt.value && <div className="h-[10px] w-[10px] rounded-full bg-[#111111]" />}
-                              </div>
-                              <span className="font-sans text-[14px] font-medium text-[#111111]">{opt.label}</span>
-                            </label>
-                          ))}
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-sans text-[16px] font-bold text-[#111111]">Stops</h4>
+                            <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                          </div>
+                          <div className="flex flex-col gap-[16px]">
+                            {data.hero.secondaryFilters.stopsOptions.map(opt => (
+                              <label key={opt.value} className="flex cursor-pointer items-center gap-[12px]" onClick={() => setStops(opt.value)}>
+                                <div className={`flex h-[20px] w-[20px] items-center justify-center rounded-full border ${stops === opt.value ? 'border-[#111111]' : 'border-[#CCCCCC]'}`}>
+                                  {stops === opt.value && <div className="h-[10px] w-[10px] rounded-full bg-[#111111]" />}
+                                </div>
+                                <span className="font-sans text-[14px] font-medium text-[#111111]">{opt.label}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                        {/* Flight Budget */}
+                        <div className="flex flex-col gap-[16px]">
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-sans text-[16px] font-bold text-[#111111]">Flight budget</h4>
+                            <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                          </div>
+                          <span className="font-sans text-[14px] text-[#767676]">Any budget</span>
+                          <input 
+                            type="range" min="100" max="1500" step="50" 
+                            value={budget} onChange={(e) => setBudget(Number(e.target.value))}
+                            className="w-full accent-[#111111]" 
+                          />
+                        </div>
+
+                        <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                        {/* Trip Style */}
+                        <div className="flex flex-col gap-[16px]">
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-sans text-[16px] font-bold text-[#111111]">Trip style</h4>
+                            <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                          </div>
+                          <div className="flex flex-wrap gap-[12px]">
+                            {data.hero.secondaryFilters.tripStyleOptions.map(opt => {
+                              const isSelected = tripStyles.includes(opt.value);
+                              return (
+                                <button 
+                                  key={opt.value} onClick={() => toggleTripStyle(opt.value)}
+                                  className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                                >
+                                  {opt.label}
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                        {/* Continents */}
+                        <div className="flex flex-col gap-[16px]">
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-sans text-[16px] font-bold text-[#111111]">Choose where to explore</h4>
+                            <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                          </div>
+                          <div className="flex flex-wrap gap-[12px]">
+                            {data.hero.secondaryFilters.continentsOptions.map(opt => {
+                              const isSelected = continent === opt.value;
+                              return (
+                                <button 
+                                  key={opt.value} onClick={() => setContinent(opt.value)}
+                                  className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                                >
+                                  {opt.label}
+                                </button>
+                              )
+                            })}
+                          </div>
                         </div>
                       </div>
 
-                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
+                      <div className="flex items-center justify-between border-t border-[#E6E6E6] p-[24px]">
+                        <button onClick={clearFilters} className="font-sans text-[14px] font-medium text-[#767676] hover:underline">
+                          Clear filters
+                        </button>
+                        <button onClick={() => setOpenDropdown(null)} className="flex h-[40px] items-center justify-center rounded-[12px] bg-[#FDDB32] px-[24px] font-sans text-[14px] font-bold text-[#111111] hover:bg-[#e5c52c] transition-colors">
+                          Show {displayedRoutes.length} results
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
-                      {/* Flight Budget */}
+                  {/* Individual Dropdowns */}
+                  {isOpen && pill.id === "stops" && (
+                    <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-[8px]">
+                          <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
+                            <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                          </div>
+                          <h3 className="font-sans text-[20px] font-bold text-[#111111]">Stops</h3>
+                        </div>
+                        <button onClick={() => setStops("any")} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
+                      </div>
+                      <div className="flex flex-col gap-[16px]">
+                        {data.hero.secondaryFilters.stopsOptions.map(opt => (
+                          <label key={opt.value} className="flex cursor-pointer items-center gap-[12px]" onClick={() => setStops(opt.value)}>
+                            <div className={`flex h-[20px] w-[20px] items-center justify-center rounded-full border ${stops === opt.value ? 'border-[#111111]' : 'border-[#CCCCCC]'}`}>
+                              {stops === opt.value && <div className="h-[10px] w-[10px] rounded-full bg-[#111111]" />}
+                            </div>
+                            <span className="font-sans text-[14px] font-medium text-[#111111]">{opt.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                      <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
+                        Show {displayedRoutes.length} results
+                      </button>
+                    </div>
+                  )}
+
+                  {isOpen && pill.id === "flight-budget" && (
+                    <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-[8px]">
+                          <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
+                            <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                          </div>
+                          <h3 className="font-sans text-[20px] font-bold text-[#111111]">Flight budget</h3>
+                        </div>
+                        <button onClick={() => setBudget(1200)} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
+                      </div>
                       <div className="flex flex-col gap-[16px]">
                         <div className="flex items-center justify-between">
-                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Flight budget</h4>
-                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
+                          <span className="font-sans text-[14px] text-[#767676]">Any budget</span>
+                          <span className="font-sans text-[18px] font-bold text-[#111111]">${budget} max</span>
                         </div>
-                        <span className="font-sans text-[14px] text-[#767676]">Any budget</span>
                         <input 
                           type="range" min="100" max="1500" step="50" 
                           value={budget} onChange={(e) => setBudget(Number(e.target.value))}
                           className="w-full accent-[#111111]" 
                         />
                       </div>
-
-                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
-
-                      {/* Trip Style */}
-                      <div className="flex flex-col gap-[16px]">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Trip style</h4>
-                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
-                        </div>
-                        <div className="flex flex-wrap gap-[12px]">
-                          {data.hero.secondaryFilters.tripStyleOptions.map(opt => {
-                            const isSelected = tripStyles.includes(opt.value);
-                            return (
-                              <button 
-                                key={opt.value} onClick={() => toggleTripStyle(opt.value)}
-                                className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
-                              >
-                                {opt.label}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="h-[1px] w-full bg-[#E6E6E6]" />
-
-                      {/* Continents */}
-                      <div className="flex flex-col gap-[16px]">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-sans text-[16px] font-bold text-[#111111]">Choose where to explore</h4>
-                          <ChevronDown size={16} className="text-[#111111] rotate-180" />
-                        </div>
-                        <div className="flex flex-wrap gap-[12px]">
-                          {data.hero.secondaryFilters.continentsOptions.map(opt => {
-                            const isSelected = continent === opt.value;
-                            return (
-                              <button 
-                                key={opt.value} onClick={() => setContinent(opt.value)}
-                                className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
-                              >
-                                {opt.label}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="flex items-center justify-between border-t border-[#E6E6E6] p-[24px]">
-                      <button onClick={clearFilters} className="font-sans text-[14px] font-medium text-[#767676] hover:underline">
-                        Clear filters
-                      </button>
-                      <button onClick={() => setOpenDropdown(null)} className="flex h-[40px] items-center justify-center rounded-[12px] bg-[#FDDB32] px-[24px] font-sans text-[14px] font-bold text-[#111111] hover:bg-[#e5c52c] transition-colors">
+                      <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
                         Show {displayedRoutes.length} results
                       </button>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Individual Dropdowns */}
-                {isOpen && pill.id === "stops" && (
-                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
-                          <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
-                        </div>
-                        <h3 className="font-sans text-[20px] font-bold text-[#111111]">Stops</h3>
-                      </div>
-                      <button onClick={() => setStops("any")} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
-                    </div>
-                    <div className="flex flex-col gap-[16px]">
-                      {data.hero.secondaryFilters.stopsOptions.map(opt => (
-                        <label key={opt.value} className="flex cursor-pointer items-center gap-[12px]" onClick={() => setStops(opt.value)}>
-                          <div className={`flex h-[20px] w-[20px] items-center justify-center rounded-full border ${stops === opt.value ? 'border-[#111111]' : 'border-[#CCCCCC]'}`}>
-                            {stops === opt.value && <div className="h-[10px] w-[10px] rounded-full bg-[#111111]" />}
-                          </div>
-                          <span className="font-sans text-[14px] font-medium text-[#111111]">{opt.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                    <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
-                      Show {displayedRoutes.length} results
-                    </button>
-                  </div>
-                )}
-
-                {isOpen && pill.id === "flight-budget" && (
-                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
-                          <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
-                        </div>
-                        <h3 className="font-sans text-[20px] font-bold text-[#111111]">Flight budget</h3>
-                      </div>
-                      <button onClick={() => setBudget(1200)} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
-                    </div>
-                    <div className="flex flex-col gap-[16px]">
+                  {isOpen && pill.id === "trip-style" && (
+                    <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
                       <div className="flex items-center justify-between">
-                        <span className="font-sans text-[14px] text-[#767676]">Any budget</span>
-                        <span className="font-sans text-[18px] font-bold text-[#111111]">${budget} max</span>
-                      </div>
-                      <input 
-                        type="range" min="100" max="1500" step="50" 
-                        value={budget} onChange={(e) => setBudget(Number(e.target.value))}
-                        className="w-full accent-[#111111]" 
-                      />
-                    </div>
-                    <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
-                      Show {displayedRoutes.length} results
-                    </button>
-                  </div>
-                )}
-
-                {isOpen && pill.id === "trip-style" && (
-                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
-                          <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                        <div className="flex items-center gap-[8px]">
+                          <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
+                            <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                          </div>
+                          <h3 className="font-sans text-[20px] font-bold text-[#111111]">Trip style</h3>
                         </div>
-                        <h3 className="font-sans text-[20px] font-bold text-[#111111]">Trip style</h3>
+                        <button onClick={() => setTripStyles([])} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
                       </div>
-                      <button onClick={() => setTripStyles([])} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
+                      <div className="flex flex-wrap gap-[12px]">
+                        {data.hero.secondaryFilters.tripStyleOptions.map(opt => {
+                          const isSelected = tripStyles.includes(opt.value);
+                          return (
+                            <button 
+                              key={opt.value} onClick={() => toggleTripStyle(opt.value)}
+                              className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                            >
+                              {opt.label}
+                            </button>
+                          )
+                        })}
+                      </div>
+                      <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
+                        Show {displayedRoutes.length} results
+                      </button>
                     </div>
-                    <div className="flex flex-wrap gap-[12px]">
-                      {data.hero.secondaryFilters.tripStyleOptions.map(opt => {
-                        const isSelected = tripStyles.includes(opt.value);
-                        return (
-                          <button 
-                            key={opt.value} onClick={() => toggleTripStyle(opt.value)}
-                            className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#111111] font-bold border-transparent text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
-                          >
-                            {opt.label}
-                          </button>
-                        )
-                      })}
-                    </div>
-                    <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
-                      Show {displayedRoutes.length} results
-                    </button>
-                  </div>
-                )}
+                  )}
 
-                {isOpen && pill.id === "continents" && (
-                  <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
-                          <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                  {isOpen && pill.id === "continents" && (
+                    <div className="absolute left-0 top-[calc(100%+12px)] z-[100] flex w-[300px] md:w-[380px] flex-col gap-[24px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[24px] shadow-xl">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-[8px]">
+                          <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#E6E6E6]">
+                            <RoutesIcon name="ArrowUpRight" size={16} className="text-[#111111]" />
+                          </div>
+                          <h3 className="font-sans text-[20px] font-bold text-[#111111]">Continents</h3>
                         </div>
-                        <h3 className="font-sans text-[20px] font-bold text-[#111111]">Continents</h3>
+                        <button onClick={() => setContinent("everywhere")} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
                       </div>
-                      <button onClick={() => setContinent("everywhere")} className="font-sans text-[14px] text-[#767676] hover:underline">Clear</button>
+                      <div className="flex flex-wrap gap-[12px]">
+                        {data.hero.secondaryFilters.continentsOptions.map(opt => {
+                          const isSelected = continent === opt.value;
+                          return (
+                            <button 
+                              key={opt.value} onClick={() => setContinent(opt.value)}
+                              className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
+                            >
+                              {opt.label}
+                            </button>
+                          )
+                        })}
+                      </div>
+                      <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
+                        Show {displayedRoutes.length} results
+                      </button>
                     </div>
-                    <div className="flex flex-wrap gap-[12px]">
-                      {data.hero.secondaryFilters.continentsOptions.map(opt => {
-                        const isSelected = continent === opt.value;
-                        return (
-                          <button 
-                            key={opt.value} onClick={() => setContinent(opt.value)}
-                            className={`rounded-[100px] border border-[#E6E6E6] px-[16px] py-[8px] font-sans text-[14px] transition-colors ${isSelected ? 'bg-[#FDDB32] font-bold border-transparent text-[#111111]' : 'bg-[#FFFFFF] text-[#111111] hover:bg-gray-50'}`}
-                          >
-                            {opt.label}
-                          </button>
-                        )
-                      })}
-                    </div>
-                    <button onClick={() => setOpenDropdown(null)} className="h-[48px] w-full rounded-[12px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#111111]">
-                      Show {displayedRoutes.length} results
-                    </button>
-                  </div>
-                )}
+                  )}
 
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
+          <button onClick={clearFilters} className="hidden shrink-0 font-sans text-[14px] font-medium text-[#D9A000] hover:underline md:block ml-[16px]">
+            {data.hero.secondaryFilters.clearLabel}
+          </button>
         </div>
-        <button onClick={clearFilters} className="hidden shrink-0 font-sans text-[14px] font-medium text-[#fddb32] hover:underline md:block ml-[16px]">
-          {data.hero.secondaryFilters.clearLabel}
-        </button>
       </div>
 
       {/* ROUTES RESULTS GRID */}
       <div className="mx-auto w-full max-w-[1440px] px-[20px] py-[40px] md:px-[80px] md:py-[64px]">
         
-        {/* Results Header */}
+        {/* Results Header with Underlines */}
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-start justify-between gap-[16px] md:flex-row md:items-center">
           <div className="flex flex-col gap-[4px]">
             <h2 className="font-sans text-[20px] font-medium leading-[1] text-[#FFFFFF] md:text-[24px]">
-              <span className="text-[#FDDB32] font-bold">{displayedRoutes.length}</span> {data.results.title.replace(/^[0-9]+\s/, '')}
+              <span className="underline decoration-solid decoration-[#FFFFFF] underline-offset-4 font-bold">{displayedRoutes.length}</span>{" "}
+              {data.results.title}{" "}
+              <span className="underline decoration-solid decoration-[#FFFFFF] underline-offset-4">{data.results.originCity}</span>
             </h2>
             <p className="font-sans text-[14px] font-normal leading-[1.5] text-[#FFFFFF]/70 md:text-[16px]">
               {data.results.description}
