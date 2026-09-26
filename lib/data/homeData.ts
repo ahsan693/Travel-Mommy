@@ -120,7 +120,7 @@ export const homeData: HomePageData = {
     title: "Cheap Flights from",
     highlightedTitle: "Dublin(DUB)",
     description: "Find unbeatable flight deals from Dublin to top global destinations. We compare hundreds of trusted airlines to secure your absolute lowest airfare.",
-    cta: "Browse All Flight Routes",
+    cta: "Explore Cheap Deals",
     cardCta: "View Flights",
     flights: [
       { city: "London", route: "Dub → LHR", price: "€24", airline: "Ryanair", duration: "1h 20m", image: "/Homepage/Section 3/Images/Image Container.png" },
