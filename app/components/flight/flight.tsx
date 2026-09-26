@@ -331,7 +331,7 @@ function PopularAirportsSection({ data }: { data: FlightPageData }) {
             >
               <div className="flex items-center gap-[12px] lg:gap-4">
                 
-                <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#FFED91] lg:h-11 lg:w-11 lg:rounded-xl lg:bg-[#FDDB32]">
+                <div className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-[#FFED91]">
                   <Image 
                     src={data.icons.airportIcon} 
                     alt="Airport" 
