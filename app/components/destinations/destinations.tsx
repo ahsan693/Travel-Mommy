@@ -15,6 +15,7 @@ import {
   Umbrella,
   Minus,
   Plus,
+  Clock
 } from "lucide-react";
 
 import Header from "../header/header";
@@ -56,7 +57,6 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
                   <span key={line} className="block">{line}</span>
                 ))}
               </span>
-              {/* Desktop three-line rendering */}
               <span className="hidden flex-col gap-[2px] md:flex">
                 {data.hero.mobileTitle.map((line) => (
                   <span key={line} className="block">{line}</span>
@@ -109,16 +109,14 @@ function HeroSection({ data }: { data: DestinationsPageData }) {
                   type="button"
                   className="flex h-[40px] items-center gap-[8px] rounded-full bg-[#F9FBF5] py-[6px] pl-[6px] pr-[14px] font-sans text-[12px] font-normal leading-[16px] tracking-[0.1px] text-[#000000] transition-colors hover:bg-[#e8ece3] md:border md:border-white/20 md:bg-white/10 md:py-[4px] md:pl-[4px] md:pr-[16px] md:text-[14px] md:font-medium md:leading-[1.43] md:tracking-[0px] md:text-[#FFFFFF] md:backdrop-blur-sm md:hover:bg-white/20"
                 >
-                  {chip.swatch ? (
-                    <span className="h-[28px] w-[28px] rounded-full md:h-[32px] md:w-[32px]" style={{ backgroundColor: chip.swatch }} />
-                  ) : (
-                    <Image
+                  {chip.img ? (
+                    <img
                       src={chip.img}
                       alt={chip.name}
-                      width={32}
-                      height={32}
                       className="h-[28px] w-[28px] rounded-full object-cover md:h-[32px] md:w-[32px]"
                     />
+                  ) : (
+                    <span className="h-[28px] w-[28px] rounded-full md:h-[32px] md:w-[32px]" style={{ backgroundColor: chip.swatch }} />
                   )}
                   {chip.name}
                 </button>
@@ -152,98 +150,68 @@ export function FeaturedCountriesSection({ data }: { data: DestinationsPageData 
           {data.featuredCountries.map((country) => (
             <div
               key={country.name}
-              className="group flex h-[490px] w-full flex-col overflow-hidden rounded-[20px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] pb-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1 md:h-[527px] md:p-[14px]"
+              className="group flex h-auto min-h-[417px] w-full flex-col overflow-hidden rounded-[20px] border border-[rgba(0,0,0,0.16)] bg-[#FFFFFF] pb-[10px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:-translate-y-1"
             >
-              <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-[#F3F4F6] p-[12px] md:h-[220px] md:rounded-[12px] md:p-0">
-                <Image
+              <div className="relative h-[210px] w-full shrink-0 overflow-hidden bg-[#F3F4F6]">
+                <img
                   src={country.image}
-                  alt="Destination"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt={country.name}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 
-                <div className="absolute left-[12px] top-[12px] rounded-full border border-[#FFFFFF] bg-white/30 px-[10px] py-[4px] backdrop-blur-[4px] shadow-sm md:border-none md:bg-[#FFFFFF] md:px-[12px]">
-                  <span className="font-sans text-[13px] font-medium leading-[18px] tracking-[0px] text-[#000000] md:text-[14px] md:leading-[20px]">
+                <div className="absolute left-[12px] top-[12px] rounded-full bg-[#FFFFFF] px-[12px] py-[4px] shadow-sm">
+                  <span className="font-sans text-[13px] font-medium leading-[18px] text-[#000000] md:text-[14px]">
                     Popular
                   </span>
                 </div>
                 
-                <div className="absolute right-[12px] top-[12px] flex h-[32px] w-[32px] items-center justify-center rounded-full border border-[#FFFFFF] bg-white/30 backdrop-blur-[3px] shadow-md transition-transform group-hover:scale-110 md:h-[36px] md:w-[36px] md:border-none md:bg-[#FDDB32]">
+                <div className="absolute right-[12px] top-[12px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#FDDB32] shadow-md transition-transform group-hover:scale-110">
                   <ArrowUpRight size={16} strokeWidth={2.5} className="text-[#000000]" />
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col gap-[12px] p-[14px] md:gap-[16px] md:px-[2px] md:pt-[18px]">
+              <div className="flex flex-1 flex-col justify-between gap-[12px] p-[14px]">
                 
-                <div className="flex items-center gap-[8px]">
-                  <div className="flex gap-[2px]">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} size={14} className="fill-[#000000] text-[#000000]" strokeWidth={0} />
-                    ))}
-                  </div>
-                  <span className="font-sans text-[14px] font-medium leading-[1.43] text-[#F59E0B]">
-                    {country.rating}/5
-                  </span>
-                </div>
-
-                <div className="flex flex-col gap-[2px]">
-                  <h3 className="font-sans text-[15px] font-medium leading-[22px] tracking-[0px] text-[#000000] md:text-[16px] md:leading-[24px]">
+                <div className="flex flex-col gap-[12px]">
+                  <h3 className="font-sans text-[18px] font-semibold leading-[22px] text-[#000000]">
                     {country.name}
                   </h3>
-                  <div className="flex items-center gap-[4px] md:gap-[6px]">
-                    <MapPin size={12} className="text-[#7D7D7D] md:h-[14px] md:w-[14px]" />
-                    <span className="font-sans text-[13px] font-normal leading-[18px] tracking-[0px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
-                      {country.desc}
-                    </span>
-                  </div>
-                </div>
 
-                <div className="flex flex-wrap gap-[8px]">
-                  {country.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[#FBBDEA] bg-[#FFF0F8] px-[12px] py-[2px] font-sans text-[12px] font-medium leading-[1.33] tracking-[0px] text-[#C050A0]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
-
-                <div className="flex flex-col gap-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
-                  <div className="flex items-center gap-[8px]">
-                    <Plane size={14} className="text-[#7D7D7D]" />
-                    <span>{data.copy.flightsLabel} {country.flightsFrom}</span>
+                  <div className="flex flex-wrap gap-[8px]">
+                    {country.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-[#FBBDEA] bg-[#FFF0F8] px-[12px] py-[2px] font-sans text-[12px] font-medium leading-[1.33] text-[#C050A0]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-[8px]">
-                    <Building2 size={14} className="text-[#7D7D7D]" />
-                    <span>{data.copy.hotelsLabel} {country.hotelsFrom}</span>
-                  </div>
-                  <div className="flex items-center gap-[8px]">
-                    <Umbrella size={14} className="text-[#7D7D7D]" />
+
+                  <div className="h-[1px] w-full bg-[#E6E6E6]" />
+
+                  <div className="flex items-center gap-[8px] font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D]">
+                    <Clock size={14} className="text-[#7D7D7D]" />
                     <span>{country.perk}</span>
                   </div>
                 </div>
 
-                <div className="h-[1px] w-full bg-[#F3F4F6] md:bg-[#E6E6E6]" />
-
-                <div className="mt-auto flex items-end justify-between pt-[4px]">
+                <div className="mt-[12px] flex items-end justify-between">
                   <div className="flex flex-col gap-[2px]">
-                    <span className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
-                      {data.copy.featuredPriceLabel}
+                    <span className="font-sans text-[12px] font-normal leading-[16px] text-[#7D7D7D]">
+                      Flights from {country.flightsFrom || "Dublin"}
                     </span>
                     <div className="flex items-baseline gap-[4px]">
-                      <span className="font-sans text-[20px] font-medium leading-[24px] text-[#000000] md:text-[22px] md:leading-[1]">
+                      <span className="font-sans text-[22px] font-bold leading-[24px] text-[#000000]">
                         {country.price}
                       </span>
-                      <span className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D] md:text-[14px] md:leading-[20px]">
+                      <span className="font-sans text-[13px] font-normal leading-[18px] text-[#7D7D7D]">
                         {data.copy.featuredPriceSuffix}
                       </span>
                     </div>
                   </div>
-                  <button className="flex h-[38px] items-center justify-center gap-[4px] rounded-full bg-[#FDDB32] px-[18px] font-sans text-[13px] font-medium leading-[18px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c] md:h-[40px] md:gap-[6px] md:px-[16px] md:text-[14px] md:leading-[20px]">
-                    {data.copy.featuredCta}
+                  <button className="flex h-[36px] items-center justify-center gap-[4px] rounded-full bg-[#FDDB32] px-[16px] font-sans text-[14px] font-medium leading-[20px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c]">
+                    Explore <ArrowRight size={14} strokeWidth={2.5} />
                   </button>
                 </div>
                 
@@ -283,11 +251,9 @@ function ExploreByRegionSection({ data }: { data: DestinationsPageData }) {
           >
             {/* Card Header (Image + Title + Desc) */}
             <div className="mb-[20px] flex items-center gap-[16px]">
-              <Image 
+              <img 
                 src={region.image} 
                 alt={region.name} 
-                width={64} 
-                height={64} 
                 className="h-[64px] w-[64px] shrink-0 rounded-full object-cover" 
               />
               <div className="flex flex-col items-start text-left">
@@ -372,7 +338,7 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
       <div className="flex w-full max-w-[1280px] flex-col items-center md:px-[0px]">
         
         <div className="mb-[32px] flex w-full max-w-[1216px] flex-col items-center gap-[12px] text-center md:mb-[48px] md:gap-[24px]">
-          <h2 className="w-full max-w-[358px] font-sans text-[30px] font-medium leading-[36px] tracking-[-0.5px] text-[#000000] md:text-[48px] md:leading-[1]">
+          <h2 className="w-full max-w-[358px] md:max-w-none md:whitespace-nowrap font-sans text-[30px] font-medium leading-[36px] tracking-[-0.5px] text-[#000000] md:text-[48px] md:leading-[1]">
             <span className="block md:hidden">
               <span className="block">Why Plan Your Trip with</span>
               <span className="block">TravelMommy?</span>
@@ -407,13 +373,6 @@ function WhyPlanSection({ data }: { data: DestinationsPageData }) {
           ))}
         </div>
 
-        <div className="mt-[16px] w-full md:mt-[48px] md:w-auto">
-          <button className="flex h-[44px] w-full items-center justify-center gap-[8px] rounded-[14px] bg-[#FDDB32] px-[20px] font-sans text-[13px] font-medium leading-[18px] tracking-[0px] text-[#000000] transition-colors duration-200 hover:bg-[#e5c52c] md:w-auto md:gap-[6px] md:rounded-full md:px-[24px] md:text-[14px] md:leading-[20px]">
-            {data.copy.whyCta}
-            <ArrowUpRight size={16} className="md:w-[16px] md:h-[16px]" />
-          </button>
-        </div>
-
       </div>
     </section>
   );
@@ -430,7 +389,7 @@ function FaqSection({ data }: { data: DestinationsPageData }) {
     <section className="flex w-full flex-col items-center bg-[#F9F8F5] px-[24px] py-[64px] md:bg-[#FFFFFF] md:px-[80px] md:pb-[160px] md:pt-[80px]">
       <div className="flex w-full max-w-[800px] flex-col items-center">
         
-        <h2 className="mb-[32px] w-full max-w-[342px] text-center font-sans text-[20px] font-medium leading-[26px] tracking-[-0.2px] text-[#000000] md:mb-[48px] md:text-[48px] md:leading-[48px]">
+        <h2 className="mb-[32px] w-full max-w-[342px] md:max-w-none md:whitespace-nowrap text-center font-sans text-[20px] font-medium leading-[26px] tracking-[-0.2px] text-[#000000] md:mb-[48px] md:text-[48px] md:leading-[48px]">
           {data.copy.faqTitle}
         </h2>
 
@@ -483,4 +442,4 @@ export default function Destinations({ data = destinationsData }: { data?: Desti
       <Footer data={footerData} />
     </main>
   );
-} 
+}
