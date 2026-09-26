@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import Image from "next/image";
 import {
   Mail,
   Handshake,
@@ -18,36 +17,50 @@ import { headerData } from "../../../lib/data/headerData";
 import { footerData } from "../../../lib/data/footerData";
 
 /* ----------------------------------------------------------------
-   INLINE SOCIAL ICONS (Exact Match to Image 1)
+   INLINE SOCIAL ICONS (Exact Match to Figma)
 ---------------------------------------------------------------- */
 
-const InstagramIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-  </svg>
-);
-
 const FacebookIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
-    <path d="M14 11h-3v8h-3v-8H6v-3h2V6a4 4 0 0 1 4-4h3v3h-2c-1 0-1 .5-1 1v2h3l-1 3z"/>
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+    <rect width="48" height="48" fill="#1877F2"/>
+    <path d="M32.5186 24.819L33.4542 18.723H27.6046V14.7675C27.6046 13.0965 28.4239 11.4675 31.026 11.4675H33.7224V6.279C33.7224 6.279 31.2758 5.8605 28.9806 5.8605C24.1378 5.8605 20.9634 8.811 20.9634 14.1555V18.723H15.6321V24.819H20.9634V39.5505C22.0458 39.7215 23.1539 39.8115 24.284 39.8115C25.414 39.8115 26.5222 39.7215 27.6046 39.5505V24.819H32.5186Z" fill="white"/>
   </svg>
 );
 
-const MusicIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 18V5l12-2v13"/>
-    <circle cx="6" cy="18" r="3"/>
-    <circle cx="18" cy="16" r="3"/>
+const InstagramIcon = ({ className }: { className?: string }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+    <rect width="48" height="48" fill="url(#paint0_linear_instagram)"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M24 10.332C28.4355 10.332 28.959 10.35 30.6855 10.431C32.2845 10.503 33.156 10.773 33.738 10.9995C34.509 11.2995 35.061 11.664 35.6385 12.2415C36.216 12.819 36.582 13.371 36.882 14.142C37.1085 14.724 37.3785 15.5955 37.4505 17.1945C37.5285 18.921 37.548 19.4445 37.548 23.88C37.548 28.3155 37.5285 28.839 37.4505 30.5655C37.3785 32.1645 37.1085 33.036 36.882 33.618C36.582 34.389 36.2175 34.941 35.64 35.5185C35.0625 36.096 34.5105 36.462 33.7395 36.762C33.1575 36.9885 32.286 37.2585 30.687 37.3305C28.9605 37.4085 28.437 37.428 24.0015 37.428C19.566 37.428 19.0425 37.4085 17.316 37.3305C15.717 37.2585 14.8455 36.9885 14.2635 36.762C13.4925 36.462 12.9405 36.096 12.363 35.5185C11.7855 34.941 11.4195 34.389 11.1195 33.618C10.893 33.036 10.623 32.1645 10.551 30.5655C10.473 28.839 10.4535 28.3155 10.4535 23.88C10.4535 19.4445 10.473 18.921 10.551 17.1945C10.623 15.5955 10.893 14.724 11.1195 14.142C11.4195 13.371 11.7855 12.819 12.363 12.2415C12.9405 11.664 13.4925 11.298 14.2635 10.998C14.8455 10.7715 15.717 10.5015 17.316 10.4295C19.0425 10.3515 19.566 10.332 24.0015 10.332H24ZM24 12.774C19.6455 12.774 19.182 12.7905 17.4915 12.867C15.939 12.9375 15.0645 13.2045 14.4825 13.431C13.713 13.731 13.161 14.0955 12.5835 14.673C12.006 15.2505 11.64 15.8025 11.34 16.5735C11.1135 17.1555 10.8435 18.03 10.7715 19.5825C10.6935 21.273 10.677 21.7365 10.677 26.091C10.677 30.4455 10.6935 30.909 10.7715 32.5995C10.8435 34.152 11.1135 35.0265 11.34 35.6085C11.64 36.378 12.0045 36.93 12.582 37.5075C13.1595 38.085 13.7115 38.451 14.4825 38.751C15.0645 38.9775 15.939 39.2475 17.4915 39.3195C19.182 39.3975 19.6455 39.414 24 39.414C28.3545 39.414 28.818 39.3975 30.5085 39.3195C32.061 39.249 32.9355 38.982 33.5175 38.7555C34.287 38.4555 34.839 38.091 35.4165 37.5135C35.994 36.936 36.36 36.384 36.66 35.613C36.8865 35.031 37.1565 34.1565 37.2285 32.604C37.3065 30.9135 37.323 30.45 37.323 26.0955C37.323 21.741 37.3065 21.2775 37.2285 19.587C37.1565 18.0345 36.8865 17.16 36.66 16.578C36.36 15.8085 35.9955 15.2565 35.418 14.679C34.8405 14.1015 34.2885 13.7355 33.5175 13.4355C32.9355 13.209 32.061 12.939 30.5085 12.867C28.818 12.789 28.3545 12.7725 24 12.7725V12.774Z" fill="white"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M24 16.902C20.1465 16.902 17.022 20.0265 17.022 23.88C17.022 27.7335 20.1465 30.858 24 30.858C27.8535 30.858 30.978 27.7335 30.978 23.88C30.978 20.0265 27.8535 16.902 24 16.902ZM24 28.416C21.4935 28.416 19.4625 26.385 19.4625 23.8785C19.4625 21.372 21.4935 19.341 24 19.341C26.5065 19.341 28.5375 21.372 28.5375 23.8785C28.5375 26.385 26.5065 28.416 24 28.416Z" fill="white"/>
+    <path d="M31.2586 18.3689C32.1583 18.3689 32.8876 17.6396 32.8876 16.7399C32.8876 15.8402 32.1583 15.1109 31.2586 15.1109C30.3589 15.1109 29.6296 15.8402 29.6296 16.7399C29.6296 17.6396 30.3589 18.3689 31.2586 18.3689Z" fill="white"/>
+    <defs>
+      <linearGradient id="paint0_linear_instagram" x1="8.3664" y1="41.3418" x2="38.534" y2="4.0041" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FFDD55"/>
+        <stop offset="0.5" stopColor="#FF543E"/>
+        <stop offset="1" stopColor="#C837AB"/>
+      </linearGradient>
+    </defs>
   </svg>
 );
 
 const YouTubeIcon = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8 5.5v13l11-6.5z" />
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+    <rect width="48" height="48" fill="#FF0000"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M36.195 16.92C36.195 16.92 35.8425 14.4375 34.7475 13.3275C33.36 11.8725 31.815 11.8575 31.11 11.775C26.175 11.415 24.0075 11.415 24.0075 11.415C24.0075 11.415 21.84 11.415 16.905 11.775C16.2 11.8575 14.655 11.8725 13.2675 13.3275C12.1725 14.4375 11.82 16.92 11.82 16.92C11.82 16.92 11.4675 19.86 11.4675 22.785V25.215C11.4675 28.14 11.82 31.08 11.82 31.08C11.82 31.08 12.1725 33.5625 13.2675 34.6725C14.655 36.1275 16.485 36.0825 17.265 36.24C20.085 36.51 24.015 36.585 24.015 36.585C24.015 36.585 26.19 36.57 31.125 36.225C31.83 36.1425 33.375 36.1275 34.7625 34.6725C35.8575 33.5625 36.21 31.08 36.21 31.08C36.21 31.08 36.5625 28.14 36.5625 25.215V22.785C36.5475 19.86 36.195 16.92 36.195 16.92ZM21.3375 29.175V17.91L31.3425 23.58L21.3375 29.175Z" fill="white"/>
   </svg>
 );
+
+const TikTokIcon = ({ className }: { className?: string }) => {
+  const pathD = "M26.4718 10V18.1132C28.4552 18.0645 30.2974 19.1009 31.3323 20.8499C31.5477 21.2132 31.7051 21.6033 31.8 22.0125V22.0163C31.8385 22.2199 31.8596 22.4278 31.8631 22.6366H27.3409C27.3444 22.5694 27.3463 22.502 27.3465 22.4346C27.3458 20.803 26.0232 19.481 24.3916 19.4802V28.1633C24.3916 29.2135 23.9576 30.218 23.1895 30.9443C22.4214 31.6705 21.3853 32.062 20.3235 32.0305C19.3093 31.9961 18.3512 31.5492 17.6534 30.785C16.9555 30.0208 16.5741 29.0028 16.5925 27.9463C16.5741 26.8898 16.9555 25.8718 17.6534 25.1075C18.3512 24.3433 19.3093 23.8964 20.3235 23.862V28.182C20.3392 28.2575 20.3475 28.3347 20.3482 28.4121C20.3478 28.5779 20.2818 28.7369 20.1645 28.8542C20.0472 28.9715 19.8882 29.0375 19.7225 29.0379C19.5567 29.0375 19.3977 28.9715 19.2804 28.8542C19.1631 28.7369 19.0971 28.5779 19.0967 28.4121C19.0967 28.3308 19.1039 28.2536 19.123 28.1764C19.2017 27.8183 19.3879 27.4925 19.6558 27.2435C19.9238 26.9946 20.2599 26.8344 20.6186 26.7845V19.467C19.1278 19.4891 17.6836 20.0384 16.5398 21.0152C15.396 21.9921 14.626 23.336 14.3683 24.811C14.1037 26.3117 14.3644 27.8631 15.0991 29.191C15.8338 30.5188 16.9959 31.5367 18.3756 32.0628C19.7554 32.589 21.2612 32.5884 22.6406 32.061C24.0201 31.5336 25.1813 30.5146 25.9147 29.1858C26.6481 27.857 26.9074 26.3048 26.6414 24.8043V24.084V16.7118C28.2611 17.5188 30.0615 17.9174 31.8818 17.876V13.3556C30.6433 13.3444 29.4312 12.9818 28.3846 12.3113C27.338 11.6408 26.4996 10.6896 25.966 9.56627L25.9228 10H26.4718Z";
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+      <rect width="48" height="48" fill="black"/>
+      <path d={pathD} fill="#25F4EE" transform="translate(-1, -1)"/>
+      <path d={pathD} fill="#FE2C55" transform="translate(1, 1)"/>
+      <path d={pathD} fill="white"/>
+    </svg>
+  );
+};
 
 /* ----------------------------------------------------------------
    MAIN PAGE COMPONENT
@@ -182,7 +195,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-[48px] md:rounded-[12px] md:px-[16px] md:text-[15px]"
                 />
               </div>
 
@@ -198,7 +211,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.email}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] placeholder:text-[#767676] transition-colors focus:border-[#FDDB32] md:h-[48px] md:rounded-[12px] md:px-[16px] md:text-[15px]"
                 />
               </div>
 
@@ -212,7 +225,7 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                   value={form.subject}
                   onChange={handleChange}
                   required
-                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] transition-colors focus:border-[#FDDB32] md:h-auto md:rounded-[12px] md:px-[16px] md:py-[14px] md:text-[15px]"
+                  className="h-[44px] w-full rounded-[10px] border border-[#E6E6E6] bg-[#FFFFFF] px-[14px] py-[12px] font-sans text-[14px] text-[#000000] transition-colors focus:border-[#FDDB32] md:h-[48px] md:rounded-[12px] md:px-[16px] md:text-[15px]"
                 >
                   <option value="" disabled>
                     {data.subjectPlaceholder}
@@ -243,12 +256,18 @@ function FormSection({ data }: { data: ContactUsPageData["form"] }) {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="mt-0 flex h-[44px] w-full items-center justify-center rounded-[10px] bg-[#FDDB32] py-[12px] font-sans text-[14px] font-medium text-[#000000] transition-colors hover:bg-[#e5c52c] md:mt-[8px] md:h-auto md:rounded-[12px] md:py-[16px] md:text-[15px]"
-              >
-                {data.submitLabel}
-              </button>
+              {/* Form Button and Text Container */}
+              <div className="mt-[8px] flex w-full flex-col items-center gap-[16px]">
+                <button
+                  type="submit"
+                  className="flex h-[44px] w-full items-center justify-center rounded-[10px] bg-[#FDDB32] py-[12px] font-sans text-[14px] font-medium text-[#000000] transition-colors hover:bg-[#e5c52c] md:h-[56px] md:rounded-[12px] md:text-[16px]"
+                >
+                  {data.submitLabel}
+                </button>
+                <p className="font-sans text-[14px] font-normal text-center text-[#666666]">
+                  {data.submitDisclaimer}
+                </p>
+              </div>
             </form>
           )}
         </div>
@@ -321,21 +340,20 @@ function FaqSection({ faqs: faqItems, data }: { faqs: ContactFaq[]; data: Contac
 function FollowUsSection({ socialLinks: links, title }: { socialLinks: SocialLink[]; title: string }) {
   return (
     <section className="flex w-full flex-col items-center bg-[#FFFFFF] py-[32px] px-[32px] md:py-[80px] lg:px-[140px]">
-      <h3 className="mb-[18px] font-sans text-[18px] font-medium leading-[22px] tracking-[-0.2px] text-[#000000] md:mb-[28px] md:text-[24px] md:leading-[24px] md:tracking-[0px]">
+      <h3 className="mb-[18px] font-sans text-[18px] font-medium leading-[22px] tracking-[-0.2px] text-[#000000] md:mb-[24px] md:text-[24px] md:leading-[24px] md:tracking-[0px]">
         {title}
       </h3>
-      <div className="flex items-center gap-[20px] md:gap-[24px]">
-          {links.map(({ icon, href, label, bgColor }) => {
-            const Icon = icon === "instagram" ? InstagramIcon : icon === "facebook" ? FacebookIcon : icon === "tiktok" ? MusicIcon : YouTubeIcon;
+      <div className="flex items-center justify-center gap-[24px]">
+          {links.map(({ icon, href, label }) => {
+            const Icon = icon === "instagram" ? InstagramIcon : icon === "facebook" ? FacebookIcon : icon === "tiktok" ? TikTokIcon : YouTubeIcon;
             return (
           <a
             key={label}
             href={href}
             aria-label={label}
-            // Removed border and border color, increased dimensions
-            className={`flex h-[48px] w-[48px] md:h-[60px] md:w-[60px] items-center justify-center rounded-full text-[#FFFFFF] shadow-sm transition-transform hover:scale-110 ${bgColor}`}
+            className="flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-[9px] shadow-sm transition-transform hover:scale-110"
           >
-            <Icon className="h-[22px] w-[22px] md:h-[28px] md:w-[28px]" />
+            <Icon className="h-full w-full" />
           </a>
           )})}
       </div>

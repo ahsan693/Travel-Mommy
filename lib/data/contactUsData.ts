@@ -1,7 +1,7 @@
 export interface ContactCard { title: string; description: string; email: string; icon: "mail" | "handshake" | "megaphone" }
 export interface ContactFaq { question: string; answer: string }
 export interface SocialLink { href: string; label: string; bgColor: string; icon: "instagram" | "facebook" | "tiktok" | "youtube" }
-export interface ContactUsPageData { hero: { title: string; description: string }; form: { title: string; description: string; successTitle: string; successDescription: string; nameLabel: string; namePlaceholder: string; emailLabel: string; emailPlaceholder: string; subjectLabel: string; subjectPlaceholder: string; messageLabel: string; messagePlaceholder: string; submitLabel: string }; faq: { title: string; description: string }; followTitle: string; contactCards: ContactCard[]; faqs: ContactFaq[]; socialLinks: SocialLink[] }
+export interface ContactUsPageData { hero: { title: string; description: string }; form: { title: string; description: string; successTitle: string; successDescription: string; nameLabel: string; namePlaceholder: string; emailLabel: string; emailPlaceholder: string; subjectLabel: string; subjectPlaceholder: string; messageLabel: string; messagePlaceholder: string; submitLabel: string; submitDisclaimer: string }; faq: { title: string; description: string }; followTitle: string; contactCards: ContactCard[]; faqs: ContactFaq[]; socialLinks: SocialLink[] }
 
 export const contactUsData: ContactUsPageData = {
   hero: { 
@@ -21,7 +21,8 @@ export const contactUsData: ContactUsPageData = {
     subjectPlaceholder: "General Enquiry", 
     messageLabel: "Message", 
     messagePlaceholder: "How can we help you today?", 
-    submitLabel: "Send Enquiry" 
+    submitLabel: "Send Enquiry",
+    submitDisclaimer: "We usually respond within 2–3 business days."
   },
   faq: { 
     title: "Frequently Asked Questions", 
@@ -41,9 +42,9 @@ export const contactUsData: ContactUsPageData = {
     { question: "How do I contact TravelMommy about media or press?", answer: "Use the Media & Press contact option or select \"Press/Media\" in the form." },
   ],
   socialLinks: [
-    { icon: "instagram", href: "#", label: "Instagram", bgColor: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" },
-    { icon: "facebook", href: "#", label: "Facebook", bgColor: "bg-[#1877F2]" },
-    { icon: "tiktok", href: "#", label: "TikTok", bgColor: "bg-[#000000]" },
-    { icon: "youtube", href: "#", label: "YouTube", bgColor: "bg-[#FF0000]" },
+    { icon: "facebook", href: "#", label: "Facebook", bgColor: "" },
+    { icon: "instagram", href: "#", label: "Instagram", bgColor: "" },
+    { icon: "youtube", href: "#", label: "YouTube", bgColor: "" },
+    { icon: "tiktok", href: "#", label: "TikTok", bgColor: "" },
   ],
 };
