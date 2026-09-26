@@ -181,7 +181,17 @@ function AboutSection({ about }: { about?: TravelPageData["aboutSection"] }) {
                 const FeatureIcon = LucideIconMap[feat.icon] || Check;
                 return (
                   <div key={feat.label} className="flex min-w-0 h-[40px] items-center justify-center gap-[6px] rounded-[20px] bg-[#F9FBF5] px-[8px] md:h-[48px] md:gap-[12px] md:px-[12px]">
-                    <FeatureIcon size={16} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
+                    {feat.icon.startsWith("/") ? (
+                      <Image
+                        src={encodeURI(feat.icon)}
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="h-[24px] w-[24px] shrink-0 object-contain"
+                      />
+                    ) : (
+                      <FeatureIcon size={16} strokeWidth={1.8} className={aboutFeatureIconClasses[feat.icon] ?? "text-[#000000]"} />
+                    )}
                     <span className="min-w-0 text-center font-sans text-[12px] font-medium leading-[1.2] tracking-[0px] text-[#000000] md:text-[15px] md:leading-[22px]">
                       {feat.label}
                     </span>
@@ -752,7 +762,7 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
     <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[80px]">
       <div className="mx-auto w-full max-w-[1440px] px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
         <div className="mx-auto flex w-full flex-col items-center justify-center rounded-[32px] bg-[#FDDB32] px-[24px] py-[48px] text-center md:rounded-[42px] md:px-[64px] md:py-[64px]">
-          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:font-bold md:leading-[1.1] md:tracking-[-0.02em]">
+          <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:font-medium md:leading-[1.1] md:tracking-[-0.02em]">
             {newsletter.title}
           </h2>
           <p className="mt-[16px] max-w-[680px] font-sans text-[14px] font-normal leading-[1.43] text-[#000000] md:text-[16px] md:leading-[24px]">

@@ -174,9 +174,9 @@ export const travelData: TravelPageData = {
       "Greece, located in southeastern Europe, is celebrated for breathtaking Aegean and Ionian islands. As the historic cradle of Western civilization, it offers unrivaled ancient landmarks. Book cheap flights to Athens to experience the 5th-century B.C. Acropolis and explore endless Mediterranean beauty seamlessly."
     ],
     features: [
-      { icon: "landmark", label: "Ancient History" },
-      { icon: "umbrella", label: "Stunning Beaches" },
-      { icon: "utensils", label: "Delicious Cuisine" }
+      { icon: "/discover-page/1.png", label: "Ancient History" },
+      { icon: "/discover-page/2.png", label: "Stunning Beaches" },
+      { icon: "/discover-page/3.png", label: "Delicious Cuisine" }
     ],
     featureIcon: "check",
     image: "/Country Details/Section 2/Images/Rectangle.png",
@@ -256,7 +256,7 @@ export const travelData: TravelPageData = {
       {
         city: "Manchester",
         route: "MAN → ATH",
-        price: "€29",
+        price: "€24",
         airline: "easyJet",
         duration: "Direct • 3h 55m",
         flag: "https://flagcdn.com/w40/gb.png",
@@ -265,7 +265,7 @@ export const travelData: TravelPageData = {
       {
         city: "Dublin",
         route: "DUB → ATH",
-        price: "€34",
+        price: "€24",
         airline: "Ryanair",
         duration: "Direct • 4h 20m",
         flag: "https://flagcdn.com/w40/ie.png",
@@ -274,7 +274,7 @@ export const travelData: TravelPageData = {
       {
         city: "New York",
         route: "NYC → ATH",
-        price: "€329",
+        price: "€24",
         airline: "Delta",
         duration: "Direct • 9h 15m",
         flag: "https://flagcdn.com/w40/us.png",
@@ -413,7 +413,7 @@ export const travelData: TravelPageData = {
   nearbyCountriesSection: {
     title: "Explore Nearby Countries",
     description: "Extend your journey beyond Greece with these spectacular nearby Mediterranean jewels.",
-    bookNowText: "Book Now",
+    bookNowText: "Explore Country",
     bookNowIcon: "arrow-right",
     items: [
       {
