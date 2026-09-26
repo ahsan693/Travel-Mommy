@@ -145,8 +145,9 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
                   </p>
                 </div>
 
-                <div className="flex h-[24px] w-full items-center justify-between">
+                <div className="flex h-[24px] w-full items-baseline justify-between">
                   <p className="font-sans text-[20px] font-medium leading-[24px] text-[#212121] lg:text-[24px]">
+                    <span className="font-sans text-[12px] font-normal text-[#7D7D7D] lg:text-[14px] pr-1">from</span>
                     {flight.price}
                   </p>
                   <div className="flex min-w-0 items-center gap-[4px] rounded-[6px] border border-[#E6E6E6] bg-[#F9FBF5] px-[6px] py-[3px] lg:px-[8px] lg:py-[4px]">
