@@ -149,8 +149,12 @@ function BrowseByRegion({ data }: { data: typeof exploreFlightsData.browseRegion
     <section className="flex w-full flex-col items-center bg-[#FBFBFA] px-[20px] py-[64px] md:px-[80px] md:py-[96px]">
       <div className="flex w-full max-w-[1280px] flex-col gap-[32px] md:gap-[48px]">
         <div className="flex flex-col items-center gap-[12px] text-center">
-          <h2 className="font-sans text-[28px] font-bold tracking-[-0.02em] text-[#1A1A19] md:text-[36px]">{data.title}</h2>
-          <p className="font-sans text-[14px] font-normal text-[#6E6E6A] md:text-[16px]">{data.subtitle}</p>
+          <h2 className="font-sans text-[32px] font-medium tracking-[-1px] text-[#1A1A19] md:text-[48px] md:leading-[1.1]">
+            {data.title}
+          </h2>
+          <p className="font-sans text-[14px] font-normal text-[#6E6E6A] md:text-[16px]">
+            {data.subtitle}
+          </p>
         </div>
         <div className="grid w-full grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-4">
           {data.regions.map((region) => (
@@ -159,9 +163,9 @@ function BrowseByRegion({ data }: { data: typeof exploreFlightsData.browseRegion
                 <Image src={region.image} alt={region.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="flex flex-col gap-[6px] px-[4px]">
-                <h3 className="font-sans text-[16px] font-bold leading-[1] text-[#1A1A19]">{region.name}</h3>
+                <h3 className="font-sans text-[16px] font-medium leading-[1] text-[#1A1A19]">{region.name}</h3>
                 <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">{region.description}</p>
-                <Link href="#" className="mt-[4px] flex items-center gap-[6px] font-sans text-[14px] font-bold text-[#1A1A19] hover:underline">
+                <Link href="#" className="mt-[4px] flex items-center gap-[6px] font-sans text-[14px] font-medium text-[#1A1A19] hover:underline">
                   {data.viewFlightsText} 
                   <ExploreIcon name={data.viewFlightsIcon} size={16} strokeWidth={2.5} className="text-[#FDDB32]" />
                 </Link>
