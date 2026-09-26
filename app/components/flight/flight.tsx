@@ -270,23 +270,10 @@ function PopularAirlinesSection({ data }: { data: FlightPageData }) {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[20px] lg:px-[32px]">
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <div className="flex flex-col items-start gap-[16px] lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+            <div className="flex flex-col items-start gap-[16px]">
               <h2 className="font-sans text-[36px] font-medium leading-[40px] tracking-[-1.5px] text-white lg:text-[48px] lg:font-semibold lg:leading-[52px] lg:tracking-[-0.01em]">
                 {data.copy.popularAirlinesTitle}
               </h2>
-              <Link
-                href="/flights/airlines"
-                className="hidden shrink-0 items-center gap-2 rounded-full bg-[#FDDB32] px-[24px] py-[12px] font-sans text-[14px] font-medium leading-[20px] text-black transition-colors hover:bg-[#e5c52c] lg:flex"
-              >
-                {data.copy.popularAirlinesCta}
-                <Image 
-                  src={data.icons.arrowRight} 
-                  alt="Arrow Right" 
-                  width={16} 
-                  height={16} 
-                  className="object-contain" 
-                />
-              </Link>
             </div>
 
             <p className="max-w-[800px] font-sans text-[16px] font-[380] leading-[24px] text-white/80">
