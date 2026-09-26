@@ -190,7 +190,7 @@ function ExploreCountries({ data }: { data: typeof exploreFlightsData.exploreCou
               <ExploreIcon name={data.backIcon} size={20} className="text-[#1A1A19]" />
             </button>
             <div className="flex flex-col gap-[4px]">
-              <h2 className="font-sans text-[20px] font-bold text-[#1A1A19] md:text-[24px]">{data.title}</h2>
+              <h2 className="font-sans text-[20px] font-medium text-[#1A1A19] md:text-[24px]">{data.title}</h2>
               <p className="font-sans text-[13px] font-normal text-[#6E6E6A] md:text-[14px]">{data.subtitle}</p>
             </div>
           </div>
@@ -259,7 +259,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
       <div className="flex w-full max-w-[1280px] flex-col gap-[24px]">
         <div className="flex w-full flex-col items-start justify-between gap-[16px] border-b border-[#E6E6E6] pb-[16px] md:flex-row md:items-center md:border-none md:pb-0">
           <div className="flex flex-col gap-[4px]">
-            <h2 className="font-sans text-[20px] font-bold text-[#1A1A19] md:text-[24px]">
+            <h2 className="font-sans text-[20px] font-medium text-[#1A1A19] md:text-[24px]">
               {data.header.title}
             </h2>
             <p className="font-sans text-[13px] font-normal text-[#6E6E6A] md:text-[14px]">
@@ -292,7 +292,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
                 <div key={idx} className="flex flex-col justify-between gap-[16px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[18px] transition-shadow hover:shadow-md">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col">
-                      <span className="font-sans text-[18px] font-bold text-[#1A1A19]">{deal.origin}</span>
+                      <span className="font-sans text-[18px] font-medium text-[#1A1A19]">{deal.origin}</span>
                       <span className="font-sans text-[13px] font-normal text-[#7D7D7D]">{deal.originCity}</span>
                     </div>
                     <div className="flex flex-col items-center justify-center px-[8px]">
@@ -303,7 +303,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
                       </div>
                     </div>
                     <div className="flex flex-col text-right">
-                      <span className="font-sans text-[18px] font-bold text-[#1A1A19]">{deal.dest}</span>
+                      <span className="font-sans text-[18px] font-medium text-[#1A1A19]">{deal.dest}</span>
                       <span className="font-sans text-[13px] font-normal text-[#7D7D7D]">{deal.destCity}</span>
                     </div>
                   </div>
@@ -315,16 +315,16 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
                     </div>
                     <div className="flex flex-col text-right">
                        <span className="font-sans text-[11px] font-medium uppercase tracking-[0.2px] text-[#7D7D7D]">{data.cardLabels.duration}</span>
-                       <span className="font-sans text-[13px] font-bold text-[#1A1A19]">{deal.duration}</span>
+                       <span className="font-sans text-[13px] font-medium text-[#1A1A19]">{deal.duration}</span>
                     </div>
                   </div>
 
                   <div className="flex items-end justify-between pt-[4px]">
                      <div className="flex flex-col">
                         <span className="font-sans text-[12px] font-normal text-[#7D7D7D]">{data.cardLabels.from}</span>
-                        <span className="font-sans text-[22px] font-bold leading-[1] text-[#1A1A19]">{deal.price}</span>
+                        <span className="font-sans text-[22px] font-medium leading-[1] text-[#1A1A19]">{deal.price}</span>
                      </div>
-                     <button className="flex h-[36px] items-center justify-center rounded-[8px] bg-[#FDDB32] px-[16px] font-sans text-[13px] font-bold text-[#000000] hover:bg-[#e5c52c]">
+                     <button className="flex h-[36px] items-center justify-center rounded-[8px] bg-[#FDDB32] px-[16px] font-sans text-[13px] font-medium text-[#000000] hover:bg-[#e5c52c]">
                        {data.cardLabels.bookButton}
                      </button>
                   </div>
@@ -355,7 +355,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
                 <Image src={data.sidebarDiscover.image} alt={data.sidebarDiscover.title} fill className="object-cover" />
               </div>
               <div className="flex flex-col gap-[8px]">
-                <h3 className="font-sans text-[18px] font-bold text-[#1A1A19]">{data.sidebarDiscover.title}</h3>
+                <h3 className="font-sans text-[18px] font-medium text-[#1A1A19]">{data.sidebarDiscover.title}</h3>
                 <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
                   {data.sidebarDiscover.description}
                 </p>
@@ -368,7 +368,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
                   </div>
                 ))}
               </div>
-              <button className="mt-[4px] flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#FDDB32] font-sans text-[14px] font-bold text-[#000000] hover:bg-[#e5c52c]">
+              <button className="mt-[4px] flex h-[44px] w-full items-center justify-center rounded-[8px] bg-[#FDDB32] font-sans text-[14px] font-medium text-[#000000] hover:bg-[#e5c52c]">
                 {data.sidebarDiscover.buttonText}
               </button>
             </div>
@@ -376,7 +376,7 @@ function FlightDealsWorkspace({ data }: { data: typeof exploreFlightsData.flight
             <div className="flex flex-col items-start gap-[12px] rounded-[16px] bg-[#F9F8F5] p-[20px] border border-[#E6E6E6]">
                <div className="flex items-center gap-[8px]">
                  <ExploreIcon name={data.sidebarHelp.icon} size={18} className="text-[#1A1A19]" />
-                 <h3 className="font-sans text-[16px] font-bold text-[#1A1A19]">{data.sidebarHelp.title}</h3>
+                 <h3 className="font-sans text-[16px] font-medium text-[#1A1A19]">{data.sidebarHelp.title}</h3>
                </div>
                <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
                  {data.sidebarHelp.description}
@@ -398,7 +398,7 @@ function WhyBookGrid({ data }: { data: typeof exploreFlightsData.whyBook }) {
       <div className="flex w-full max-w-[1280px] flex-col gap-[32px] md:gap-[48px]">
         
         <div className="flex flex-col items-center text-center gap-[12px] mx-auto w-full max-w-[603px]">
-          <h2 className="font-sans text-[28px] font-bold tracking-[-0.02em] text-[#1A1A19] md:text-[36px]">
+          <h2 className="font-sans text-[28px] font-medium leading-[1.1] tracking-[-0.02em] text-[#1A1A19] md:text-[36px]">
             {data.title}
           </h2>
           <p className="font-sans text-[14px] font-normal text-[#6E6E6A] md:text-[16px]">
@@ -411,13 +411,13 @@ function WhyBookGrid({ data }: { data: typeof exploreFlightsData.whyBook }) {
             return (
               <div 
                 key={idx} 
-                className="flex flex-col items-center text-center gap-[14px] rounded-[16px] bg-[#FFFFFF] p-[24px] border border-[#E6E6E6] shadow-sm transition-transform hover:-translate-y-1"
+                className="flex h-full flex-col items-center text-center gap-[14px] rounded-[16px] bg-[#FFFFFF] p-[24px] border border-[#E6E6E6]"
               >
                 <div className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[#FDDB32]">
                   <ExploreIcon name={benefit.icon} size={20} strokeWidth={2} className="text-[#000000]" />
                 </div>
                 <div className="flex flex-col gap-[6px]">
-                  <h3 className="font-sans text-[16px] font-bold text-[#1A1A19]">
+                  <h3 className="font-sans text-[16px] font-medium text-[#1A1A19]">
                     {benefit.title}
                   </h3>
                   <p className="font-sans text-[13px] font-normal leading-[1.4] text-[#6E6E6A]">
