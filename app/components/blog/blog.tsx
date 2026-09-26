@@ -346,7 +346,8 @@ function AllDestinationsSection({ data }: { data: BlogPageData["allDestinations"
                 </p>
 
                 <div className="mt-auto flex items-center gap-[4px] font-sans text-[13px] font-medium leading-[15px] text-[#111827]">
-                  {guide.exploreText} <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  <span className="underline underline-offset-2">{guide.exploreText}</span>
+                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
             </Link>
@@ -367,9 +368,9 @@ function BlogNewsletterSection({ data }: { data: BlogPageData["newsletter"] }) {
     <section className="flex w-full justify-center bg-[#FFFFFF] px-[20px] py-[80px] lg:px-[80px]">
       <div className="flex w-full max-w-[1280px] flex-col items-center gap-[24px]">
         
-        <div className="flex w-full max-w-[512px] flex-col items-center gap-[16px] text-center">
+        <div className="flex w-full flex-col items-center gap-[16px] text-center">
           {/* Typography synced with Home CTA Section Header */}
-          <h2 className="font-sans text-[32px] font-medium leading-none tracking-[-1px] text-[#000000] lg:text-[48px]">
+          <h2 className="whitespace-nowrap font-sans text-[20px] font-medium leading-none tracking-[-1px] text-[#000000] sm:text-[24px] lg:text-[48px]">
             {data.title}
           </h2>
           {/* Typography synced with Home CTA Section Descriptions */}
