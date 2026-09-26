@@ -206,46 +206,49 @@ function CheapFlightsFromDublinSection({ data }: { data: FlightPageData }) {
 
 function WhyCompareFlightsSection({ data }: { data: FlightPageData }) {
   return (
-    <section className="w-full bg-[#FFFFFF] px-[24px] py-[64px] lg:bg-[#F9FBF5] lg:px-[80px] lg:py-[160px]">
+    <section className="w-full bg-[#FFFFFF] px-[24px] py-[64px] lg:px-[80px] lg:py-[96px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center gap-[16px] lg:gap-[24px]">
-          <span className="flex h-[28px] items-center justify-center rounded-full border border-[#E6E6E6] bg-[#FFFFFF] px-[12px] py-[4px] font-sans text-[14px] font-medium leading-[20px] tracking-[0px] text-[#000000]">
-            {data.copy.whyComparePill}
-          </span>
-          <div className="flex w-full max-w-[876px] flex-col items-center gap-[16px] text-center lg:gap-[15px]">
-            <h2 className="w-full font-sans text-[42px] font-[500] leading-[44px] tracking-[-1.5px] text-[#000000] lg:text-[48px] lg:leading-[48px] lg:tracking-[0px]">
-              {data.copy.whyCompareTitle}
-            </h2>
-            <p className="w-full max-w-[660px] font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333] lg:text-[#555555]">
-              {data.copy.whyCompareDescription}
-            </p>
-          </div>
+        <div className="flex w-full flex-col items-center gap-[16px] text-center lg:gap-[15px]">
+          <h2 className="w-full font-sans text-[42px] font-[500] leading-[44px] tracking-[-1.5px] text-[#000000] lg:whitespace-nowrap lg:text-[48px] lg:leading-[48px] lg:tracking-[0px]">
+            {data.copy.whyCompareTitle}
+          </h2>
+          <p className="w-full max-w-[660px] font-sans text-[16px] font-[380] leading-[24px] tracking-[0px] text-[#333333] lg:text-[#555555]">
+            {data.copy.whyCompareDescription}
+          </p>
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="mt-[32px] grid w-full grid-cols-1 gap-[16px] lg:mt-[48px] lg:grid-cols-3 lg:gap-[24px]">
-          {data.whyCompareFeatures.map((feature) => (
+        <div className="mt-[32px] grid w-full grid-cols-1 gap-[16px] lg:mt-[32px] lg:grid-cols-3 lg:gap-[32px]">
+          {data.whyCompareFeatures.map((feature, idx) => (
             <div 
               key={feature.title} 
-              className="flex w-full flex-col items-center rounded-[24px] border border-[#E6E6E6] bg-[#FFFFFF] px-[24px] py-[32px] shadow-sm lg:h-full lg:bg-[#F9FBF5] lg:py-[40px]"
+              className="flex w-full flex-col gap-[20px] rounded-[24px] border border-[#E6EEF8] bg-[#FFFFFF] p-[24px] shadow-sm lg:h-[186px]"
             >
-              <span className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full bg-[#FFED91]">
-                <Image 
-                  src={feature.iconSrc} 
-                  alt={feature.title} 
-                  width={28} 
-                  height={28} 
-                  className="object-contain" 
-                />
-              </span>
+              <div className="flex items-center gap-[16px]">
+                <div className="flex size-[56px] shrink-0 items-center justify-center rounded-[18px] bg-[#FDDB32]">
+                  <Image 
+                    src={feature.iconSrc} 
+                    alt={feature.title} 
+                    width={24} 
+                    height={24} 
+                    className="object-contain" 
+                  />
+                </div>
+                <div className="flex flex-col gap-[2px]">
+                  <span className="font-sans text-[12px] font-medium leading-[18px] text-[#8E8E8E]">
+                    Feature 0{idx + 1}
+                  </span>
+                  <h3 className="text-left font-sans text-[20px] font-medium leading-[1.2] text-[#000000] lg:text-[24px] lg:leading-[24px]">
+                    {feature.title.split('\n').map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
+                  </h3>
+                </div>
+              </div>
               
-              <h3 className="mt-[24px] w-full text-center font-sans text-[20px] font-medium leading-[28px] text-[#000000] lg:text-[24px]">
-                {feature.title}
-              </h3>
-              
-              <p className="mt-[12px] w-full text-center font-sans text-[14px] font-normal leading-[22px] text-[#555555] lg:text-[16px] lg:leading-[24px]">
+              <p className="text-left font-sans text-[14px] leading-[20px] text-[#6B7280]">
                 {feature.description}
               </p>
             </div>
