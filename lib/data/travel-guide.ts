@@ -17,6 +17,7 @@ export interface RelatedGuide {
 }
 
 export type TravelGuideIconName =
+  | "Award"
   | "Banknote"
   | "Bell"
   | "Check"
@@ -225,7 +226,7 @@ export const guideData: TravelGuideData = {
 
   sidebarFastFacts: {
     title: "Bali Fast Facts",
-    icon: "Bell",
+    icon: "Award",
     peakSeasonLabel: "Peak Season",
     peakSeasonValue: "July, August, Christmas",
     budgetMonthsLabel: "Budget Months",
@@ -310,15 +311,15 @@ export const guideData: TravelGuideData = {
 
   sidebarAd: {
     image: "/08. Tavel Guide Country/Images/Travel Guide img-03.png",
-    title: "Discover Greece",
-    description: "From ancient ruins to island getaways, Greece offers unforgettable experiences for every traveler.",
+    title: "Explore Bali",
+    description: "Discover the best places to visit, things to do and travel tips.",
     bullets: [
       { icon: "Star", text: "Popular year-round destination" },
       { icon: "Tag", text: "Great flight deals from major cities" },
       { icon: "Sun", text: "Iconic islands, beaches and history" },
       { icon: "Clock", text: "Average flight time from Europe: 3-4h" }
     ],
-    buttonText: "View Greece Travel Guide ›"
+    buttonText: "Explore Bali"
   },
 
   sidebarHelp: {

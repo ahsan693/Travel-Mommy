@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  Award,
   ChevronRight,
   Calendar,
   Thermometer,
@@ -37,6 +38,7 @@ import { type TravelGuideData, type TravelGuideIconName, guideData } from "../..
 import { MapPin, Plane, Info } from "lucide-react";
 
 const travelGuideIcons: Record<TravelGuideIconName, LucideIcon> = {
+  Award,
   Banknote,
   Bell,
   Check,
@@ -96,7 +98,7 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
     <>
       <div className="flex flex-col gap-[16px] rounded-[20px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px] md:p-[24px]">
         <h3 className="flex items-center gap-[8px] font-sans text-[20px] font-medium leading-[1.2] text-[#000000]">
-          <TravelGuideIcon name={facts.icon} size={20} className="text-[#000000]" />
+          <TravelGuideIcon name={facts.icon} size={16} strokeWidth={2.5} className="text-[#000000]" />
           {facts.title}
         </h3>
       
@@ -133,7 +135,7 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
       </div>
 
       <div className="flex items-start gap-[12px] rounded-[16px] border border-[#E6E6E6] bg-[#FFFFFF] p-[20px]">
-        <TravelGuideIcon name={facts.tipIcon} size={20} className="mt-[2px] shrink-0 text-[#000000]" />
+        <TravelGuideIcon name={facts.tipIcon} size={16} strokeWidth={2.5} className="mt-[2px] shrink-0 text-[#000000]" />
         <div className="flex flex-col gap-[6px]">
           <span className="font-sans text-[12px] font-bold uppercase tracking-[0.5px] leading-[1.33] text-[#000000]">
             {facts.tipTitle}
@@ -144,6 +146,32 @@ function SidebarFastFacts({ facts }: { facts: TravelGuideData["sidebarFastFacts"
         </div>
       </div>
     </>
+  );
+}
+
+function SidebarAdCard({ ad }: { ad: TravelGuideData["sidebarAd"] }) {
+  return (
+    <div className="group relative hidden h-[220px] w-full overflow-hidden rounded-[20px] lg:block">
+      <Image
+        src={ad.image}
+        alt={ad.title}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[#000000]/45" />
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-[12px] p-[20px]">
+        <div className="flex flex-col gap-[4px] text-[#FFFFFF]">
+          <h3 className="font-sans text-[28px] font-semibold leading-[34px]">{ad.title}</h3>
+          <p className="max-w-[229px] font-sans text-[13px] font-normal leading-[18px] text-[#FFFFFF]/80">
+            {ad.description}
+          </p>
+        </div>
+        <button className="flex h-[40px] items-center justify-center gap-[4px] rounded-full bg-[#FDDB32] px-[20px] py-[10px] font-sans text-[14px] font-semibold leading-[20px] text-[#000000] transition-colors hover:bg-[#e5c52c]">
+          {ad.buttonText}
+          <ArrowRight size={16} strokeWidth={2.5} />
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -431,6 +459,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
         <aside className="flex w-full flex-col gap-[24px] lg:w-[380px] lg:shrink-0">
           
           <SidebarFastFacts facts={data.sidebarFastFacts} />
+          <SidebarAdCard ad={data.sidebarAd} />
 
           {/* Compare Flights Card */}
           <div className="hidden lg:flex w-full flex-col items-start gap-[16px] rounded-[20px] bg-[#FFFBEB] p-[24px] border border-[#FDE68A]">
@@ -459,7 +488,7 @@ export default function TravelGuideDetail({ data = guideData }: { data?: TravelG
               {data.relatedGuidesSection.title}
             </h2>
             {/* View All Link - always visible on right for mobile as in PDF[cite: 73] */}
-            <Link href="#" className="flex items-center gap-[6px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] hover:underline lg:text-[16px] lg:leading-[1.5]">
+            <Link href="/travel-guide#" className="flex h-[40px] items-center justify-center rounded-full bg-[#FDDB32] px-[16px] font-sans text-[14px] font-medium leading-[1.43] text-[#000000] transition-colors hover:bg-[#e5c52c] lg:text-[16px] lg:leading-[1.5]">
               {data.relatedGuidesSection.linkText}
             </Link>
           </div>
