@@ -760,7 +760,7 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
  function NewsletterSection({ newsletter }: { newsletter: TravelPageData["newsletterSection"] }) {
   return (
     <section className="w-full bg-[#FFFFFF] py-[64px] md:py-[80px]">
-      <div className="mx-auto w-full max-w-[1440px] px-[20px] md:px-[120px] max-[1024px]:px-[40px]">
+      <div className="mx-auto w-full max-w-[1440px] px-[20px] md:px-[40px] lg:px-[120px]">
         <div className="mx-auto flex w-full flex-col items-center justify-center rounded-[32px] bg-[#FDDB32] px-[24px] py-[48px] text-center md:rounded-[42px] md:px-[64px] md:py-[64px]">
           <h2 className="font-sans text-[24px] font-medium leading-[1] tracking-[0px] text-[#000000] md:text-[48px] md:font-medium md:leading-[1.1] md:tracking-[-0.02em]">
             {newsletter.title}
@@ -773,7 +773,7 @@ function NearbyCountriesSection({ nearbyCountries }: { nearbyCountries: TravelPa
               type="email"
               placeholder={newsletter.inputPlaceholder}
               aria-label="Email address"
-              className="h-[48px] flex-1 rounded-[14px] bg-[#FFFFFF] px-[16px] font-sans text-[14px] font-normal leading-[20px] text-[#000000] placeholder:text-[#767676] md:h-[56px] md:rounded-[16px] md:px-[24px] md:text-[16px] md:leading-[1.43]"
+              className="h-[48px] w-full shrink-0 rounded-[14px] bg-[#FFFFFF] px-[16px] font-sans text-[14px] font-normal leading-[20px] text-[#000000] placeholder:text-[#767676] sm:w-auto sm:flex-1 md:h-[56px] md:rounded-[16px] md:px-[24px] md:text-[16px] md:leading-[1.43]"
             />
             <button
               type="submit"

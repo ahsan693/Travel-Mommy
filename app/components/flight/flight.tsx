@@ -446,30 +446,32 @@ function NewsletterSection({ data }: { data: FlightPageData }) {
           </div>
 
           {/* Form & Disclaimer Wrapper */}
-          <div className="flex w-full max-w-[393px] flex-col items-center lg:max-w-none">
+          <div className="flex w-full max-w-[302px] flex-col items-center lg:max-w-none">
             
-            <form className="flex w-full flex-col gap-[12px] sm:flex-row sm:items-center justify-center lg:gap-[10px]">
+            <form className="flex w-full flex-col items-center justify-center gap-[10px] lg:flex-row lg:items-center lg:gap-[10px]">
               
-              {/* Input Field */}
-              <div className="flex h-[56px] w-full flex-1 items-center justify-between rounded-[16px] bg-white px-[20px] lg:h-[44px] lg:max-w-[393px] lg:rounded-[14px] lg:px-[18px]">
-                <input
-                  type="email"
-                  aria-label="Email address"
-                  placeholder={data.copy.newsletterPlaceholder}
-                  className="w-full bg-transparent font-sans text-[16px] font-normal text-[#000000] placeholder:text-[#767676] outline-none lg:text-[14px]"
-                />
-                <CircleHelp className="h-[20px] w-[20px] shrink-0 text-[#000000] lg:h-[16px] lg:w-[16px]" />
+              <div className="flex w-full flex-col gap-[12px] lg:contents">
+                {/* Input Field */}
+                <div className="flex h-[48px] w-full shrink-0 items-center justify-between rounded-[14px] bg-white px-[16px] lg:h-[44px] lg:max-w-[393px] lg:flex-1 lg:rounded-[14px] lg:px-[18px]">
+                  <input
+                    type="email"
+                    aria-label="Email address"
+                    placeholder={data.copy.newsletterPlaceholder}
+                    className="w-full bg-transparent font-sans text-[16px] font-normal text-[#000000] placeholder:text-[#767676] outline-none lg:text-[14px]"
+                  />
+                  <CircleHelp className="h-[16px] w-[16px] shrink-0 text-[#000000]" />
+                </div>
+
+                {/* Mobile Disclaimer */}
+                <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#716216] sm:hidden lg:hidden">
+                  {data.copy.newsletterFooter}
+                </p>
               </div>
-              
-              {/* Mobile Disclaimer */}
-              <p className="font-sans text-[14px] font-[380] leading-[20px] text-[#716216] sm:hidden lg:hidden">
-                {data.copy.newsletterFooter}
-              </p>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="flex h-[56px] w-full shrink-0 items-center justify-center gap-2 rounded-[16px] bg-black font-sans text-[16px] font-medium text-white shadow-lg transition-colors hover:bg-black/80 lg:h-[44px] lg:w-[122px] lg:rounded-[14px] lg:text-[14px]"
+                className="flex h-[48px] w-full shrink-0 items-center justify-center gap-2 rounded-[14px] bg-black px-[18px] font-sans text-[16px] font-medium text-white shadow-lg transition-colors hover:bg-black/80 lg:h-[44px] lg:w-[122px] lg:rounded-[14px] lg:px-0 lg:text-[14px]"
               >
                 {data.copy.newsletterCta}
                 <ArrowUpRight size={18} className="lg:hidden" />
